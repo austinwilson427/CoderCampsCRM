@@ -6,3 +6,5 @@ Builds without errors
 Unit tests written and passing
 Any build/deployment/configuration changes implemented/documented/communicated
 Remaining tasks are at 0
+
+- PROJECT TO BE WRITTIN IN TYPESCRIPT
