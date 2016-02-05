@@ -19,7 +19,7 @@ Be prepared to discuss
 3.) Any Blocking Issues??
 
 
-FRIDAY MEET UPS
+THURSDAY MEET UPS
 
 1.) Sprint Planning 
 2.) Sprint Review 
