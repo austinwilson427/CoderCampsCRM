@@ -1,0 +1,29 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml" ng-app="MyApp">
+<head>
+    <title>CoderCampsCRM</title>
+    <base href="/" />
+</head>
+<body ng-controller="AccountController as account">
+
+    <h1>My App</h1>
+    <div>
+        <a href="/">Home</a> /
+        <a href="/about">About</a> /
+        <a href="/login" ng-show="!account.isLoggedIn()">login</a>
+        <a href="#" ng-click="account.logout()" ng-show="account.isLoggedIn()">logout</a>
+    </div>
+
+    <ng-view></ng-view>
+
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/angular-route.min.js"></script>
+    <script src="~/Scripts/angular-resource.min.js"></script>
+
+    <script src="~/ngApp/app.js"></script>
+    <script src="~/ngApp/controllers/controllers.js"></script>
+    <script src="~/ngApp/services/services.js"></script>
+
+    <script src="~/ngApp/controllers/accountController.js"></script>
+    <script src="~/ngApp/services/accountService.js"></script>
+</body>
+</html>
