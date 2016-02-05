@@ -2,6 +2,9 @@
 <head>
     <title>CoderCampsCRM</title>
     <base href="/" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/ui-bootstrap-csp.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
 </head>
 <body ng-controller="AccountController as account">
 
@@ -15,15 +18,24 @@
 
     <ng-view></ng-view>
 
+    <!--Jquery and Bootstrap-->
+    <script src="~/Scripts/jquery-2.2.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <!--Angular-->
     <script src="~/Scripts/angular.min.js"></script>
     <script src="~/Scripts/angular-route.min.js"></script>
     <script src="~/Scripts/angular-resource.min.js"></script>
+    <script src="~/Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
 
+    <!--App and Services-->
     <script src="~/ngApp/app.js"></script>
-    <script src="~/ngApp/controllers/controllers.js"></script>
     <script src="~/ngApp/services/services.js"></script>
-
-    <script src="~/ngApp/controllers/accountController.js"></script>
     <script src="~/ngApp/services/accountService.js"></script>
+
+    <!--Controllers-->
+    <script src="~/ngApp/controllers/controllers.js"></script>
+    <script src="~/ngApp/controllers/accountController.js"></script>
+
 </body>
 </html>

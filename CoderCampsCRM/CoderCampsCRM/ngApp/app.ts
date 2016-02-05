@@ -1,6 +1,6 @@
 ﻿namespace MyApp {
 
-    angular.module('MyApp', ['ngRoute', 'ngResource']).config(($routeProvider: ng.route.IRouteProvider, $locationProvider: ng.ILocationProvider) => {
+    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap']).config(($routeProvider: ng.route.IRouteProvider, $locationProvider: ng.ILocationProvider) => {
         $routeProvider
             .when('/', {
                 templateUrl: '/ngApp/views/home.html',
