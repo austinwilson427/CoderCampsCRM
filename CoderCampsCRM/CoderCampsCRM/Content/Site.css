@@ -43,7 +43,7 @@ textarea {
 .navbar .divider-vertical {
     height: 40px;
     top: 5px;
-    margin: 0px;
+    margin: 0;
     border-right: 1px solid #ffffff;
     border-left: 1px solid #f2f2f2;
 }
@@ -53,4 +53,14 @@ textarea {
     border-left-color: #383838;
 }
 
+
+/*-------------------------------Deals Section-------------------------------*/
+/*Input class to make input 100% wide*/
+input.full{
+    max-width: 100%;
+}
+
+.details_wrap{
+    margin-top: 50px;
+}
 

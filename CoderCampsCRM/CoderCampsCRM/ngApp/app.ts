@@ -42,6 +42,11 @@
                 controller: MyApp.Controllers.ConfirmEmailController,
                 controllerAs: 'controller'
             })
+            .when('/deals', {
+                templateUrl: '/ngApp/views/deals.html',
+                controller: MyApp.Controllers.DealsController,
+                controllerAs: 'vm'
+            })
             .otherwise({
                 redirectTo: '/ngApp/views/notFound.html'
             });
