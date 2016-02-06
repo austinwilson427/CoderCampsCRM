@@ -22,6 +22,11 @@
                 controller: MyApp.Controllers.RegisterController,
                 controllerAs: 'controller'
             })
+            .when('/tasks', {
+                templateUrl: '/ngApp/views/tasks.html',
+                controller: MyApp.Controllers.HomeController,
+                controllerAs: 'vm'
+            })
             .when('/externalLogin', {
                 templateUrl: '/ngApp/views/externalLogin.html',
                 controller: MyApp.Controllers.ExternalLoginController,
@@ -36,6 +41,11 @@
                 templateUrl: '/ngApp/views/confirmEmail.html',
                 controller: MyApp.Controllers.ConfirmEmailController,
                 controllerAs: 'controller'
+            })
+            .when('/deals', {
+                templateUrl: '/ngApp/views/deals.html',
+                controller: MyApp.Controllers.DealsController,
+                controllerAs: 'vm'
             })
             .when('/contactList', {
                 templateUrl: '/ngApp/views/contactListView.html',
