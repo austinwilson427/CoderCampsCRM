@@ -1114,6 +1114,7 @@
     <TypeScriptCompile Include="ngApp\app.ts" />
     <TypeScriptCompile Include="ngApp\controllers\accountController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\controllers.ts" />
+    <TypeScriptCompile Include="ngApp\controllers\ProfileController.ts" />
     <TypeScriptCompile Include="ngApp\services\accountService.ts" />
     <TypeScriptCompile Include="ngApp\services\services.ts" />
     <TypeScriptCompile Include="Scripts\typings\angular-ui\angular-ui-router.d.ts" />
