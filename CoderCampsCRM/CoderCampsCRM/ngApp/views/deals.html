@@ -1,0 +1,38 @@
+﻿<div class="row">
+
+    <div class="col-md-9 col-md-offset-2">
+        <div class="row details_wrap">
+            <div class="col-md-2">
+                <a href="#">Table</a>
+                <a href="#">Board</a>
+            </div>
+            <div class="col-md-8 form-group">
+                <input class="form-control full" placeholder="Search all deals in this view..."/>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary">+ Add Deal</button>
+            </div>
+        </div>
+        <div class="table_wrap">
+            <table class="table table-hover table-bordered">
+                <tr>
+                    <th>Deal Name</th>
+                    <th>Deal Stage</th>
+                    <th>Close Date</th>
+                    <th>Amount</th>
+                    <th>Deal Owner Id</th>
+                    <th>Company Id</th>
+                </tr>
+                <tr ng-repeat="deal in vm.allDeals">
+                    <td><a href="#">{{deal.dealName}}</a></td>
+                    <td>{{deal.stage}}</td>
+                    <td>{{deal.closeDate | date: 'MM/dd/yy'}}</td>
+                    <td>{{deal.amount | currency}}</td>
+                    <td>{{deal.dealOwnerId}}</td>
+                    <td>{{deal.companyId}}</td>
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</div>
