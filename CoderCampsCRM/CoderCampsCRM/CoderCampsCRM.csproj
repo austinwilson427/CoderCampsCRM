@@ -281,6 +281,8 @@
     <Content Include="ngApp\views\home.html" />
     <Content Include="ngApp\views\login.html" />
     <Content Include="ngApp\views\modals\add-deal.html" />
+    <Content Include="ngApp\views\modals\delete-deal.html" />
+    <Content Include="ngApp\views\modals\edit-deal.html" />
     <Content Include="ngApp\views\notFound.html" />
     <Content Include="ngApp\views\register.html" />
     <Content Include="ngApp\views\tasks.html" />
