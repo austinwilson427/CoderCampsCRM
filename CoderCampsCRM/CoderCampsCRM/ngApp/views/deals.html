@@ -10,20 +10,20 @@
                 <input class="form-control full" placeholder="Search all deals in this view..."/>
             </div>
             <div class="col-md-2">
-                <button class="btn btn-primary">+ Add Deal</button>
+                <button class="btn btn-primary" ng-click="vm.addDealModal()">+ Add Deal</button>
             </div>
         </div>
         <div class="table_wrap">
             <table class="table table-hover table-bordered">
                 <tr>
-                    <th>Deal Name</th>
-                    <th>Deal Stage</th>
-                    <th>Close Date</th>
-                    <th>Amount</th>
-                    <th>Deal Owner Id</th>
-                    <th>Company Id</th>
+                    <th ng-click="vm.sortBy('dealName')">Deal Name <span ng-class="vm.menuDirectionName"></span></th>
+                    <th ng-click="vm.sortBy('stage')">Deal Stage <span ng-class="vm.menuDirectionStage"></span></th>
+                    <th ng-click="vm.sortBy('closeDate')">Close Date <span ng-class="vm.menuDirectionDate"></span></th>
+                    <th ng-click="vm.sortBy('amount')">Amount <span ng-class="vm.menuDirectionAmount"></span></th>
+                    <th ng-click="vm.sortBy('dealOwnerId')">Deal Owner Id <span ng-class="vm.menuDirectionOwner"></span></th>
+                    <th ng-click="vm.sortBy('companyId')">Company Id <span ng-class="vm.menuDirectionCompany"></span></th>
                 </tr>
-                <tr ng-repeat="deal in vm.allDeals">
+                <tr ng-repeat="deal in vm.allDeals | orderBy: vm.sortName : vm.reverse">
                     <td><a href="#">{{deal.dealName}}</a></td>
                     <td>{{deal.stage}}</td>
                     <td>{{deal.closeDate | date: 'MM/dd/yy'}}</td>

@@ -10,11 +10,14 @@
 }
 
 /*Nav bar brand padding*/
-.navbar, .navbar-fixed-top {padding-right: 10px;
-         background-color:#383838;
+.navbar, .navbar-fixed-top {
+    padding-right: 10px;
+    background-color: #383838;
 }
 
-.navbar-brand { padding: 8px; }
+.navbar-brand {
+    padding: 8px;
+}
 
 
 /*Navbar hover effect color change*/
@@ -24,14 +27,14 @@
 }
 
 /*Navbar dropdown color*/
-.navbar-default .navbar-nav .open .dropdown-menu>li>a, .navbar-default .navbar-nav .open .dropdown-menu {
+.navbar-default .navbar-nav .open .dropdown-menu > li > a, .navbar-default .navbar-nav .open .dropdown-menu {
     background-color: #383838;
-    color:#ffffff;
-  }
-
-.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover{
-    color:#1e1e1e;
+    color: #ffffff;
 }
+
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover {
+        color: #1e1e1e;
+    }
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,
@@ -56,11 +59,27 @@ textarea {
 
 /*-------------------------------Deals Section-------------------------------*/
 /*Input class to make input 100% wide*/
-input.full{
+input.full {
     max-width: 100%;
 }
 
-.details_wrap{
+.details_wrap {
     margin-top: 50px;
 }
 
+.default_span:before {
+    content: "\00a0 \00a0 \00a0 \00a0";
+}
+
+.default_span {
+    line-height: 1;
+}
+
+.glyphicon-menu-down, .glyphicon-menu-up {
+    width: 18px;
+    font-size: 10px;
+}
+
+.table_wrap th:hover{
+    cursor: pointer;
+}
