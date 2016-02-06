@@ -1,0 +1,18 @@
+﻿<form class="modal" name="contactAdd" ng-submit="vm.addContact()">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="modal-header">
+            <h3 class="modal-title">Add a Contact</h3>
+        </div>      
+        <div class="modal-body">
+            <div class="col-md-8 col-md-offset-2 form-group">
+                <label class="form-control">Email<input type="text" ng-model="vm.contact.email" class="form-control" name="email" required/></label><span ng-show="contactAdd.email.touched && contactAdd.email.required"></span>       
+                <label class="form-control">First Name<input type="text" ng-model="vm.contact.firstName" class="form-control" name="firstName" required /></label><span ng-show="contactAdd.firstName.touched && contactAdd.firstName.required"></span>       
+                <label class="form-control">Last Name<input type="text" ng-model="vm.contact.lastName" class="form-control" name="lastName" required/></label><span ng-show="contactAdd.lastName.touched && contactAdd.lastName.required"></span>               
+            </div>           
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Add Contact</button>
+            <button class="btn btn-primary" ng-click="vm.cancel()">Cancel</button>
+        </div>
+    </div>
+</form>
