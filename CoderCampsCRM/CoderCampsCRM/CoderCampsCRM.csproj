@@ -275,12 +275,15 @@
     <Content Include="Global.asax" />
     <Content Include="ngApp\views\about.html" />
     <Content Include="ngApp\views\confirmEmail.html" />
+    <Content Include="ngApp\views\contactDetailsView.html" />
+    <Content Include="ngApp\views\contactListView.html" />
     <Content Include="ngApp\views\deals.html" />
     <Content Include="ngApp\views\externalLogin.html" />
     <Content Include="ngApp\views\externalRegister.html" />
     <Content Include="ngApp\views\home.html" />
     <Content Include="ngApp\views\login.html" />
     <Content Include="ngApp\views\modals\add-deal.html" />
+    <Content Include="ngApp\views\modals\contactAddModal.html" />
     <Content Include="ngApp\views\notFound.html" />
     <Content Include="ngApp\views\register.html" />
     <Content Include="ngApp\views\tasks.html" />
@@ -1139,9 +1142,13 @@
   <ItemGroup>
     <TypeScriptCompile Include="ngApp\app.ts" />
     <TypeScriptCompile Include="ngApp\controllers\accountController.ts" />
+    <TypeScriptCompile Include="ngApp\controllers\contactAddController.ts" />
+    <TypeScriptCompile Include="ngApp\controllers\contactDetailsController.ts" />
+    <TypeScriptCompile Include="ngApp\controllers\contactListController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\controllers.ts" />
     <TypeScriptCompile Include="ngApp\controllers\dealController.ts" />
     <TypeScriptCompile Include="ngApp\services\accountService.ts" />
+    <TypeScriptCompile Include="ngApp\services\contactService.ts" />
     <TypeScriptCompile Include="ngApp\services\dealService.ts" />
     <TypeScriptCompile Include="ngApp\services\services.ts" />
     <TypeScriptCompile Include="Scripts\typings\angular-ui-bootstrap\angular-ui-bootstrap.d.ts" />
@@ -1187,7 +1194,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51393</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
