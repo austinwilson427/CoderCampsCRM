@@ -263,6 +263,7 @@
     <Content Include="ngApp\views\login.html" />
     <Content Include="ngApp\views\notFound.html" />
     <Content Include="ngApp\views\register.html" />
+    <Content Include="ngApp\views\tasks.html" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />

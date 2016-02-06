@@ -22,6 +22,11 @@
                 controller: MyApp.Controllers.RegisterController,
                 controllerAs: 'controller'
             })
+            .when('/tasks', {
+                templateUrl: '/ngApp/views/tasks.html',
+                controller: MyApp.Controllers.HomeController,
+                controllerAs: 'vm'
+            })
             .when('/externalLogin', {
                 templateUrl: '/ngApp/views/externalLogin.html',
                 controller: MyApp.Controllers.ExternalLoginController,
