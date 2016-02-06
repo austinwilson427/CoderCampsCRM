@@ -1,26 +1,35 @@
 ﻿<div class="row">
-    <div class="col-md-10 col-md-offset-1">
-        <button class="btn btn-primary">Add Contact</button>
-         <table class="table table-bordered table-striped">
-             <thead>
-                 <tr>
-                     <th>First Name</th>
-                     <th>Last Name</th>
-                     <th>Email</th>
-                     <th>Company</th>
-                     <th>Job Title</th>
-                 </tr>
-             </thead>
-             <tbody>
-                 <tr ng-repeat="contact in vm.contacts">
-                     <td>{{contact.firstName}}</td>
-                     <td>{{contact.lastName}}</td>
-                     <td>{{contact.email}}</td>
-                     <td>{{contact.company}}</td>
-                     <td>{{contact.jobTitle}}</td>
-                     <td><a href="/contactDetails/{{contact.id}}" class="btn btn-primary">Manage Contact</a></td>
-                 </tr>
-             </tbody>
-         </table> 
+    <div class="col-md-9 col-md-offset-2">
+        <div class="row details_wrap">
+            <div class="col-md-8 col-md-offset-2 form-group">
+                <input type="text" class="form-control full" ng-model="search" placeholder="Search contacts" />
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary" ng-click="vm.openNewContactModal()">+ Add Contact</button>
+            </div>
+        </div>
+        <div class="table_wrap">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Company</th>
+                        <th>Job Title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="contact in vm.contacts">
+                        <td>{{contact.firstName}}</td>
+                        <td>{{contact.lastName}}</td>
+                        <td>{{contact.email}}</td>
+                        <td>{{contact.company}}</td>
+                        <td>{{contact.jobTitle}}</td>
+                        <td><a href="/contactDetails/{{contact.id}}" class="btn btn-primary">Manage Contact</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
