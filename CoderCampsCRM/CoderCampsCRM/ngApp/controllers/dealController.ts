@@ -83,11 +83,10 @@
             let today_year = new Date().getFullYear;
 
             for (let i = 0; i < this.allDeals.length; i++) {
-                let innerDate = new Date(this.allDeals[i].closeDate);
-                let innerDate 
-                if (innerDate == today) {
-                    console.log("Happened");
-                }
+                let inner_date = new Date(this.allDeals[i].closeDate).getDate;
+                let inner_month = new Date(this.allDeals[i].closeDate).getMonth;
+                let inner_year = new Date(this.allDeals[i].closeDate).getYear;
+                console.log(
             }
         }
 
