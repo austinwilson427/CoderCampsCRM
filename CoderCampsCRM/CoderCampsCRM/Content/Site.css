@@ -80,8 +80,10 @@ textarea {
     font-size: 10px;
 }
 
-.table_wrap th:hover{
+.table_wrap th.hover_blue:hover{
     cursor: pointer;
+    background-image: linear-gradient(to bottom,#337ab7 0,#265a88 100%);
+    color: white;
 }
 
 .modal-deal{
@@ -100,6 +102,10 @@ table.deals_table{
     font-size: 12px;
 }
 
+table.deals_table th:hover{
+    
+}
+
 .glyphicon-th, .glyphicon-list-alt{
     font-size: 24px;
     margin: 0 5px;
@@ -108,4 +114,14 @@ table.deals_table{
 .glyphicon-list-alt{
     position: relative;
     top: 2px;
+}
+
+/*-------------------Contacts Section--------------------------*/
+
+.error {
+    color: rgba(191, 51, 13, 0.80);
+}
+
+.ng-invalid.ng-touched {
+    background-color: orange;
 }

@@ -9,11 +9,24 @@
         public menuDirectionName; public menuDirectionStage; public menuDirectionDate; public menuDirectionAmount;
         public menuDirectionOwner; public menuDirectionCompany;
         public dateFilter;
+        public searchPhrase;
 
         constructor(private dealService: MyApp.Services.DealService, private $uibModal: ng.ui.bootstrap.IModalService) {
             this.reverse = false;
             this.sortName = 'dealName';
-            this.allDeals = this.dealService.listAllDeals();
+
+            this.getAllItems();
+
+        }
+
+        public getAllItems() {
+
+            this.dealService.listAllDeals().$promise.then((result) => {
+                this.allDeals = [];
+                for (var i = 0; i < result.length; i++) {
+                    this.allDeals.push(result[i]);
+                }
+            });
         }
 
         public sortBy(field) {
@@ -78,7 +91,8 @@
         }
 
         public filterByDate() {
-            this.allDeals = this.dealService.listAllDeals().$promise.then((result) => {
+            this.dealService.listAllDeals().$promise.then((result) => {
+                this.allDeals = [];
                 let today = new Date();
                 let today_num = today.setDate(today.getDate());
                 let today_month = new Date().getMonth();
@@ -94,7 +108,7 @@
                     let inner_month = new Date(result[i].closeDate).getMonth();
                     let inner_date = new Date(result[i].closeDate).getDate();
                     let inner_year = new Date(result[i].closeDate).getFullYear();
-                    console.log(this.dateFilter);
+
                     if (this.dateFilter == "today") {
                         if (today_month == inner_month && today_date == inner_date && today_year == inner_year) {
                             filteredDates.push(result[i]);
@@ -114,7 +128,7 @@
                 }
                 this.allDeals = filteredDates;
             });
-            
+
         }
 
     }

@@ -8,8 +8,17 @@ var MyApp;
                 this.$uibModal = $uibModal;
                 this.reverse = false;
                 this.sortName = 'dealName';
-                this.allDeals = this.dealService.listAllDeals();
+                this.getAllItems();
             }
+            DealsController.prototype.getAllItems = function () {
+                var _this = this;
+                this.dealService.listAllDeals().$promise.then(function (result) {
+                    _this.allDeals = [];
+                    for (var i = 0; i < result.length; i++) {
+                        _this.allDeals.push(result[i]);
+                    }
+                });
+            };
             DealsController.prototype.sortBy = function (field) {
                 this.sortName = field;
                 this.menuDirectionName = this.toggleMenu(this.menuDirectionName, field, "dealName");
@@ -70,7 +79,8 @@ var MyApp;
             };
             DealsController.prototype.filterByDate = function () {
                 var _this = this;
-                this.allDeals = this.dealService.listAllDeals().$promise.then(function (result) {
+                this.dealService.listAllDeals().$promise.then(function (result) {
+                    _this.allDeals = [];
                     var today = new Date();
                     var today_num = today.setDate(today.getDate());
                     var today_month = new Date().getMonth();
@@ -86,7 +96,6 @@ var MyApp;
                         var inner_month = new Date(result[i].closeDate).getMonth();
                         var inner_date = new Date(result[i].closeDate).getDate();
                         var inner_year = new Date(result[i].closeDate).getFullYear();
-                        console.log(_this.dateFilter);
                         if (_this.dateFilter == "today") {
                             if (today_month == inner_month && today_date == inner_date && today_year == inner_year) {
                                 filteredDates.push(result[i]);
@@ -202,4 +211,3 @@ var MyApp;
         })();
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=dealController.js.map
