@@ -249,9 +249,15 @@
     <Compile Include="Migrations\201602061516564_Initial2.Designer.cs">
       <DependentUpon>201602061516564_Initial2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602070013436_duran1.cs" />
+    <Compile Include="Migrations\201602070013436_duran1.Designer.cs">
+      <DependentUpon>201602070013436_duran1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\ContactInteraction.cs" />
     <Compile Include="Models\Deal.cs" />
     <Compile Include="Models\DealLogItem.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -1177,6 +1183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602061516564_Initial2.resx">
       <DependentUpon>201602061516564_Initial2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602070013436_duran1.resx">
+      <DependentUpon>201602070013436_duran1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

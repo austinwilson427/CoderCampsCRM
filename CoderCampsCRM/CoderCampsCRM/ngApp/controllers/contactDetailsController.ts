@@ -11,12 +11,12 @@
 
         public deleteContact(id: number) {
             return this.userService.deleteContact(id).then(
-                this.$location.path("/contactList"));
+                this.$location.path("/contacts"));
         }
 
         public editContact(contact) {
             return this.userService.addContact(contact).then(
-                this.$location.path("/contactList"));
+                this.$location.path("/contacts"));
         }
     }
 }
