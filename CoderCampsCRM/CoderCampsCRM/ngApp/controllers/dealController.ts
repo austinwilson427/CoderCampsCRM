@@ -10,6 +10,7 @@
         public menuDirectionOwner; public menuDirectionCompany;
         public dateFilter;
         public searchPhrase;
+        public minAmount; public maxAmount;
 
         constructor(private dealService: MyApp.Services.DealService, private $uibModal: ng.ui.bootstrap.IModalService) {
             this.reverse = false;
@@ -90,7 +91,7 @@
             });
         }
 
-        public filterByDate() {
+        public filterBySelection() {
             this.dealService.listAllDeals().$promise.then((result) => {
                 this.allDeals = [];
                 let today = new Date();
@@ -127,6 +128,26 @@
 
                 }
                 this.allDeals = filteredDates;
+
+                let filteredAmounts = [];
+                for (var i in this.allDeals) {
+                    
+                    let minimumAmount = this.minAmount;
+                    let maximumAmount = this.maxAmount;
+
+                    if (minimumAmount == undefined) {
+                        minimumAmount = 0;
+                    }
+                    if (maximumAmount == undefined || maximumAmount == 0) {
+                        maximumAmount = 100000000000;
+                    }
+
+                    if (this.allDeals[i].amount > minimumAmount && this.allDeals[i].amount < maximumAmount) {
+                        filteredAmounts.push(this.allDeals[i]);
+                    }
+                }
+
+                this.allDeals = filteredAmounts;
             });
 
         }

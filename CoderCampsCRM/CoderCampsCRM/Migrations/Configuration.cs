@@ -28,6 +28,21 @@ namespace CoderCampsCRM.Migrations
             //    );
             //
 
+            var deals = new Deal[]
+            {
+                new Deal
+                {
+                    Stage = "Qualified To Buy",
+                    DealName = "Seed Deal",
+                    Amount = 300000m,
+                    CloseDate = DateTime.Now,
+                    CompanyId = 1,
+                    DealOwnerId = 1
+                }
+            };
+
+             context.Deals.AddOrUpdate(d => d.DealName, deals);
+
             var contacts = new Contact[]
             {
                 new Contact

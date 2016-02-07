@@ -77,7 +77,7 @@ var MyApp;
                     size: "deal"
                 });
             };
-            DealsController.prototype.filterByDate = function () {
+            DealsController.prototype.filterBySelection = function () {
                 var _this = this;
                 this.dealService.listAllDeals().$promise.then(function (result) {
                     _this.allDeals = [];
@@ -89,33 +89,48 @@ var MyApp;
                     var week_from_today = today.setDate(today.getDate() + 7);
                     var month_from_today = today.setDate(today.getDate() + 24); //Adding 24 + 7 for 31 days
                     var filteredDates = [];
-                    for (var i = 0; i < result.length; i++) {
-                        var inner_full = new Date(result[i].closeDate);
+                    for (var i_1 = 0; i_1 < result.length; i_1++) {
+                        var inner_full = new Date(result[i_1].closeDate);
                         var inner_full_num = inner_full.setDate(inner_full.getDate());
                         var inner_set = inner_full.setDate(inner_full.getDate());
-                        var inner_month = new Date(result[i].closeDate).getMonth();
-                        var inner_date = new Date(result[i].closeDate).getDate();
-                        var inner_year = new Date(result[i].closeDate).getFullYear();
+                        var inner_month = new Date(result[i_1].closeDate).getMonth();
+                        var inner_date = new Date(result[i_1].closeDate).getDate();
+                        var inner_year = new Date(result[i_1].closeDate).getFullYear();
                         if (_this.dateFilter == "today") {
                             if (today_month == inner_month && today_date == inner_date && today_year == inner_year) {
-                                filteredDates.push(result[i]);
+                                filteredDates.push(result[i_1]);
                             }
                         }
                         else if (_this.dateFilter == "week") {
                             if (inner_set < week_from_today && inner_full_num >= today_num) {
-                                filteredDates.push(result[i]);
+                                filteredDates.push(result[i_1]);
                             }
                         }
                         else if (_this.dateFilter == "month") {
                             if (inner_set < month_from_today && inner_full_num >= today_num) {
-                                filteredDates.push(result[i]);
+                                filteredDates.push(result[i_1]);
                             }
                         }
                         else {
-                            filteredDates.push(result[i]);
+                            filteredDates.push(result[i_1]);
                         }
                     }
                     _this.allDeals = filteredDates;
+                    var filteredAmounts = [];
+                    for (var i in _this.allDeals) {
+                        var minimumAmount = _this.minAmount;
+                        var maximumAmount = _this.maxAmount;
+                        if (minimumAmount == undefined) {
+                            minimumAmount = 0;
+                        }
+                        if (maximumAmount == undefined || maximumAmount == 0) {
+                            maximumAmount = 100000000000;
+                        }
+                        if (_this.allDeals[i].amount > minimumAmount && _this.allDeals[i].amount < maximumAmount) {
+                            filteredAmounts.push(_this.allDeals[i]);
+                        }
+                    }
+                    _this.allDeals = filteredAmounts;
                 });
             };
             return DealsController;
@@ -211,4 +226,3 @@ var MyApp;
         })();
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=dealController.js.map
