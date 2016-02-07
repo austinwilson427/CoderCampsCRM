@@ -4,7 +4,7 @@
 
         public contacts;
 
-        constructor(private contactService: MyApp.Services.ContactService, private $location: ng.ILocationService, private $uibModal: ng.ui.bootstrap.IModalService) {         
+        constructor(private contactService: MyApp.Services.ContactService, private $location: ng.ILocationService, private $uibModal: angular.ui.bootstrap.IModalService) {         
             this.contacts = contactService.getAllContacts();
         }
 
@@ -12,13 +12,13 @@
             this.$uibModal.open({
                 templateUrl: "/ngApp/views/modals/contactAddModal.html",
                 controller: MyApp.Controllers.ContactAddController,
-                controllerAs: 'vm',
+                controllerAs: 'modal',
                 size: "md"
             })        
         }
 
         public openContactDetailsPage(id: number) {
-            this.$location.path('/contactList/' + id);
+            this.$location.path('/contactDetails/' + id);
         }
     }
 }

@@ -10,10 +10,13 @@ var MyApp;
                 this.contact = this.userService.getOneContact($routeParams['id']);
             }
             ContactDetailsController.prototype.deleteContact = function (id) {
-                return this.userService.deleteContact(id).then(this.$location.path("/contactList"));
+                return this.userService.deleteContact(id).then(this.$location.path("/contacts"));
             };
             ContactDetailsController.prototype.editContact = function (contact) {
-                return this.userService.addContact(contact).then(this.$location.path("/contactList"));
+                return this.userService.addContact(contact).then(this.$location.path("/contacts"));
+            };
+            ContactDetailsController.prototype.addInteraction = function (interaction) {
+                return this.userService.addInteraction(interaction).then(this.$location.path("/contacts"));
             };
             return ContactDetailsController;
         })();

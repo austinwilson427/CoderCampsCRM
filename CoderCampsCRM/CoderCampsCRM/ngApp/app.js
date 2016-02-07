@@ -47,7 +47,7 @@ var MyApp;
             controller: MyApp.Controllers.DealsController,
             controllerAs: 'vm'
         })
-            .when('/contactList', {
+            .when('/contacts', {
             templateUrl: '/ngApp/views/contactListView.html',
             controller: MyApp.Controllers.ContactListController,
             controllerAs: 'vm'

@@ -193,8 +193,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\ContactsController.cs" />
     <Compile Include="API\DealLogItemsController.cs" />
     <Compile Include="API\DealsController.cs" />
+    <Compile Include="API\InteractionsController.cs" />
     <Compile Include="API\MoviesController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -249,9 +251,23 @@
     <Compile Include="Migrations\201602061516564_Initial2.Designer.cs">
       <DependentUpon>201602061516564_Initial2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602070013436_duran1.cs" />
+    <Compile Include="Migrations\201602070013436_duran1.Designer.cs">
+      <DependentUpon>201602070013436_duran1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602070142552_duran2.cs" />
+    <Compile Include="Migrations\201602070142552_duran2.Designer.cs">
+      <DependentUpon>201602070142552_duran2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602070213090_duran3.cs" />
+    <Compile Include="Migrations\201602070213090_duran3.Designer.cs">
+      <DependentUpon>201602070213090_duran3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\ContactInteraction.cs" />
     <Compile Include="Models\Deal.cs" />
     <Compile Include="Models\DealLogItem.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -340,7 +356,6 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="Scripts\angular.min.js.map" />
-    <Content Include="Scripts\angular-route.min.js.map" />
     <Content Include="Scripts\angular-resource.min.js.map" />
     <Content Include="GitIgnore\Secret.config" />
     <Content Include="Scripts\errors.json" />
@@ -360,6 +375,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Scripts\angular-route.min.js.map" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
@@ -1179,6 +1195,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602061516564_Initial2.resx">
       <DependentUpon>201602061516564_Initial2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602070013436_duran1.resx">
+      <DependentUpon>201602070013436_duran1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602070142552_duran2.resx">
+      <DependentUpon>201602070142552_duran2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602070213090_duran3.resx">
+      <DependentUpon>201602070213090_duran3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

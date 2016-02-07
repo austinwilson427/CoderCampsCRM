@@ -13,12 +13,12 @@ var MyApp;
                 this.$uibModal.open({
                     templateUrl: "/ngApp/views/modals/contactAddModal.html",
                     controller: MyApp.Controllers.ContactAddController,
-                    controllerAs: 'vm',
+                    controllerAs: 'modal',
                     size: "md"
                 });
             };
             ContactListController.prototype.openContactDetailsPage = function (id) {
-                this.$location.path('/contactList/' + id);
+                this.$location.path('/contactDetails/' + id);
             };
             return ContactListController;
         })();

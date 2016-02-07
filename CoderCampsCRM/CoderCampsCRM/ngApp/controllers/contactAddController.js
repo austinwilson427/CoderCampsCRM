@@ -9,9 +9,13 @@ var MyApp;
                 this.$uibModalInstance = $uibModalInstance;
             }
             ContactAddController.prototype.addContact = function () {
-                return this.contactService.addContact(this.contact).then(this.$location.path("/contactList"));
+                var _this = this;
+                this.contactService.addContact(this.contact).then(function () {
+                    _this.closeModal();
+                    window.location.reload();
+                });
             };
-            ContactAddController.prototype.cancelAdd = function () {
+            ContactAddController.prototype.closeModal = function () {
                 this.$uibModalInstance.close();
             };
             return ContactAddController;

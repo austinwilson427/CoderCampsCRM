@@ -115,3 +115,13 @@ table.deals_table th:hover{
     position: relative;
     top: 2px;
 }
+
+/*-------------------Contacts Section--------------------------*/
+
+.error {
+    color: rgba(191, 51, 13, 0.80);
+}
+
+.ng-invalid.ng-touched {
+    background-color: orange;
+}
