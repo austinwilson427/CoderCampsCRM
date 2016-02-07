@@ -23,6 +23,7 @@ namespace CoderCampsCRM.Models
     {
         public IDbSet<Deal> Deals { get; set; }
         public IDbSet<DealLogItem> DealLogItems { get; set; }
+        public IDbSet<Company> Companies { get; set; }
         public IDbSet<Contact> Contacts { get; set; }
         public IDbSet<ContactInteraction> ContactInteractions { get; set; }
 

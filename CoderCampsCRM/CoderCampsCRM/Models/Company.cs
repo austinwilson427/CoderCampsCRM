@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace CoderCampsCRM.Models
+{
+    public class Company
+    {
+        public int Id { get; set; }
+        public string CompanyName { get; set; }
+        public string CompanyDomainName { get; set; }
+        public string CompanyPhoneNumber { get; set; }
+        public string CompanyCountry { get; set; }
+        public string CompanyCity { get; set; }
+        public string CompanyState { get; set; }
+        public string CompanyZip { get; set; }
+        public string ComapanyAddress { get; set; }      
+        public string CompanyDescription { get; set; }
+        public string CompanyIndustry { get; set; }
+        public bool CompanyIsPublic { get; set; }
+
+        public string CompanyFacebook { get; set; }
+        public string CompanyLinkedin { get; set; }
+        public string CompanyTwitter { get; set; }
+
+        public DateTime CompanyCreateDate { get; set; }
+        public DateTime? CompanyLastActivityeDate { get; set; }
+        public DateTime? CompanyNextActivityDate { get; set; }
+
+        public string CompanyAttachments { get; set; }
+
+
+
+
+    }
+}
