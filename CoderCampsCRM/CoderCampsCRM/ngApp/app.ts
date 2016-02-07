@@ -53,6 +53,16 @@
                 controllerAs: 'vm'
             })
 
+            .when('/contacts', {
+                templateUrl: '/ngApp/views/contactListView.html',
+                controller: MyApp.Controllers.ContactListController,
+                controllerAs: 'vm'
+            })
+            .when('/contactDetails', {
+                templateUrl: '/ngApp/views/contactDetailsView.html',
+                controller: MyApp.Controllers.ContactDetailsController,
+                controllerAs: 'vm'
+            })
             .otherwise({
                 redirectTo: '/ngApp/views/notFound.html'
             });

@@ -193,9 +193,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\ContactsController.cs" />
     <Compile Include="API\CompaniesController.cs" />
     <Compile Include="API\DealLogItemsController.cs" />
     <Compile Include="API\DealsController.cs" />
+    <Compile Include="API\InteractionsController.cs" />
     <Compile Include="API\MoviesController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -238,13 +240,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602070530286_Initial_Company.cs" />
-    <Compile Include="Migrations\201602070530286_Initial_Company.Designer.cs">
-      <DependentUpon>201602070530286_Initial_Company.cs</DependentUpon>
+    <Compile Include="Migrations\201602072011147_Initial.cs" />
+    <Compile Include="Migrations\201602072011147_Initial.Designer.cs">
+      <DependentUpon>201602072011147_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\ContactInteraction.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Deal.cs" />
     <Compile Include="Models\DealLogItem.cs" />
@@ -258,8 +262,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\simple-sidebar.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -267,11 +274,17 @@
     <Content Include="Global.asax" />
     <Content Include="ngApp\views\about.html" />
     <Content Include="ngApp\views\confirmEmail.html" />
+    <Content Include="ngApp\views\contactDetailsView.html" />
+    <Content Include="ngApp\views\contactListView.html" />
     <Content Include="ngApp\views\deals.html" />
     <Content Include="ngApp\views\externalLogin.html" />
     <Content Include="ngApp\views\externalRegister.html" />
     <Content Include="ngApp\views\home.html" />
     <Content Include="ngApp\views\login.html" />
+    <Content Include="ngApp\views\modals\add-deal.html" />
+    <Content Include="ngApp\views\modals\delete-deal.html" />
+    <Content Include="ngApp\views\modals\edit-deal.html" />
+    <Content Include="ngApp\views\modals\contactAddModal.html" />
     <Content Include="ngApp\views\notFound.html" />
     <Content Include="ngApp\views\register.html" />
     <Content Include="ngApp\views\tasks.html" />
@@ -326,7 +339,6 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="Scripts\angular.min.js.map" />
-    <Content Include="Scripts\angular-route.min.js.map" />
     <Content Include="Scripts\angular-resource.min.js.map" />
     <Content Include="GitIgnore\Secret.config" />
     <Content Include="Scripts\errors.json" />
@@ -338,6 +350,15 @@
     <Content Include="Scripts\angular-cookies.min.js.map" />
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Scripts\angular-route.min.js.map" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
@@ -1116,19 +1137,20 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="ngApp\app.ts" />
     <TypeScriptCompile Include="ngApp\controllers\accountController.ts" />
+    <TypeScriptCompile Include="ngApp\controllers\contactAddController.ts" />
+    <TypeScriptCompile Include="ngApp\controllers\contactDetailsController.ts" />
+    <TypeScriptCompile Include="ngApp\controllers\contactListController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\companyContoller.ts" />
     <TypeScriptCompile Include="ngApp\controllers\controllers.ts" />
     <TypeScriptCompile Include="ngApp\controllers\dealController.ts" />
     <TypeScriptCompile Include="ngApp\services\accountService.ts" />
+    <TypeScriptCompile Include="ngApp\services\contactService.ts" />
     <TypeScriptCompile Include="ngApp\services\companyService.ts" />
     <TypeScriptCompile Include="ngApp\services\dealService.ts" />
     <TypeScriptCompile Include="ngApp\services\services.ts" />
@@ -1150,8 +1172,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602070530286_Initial_Company.resx">
-      <DependentUpon>201602070530286_Initial_Company.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602072011147_Initial.resx">
+      <DependentUpon>201602072011147_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -1169,7 +1191,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51393</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
