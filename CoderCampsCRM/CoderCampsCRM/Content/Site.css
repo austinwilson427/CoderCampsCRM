@@ -59,7 +59,7 @@ textarea {
 
 /*-------------------------------Deals Section-------------------------------*/
 /*Input class to make input 100% wide*/
-input.full {
+.full {
     max-width: 100%;
 }
 
@@ -68,7 +68,7 @@ input.full {
 }
 
 .default_span:before {
-    content: "\00a0 \00a0 \00a0 \00a0";
+    content: "\00a0 \00a0 \00a0 \00a0 \00a0 \00a0";
 }
 
 .default_span {
@@ -82,4 +82,30 @@ input.full {
 
 .table_wrap th:hover{
     cursor: pointer;
+}
+
+.modal-deal{
+    width: 500px;
+}
+
+.modal-deal label{
+    margin-top: 5px;
+}
+
+.modal-deal button, .modal-deal a{
+    margin-top: 10px;
+}
+
+table.deals_table{
+    font-size: 12px;
+}
+
+.glyphicon-th, .glyphicon-list-alt{
+    font-size: 24px;
+    margin: 0 5px;
+}
+
+.glyphicon-list-alt{
+    position: relative;
+    top: 2px;
 }

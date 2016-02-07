@@ -3,9 +3,11 @@
     export class ContactService {
 
         public contactResource;
+        public interactionResource;
 
         constructor(private $resource: ng.resource.IResourceService) {
-            this.contactResource = $resource("/api/contactResource");
+            this.contactResource = $resource("/api/contacts");
+            this.interactionResource = $resource("/api/interactions");
         }
 
         public getAllContacts() {
@@ -22,6 +24,10 @@
 
         public deleteContact(id: number) {
             return this.contactResource.remove({ id: id }).$promise;
+        }
+
+        public addInteraction(interaction) {
+            return this.interactionResource.save().$promise;
         }
     }
     angular.module("MyApp").service("contactService", ContactService);

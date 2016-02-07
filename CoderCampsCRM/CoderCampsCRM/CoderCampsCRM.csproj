@@ -193,8 +193,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\ContactsController.cs" />
     <Compile Include="API\DealLogItemsController.cs" />
     <Compile Include="API\DealsController.cs" />
+    <Compile Include="API\InteractionsController.cs" />
     <Compile Include="API\MoviesController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -253,6 +255,14 @@
     <Compile Include="Migrations\201602070013436_duran1.Designer.cs">
       <DependentUpon>201602070013436_duran1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602070142552_duran2.cs" />
+    <Compile Include="Migrations\201602070142552_duran2.Designer.cs">
+      <DependentUpon>201602070142552_duran2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602070213090_duran3.cs" />
+    <Compile Include="Migrations\201602070213090_duran3.Designer.cs">
+      <DependentUpon>201602070213090_duran3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -289,6 +299,8 @@
     <Content Include="ngApp\views\home.html" />
     <Content Include="ngApp\views\login.html" />
     <Content Include="ngApp\views\modals\add-deal.html" />
+    <Content Include="ngApp\views\modals\delete-deal.html" />
+    <Content Include="ngApp\views\modals\edit-deal.html" />
     <Content Include="ngApp\views\modals\contactAddModal.html" />
     <Content Include="ngApp\views\notFound.html" />
     <Content Include="ngApp\views\register.html" />
@@ -1186,6 +1198,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602070013436_duran1.resx">
       <DependentUpon>201602070013436_duran1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602070142552_duran2.resx">
+      <DependentUpon>201602070142552_duran2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602070213090_duran3.resx">
+      <DependentUpon>201602070213090_duran3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
