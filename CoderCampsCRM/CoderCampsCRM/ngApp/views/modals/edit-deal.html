@@ -1,0 +1,31 @@
+﻿<div class="deal_modal">
+    <div class="modal-header">
+        <h1>Edit Deal</h1>
+    </div>
+    <div class="modal-body">
+        <form class="form-group" ng-submit="vm.editDeal()">
+            <label>Deal Name</label>
+            <input type="text" class="form-control full" ng-model="vm.dealDetails.dealName" />
+            <label>Deal Stage</label>
+            <select class="form-control full" ng-model="vm.dealDetails.stage">
+                <option>Appointment Scheduled</option>
+                <option>Qualified to Buy</option>
+                <option>Presentation Scheduled</option>
+                <option>Decision Maker Bought In</option>
+                <option>Contract Sent</option>
+                <option>Closed One</option>
+                <option>Closed Lost</option>
+            </select>
+            <label>Amount</label>
+            <input type="number" class="form-control full" ng-model="vm.dealDetails.amount" />
+            <label>Close Date</label>
+            <input type="date" class="form-control full" ng-model="vm.dealDetails.closeDate" />
+            <label>Deal Owner Id</label>
+            <input type="number" class="form-control full" ng-model="vm.dealDetails.dealOwnerId" />
+            <label>Company Id</label>
+            <input type="number" class="form-control full" ng-model="vm.dealDetails.companyId" />
+            <button class="form-control full btn btn-primary">Edit Deal</button>
+            <a href="#" ng-click="vm.closeModal()" class="form-control full btn btn-danger">Cancel</a>
+        </form>
+    </div>
+</div>

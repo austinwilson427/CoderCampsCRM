@@ -7,11 +7,10 @@
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    
     <link href="~/Content/ui-bootstrap-csp.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/simple-sidebar.css" rel="stylesheet" />
     
 </head>
 <body ng-controller="AccountController as account">
@@ -47,7 +46,7 @@
                     <ul class="nav navbar-nav">
                         <li class="divider-vertical"></li>
                         <li><a href="#">Dashboard <span class="sr-only">(current)</span></a></li>
-                        <li><a href="#">Contacts</a></li>
+                        <li><a href="/contacts">Contacts</a></li>
                         <li><a href="#">Companies</a></li>
                         <li><a href="/deals">Deals</a></li>
                         <li><a href="/tasks">Tasks</a></li>
@@ -87,7 +86,8 @@
 
     <!--Jquery and Bootstrap-->
     <script src="~/Scripts/jquery-2.2.0.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
     <!--Angular-->
     <script src="~/Scripts/angular.min.js"></script>
@@ -100,11 +100,15 @@
     <script src="~/ngApp/services/services.js"></script>
     <script src="~/ngApp/services/accountService.js"></script>
     <script src="~/ngApp/services/dealService.js"></script>
+    <script src="~/ngApp/services/contactService.js"></script>
 
     <!--Controllers-->
     <script src="~/ngApp/controllers/controllers.js"></script>
     <script src="~/ngApp/controllers/accountController.js"></script>
     <script src="~/ngApp/controllers/dealController.js"></script>
+    <script src="~/ngApp/controllers/contactListController.js"></script>
+    <script src="~/ngApp/controllers/contactDetailsController.js"></script>
+    <script src="~/ngApp/controllers/contactAddModalController.js"></script>
 
 </body>
 </html>

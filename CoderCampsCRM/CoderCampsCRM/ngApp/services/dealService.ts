@@ -29,7 +29,7 @@
         }
 
         public deleteDeal(id) {
-            return this.dealResource.delete({ id: id });
+            return this.dealResource.delete({ id: id }).$promise;
         }
 
 
