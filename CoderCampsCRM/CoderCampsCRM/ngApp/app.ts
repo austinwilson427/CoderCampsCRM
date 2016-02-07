@@ -47,6 +47,12 @@
                 controller: MyApp.Controllers.DealsController,
                 controllerAs: 'vm'
             })
+            .when('/companies', {
+                templateUrl: '/ngApp/views/companies.html',
+                controller: MyApp.Controllers.CompaniesController,
+                controllerAs: 'vm'
+            })
+
             .otherwise({
                 redirectTo: '/ngApp/views/notFound.html'
             });
