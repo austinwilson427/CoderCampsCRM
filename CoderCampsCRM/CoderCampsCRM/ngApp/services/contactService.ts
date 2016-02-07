@@ -5,7 +5,7 @@
         public contactResource;
         public interactionResource;
 
-        constructor(private $resource: ng.resource.IResourceService) {
+        constructor(private $resource: angular.resource.IResourceService) {
             this.contactResource = $resource("/api/contacts");
             this.interactionResource = $resource("/api/interactions");
         }
@@ -19,7 +19,7 @@
         }
 
         public addContact(contact) {
-            return this.contactResource.save().$promise;
+            return this.contactResource.save(contact).$promise;
         }
 
         public deleteContact(id: number) {
@@ -27,7 +27,7 @@
         }
 
         public addInteraction(interaction) {
-            return this.interactionResource.save().$promise;
+            return this.interactionResource.save(interaction).$promise;
         }
     }
     angular.module("MyApp").service("contactService", ContactService);

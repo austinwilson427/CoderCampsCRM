@@ -356,7 +356,6 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="Scripts\angular.min.js.map" />
-    <Content Include="Scripts\angular-route.min.js.map" />
     <Content Include="Scripts\angular-resource.min.js.map" />
     <Content Include="GitIgnore\Secret.config" />
     <Content Include="Scripts\errors.json" />
@@ -376,6 +375,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Scripts\angular-route.min.js.map" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />

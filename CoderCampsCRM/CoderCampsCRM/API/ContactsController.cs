@@ -44,6 +44,8 @@ namespace CoderCampsCRM.API
                     original.Id = contact.Id;
                     original.Name = contact.Name;
                     original.Company = contact.Company;
+                    original.JobTitle = contact.JobTitle;
+                    original.PhoneNumber = contact.PhoneNumber;
                     return Ok();
                 }
             }
