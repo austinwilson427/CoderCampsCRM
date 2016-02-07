@@ -3,10 +3,36 @@ namespace CoderCampsCRM.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class Initial_Company : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.Companies",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        CompanyName = c.String(),
+                        CompanyDomainName = c.String(),
+                        CompanyPhoneNumber = c.String(),
+                        CompanyCountry = c.String(),
+                        CompanyCity = c.String(),
+                        CompanyState = c.String(),
+                        CompanyZip = c.String(),
+                        ComapanyAddress = c.String(),
+                        CompanyDescription = c.String(),
+                        CompanyIndustry = c.String(),
+                        CompanyIsPublic = c.Boolean(nullable: false),
+                        CompanyFacebook = c.String(),
+                        CompanyLinkedin = c.String(),
+                        CompanyTwitter = c.String(),
+                        CompanyCreateDate = c.DateTime(nullable: false),
+                        CompanyLastActivityeDate = c.DateTime(),
+                        CompanyNextActivityDate = c.DateTime(),
+                        CompanyAttachments = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
             CreateTable(
                 "dbo.DealLogItems",
                 c => new
@@ -17,6 +43,7 @@ namespace CoderCampsCRM.Migrations
                         EndTime = c.DateTime(),
                         Content = c.String(),
                         TaskId = c.Int(),
+                        AssignedToUserId = c.Int(),
                         DealId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
@@ -30,7 +57,7 @@ namespace CoderCampsCRM.Migrations
                         Stage = c.String(),
                         Amount = c.Decimal(nullable: false, precision: 18, scale: 2),
                         CloseDate = c.DateTime(nullable: false),
-                        DealOwner = c.String(),
+                        DealOwnerId = c.Int(nullable: false),
                         CompanyId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
@@ -124,6 +151,7 @@ namespace CoderCampsCRM.Migrations
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.Deals");
             DropTable("dbo.DealLogItems");
+            DropTable("dbo.Companies");
         }
     }
 }

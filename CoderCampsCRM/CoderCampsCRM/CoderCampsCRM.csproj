@@ -193,6 +193,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\CompaniesController.cs" />
     <Compile Include="API\DealLogItemsController.cs" />
     <Compile Include="API\DealsController.cs" />
     <Compile Include="API\MoviesController.cs" />
@@ -237,21 +238,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602061504327_Initial.cs" />
-    <Compile Include="Migrations\201602061504327_Initial.Designer.cs">
-      <DependentUpon>201602061504327_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602061509160_Initial1.cs" />
-    <Compile Include="Migrations\201602061509160_Initial1.Designer.cs">
-      <DependentUpon>201602061509160_Initial1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602061516564_Initial2.cs" />
-    <Compile Include="Migrations\201602061516564_Initial2.Designer.cs">
-      <DependentUpon>201602061516564_Initial2.cs</DependentUpon>
+    <Compile Include="Migrations\201602070530286_Initial_Company.cs" />
+    <Compile Include="Migrations\201602070530286_Initial_Company.Designer.cs">
+      <DependentUpon>201602070530286_Initial_Company.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Deal.cs" />
     <Compile Include="Models\DealLogItem.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -1131,11 +1125,14 @@
   <ItemGroup>
     <TypeScriptCompile Include="ngApp\app.ts" />
     <TypeScriptCompile Include="ngApp\controllers\accountController.ts" />
+    <TypeScriptCompile Include="ngApp\controllers\companyContoller.ts" />
     <TypeScriptCompile Include="ngApp\controllers\controllers.ts" />
     <TypeScriptCompile Include="ngApp\controllers\dealController.ts" />
     <TypeScriptCompile Include="ngApp\services\accountService.ts" />
+    <TypeScriptCompile Include="ngApp\services\companyService.ts" />
     <TypeScriptCompile Include="ngApp\services\dealService.ts" />
     <TypeScriptCompile Include="ngApp\services\services.ts" />
+    <TypeScriptCompile Include="Scripts\typings\angular-ui-bootstrap\angular-ui-bootstrap.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angular-ui\angular-ui-router.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angular-ui\angular-ui-sortable.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-animate.d.ts" />
@@ -1153,14 +1150,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602061504327_Initial.resx">
-      <DependentUpon>201602061504327_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602061509160_Initial1.resx">
-      <DependentUpon>201602061509160_Initial1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602061516564_Initial2.resx">
-      <DependentUpon>201602061516564_Initial2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602070530286_Initial_Company.resx">
+      <DependentUpon>201602070530286_Initial_Company.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
