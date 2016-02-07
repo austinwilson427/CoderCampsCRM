@@ -80,8 +80,10 @@ textarea {
     font-size: 10px;
 }
 
-.table_wrap th:hover{
+.table_wrap th.hover_blue:hover{
     cursor: pointer;
+    background-image: linear-gradient(to bottom,#337ab7 0,#265a88 100%);
+    color: white;
 }
 
 .modal-deal{
@@ -98,6 +100,10 @@ textarea {
 
 table.deals_table{
     font-size: 12px;
+}
+
+table.deals_table th:hover{
+    
 }
 
 .glyphicon-th, .glyphicon-list-alt{
