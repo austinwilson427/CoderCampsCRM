@@ -13,7 +13,7 @@
         constructor(private dealService: MyApp.Services.DealService, private $uibModal: ng.ui.bootstrap.IModalService) {
             this.reverse = false;
             this.sortName = 'dealName';
-            this.allDeals = dealService.listAllDeals();
+            this.allDeals = this.dealService.listAllDeals();
         }
 
         public sortBy(field) {
@@ -76,18 +76,45 @@
                 size: "deal"
             });
         }
-        
-        public filterByDate() {
-            let today_date = new Date().getDate;
-            let today_month = new Date().getMonth;
-            let today_year = new Date().getFullYear;
 
-            for (let i = 0; i < this.allDeals.length; i++) {
-                let inner_date = new Date(this.allDeals[i].closeDate).getDate;
-                let inner_month = new Date(this.allDeals[i].closeDate).getMonth;
-                let inner_year = new Date(this.allDeals[i].closeDate).getYear;
-                console.log(
-            }
+        public filterByDate() {
+            this.allDeals = this.dealService.listAllDeals().$promise.then((result) => {
+                let today = new Date();
+                let today_num = today.setDate(today.getDate());
+                let today_month = new Date().getMonth();
+                let today_date = new Date().getDate();
+                let today_year = new Date().getFullYear();
+                let week_from_today = today.setDate(today.getDate() + 7);
+                let month_from_today = today.setDate(today.getDate() + 24); //Adding 24 + 7 for 31 days
+                let filteredDates = [];
+                for (let i = 0; i < result.length; i++) {
+                    let inner_full = new Date(result[i].closeDate);
+                    let inner_full_num = inner_full.setDate(inner_full.getDate());
+                    let inner_set = inner_full.setDate(inner_full.getDate());
+                    let inner_month = new Date(result[i].closeDate).getMonth();
+                    let inner_date = new Date(result[i].closeDate).getDate();
+                    let inner_year = new Date(result[i].closeDate).getFullYear();
+                    console.log(this.dateFilter);
+                    if (this.dateFilter == "today") {
+                        if (today_month == inner_month && today_date == inner_date && today_year == inner_year) {
+                            filteredDates.push(result[i]);
+                        }
+                    } else if (this.dateFilter == "week") {
+                        if (inner_set < week_from_today && inner_full_num >= today_num) {
+                            filteredDates.push(result[i]);
+                        }
+                    } else if (this.dateFilter == "month") {
+                        if (inner_set < month_from_today && inner_full_num >= today_num) {
+                            filteredDates.push(result[i]);
+                        }
+                    } else {
+                        filteredDates.push(result[i]);
+                    }
+
+                }
+                this.allDeals = filteredDates;
+            });
+            
         }
 
     }
@@ -96,7 +123,7 @@
 
         public validationErrors;
 
-        constructor(private dealService: MyApp.Services.DealService, private $location: ng.ILocationService, private $uibModalInstance: ng.ui.bootstrap.IModalServiceInstance, private $route: ng.route.IRouteService ) { }
+        constructor(private dealService: MyApp.Services.DealService, private $location: ng.ILocationService, private $uibModalInstance: ng.ui.bootstrap.IModalServiceInstance, private $route: ng.route.IRouteService) { }
 
         public addDeal(dealToAdd) {
             console.log(dealToAdd);
