@@ -240,9 +240,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602072011147_Initial.cs" />
-    <Compile Include="Migrations\201602072011147_Initial.Designer.cs">
-      <DependentUpon>201602072011147_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201602072246524_company.cs" />
+    <Compile Include="Migrations\201602072246524_company.Designer.cs">
+      <DependentUpon>201602072246524_company.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -282,6 +282,7 @@
     <Content Include="ngApp\views\home.html" />
     <Content Include="ngApp\views\login.html" />
     <Content Include="ngApp\views\modals\add-deal.html" />
+    <Content Include="ngApp\views\modals\companies.html" />
     <Content Include="ngApp\views\modals\delete-deal.html" />
     <Content Include="ngApp\views\modals\edit-deal.html" />
     <Content Include="ngApp\views\modals\contactAddModal.html" />
@@ -1172,8 +1173,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602072011147_Initial.resx">
-      <DependentUpon>201602072011147_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602072246524_company.resx">
+      <DependentUpon>201602072246524_company.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

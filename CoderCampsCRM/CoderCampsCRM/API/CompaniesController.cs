@@ -23,10 +23,10 @@ namespace CoderCampsCRM.API
         }
         public IHttpActionResult Get()
         {
-            var variables = from v in _repo.Query<Company>()
-                            select v;
+            var companies = from c in _repo.Query<Company>()
+                            select c;
 
-            return Ok(variables.ToList());
+            return Ok(companies.ToList());
         }
         public IHttpActionResult Get(int id)
         {

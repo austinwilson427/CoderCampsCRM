@@ -1,0 +1,34 @@
+﻿<div class="row">
+    <div class="col-md-10 col-md-offset-2">
+        <div class="row details_wrap">
+            <div class="col-md-8 col-md-offset-2 form-group">
+                <input type="text" class="form-control full" ng-model="search" placeholder="Search contacts" />
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary" ng-click="vm.openNewContactModal()">+ Add Contact</button>
+            </div>
+        </div>
+        <div class="table_wrap">
+            <table class="table table-bordered table-hover deals_table">
+                <thead>
+                    <tr>
+                        <th class="hover_blue">Company Name</th>
+                        <th class="hover_blue">Company Create Date</th>                        
+                        <th class="hover_blue">Company Last Activitye Date</th>
+                        <th class="hover_blue">Company Next Activity Date</th>
+                        <th class="hover_blue">Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="company in vm.companies">
+                        <td>{{company.companyName}}</td>
+                        <td>{{company.companyCreateDate}}</td>
+                        <td>{{company.companyLastActivityeDate}}</td>
+                        <td>{{company.companyNextActivityDate}}</td>
+                        <td><a href="/contactDetails/{{company.id}}" class="btn btn-primary">Details</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
