@@ -22,11 +22,17 @@
                 controller: MyApp.Controllers.RegisterController,
                 controllerAs: 'controller'
             })
+            .when('/tasks', {
+                templateUrl: '/ngApp/views/tasks.html',
+                controller: MyApp.Controllers.HomeController,
+                controllerAs: 'vm'
+            })
             .when('/externalLogin', {
                 templateUrl: '/ngApp/views/externalLogin.html',
                 controller: MyApp.Controllers.ExternalLoginController,
                 controllerAs: 'controller'
             })
+            
             .when('/externalRegister', {
                 templateUrl: '/ngApp/views/externalRegister.html',
                 controller: MyApp.Controllers.ExternalRegisterController,
@@ -36,6 +42,11 @@
                 templateUrl: '/ngApp/views/confirmEmail.html',
                 controller: MyApp.Controllers.ConfirmEmailController,
                 controllerAs: 'controller'
+            })
+            .when('/deals', {
+                templateUrl: '/ngApp/views/deals.html',
+                controller: MyApp.Controllers.DealsController,
+                controllerAs: 'vm'
             })
             .otherwise({
                 redirectTo: '/ngApp/views/notFound.html'
