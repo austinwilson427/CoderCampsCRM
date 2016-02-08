@@ -63,8 +63,9 @@ textarea {
     max-width: 100%;
 }
 
-.details_wrap {
-    margin-top: 50px;
+.details_wrap label{
+    color: white;
+    margin-top: 10px;
 }
 
 .default_span:before {
@@ -107,14 +108,36 @@ table.deals_table th:hover{
 }
 
 .glyphicon-th, .glyphicon-list-alt{
-    font-size: 24px;
+    font-size: 30px;
     margin: 0 5px;
 }
 
-.glyphicon-list-alt{
+.glyphicon-th{
     position: relative;
-    top: 2px;
+    top: 0;
 }
+
+.no-margin{
+    margin: 0 !important;
+}
+
+.filter_button{
+    position: relative;
+    bottom: 10px;
+}
+
+.min_amount{
+    padding-right: 2px;
+}
+
+.max_amount {
+    padding-left: 2px;
+}
+
+input.amount_input{
+    width: 100%;
+}
+
 
 /*-------------------Contacts Section--------------------------*/
 

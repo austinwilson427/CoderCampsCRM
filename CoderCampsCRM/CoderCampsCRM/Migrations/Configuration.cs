@@ -15,8 +15,28 @@ namespace CoderCampsCRM.Migrations
 
         protected override void Seed(CoderCampsCRM.Models.ApplicationDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            var companies = new Company[]
+            {
+                new Company {Id = 1,
+                            CompanyName = "Coder Camps",
+                            CompanyDomainName = "www.codercamps.com",
+                            CompanyPhoneNumber = "855-755-2267",
+                            CompanyCountry = "US",
+                            CompanyCity = "Pearland",
+                            CompanyState = "TX",
+                            CompanyZip = "77584",
+                            ComapanyAddress = "11200 Broadway Street Suite 2731",
+                            CompanyDescription = "Coder Camps are hands-on coding “boot camps” focused on teaching motivated students the programming skills needed to be successful in a developer role. Coder Camps offers numerous courses that are designed for your specific needs, whether you are new to programming or a seasoned professional. All of the courses equip students with real-world skills by simulating an agile work environment, taught by an experienced teaching staff that is passionate about helping you begin your career after the program ends. With facilities currently in Houston, Online, San Francisco, and Seattle, students can start their path towards becoming a developer locally or globally. ",
+                            CompanyIndustry = "Education",
+                            CompanyIsPublic = true,
+                            CompanyFacebook = "https://www.facebook.com/CoderCamps/",
+                            CompanyLinkedin = "https://www.linkedin.com/company/coder-camps",
+                            CompanyTwitter ="https://twitter.com/codercamps",
+                            CompanyCreateDate = DateTime.Now
 
+                }         
+        };
+            context.Companies.AddOrUpdate(c => c.CompanyName, companies);
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data. E.g.
             //
@@ -27,6 +47,21 @@ namespace CoderCampsCRM.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            var deals = new Deal[]
+            {
+                new Deal
+                {
+                    Stage = "Qualified To Buy",
+                    DealName = "Seed Deal",
+                    Amount = 300000m,
+                    CloseDate = DateTime.Now,
+                    CompanyId = 1,
+                    DealOwnerId = 1
+                }
+            };
+
+             context.Deals.AddOrUpdate(d => d.DealName, deals);
 
             var contacts = new Contact[]
             {
