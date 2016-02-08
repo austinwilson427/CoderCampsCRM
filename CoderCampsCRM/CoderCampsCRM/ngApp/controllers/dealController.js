@@ -8,8 +8,17 @@ var MyApp;
                 this.$uibModal = $uibModal;
                 this.reverse = false;
                 this.sortName = 'dealName';
-                this.allDeals = dealService.listAllDeals();
+                this.getAllItems();
             }
+            DealsController.prototype.getAllItems = function () {
+                var _this = this;
+                this.dealService.listAllDeals().$promise.then(function (result) {
+                    _this.allDeals = [];
+                    for (var i = 0; i < result.length; i++) {
+                        _this.allDeals.push(result[i]);
+                    }
+                });
+            };
             DealsController.prototype.sortBy = function (field) {
                 this.sortName = field;
                 this.menuDirectionName = this.toggleMenu(this.menuDirectionName, field, "dealName");
@@ -43,17 +52,177 @@ var MyApp;
                     templateUrl: '/ngApp/views/modals/add-deal.html',
                     controller: AddDealModal,
                     controllerAs: 'vm',
-                    size: "sm"
+                    size: "deal"
+                });
+            };
+            DealsController.prototype.editDealModal = function (dealToAdd) {
+                this.$uibModal.open({
+                    templateUrl: '/ngApp/views/modals/edit-deal.html',
+                    controller: EditDealModal,
+                    controllerAs: 'vm',
+                    resolve: {
+                        dealDetails: function () { return dealToAdd; }
+                    },
+                    size: "deal"
+                });
+            };
+            DealsController.prototype.deleteDealModal = function (dealToDelete) {
+                this.$uibModal.open({
+                    templateUrl: '/ngApp/views/modals/delete-deal.html',
+                    controller: DeleteDealModal,
+                    controllerAs: 'vm',
+                    resolve: {
+                        deal: function () { return dealToDelete; }
+                    },
+                    size: "deal"
+                });
+            };
+            DealsController.prototype.filterBySelection = function () {
+                var _this = this;
+                this.dealService.listAllDeals().$promise.then(function (result) {
+                    _this.allDeals = [];
+                    var today = new Date();
+                    var today_num = today.setDate(today.getDate());
+                    var today_month = new Date().getMonth();
+                    var today_date = new Date().getDate();
+                    var today_year = new Date().getFullYear();
+                    var week_from_today = today.setDate(today.getDate() + 7);
+                    var month_from_today = today.setDate(today.getDate() + 24); //Adding 24 + 7 for 31 days
+                    var filteredDates = [];
+                    for (var i_1 = 0; i_1 < result.length; i_1++) {
+                        var inner_full = new Date(result[i_1].closeDate);
+                        var inner_full_num = inner_full.setDate(inner_full.getDate());
+                        var inner_set = inner_full.setDate(inner_full.getDate());
+                        var inner_month = new Date(result[i_1].closeDate).getMonth();
+                        var inner_date = new Date(result[i_1].closeDate).getDate();
+                        var inner_year = new Date(result[i_1].closeDate).getFullYear();
+                        if (_this.dateFilter == "today") {
+                            if (today_month == inner_month && today_date == inner_date && today_year == inner_year) {
+                                filteredDates.push(result[i_1]);
+                            }
+                        }
+                        else if (_this.dateFilter == "week") {
+                            if (inner_set < week_from_today && inner_full_num >= today_num) {
+                                filteredDates.push(result[i_1]);
+                            }
+                        }
+                        else if (_this.dateFilter == "month") {
+                            if (inner_set < month_from_today && inner_full_num >= today_num) {
+                                filteredDates.push(result[i_1]);
+                            }
+                        }
+                        else {
+                            filteredDates.push(result[i_1]);
+                        }
+                    }
+                    _this.allDeals = filteredDates;
+                    var filteredAmounts = [];
+                    for (var i in _this.allDeals) {
+                        var minimumAmount = _this.minAmount;
+                        var maximumAmount = _this.maxAmount;
+                        if (minimumAmount == undefined) {
+                            minimumAmount = 0;
+                        }
+                        if (maximumAmount == undefined || maximumAmount == 0) {
+                            maximumAmount = 100000000000;
+                        }
+                        if (_this.allDeals[i].amount > minimumAmount && _this.allDeals[i].amount < maximumAmount) {
+                            filteredAmounts.push(_this.allDeals[i]);
+                        }
+                    }
+                    _this.allDeals = filteredAmounts;
                 });
             };
             return DealsController;
         })();
         Controllers.DealsController = DealsController;
         var AddDealModal = (function () {
-            function AddDealModal() {
+            function AddDealModal(dealService, $location, $uibModalInstance, $route) {
+                this.dealService = dealService;
+                this.$location = $location;
+                this.$uibModalInstance = $uibModalInstance;
+                this.$route = $route;
             }
+            AddDealModal.prototype.addDeal = function (dealToAdd) {
+                var _this = this;
+                console.log(dealToAdd);
+                this.dealService.saveDeal(dealToAdd).then(function () {
+                    _this.closeModal();
+                    _this.$location.path('/deals');
+                    _this.$route.reload();
+                }).catch(function (error) {
+                    var validationErrors = [];
+                    for (var i in error.data.modelState) {
+                        var errorMessage = error.data.modelState[i];
+                        validationErrors = validationErrors.concat(errorMessage);
+                    }
+                    _this.validationErrors = validationErrors;
+                });
+            };
+            AddDealModal.prototype.closeModal = function () {
+                this.$uibModalInstance.close();
+            };
             return AddDealModal;
+        })();
+        var EditDealModal = (function () {
+            function EditDealModal(dealService, $location, $uibModalInstance, dealDetails, $route) {
+                this.dealService = dealService;
+                this.$location = $location;
+                this.$uibModalInstance = $uibModalInstance;
+                this.dealDetails = dealDetails;
+                this.$route = $route;
+                this.dealDetails.closeDate = new Date(this.dealDetails.closeDate);
+            }
+            EditDealModal.prototype.editDeal = function () {
+                var _this = this;
+                console.log(this.dealDetails);
+                this.dealService.saveDeal(this.dealDetails).then(function () {
+                    _this.closeModal();
+                    _this.$location.path('/deals');
+                    _this.$route.reload();
+                }).catch(function (error) {
+                    var validationErrors = [];
+                    for (var i in error.data.modelState) {
+                        var errorMessage = error.data.modelState[i];
+                        validationErrors = validationErrors.concat(errorMessage);
+                    }
+                    _this.validationErrors = validationErrors;
+                });
+            };
+            EditDealModal.prototype.closeModal = function () {
+                this.$uibModalInstance.close();
+            };
+            return EditDealModal;
+        })();
+        var DeleteDealModal = (function () {
+            function DeleteDealModal(dealService, $location, $uibModalInstance, deal, $route) {
+                this.dealService = dealService;
+                this.$location = $location;
+                this.$uibModalInstance = $uibModalInstance;
+                this.deal = deal;
+                this.$route = $route;
+                console.log(deal);
+            }
+            DeleteDealModal.prototype.deleteDeal = function () {
+                var _this = this;
+                console.log(this.deal.id);
+                this.dealService.deleteDeal(this.deal.id).then(function () {
+                    _this.closeModal();
+                    _this.$location.path('/deals');
+                    _this.$route.reload();
+                }).catch(function (error) {
+                    var validationErrors = [];
+                    for (var i in error.data.modelState) {
+                        var errorMessage = error.data.modelState[i];
+                        validationErrors = validationErrors.concat(errorMessage);
+                    }
+                    _this.validationErrors = validationErrors;
+                });
+            };
+            DeleteDealModal.prototype.closeModal = function () {
+                this.$uibModalInstance.close();
+            };
+            return DeleteDealModal;
         })();
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=dealController.js.map

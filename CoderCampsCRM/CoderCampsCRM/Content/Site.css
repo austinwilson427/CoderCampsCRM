@@ -59,16 +59,17 @@ textarea {
 
 /*-------------------------------Deals Section-------------------------------*/
 /*Input class to make input 100% wide*/
-input.full {
+.full {
     max-width: 100%;
 }
 
-.details_wrap {
-    margin-top: 50px;
+.details_wrap label{
+    color: white;
+    margin-top: 10px;
 }
 
 .default_span:before {
-    content: "\00a0 \00a0 \00a0 \00a0";
+    content: "\00a0 \00a0 \00a0 \00a0 \00a0 \00a0";
 }
 
 .default_span {
@@ -80,6 +81,70 @@ input.full {
     font-size: 10px;
 }
 
-.table_wrap th:hover{
+.table_wrap th.hover_blue:hover{
     cursor: pointer;
+    background-image: linear-gradient(to bottom,#337ab7 0,#265a88 100%);
+    color: white;
+}
+
+.modal-deal{
+    width: 500px;
+}
+
+.modal-deal label{
+    margin-top: 5px;
+}
+
+.modal-deal button, .modal-deal a{
+    margin-top: 10px;
+}
+
+table.deals_table{
+    font-size: 12px;
+}
+
+table.deals_table th:hover{
+    
+}
+
+.glyphicon-th, .glyphicon-list-alt{
+    font-size: 30px;
+    margin: 0 5px;
+}
+
+.glyphicon-th{
+    position: relative;
+    top: 0;
+}
+
+.no-margin{
+    margin: 0 !important;
+}
+
+.filter_button{
+    position: relative;
+    bottom: 10px;
+}
+
+.min_amount{
+    padding-right: 2px;
+}
+
+.max_amount {
+    padding-left: 2px;
+}
+
+input.amount_input{
+    width: 100%;
+}
+
+
+/*-------------------Contacts Section--------------------------*/
+
+.error {
+    color: rgba(191, 51, 13, 0.80);
+}
+
+.ng-invalid.ng-touched {
+    background-color: orange;
 }

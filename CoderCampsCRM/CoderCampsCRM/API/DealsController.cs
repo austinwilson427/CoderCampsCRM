@@ -47,7 +47,7 @@ namespace CoderCampsCRM.API
 
         public IHttpActionResult PostDeal(Deal dealToAdd)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
 
                 if (dealToAdd.Id == 0)
