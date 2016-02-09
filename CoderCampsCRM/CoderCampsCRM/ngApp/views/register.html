@@ -15,7 +15,7 @@
             </fieldset>
             <!---extranal login section ends----->
             <!-- left column -->
-            <!--<form ng-submit="controller.register()">-->
+           
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="text-center">
                         <img src="http://stanleywisconsin.us/templates/Itta%20Bena/images/default_avatar.jpg" class="avatar img-circle img-thumbnail" alt="avatar">
@@ -34,36 +34,45 @@
                     <!--personal info-->
                     <h3>Personal info</h3>
                     <div>
-                    <form class="form-horizontal" role="form">
+                    <form ng-submit="vm.register()" class="form-horizontal" role="form">
                         <div class="form-group">
                             <label class="col-lg-3 control-label">First name:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" value="" type="text" placeholder="FirstName">
+                                <input ng-model="vm.registerUser.firstName"class="form-control" value="" type="text" placeholder="FirstName">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Last name:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" value="" type="text" placeholder="LastName">
+                                <input ng-model="vm.registerUser.lastName" class="form-control" value="" type="text" placeholder="LastName">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Company:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" value="" type="text" placeholder="Your company name here">
+                                <input ng-model="vm.registerUser.company" class="form-control" value="" type="text" placeholder="Your company name here">
                             </div>
                         </div>
+                        <!----->
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Phone Number:</label>
+                            <div class="col-lg-8">
+                                <input ng-model="vm.registerUser.phoneNumber" class="form-control" value="" type="number" placeholder="Your phone number here">
+                            </div>
+                        </div>
+
+                        <!----->
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Email:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" ng-model="controller.registerUser.email" value="" type="text" placeholder="your email address here">
+                                <input class="form-control" ng-model="vm.registerUser.email" value="" type="text" placeholder="your email address here">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Time Zone:</label>
                             <div class="col-lg-8">
                                 <div class="ui-select">
-                                    <select id="user_time_zone" class="form-control">
+                                    <select ng-model="vm.registerUser.timeZone" id="user_time_zone" class="form-control">
                                         <option value="Hawaii">(GMT-10:00) Hawaii</option>
                                         <option value="Alaska">(GMT-09:00) Alaska</option>
                                         <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
@@ -79,19 +88,19 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Username:</label>
                             <div class="col-md-8">
-                                <input class="form-control" value="" type="text" placeholder="What is your username">
+                                <input ng-model="vm.registerUser.userName" class="form-control" value="" type="text" placeholder="What is your username">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Password:</label>
                             <div class="col-md-8">
-                                <input class="form-control" ng-model="controller.registerUser.password" value="" type="password" placeholder="password here">
+                                <input class="form-control" ng-model="vm.registerUser.password" value="" type="password" placeholder="password here">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Confirm password:</label>
                             <div class="col-md-8">
-                                <input class="form-control" ng-model="controller.registerUser.confirmPassword" value="" type="password" placeholder="type password again">
+                                <input class="form-control" ng-model="vm.registerUser.confirmPassword" value="" type="password" placeholder="type password again">
                             </div>
                         </div>
                         <div class="form-group">
@@ -100,7 +109,7 @@
                                 <input class="btn btn-primary" type="submit" value="Save and Register">
                                 <span></span>
                                 <input class="btn btn-default" value="Cancel" type="reset">
-                                <input class="btn btn-default" value="Update" type="reset">
+                               
                             </div>
                         </div>
                     </form>

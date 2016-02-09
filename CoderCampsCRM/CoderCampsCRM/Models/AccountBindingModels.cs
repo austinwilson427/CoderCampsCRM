@@ -35,6 +35,18 @@ namespace CoderCampsCRM.Models
     public class RegisterBindingModel
     {
         [Required]
+        public string FirstName { get; set; }
+        [Required]
+        public string LastName { get; set; }
+        [Required]
+        public string Company { get; set; }
+        public string PhoneNumber { get; set; }
+        public string TimeZone { get; set; }
+        [Required]
+        public string UserName { get; set; }
+        public string PicUrl { get; set; }
+
+        [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
 

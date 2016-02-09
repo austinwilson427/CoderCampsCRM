@@ -22,7 +22,7 @@ var MyApp;
                 return this.dealResource.save(dealToSave).$promise;
             };
             DealService.prototype.deleteDeal = function (id) {
-                return this.dealResource.delete({ id: id });
+                return this.dealResource.delete({ id: id }).$promise;
             };
             return DealService;
         })();

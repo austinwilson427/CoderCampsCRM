@@ -20,7 +20,7 @@
             .when('/register', {
                 templateUrl: '/ngApp/views/register.html',
                 controller: MyApp.Controllers.RegisterController,
-                controllerAs: 'controller'
+                controllerAs: 'vm'
             })
             .when('/tasks', {
                 templateUrl: '/ngApp/views/tasks.html',
