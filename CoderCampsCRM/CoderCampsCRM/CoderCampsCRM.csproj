@@ -1146,11 +1146,13 @@
     <TypeScriptCompile Include="ngApp\controllers\companyContoller.ts" />
     <TypeScriptCompile Include="ngApp\controllers\controllers.ts" />
     <TypeScriptCompile Include="ngApp\controllers\dealController.ts" />
+    <TypeScriptCompile Include="ngApp\controllers\taskConroller.ts" />
     <TypeScriptCompile Include="ngApp\services\accountService.ts" />
     <TypeScriptCompile Include="ngApp\services\contactService.ts" />
     <TypeScriptCompile Include="ngApp\services\companyService.ts" />
     <TypeScriptCompile Include="ngApp\services\dealService.ts" />
     <TypeScriptCompile Include="ngApp\services\services.ts" />
+    <TypeScriptCompile Include="ngApp\services\taskService.ts" />
     <TypeScriptCompile Include="Scripts\typings\angular-ui-bootstrap\angular-ui-bootstrap.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angular-ui\angular-ui-router.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angular-ui\angular-ui-sortable.d.ts" />
