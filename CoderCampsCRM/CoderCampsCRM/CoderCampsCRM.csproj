@@ -258,6 +258,7 @@
     <Compile Include="Models\DealLogItem.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\ProfileUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
@@ -292,6 +293,7 @@
     <Content Include="ngApp\views\modals\edit-deal.html" />
     <Content Include="ngApp\views\modals\contactAddModal.html" />
     <Content Include="ngApp\views\notFound.html" />
+    <Content Include="ngApp\views\profile.html" />
     <Content Include="ngApp\views\register.html" />
     <Content Include="ngApp\views\tasks.html" />
     <Content Include="Scripts\angular-animate.js" />
@@ -1155,11 +1157,13 @@
     <TypeScriptCompile Include="ngApp\controllers\companyContoller.ts" />
     <TypeScriptCompile Include="ngApp\controllers\controllers.ts" />
     <TypeScriptCompile Include="ngApp\controllers\dealController.ts" />
+    <TypeScriptCompile Include="ngApp\controllers\ProfileController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\dealInfoController.ts" />
     <TypeScriptCompile Include="ngApp\services\accountService.ts" />
     <TypeScriptCompile Include="ngApp\services\contactService.ts" />
     <TypeScriptCompile Include="ngApp\services\companyService.ts" />
     <TypeScriptCompile Include="ngApp\services\dealService.ts" />
+    <TypeScriptCompile Include="ngApp\services\profileServices.ts" />
     <TypeScriptCompile Include="ngApp\services\services.ts" />
     <TypeScriptCompile Include="Scripts\typings\angular-ui-bootstrap\angular-ui-bootstrap.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angular-ui\angular-ui-router.d.ts" />
@@ -1177,14 +1181,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602072239259_Initial.resx">
-      <DependentUpon>201602072239259_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602081432444_Initial1.resx">
-      <DependentUpon>201602081432444_Initial1.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

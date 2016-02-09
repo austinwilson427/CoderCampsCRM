@@ -20,7 +20,7 @@
             .when('/register', {
                 templateUrl: '/ngApp/views/register.html',
                 controller: MyApp.Controllers.RegisterController,
-                controllerAs: 'controller'
+                controllerAs: 'vm'
             })
             .when('/tasks', {
                 templateUrl: '/ngApp/views/tasks.html',
@@ -32,6 +32,7 @@
                 controller: MyApp.Controllers.ExternalLoginController,
                 controllerAs: 'controller'
             })
+            
             .when('/externalRegister', {
                 templateUrl: '/ngApp/views/externalRegister.html',
                 controller: MyApp.Controllers.ExternalRegisterController,
