@@ -16,6 +16,10 @@
             return this.dealResource.query();
         }
 
+        public getDealByDealId(id) {
+            return this.dealResource.get({ id: id });
+        }
+
         public listAllDealsByCompanyId(id) {
             return this.dealResourceFromCompany.query({id: id});
         }

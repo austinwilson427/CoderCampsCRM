@@ -15,6 +15,7 @@ namespace CoderCampsCRM.Models
         public DateTime CloseDate { get; set; }
         public int DealOwnerId { get; set; }
         public int CompanyId { get; set; }
+        public bool isArchived { get; set; }
         /*public List<Contact> Contacts { get; set; }*/
     }
 }

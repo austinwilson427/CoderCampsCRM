@@ -138,7 +138,32 @@ input.amount_input{
     width: 100%;
 }
 
+.archived{
+    background-color: #464444;
+    color: white;
+}
 
+.archived:hover{
+    color: black;
+}
+
+.archived span.glyphicon-plus{
+    font-size: 16px;
+    margin-left: 8px;
+}
+
+.details_head{
+    margin-bottom: 40px;
+}
+
+.text_wrap{
+    width: 80%;
+    margin: auto;
+}
+textarea.deal_notes{
+    max-width: 100%;
+    width: 100%;
+}
 /*-------------------Contacts Section--------------------------*/
 
 .error {
