@@ -252,6 +252,7 @@
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\ContactInteraction.cs" />
     <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\ProfileUser.cs" />
     <Compile Include="Models\ViewModels\ContactDetailViewModel.cs" />
     <Compile Include="Models\Deal.cs" />
     <Compile Include="Models\DealLogItem.cs" />
@@ -1157,10 +1158,12 @@
     <TypeScriptCompile Include="ngApp\controllers\companyContoller.ts" />
     <TypeScriptCompile Include="ngApp\controllers\controllers.ts" />
     <TypeScriptCompile Include="ngApp\controllers\dealController.ts" />
+    <TypeScriptCompile Include="ngApp\controllers\dealInfoController.ts" />
     <TypeScriptCompile Include="ngApp\services\accountService.ts" />
     <TypeScriptCompile Include="ngApp\services\contactService.ts" />
     <TypeScriptCompile Include="ngApp\services\companyService.ts" />
     <TypeScriptCompile Include="ngApp\services\dealService.ts" />
+    <TypeScriptCompile Include="ngApp\services\profileServices.ts" />
     <TypeScriptCompile Include="ngApp\services\services.ts" />
     <TypeScriptCompile Include="Scripts\typings\angular-ui-bootstrap\angular-ui-bootstrap.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angular-ui\angular-ui-router.d.ts" />
