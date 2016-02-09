@@ -7,7 +7,7 @@ var MyApp;
                 this.contactService = contactService;
                 this.$location = $location;
                 this.$uibModal = $uibModal;
-                this.contacts = contactService.getAllContacts();
+                this.contactsView = contactService.getAllContacts();
             }
             ContactListController.prototype.openNewContactModal = function () {
                 this.$uibModal.open({

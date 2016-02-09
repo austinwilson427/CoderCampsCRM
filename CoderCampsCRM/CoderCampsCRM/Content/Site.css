@@ -148,3 +148,19 @@ input.amount_input{
 .ng-invalid.ng-touched {
     background-color: orange;
 }
+
+.tableDetailRow{
+    font-weight: 600;
+}
+
+.contactPanel {
+    width: 25%;
+    height: 25%;
+    margin-top: 20px;
+    background-color: lightgray;
+    border-radius: 3px;
+}
+
+.contactPanel button {
+    margin-bottom: 20px;
+}

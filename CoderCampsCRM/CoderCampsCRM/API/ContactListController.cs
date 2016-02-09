@@ -9,11 +9,11 @@ using System.Web.Http;
 
 namespace CoderCampsCRM.API
 {
-    public class ContactsController : ApiController
+    public class ContactListController : ApiController
     {
         public IGenericRepository _repo;
 
-        public ContactsController(IGenericRepository repo)
+        public ContactListController(IGenericRepository repo)
         {
             this._repo = repo;
         }
@@ -43,9 +43,10 @@ namespace CoderCampsCRM.API
                     var original = _repo.Find<Contact>(contact.Id);
                     original.Id = contact.Id;
                     original.Name = contact.Name;
-                    original.Company = contact.Company;
                     original.JobTitle = contact.JobTitle;
                     original.PhoneNumber = contact.PhoneNumber;
+                    original.CompanyId = contact.CompanyId;
+                    original.UserId = contact.UserId;
                     return Ok();
                 }
             }
@@ -55,6 +56,7 @@ namespace CoderCampsCRM.API
         public IHttpActionResult deleteContact(int id)
         {
             _repo.Find<Contact>(id);
+            _repo.Delete<Contact>(id);
             _repo.SaveChanges();
             return Ok();
         }

@@ -47,12 +47,17 @@ var MyApp;
             controller: MyApp.Controllers.DealsController,
             controllerAs: 'vm'
         })
+            .when('/companies', {
+            templateUrl: '/ngApp/views/companies.html',
+            controller: MyApp.Controllers.CompaniesController,
+            controllerAs: 'vm'
+        })
             .when('/contacts', {
             templateUrl: '/ngApp/views/contactListView.html',
             controller: MyApp.Controllers.ContactListController,
             controllerAs: 'vm'
         })
-            .when('/contactDetails', {
+            .when('/contactDetails/:id', {
             templateUrl: '/ngApp/views/contactDetailsView.html',
             controller: MyApp.Controllers.ContactDetailsController,
             controllerAs: 'vm'

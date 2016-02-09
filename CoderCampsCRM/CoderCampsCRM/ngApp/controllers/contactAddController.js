@@ -3,10 +3,12 @@ var MyApp;
     var Controllers;
     (function (Controllers) {
         var ContactAddController = (function () {
-            function ContactAddController(contactService, $route, $uibModalInstance) {
+            function ContactAddController(contactService, $route, $uibModalInstance, companiesService) {
                 this.contactService = contactService;
                 this.$route = $route;
                 this.$uibModalInstance = $uibModalInstance;
+                this.companiesService = companiesService;
+                this.companies = this.companiesService.getCompanies();
             }
             ContactAddController.prototype.addContact = function () {
                 var _this = this;

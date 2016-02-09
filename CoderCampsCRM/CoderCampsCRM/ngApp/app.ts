@@ -58,7 +58,7 @@
                 controller: MyApp.Controllers.ContactListController,
                 controllerAs: 'vm'
             })
-            .when('/contactDetails', {
+            .when('/contactDetails/:id', {
                 templateUrl: '/ngApp/views/contactDetailsView.html',
                 controller: MyApp.Controllers.ContactDetailsController,
                 controllerAs: 'vm'
