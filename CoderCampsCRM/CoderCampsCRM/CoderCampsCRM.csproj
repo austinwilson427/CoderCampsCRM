@@ -240,6 +240,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602072239259_Initial.cs" />
+    <Compile Include="Migrations\201602072239259_Initial.Designer.cs">
+      <DependentUpon>201602072239259_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602081432444_Initial1.cs" />
+    <Compile Include="Migrations\201602081432444_Initial1.Designer.cs">
+      <DependentUpon>201602081432444_Initial1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -272,12 +280,14 @@
     <Content Include="ngApp\views\confirmEmail.html" />
     <Content Include="ngApp\views\contactDetailsView.html" />
     <Content Include="ngApp\views\contactListView.html" />
+    <Content Include="ngApp\views\deals-info.html" />
     <Content Include="ngApp\views\deals.html" />
     <Content Include="ngApp\views\externalLogin.html" />
     <Content Include="ngApp\views\externalRegister.html" />
     <Content Include="ngApp\views\home.html" />
     <Content Include="ngApp\views\login.html" />
     <Content Include="ngApp\views\modals\add-deal.html" />
+    <Content Include="ngApp\views\modals\archive-deal.html" />
     <Content Include="ngApp\views\modals\delete-deal.html" />
     <Content Include="ngApp\views\modals\edit-deal.html" />
     <Content Include="ngApp\views\modals\contactAddModal.html" />
@@ -1145,6 +1155,7 @@
     <TypeScriptCompile Include="ngApp\controllers\companyContoller.ts" />
     <TypeScriptCompile Include="ngApp\controllers\controllers.ts" />
     <TypeScriptCompile Include="ngApp\controllers\dealController.ts" />
+    <TypeScriptCompile Include="ngApp\controllers\dealInfoController.ts" />
     <TypeScriptCompile Include="ngApp\services\accountService.ts" />
     <TypeScriptCompile Include="ngApp\services\contactService.ts" />
     <TypeScriptCompile Include="ngApp\services\companyService.ts" />
@@ -1166,6 +1177,14 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201602072239259_Initial.resx">
+      <DependentUpon>201602072239259_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602081432444_Initial1.resx">
+      <DependentUpon>201602081432444_Initial1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -27,7 +27,7 @@ namespace CoderCampsCRM.API
 
         public IHttpActionResult GetADeal(int id)
         {
-            var dealData = _genRepo.Find<Deal>();
+            var dealData = _genRepo.Find<Deal>(id);
             return Ok(dealData);
         }
 
@@ -65,6 +65,7 @@ namespace CoderCampsCRM.API
                     dealBeingEditted.CloseDate = dealToAdd.CloseDate;
                     dealBeingEditted.DealOwnerId = dealToAdd.DealOwnerId;
                     dealBeingEditted.CompanyId = dealToAdd.CompanyId;
+                    dealBeingEditted.isArchived = dealToAdd.isArchived;
                     _genRepo.SaveChanges();
                     return Ok();
                 }

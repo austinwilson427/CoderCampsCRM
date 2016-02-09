@@ -47,6 +47,11 @@
                 controller: MyApp.Controllers.DealsController,
                 controllerAs: 'vm'
             })
+            .when('/deals/:id', {
+                templateUrl: '/ngApp/views/deals-info.html',
+                controller: MyApp.Controllers.DealInfoController,
+                controllerAs: 'vm'
+            })
             .when('/companies', {
                 templateUrl: '/ngApp/views/companies.html',
                 controller: MyApp.Controllers.CompaniesController,
