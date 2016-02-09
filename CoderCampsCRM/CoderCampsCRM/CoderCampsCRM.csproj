@@ -1177,6 +1177,7 @@
     <TypeScriptCompile Include="ngApp\controllers\companyContoller.ts" />
     <TypeScriptCompile Include="ngApp\controllers\controllers.ts" />
     <TypeScriptCompile Include="ngApp\controllers\dealController.ts" />
+    <TypeScriptCompile Include="ngApp\controllers\taskController.ts" />
     <TypeScriptCompile Include="ngApp\services\accountService.ts" />
     <TypeScriptCompile Include="ngApp\services\contactService.ts" />
     <TypeScriptCompile Include="ngApp\services\companyService.ts" />
