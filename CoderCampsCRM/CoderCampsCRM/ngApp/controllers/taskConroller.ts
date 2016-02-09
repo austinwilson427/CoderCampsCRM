@@ -4,7 +4,7 @@
 
     export class TaskListController {
         public tasks;
-        public search: string; //For Search Box
+        public search: string; //Search Box
 
         constructor(taskService: MyApp.Services.TaskService) {
             this.tasks = taskService.listTasks();
