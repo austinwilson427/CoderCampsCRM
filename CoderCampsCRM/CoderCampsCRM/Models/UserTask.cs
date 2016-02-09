@@ -5,7 +5,7 @@ using System.Web;
 
 namespace CoderCampsCRM.Models
 {
-    public class Task
+    public class UserTask
     {
         public int Id { get; set; }
         public string TaskType { get; set; }
