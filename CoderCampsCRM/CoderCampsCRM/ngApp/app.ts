@@ -32,6 +32,7 @@
                 controller: MyApp.Controllers.ExternalLoginController,
                 controllerAs: 'controller'
             })
+            
             .when('/externalRegister', {
                 templateUrl: '/ngApp/views/externalRegister.html',
                 controller: MyApp.Controllers.ExternalRegisterController,

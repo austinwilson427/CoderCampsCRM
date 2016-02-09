@@ -22,7 +22,7 @@ var MyApp;
                 return this.dealResource.save(dealToSave).$promise;
             };
             DealService.prototype.deleteDeal = function (id) {
-                return this.dealResource.delete({ id: id }).$promise;
+                return this.dealResource.delete({ id: id });
             };
             return DealService;
         })();
@@ -30,3 +30,4 @@ var MyApp;
         angular.module("MyApp").service("dealService", DealService);
     })(Services = MyApp.Services || (MyApp.Services = {}));
 })(MyApp || (MyApp = {}));
+//# sourceMappingURL=dealService.js.map
