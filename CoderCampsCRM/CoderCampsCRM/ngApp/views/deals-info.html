@@ -1,0 +1,97 @@
+﻿<div class="row details_head">
+    <div class="col-md-4">
+        <h1>{{vm.dealInfo.dealName}}</h1>
+    </div>
+    <div class="col-md-2 col-md-offset-4">
+        <h3>Amount</h3>
+        <h4>{{vm.dealInfo.amount | currency}}</h4>
+    </div>
+    <div class="col-md-2">
+        <h3>Close Date</h3>
+        <h4>{{vm.dealInfo.closeDate | date: 'MM/dd/yy'}}</h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-5">
+        <table class="table">
+            <tr>
+                <th colspan="2" class="text-center">About</th>
+            </tr>
+            <tr>
+                <td>Amount</td>
+                <td>{{vm.dealInfo.amount | currency}}</td>
+            </tr>
+            <tr>
+                <td>Deal Stage</td>
+                <td>{{vm.dealInfo.stage}}</td>
+            </tr>
+            <tr>
+                <td>Close Date</td>
+                <td>{{vm.dealInfo.closeDate | date: 'MM/dd/yy'}}</td>
+            </tr>
+            <tr>
+                <td>CRM Owner</td>
+                <td>{{vm.dealInfo.dealOwnerId}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-7">
+        <div class="text_wrap">
+            <textarea class="deal_notes" rows="10"></textarea>
+        </div>
+        
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-5">
+        <table class="table">
+            <tr>
+                <th colspan="2" class="text-center">Company</th>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>{{vm.company.companyName}}</td>
+            </tr>
+            <tr>
+                <td>Domain</td>
+                <td>{{vm.company.companyDomainName}}</td>
+            </tr>
+            <tr>
+                <td>Industry</td>
+                <td>{{vm.company.companyIndustry}}</td>
+            </tr>
+            <tr>
+                <td>Phone</td>
+                <td>{{vm.company.companyPhoneNumber}}</td>
+            </tr>
+            <tr>
+                <td>City</td>
+                <td>{{vm.company.companyCity}}</td>
+            </tr>
+            <tr>
+                <td>State</td>
+                <td>{{vm.company.companyState}}</td>
+            </tr>
+            <tr>
+                <td>Zip Code</td>
+                <td>{{vm.company.companyZip}}</td>
+            </tr>
+            <tr>
+                <td>Twitter</td>
+                <td>{{vm.company.companyTwitter}}</td>
+            </tr>
+            <tr>
+                <td>Facebook</td>
+                <td>{{vm.company.companyFacebook}}</td>
+            </tr>
+            <tr>
+                <td>LinkedIn</td>
+                <td>{{vm.company.companyLinkedin}}</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>{{vm.company.companyDescription}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -2,26 +2,27 @@
 
     export class ContactDetailsController {
         
-        public contact;  
+        public contactView;  
         public interaction;  
+        public contact;
 
-        constructor(private userService: MyApp.Services.ContactService, private $routeParams: ng.route.IRouteParamsService, private $location: ng.ILocationService) {
+        constructor(private contactService: MyApp.Services.ContactService, private $routeParams: ng.route.IRouteParamsService, private $location: ng.ILocationService) {
 
-            this.contact = this.userService.getOneContact($routeParams['id']);
+            this.contactView = this.contactService.getOneContact($routeParams['id']);
         }
 
-        public deleteContact(id: number) {
-            return this.userService.deleteContact(id).then(
+        public deleteContact() {
+            return this.contactService.deleteContact(this.contactView.contact.id).then(
                 this.$location.path("/contacts"));
         }
 
-        public editContact(contact) {
-            return this.userService.addContact(contact).then(
+        public editContact() {
+            return this.contactService.addContact(this.contact).then(
                 this.$location.path("/contacts"));
         }
 
         public addInteraction(interaction) {
-            return this.userService.addInteraction(interaction).then(
+            return this.contactService.addInteraction(interaction).then(
                 this.$location.path("/contacts"));
         }
     }

@@ -1,4 +1,4 @@
-﻿<div class="row">
+﻿<div class="row" id="page-content-wrapper">
     <div class="col-md-10 col-md-offset-2">
         <div class="row details_wrap">
             <div class="col-md-8 col-md-offset-2 form-group">
@@ -21,11 +21,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="contact in vm.contacts">
+                    <tr ng-repeat="contact in vm.contactsView.contacts">
                         <td>{{contact.name}}</td>
                         <td>{{contact.email}}</td>
                         <td>{{contact.phoneNumber}}</td>
-                        <td>{{contact.company}}</td>
+                        <td>{{contact.company.companyName}}</td>
                         <td>{{contact.jobTitle}}</td>
                         <td><a href="/contactDetails/{{contact.id}}" class="btn btn-primary">Manage</a></td>
                     </tr>
