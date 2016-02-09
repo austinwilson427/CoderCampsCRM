@@ -51,6 +51,7 @@
         public validationMessages;
 
         public register() {
+            console.log("hello wordl registrant");
             this.accountService.register(this.registerUser).then(() => {
                 this.$location.path('/login');
             }).catch((results) => {

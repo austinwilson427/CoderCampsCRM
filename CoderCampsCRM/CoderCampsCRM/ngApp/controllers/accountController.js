@@ -50,6 +50,7 @@ var MyApp;
             }
             RegisterController.prototype.register = function () {
                 var _this = this;
+                console.log("hello wordl registrant");
                 this.accountService.register(this.registerUser).then(function () {
                     _this.$location.path('/login');
                 }).catch(function (results) {
@@ -119,4 +120,3 @@ var MyApp;
         Controllers.ConfirmEmailController = ConfirmEmailController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=accountController.js.map
