@@ -3,15 +3,16 @@
     export class ContactAddController {
 
         public contact;
+        public companies;
 
-        constructor(private contactService: MyApp.Services.ContactService, private $location: ng.ILocationService, private $uibModalInstance: ng.ui.bootstrap.IModalServiceInstance) {
-
+        constructor(private contactService: MyApp.Services.ContactService, private $route: ng.route.IRouteService, private $uibModalInstance: ng.ui.bootstrap.IModalServiceInstance, private companiesService: MyApp.Services.CompaniesService) {
+            this.companies = this.companiesService.getCompanies();
         }
 
         public addContact() {
             this.contactService.addContact(this.contact).then(() => {
                 this.closeModal();
-                window.location.reload();
+                this.$route.reload();
             });
         }
 
