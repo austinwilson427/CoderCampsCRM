@@ -34,7 +34,7 @@ namespace CoderCampsCRM.Migrations
                             CompanyTwitter ="https://twitter.com/codercamps",
                             CompanyCreateDate = DateTime.Now
 
-                }
+                }         
         };
             context.Companies.AddOrUpdate(c => c.CompanyName, companies);
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
@@ -47,6 +47,32 @@ namespace CoderCampsCRM.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            var contacts = new Contact[]
+            {
+                new Contact
+                {
+                    Name = "Joe Fish",
+                    Company = "Fish Industries",
+                    Id = 1,
+                    JobTitle = "CEO",
+                    Email = "joe@fishindustries.com",
+                    PhoneNumber = "3025667888"
+                },
+            var deals = new Deal[]
+            {
+                new Deal
+                {
+                    Stage = "Qualified To Buy",
+                    DealName = "Seed Deal",
+                    Amount = 300000m,
+                    CloseDate = DateTime.Now,
+                    CompanyId = 1,
+                    DealOwnerId = 1
+                }
+            };
+
+             context.Deals.AddOrUpdate(d => d.DealName, deals);
 
             var contacts = new Contact[]
             {
