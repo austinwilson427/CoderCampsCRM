@@ -189,3 +189,15 @@ textarea.deal_notes{
 .contactPanel button {
     margin-bottom: 20px;
 }
+
+#interactionForm {
+    margin-top: 65px;
+}
+
+#interactionTable {
+    margin-top: 30px;
+}
+
+#interactionBtn {
+    margin-top: 20px;
+}

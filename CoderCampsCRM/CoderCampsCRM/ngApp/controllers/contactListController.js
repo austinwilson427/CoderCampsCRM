@@ -14,7 +14,7 @@ var MyApp;
                     templateUrl: "/ngApp/views/modals/contactAddModal.html",
                     controller: MyApp.Controllers.ContactAddController,
                     controllerAs: 'modal',
-                    size: "md"
+                    size: "sm"
                 });
             };
             ContactListController.prototype.openContactDetailsPage = function (id) {
@@ -25,3 +25,4 @@ var MyApp;
         Controllers.ContactListController = ContactListController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
+//# sourceMappingURL=contactListController.js.map

@@ -242,9 +242,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602090129001_initial.cs" />
-    <Compile Include="Migrations\201602090129001_initial.Designer.cs">
-      <DependentUpon>201602090129001_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201602100329043_initial.cs" />
+    <Compile Include="Migrations\201602100329043_initial.Designer.cs">
+      <DependentUpon>201602100329043_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -252,6 +252,7 @@
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\ContactInteraction.cs" />
     <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\ProfileUser.cs" />
     <Compile Include="Models\ViewModels\ContactDetailViewModel.cs" />
     <Compile Include="Models\Deal.cs" />
     <Compile Include="Models\DealLogItem.cs" />
@@ -263,8 +264,8 @@
     <Compile Include="Repositories\ContactDetailViewRepository.cs" />
     <Compile Include="Repositories\ContactListViewRepository.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
-    <Compile Include="Repositories\Interfaces\IContactListViewRepository.cs" />
     <Compile Include="Repositories\Interfaces\IContactDetailViewRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IContactListViewRepository.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -1157,10 +1158,13 @@
     <TypeScriptCompile Include="ngApp\controllers\companyContoller.ts" />
     <TypeScriptCompile Include="ngApp\controllers\controllers.ts" />
     <TypeScriptCompile Include="ngApp\controllers\dealController.ts" />
+    <TypeScriptCompile Include="ngApp\controllers\dealInfoController.ts" />
+    <TypeScriptCompile Include="ngApp\controllers\ProfileController.ts" />
     <TypeScriptCompile Include="ngApp\services\accountService.ts" />
     <TypeScriptCompile Include="ngApp\services\contactService.ts" />
     <TypeScriptCompile Include="ngApp\services\companyService.ts" />
     <TypeScriptCompile Include="ngApp\services\dealService.ts" />
+    <TypeScriptCompile Include="ngApp\services\profileServices.ts" />
     <TypeScriptCompile Include="ngApp\services\services.ts" />
     <TypeScriptCompile Include="Scripts\typings\angular-ui-bootstrap\angular-ui-bootstrap.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angular-ui\angular-ui-router.d.ts" />
@@ -1180,8 +1184,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602090129001_initial.resx">
-      <DependentUpon>201602090129001_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602100329043_initial.resx">
+      <DependentUpon>201602100329043_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

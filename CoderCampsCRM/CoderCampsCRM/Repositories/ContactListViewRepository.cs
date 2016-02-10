@@ -1,7 +1,9 @@
 ﻿using CoderCampsCRM.Models;
 using CoderCampsCRM.Models.ViewModels;
+using CoderCampsCRM.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -31,7 +33,7 @@ namespace CoderCampsCRM.Repositories
             {
                 Companies = companies,
                 Contacts = contacts,
-                Deals = deals,
+                Deals = deals,                
                 //Tasks = tasks
             };
 

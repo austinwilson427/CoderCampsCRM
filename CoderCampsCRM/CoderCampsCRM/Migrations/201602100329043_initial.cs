@@ -57,10 +57,10 @@ namespace CoderCampsCRM.Migrations
                         PhoneNumber = c.String(),
                         JobTitle = c.String(),
                         UserId = c.String(maxLength: 128),
-                        CompanyId = c.Int(nullable: false),
+                        CompanyId = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Companies", t => t.CompanyId, cascadeDelete: true)
+                .ForeignKey("dbo.Companies", t => t.CompanyId)
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId)
                 .Index(t => t.UserId)
                 .Index(t => t.CompanyId);
@@ -70,6 +70,11 @@ namespace CoderCampsCRM.Migrations
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
+                        FirstName = c.String(),
+                        LastName = c.String(),
+                        Company = c.String(),
+                        TimeZone = c.String(),
+                        PicUrl = c.String(),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
@@ -149,6 +154,20 @@ namespace CoderCampsCRM.Migrations
                         CloseDate = c.DateTime(nullable: false),
                         DealOwnerId = c.Int(nullable: false),
                         CompanyId = c.Int(nullable: false),
+                        isArchived = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.ProfileUsers",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        FirstName = c.String(),
+                        LastName = c.String(),
+                        PhoneNumber = c.Int(nullable: false),
+                        Email = c.String(),
+                        CompanyName = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -183,6 +202,7 @@ namespace CoderCampsCRM.Migrations
             DropIndex("dbo.Contacts", new[] { "UserId" });
             DropIndex("dbo.ContactInteractions", new[] { "ContactId" });
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.ProfileUsers");
             DropTable("dbo.Deals");
             DropTable("dbo.DealLogItems");
             DropTable("dbo.AspNetUserRoles");
