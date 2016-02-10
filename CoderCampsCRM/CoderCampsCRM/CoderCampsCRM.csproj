@@ -293,6 +293,8 @@
     <Content Include="ngApp\views\home.html" />
     <Content Include="ngApp\views\login.html" />
     <Content Include="ngApp\views\modals\add-deal.html" />
+    <Content Include="ngApp\views\modals\companies.html" />
+    <Content Include="ngApp\views\modals\archive-deal.html" />
     <Content Include="ngApp\views\modals\delete-deal.html" />
     <Content Include="ngApp\views\modals\edit-deal.html" />
     <Content Include="ngApp\views\modals\contactAddModal.html" />

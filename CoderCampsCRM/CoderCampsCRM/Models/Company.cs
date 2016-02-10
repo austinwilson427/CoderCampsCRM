@@ -19,7 +19,7 @@ namespace CoderCampsCRM.Models
         public string CompanyDescription { get; set; }
         public string CompanyIndustry { get; set; }
         public bool CompanyIsPublic { get; set; }
-
+        public string ApplicationUser_Id { get; set; }
         public string CompanyFacebook { get; set; }
         public string CompanyLinkedin { get; set; }
         public string CompanyTwitter { get; set; }

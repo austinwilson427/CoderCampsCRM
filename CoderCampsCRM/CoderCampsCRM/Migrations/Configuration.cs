@@ -15,91 +15,67 @@ namespace CoderCampsCRM.Migrations
 
         protected override void Seed(CoderCampsCRM.Models.ApplicationDbContext context)
         {
-            var companies = new Company[]
+            Company[] companies = new Company[]
             {
-                new Company {Id = 1,
-                            CompanyName = "Coder Camps",
-                            CompanyDomainName = "https://www.codercamps.com",
-                            CompanyPhoneNumber = "855-755-2267",
-                            CompanyCountry = "US",
-                            CompanyCity = "Pearland",
-                            CompanyState = "TX",
-                            CompanyZip = "77584",
-                            ComapanyAddress = "11200 Broadway Street Suite 2731",
-                            CompanyDescription = "Coder Camps are hands-on coding “boot camps” focused on teaching motivated students the programming skills needed to be successful in a developer role. Coder Camps offers numerous courses that are designed for your specific needs, whether you are new to programming or a seasoned professional. All of the courses equip students with real-world skills by simulating an agile work environment, taught by an experienced teaching staff that is passionate about helping you begin your career after the program ends. With facilities currently in Houston, Online, San Francisco, and Seattle, students can start their path towards becoming a developer locally or globally. ",
-                            CompanyIndustry = "Education",
-                            CompanyIsPublic = true,
-                            CompanyFacebook = "https://www.facebook.com/CoderCamps/",
-                            CompanyLinkedin = "https://www.linkedin.com/company/coder-camps",
-                            CompanyTwitter ="https://twitter.com/codercamps",
-                            CompanyCreateDate = DateTime.Now
-
-                }         
-        };
+                new Company {
+                                CompanyName = "Coder Camps",
+                                CompanyDomainName ="www.codercamps.com",
+                                CompanyPhoneNumber ="855-755-2267",
+                                CompanyCountry ="US",
+                                CompanyCity ="Pearland",
+                                CompanyState ="TX",
+                                CompanyZip ="77584",
+                                ComapanyAddress ="11200 Broadway Street Suite 2731",
+                                CompanyDescription ="Coder Camps are hands-on coding “boot camps” focused on teaching motivated...",
+                                CompanyIndustry ="Education",
+                                CompanyIsPublic = true,
+                                CompanyFacebook ="https://www.facebook.com/CoderCamps/",
+                                CompanyLinkedin ="https://www.linkedin.com/company/coder-camps",
+                                CompanyTwitter ="https://twitter.com/codercamps",
+                                CompanyCreateDate = DateTime.Now,
+                                CompanyLastActivityeDate = null,
+                                CompanyNextActivityDate = null,
+                                CompanyAttachments ="http://scarc.library.oregonstate.edu/omeka/files/original/carnes02_7e59912282.jpg"},
+                new Company {
+                                CompanyName = "The Verge",
+                                CompanyDomainName ="www.theverge.com",
+                                CompanyPhoneNumber ="833-322-4422",
+                                CompanyCountry ="US",
+                                CompanyCity ="Washington",
+                                CompanyState ="NW ",
+                                CompanyZip ="20036",
+                                ComapanyAddress ="1201 Connecticut Ave. NW",
+                                CompanyDescription ="The Verge was founded in 2011 in partnership with Vox Media...",
+                                CompanyIndustry ="Web",
+                                CompanyIsPublic = true,
+                                CompanyFacebook ="https://www.facebook.com/verge",
+                                CompanyLinkedin ="https://www.linkedin.com/company/theverge",
+                                CompanyTwitter ="https://twitter.com/verge",
+                                CompanyCreateDate = DateTime.Now,
+                                CompanyLastActivityeDate = null,
+                                CompanyNextActivityDate = null,
+                                CompanyAttachments ="http://media.dcentertainment.com/sites/default/files/MAD-Magazine-Arizona-Citizenship-Letter-1.jpg"},
+                 new Company {
+                                CompanyName = "scotch-soda",
+                                CompanyDomainName ="www.scotch-soda.com",
+                                CompanyPhoneNumber ="1- (866) 544-1557",
+                                CompanyCountry ="Nederland",
+                                CompanyCity ="Amsterdam",
+                                CompanyState =null,
+                                CompanyZip ="11111",
+                                ComapanyAddress ="somewhere in Nederland",
+                                CompanyDescription ="At Scotch & Soda we want people to love their clothes...",
+                                CompanyIndustry ="Web",
+                                CompanyIsPublic = true,
+                                CompanyFacebook ="https://www.facebook.com/ScotchOfficial",
+                                CompanyLinkedin ="https://www.linkedin.com/company/1014429",
+                                CompanyTwitter ="https://twitter.com/Scotch_Official",
+                                CompanyCreateDate = DateTime.Now,
+                                CompanyLastActivityeDate = null,
+                                CompanyNextActivityDate = null,
+                                CompanyAttachments ="http://media.dcentertainment.com/sites/default/files/MAD-Magazine-Arizona-Citizenship-Letter-1.jpg"}
+            };
             context.Companies.AddOrUpdate(c => c.CompanyName, companies);
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
-
-            var deals = new Deal[]
-            {
-                new Deal
-                {
-                    Stage = "Qualified To Buy",
-                    DealName = "Seed Deal",
-                    Amount = 300000m,
-                    CloseDate = DateTime.Now,
-                    CompanyId = 1,
-                    ContactId = 1
-                }
-            };
-
-             context.Deals.AddOrUpdate(d => d.DealName, deals);
-
-            var contacts = new Contact[]
-            {
-                new Contact
-                {
-                    Name = "Joe Fish",
-                    JobTitle = "CEO",
-                    Email = "joe@fishindustries.com",
-                    PhoneNumber = "3025667888",
-                    CompanyId = 1,
-                    Id = 1
-                },
-
-                new Contact
-                {
-                    Name = "Bob Bobson",
-                    JobTitle = "CEO",
-                    Email = "bob@bobson.com",
-                    PhoneNumber = "3014524411",
-                    CompanyId = 1,
-                    Id = 2
-                }
-            };
-            context.Contacts.AddOrUpdate(c => c.Name, contacts);
-
-            var interactions = new ContactInteraction[]
-            {
-                new ContactInteraction
-                {
-                    ContactId = 1,
-                    Date = new DateTime(2012, 02, 29),
-                    Description = "Went very well, he is showing the offer to his colleagues",
-                    Subject = "Follow up on sales pitch",
-                    Id = 54
-                }
-            };
-            context.ContactInteractions.AddOrUpdate(i => i.Subject, interactions);
-
         }
     }
 }
