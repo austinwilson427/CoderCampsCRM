@@ -19,6 +19,9 @@ var MyApp;
             ContactService.prototype.addContact = function (contact) {
                 return this.contactResource.save(contact).$promise;
             };
+            ContactService.prototype.editContact = function (contact) {
+                return this.contactResource.save(contact);
+            };
             ContactService.prototype.deleteContact = function (id) {
                 return this.contactResource.remove({ id: id }).$promise;
             };
@@ -31,3 +34,4 @@ var MyApp;
         angular.module("MyApp").service("contactService", ContactService);
     })(Services = MyApp.Services || (MyApp.Services = {}));
 })(MyApp || (MyApp = {}));
+//# sourceMappingURL=contactService.js.map
