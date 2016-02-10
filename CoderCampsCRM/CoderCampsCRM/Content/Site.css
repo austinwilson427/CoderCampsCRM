@@ -208,3 +208,10 @@ textarea.deal_notes{
 #interactionBtn {
     margin-top: 20px;
 }
+
+#manageRow{
+    max-width: 30px;
+    border: none;
+    border-bottom: hidden;
+    border-right: hidden;
+}

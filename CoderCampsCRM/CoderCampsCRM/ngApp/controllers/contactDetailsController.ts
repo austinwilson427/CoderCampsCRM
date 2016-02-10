@@ -17,23 +17,22 @@
         }
 
         public editContact() {
-            $("#name").attr("contenteditable", "true").attr("style", "background-color: rgb(255, 255, 194)");
-            $("#email").attr("contenteditable", "true").attr("style", "background-color: rgb(255, 255, 194)");
-            $("#phoneNumber").attr("contenteditable", "true").attr("style", "background-color: rgb(255, 255, 194)");
-            $("#jobTitle").attr("contenteditable", "true").attr("style", "background-color: rgb(255, 255, 194)");   
+            $(".tdEdit").attr("contenteditable", "true").attr("style", "background-color: rgb(255, 255, 194)");  
         }
 
         public confirmEdit() {
-            $("#name").removeAttr("contenteditable").removeAttr("style");
-            $("#email").removeAttr("contenteditable").removeAttr("style");
-            $("#phoneNumber").removeAttr("contenteditable").removeAttr("style");
-            $("#jobTitle").removeAttr("contenteditable").removeAttr("style");
+            $(".tdEdit").removeAttr("contenteditable").removeAttr("style");
             this.contact.id = this.contactView.contact.id;
             this.contact.companyId = this.contactView.contact.companyId;            
             this.contact.name = $("#name").text();
             this.contact.email = $("#email").text();
             this.contact.phoneNumber = $("#phoneNumber").text();
-            this.contact.jobTitle = $("#jobTitle").text();          
+            this.contact.jobTitle = $("#jobTitle").text();
+            this.contact.country = $("#country").text(); 
+            this.contact.city = $("#city").text();  
+            this.contact.state = $("#state").text();  
+            this.contact.zip = $("#zip").text();  
+            this.contact.streetAddress = $("#streetAddress").text();           
             return this.contactService.editContact(this.contact);
         }
 
@@ -45,6 +44,10 @@
             this.contact.email = $("#email").text();
             this.contact.phoneNumber = $("#phoneNumber").text();
             this.contact.jobTitle = $("#jobTitle").text();  
+            this.contact.city = $("#city").text();
+            this.contact.state = $("#state").text();
+            this.contact.zip = $("#zip").text();
+            this.contact.streetAddress = $("#streetAddress").text(); 
             return this.contactService.editContact(this.contact);            
         }
         

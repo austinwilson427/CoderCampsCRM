@@ -9,19 +9,39 @@
         <table class="table deals_table table-hover table-bordered table-responsive">
             <tr>
                 <td>Name</td>
-                <td class="tableDetailRow" id="name" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.name}}</td>
-            </tr>
-            <tr>
-                <td>Email</td>
-                <td class="tableDetailRow" id="email" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.email}}</td>
-            </tr>
-            <tr>
-                <td>Phone Number</td>
-                <td class="tableDetailRow" id="phoneNumber" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.phoneNumber}}</td>
+                <td class="tableDetailRow tdEdit" id="name" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.name}}</td>
             </tr>
             <tr>
                 <td>Job Title</td>
-                <td class="tableDetailRow" id="jobTitle" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.jobTitle}}</td>
+                <td class="tableDetailRow tdEdit" id="jobTitle" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.jobTitle}}</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td class="tableDetailRow tdEdit" id="email" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.email}}</td>
+            </tr>
+            <tr>
+                <td>Phone Number</td>
+                <td class="tableDetailRow tdEdit" id="phoneNumber" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.phoneNumber}}</td>
+            </tr>
+            <tr>
+                <td>Country</td>
+                <td class="tableDetailRow tdEdit" id="country" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.country}}</td>
+            </tr>
+            <tr>
+                <td>City</td>
+                <td class="tableDetailRow tdEdit" id="city" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.city}}</td>
+            </tr>
+            <tr>
+                <td>State</td>
+                <td class="tableDetailRow tdEdit" id="state" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.state}}</td>
+            </tr>
+            <tr>
+                <td>Zip</td>
+                <td class="tableDetailRow tdEdit" id="zip" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.zip}}</td>
+            </tr>
+            <tr>
+                <td>Street Address</td>
+                <td class="tableDetailRow tdEdit" id="streetAddress" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.streetAddress}}</td>
             </tr>
         </table>
         <button class="btn btn-primary" ng-click="vm.editContact()">Edit</button>
@@ -82,6 +102,10 @@
                 <td class="tableDetailRow">{{vm.contactView.company.companyName}}</td>
             </tr>
             <tr>
+                <td>Domain</td>
+                <td class="tableDetailRow"><a href="{{vm.contactView.company.companyDomainName}}">{{vm.contactView.company.companyDomainName}}</a></td>
+            </tr>
+            <tr>
                 <td>Industry</td>
                 <td class="tableDetailRow">{{vm.contactView.company.companyIndustry}}</td>
             </tr>
@@ -119,7 +143,7 @@
             </tr>
             <tr>
                 <td>LinkedIn Link</td>
-                <td class="tableDetailRow"><a href="{{vm.contactView.company.companyLinkedIn}}">{{vm.contactView.company.companyLinkedIn}}</a></td>
+                <td class="tableDetailRow"><a href="{{vm.contactView.company.companyLinkedIn}}">{{vm.contactView.company.companyLinkedin}}</a></td>
             </tr>
             <tr>
                 <td>Twitter Link</td>

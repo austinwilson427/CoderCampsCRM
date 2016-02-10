@@ -1,36 +1,78 @@
-﻿<div class="row" id="page-content-wrapper">
-    <div class="col-md-10 col-md-offset-2">
-        <div class="row details_wrap">
-            <div class="col-md-8 col-md-offset-2 form-group">
-                <input type="text" class="form-control full" ng-model="search" placeholder="Search contacts" />
+﻿<div id="wrapper">
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="#">
+                    Filter
+                </a>
+            </li>
+            <li>
+                <a href="#">Dashboard</a>
+            </li>
+            <li>
+                <a href="#">Shortcuts</a>
+            </li>
+            <li>
+                <a href="#">Overview</a>
+            </li>
+            <li>
+                <a href="#">Events</a>
+            </li>
+            <li>
+                <a href="#">About</a>
+            </li>
+            <li>
+                <a href="#">Services</a>
+            </li>
+            <li>
+                <a href="#">Contact</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row" id="page-content-wrapper">
+        <div class="col-md-12">
+            <div class="row details_wrap">
+                <div class="col-md-2">
+                    <btn id="menu-toggle" class="btn btn-primary">Filter</btn>
+                </div>
+                <div class="col-md-8 form-group">
+                    <input type="text" class="form-control full" ng-model="searchText" ng-model-options="{debounce: 1000}" placeholder="Search contacts by name" />
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-primary" ng-click="vm.openNewContactModal()">+ Add Contact</button>
+                </div>
             </div>
-            <div class="col-md-2">
-                <button class="btn btn-primary" ng-click="vm.openNewContactModal()">+ Add Contact</button>
+            <div class="table_wrap">
+                <table class="table table-bordered table-hover deals_table">
+                    <thead>
+                        <tr>
+                            <th class="hover_blue" ng-click="sortType = 'name'; sortReverse = !sortReverse; vm.invertArrow(id)">Name<span id="name" class="glyphicon glyphicon-chevron-down"></span></th>
+                            <th class="hover_blue" style="cursor: default">Email</th>
+                            <th class="hover_blue" style="cursor: default">Phone Number</th>
+                            <th class="hover_blue" ng-click="sortType = 'companyName'; sortReverse = !sortReverse; vm.invertArrow(id)">Company<span id="company" class="glyphicon glyphicon-chevron-down"></span></th>
+                            <th class="hover_blue" ng-click="sortType = 'jobTitle'; sortReverse = !sortReverse; vm.invertArrow(id)">Job Title<span id="jobTitle" class="glyphicon glyphicon-chevron-down"></span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="contact in vm.contactsView.contacts | filter: {name: searchText} | orderBy: sortType: sortReverse">
+                            <td>{{contact.name}}</td>
+                            <td>{{contact.email}}</td>
+                            <td>{{contact.phoneNumber}}</td>
+                            <td>{{contact.company.companyName}}</td>
+                            <td>{{contact.jobTitle}}</td>
+                            <td id="manageRow"><a href="/contactDetails/{{contact.id}}" class="btn btn-primary">Manage</a></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </div>
-        <div class="table_wrap">
-            <table class="table table-bordered table-hover deals_table">
-                <thead>
-                    <tr>
-                        <th class="hover_blue">Name</th>
-                        <th class="hover_blue">Email</th>
-                        <th class="hover_blue">Phone Number</th>
-                        <th class="hover_blue">Company</th>
-                        <th class="hover_blue">Job Title</th>
-                        <th class="hover_blue">Manage</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="contact in vm.contactsView.contacts">
-                        <td>{{contact.name}}</td>
-                        <td>{{contact.email}}</td>
-                        <td>{{contact.phoneNumber}}</td>
-                        <td>{{contact.company.companyName}}</td>
-                        <td>{{contact.jobTitle}}</td>
-                        <td><a href="/contactDetails/{{contact.id}}" class="btn btn-primary">Manage</a></td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </div>
 </div>
+
+
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+</script>

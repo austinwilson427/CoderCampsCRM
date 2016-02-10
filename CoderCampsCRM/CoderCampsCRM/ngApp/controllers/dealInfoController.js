@@ -25,4 +25,3 @@ var MyApp;
         Controllers.DealInfoController = DealInfoController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=dealInfoController.js.map

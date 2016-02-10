@@ -12,7 +12,13 @@ namespace CoderCampsCRM.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
+        public string Country { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string Zip { get; set; }
+        public string StreetAddress { get; set; }
         public string JobTitle { get; set; }
+        public DateTime LastInteraction { get; set; }
 
         public string UserId { get; set; }
         [ForeignKey("UserId")]        

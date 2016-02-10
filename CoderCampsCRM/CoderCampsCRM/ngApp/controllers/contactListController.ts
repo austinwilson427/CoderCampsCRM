@@ -18,6 +18,18 @@
             })        
         }
 
+        public invertArrow(id) {
+
+            if ($(id).attr("glyphicon glyphicon-chevron-down")) {
+                $(id).removeAttr("glyphicon glyphicon-chevron-down");
+                $(id).attr("glyphicon glyphicon-chevron-up");
+            }
+            else {
+                $(id).removeAttr("glyphicon glyphicon-chevron-up");
+                $(id).attr("glyphicon glyphicon-chevron-down");
+            }
+        }
+
         public openContactDetailsPage(id: number) {
             this.$location.path('/contactDetails/' + id);
         }

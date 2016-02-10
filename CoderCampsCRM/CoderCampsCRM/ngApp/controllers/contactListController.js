@@ -17,6 +17,16 @@ var MyApp;
                     size: "sm"
                 });
             };
+            ContactListController.prototype.invertArrow = function (id) {
+                if ($(id).attr("glyphicon glyphicon-chevron-down")) {
+                    $(id).removeAttr("glyphicon glyphicon-chevron-down");
+                    $(id).attr("glyphicon glyphicon-chevron-up");
+                }
+                else {
+                    $(id).removeAttr("glyphicon glyphicon-chevron-up");
+                    $(id).attr("glyphicon glyphicon-chevron-down");
+                }
+            };
             ContactListController.prototype.openContactDetailsPage = function (id) {
                 this.$location.path('/contactDetails/' + id);
             };
@@ -25,4 +35,3 @@ var MyApp;
         Controllers.ContactListController = ContactListController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=contactListController.js.map

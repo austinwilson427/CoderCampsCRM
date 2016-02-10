@@ -28,12 +28,14 @@ namespace CoderCampsCRM.Repositories
             //var tasks = _repo.Query<Task>().ToList();
             var companies = _repo.Query<Company>().ToList();
             //var companies = _repo.Query<Company>().Where(co => co.userId == User.Id).ToList();
+            var interactions = _repo.Query<ContactInteraction>().ToList();
 
             var contactListViewModel = new ContactListViewModel
             {
                 Companies = companies,
                 Contacts = contacts,
-                Deals = deals,                
+                Deals = deals, 
+                Interactions = interactions,               
                 //Tasks = tasks
             };
 
