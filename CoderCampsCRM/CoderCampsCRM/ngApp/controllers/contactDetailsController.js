@@ -3,13 +3,12 @@ var MyApp;
     var Controllers;
     (function (Controllers) {
         var ContactDetailsController = (function () {
-            function ContactDetailsController(contactService, $routeParams, $location, $uibModal) {
+            function ContactDetailsController(contactService, $location, $uibModal, $stateParams) {
                 this.contactService = contactService;
-                this.$routeParams = $routeParams;
                 this.$location = $location;
                 this.$uibModal = $uibModal;
                 this.contact = {};
-                this.contactView = this.contactService.getOneContact($routeParams['id']);
+                this.contactView = this.contactService.getOneContact($stateParams['id']);
             }
             ContactDetailsController.prototype.deleteContact = function () {
                 return this.contactService.deleteContact(this.contactView.contact.id).then(this.$location.path("/contacts"));
@@ -51,4 +50,3 @@ var MyApp;
         Controllers.ContactDetailsController = ContactDetailsController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=contactDetailsController.js.map

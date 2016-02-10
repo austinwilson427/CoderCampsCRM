@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
@@ -243,10 +243,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602101942217_Initial.cs" />
-    <Compile Include="Migrations\201602101942217_Initial.Designer.cs">
-      <DependentUpon>201602101942217_Initial.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -268,6 +264,7 @@
     <Compile Include="Repositories\ContactListViewRepository.cs" />
     <Compile Include="Repositories\DealRepository.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IContactListViewRepository.cs" />
     <Compile Include="Repositories\Interfaces\IDealRepository.cs" />
     <Compile Include="Repositories\Interfaces\IContactDetailViewRepository.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -304,6 +301,10 @@
     <Content Include="ngApp\views\notFound.html" />
     <Content Include="ngApp\views\profile.html" />
     <Content Include="ngApp\views\register.html" />
+    <Content Include="ngApp\views\routes\deal-info-task.html" />
+    <Content Include="ngApp\views\routes\deal-info-event.html" />
+    <Content Include="ngApp\views\routes\deal-info-activity.html" />
+    <Content Include="ngApp\views\routes\deal-info-note.html" />
     <Content Include="ngApp\views\tasks.html" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
@@ -328,6 +329,8 @@
     <Content Include="Scripts\angular-scenario.js" />
     <Content Include="Scripts\angular-touch.js" />
     <Content Include="Scripts\angular-touch.min.js" />
+    <Content Include="Scripts\angular-ui-router.js" />
+    <Content Include="Scripts\angular-ui-router.min.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
@@ -1192,32 +1195,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602101942217_Initial.resx">
-      <DependentUpon>201602101942217_Initial.cs</DependentUpon>
-</EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602061504327_Initial.resx">
-      <DependentUpon>201602061504327_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602061509160_Initial1.resx">
-      <DependentUpon>201602061509160_Initial1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602061516564_Initial2.resx">
-      <DependentUpon>201602061516564_Initial2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602070013436_duran1.resx">
-      <DependentUpon>201602070013436_duran1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602070142552_duran2.resx">
-      <DependentUpon>201602070142552_duran2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602070213090_duran3.resx">
-      <DependentUpon>201602070213090_duran3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602072246524_company.resx">
-      <DependentUpon>201602072246524_company.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
