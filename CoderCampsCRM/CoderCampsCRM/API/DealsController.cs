@@ -1,4 +1,5 @@
 ﻿using CoderCampsCRM.Models;
+using CoderCampsCRM.Models.ViewModels;
 using CoderCampsCRM.Repositories;
 using System;
 using System.Collections.Generic;
@@ -12,36 +13,51 @@ namespace CoderCampsCRM.API
     public class DealsController : ApiController
     {
         private IGenericRepository _genRepo;
+        private IDealRepository _dealRepo;
 
-        public DealsController(IGenericRepository genRepo)
+        public DealsController(IGenericRepository genRepo, IDealRepository dealRepo)
         {
             _genRepo = genRepo;
+            _dealRepo = dealRepo;
         }
 
         public IHttpActionResult GetDeals()
         {
-            var dealData = _genRepo.Query<Deal>();
-            return Ok(dealData);
+            var dealData = _dealRepo.getAllDealViewModels();
+            return Ok(dealData.DealList);
 
         }
 
-        public IHttpActionResult GetADeal(int id)
+        public IHttpActionResult GetADealViewModel(int id)
         {
-            var dealData = _genRepo.Find<Deal>(id);
-            return Ok(dealData);
+            var data = _dealRepo.getDealViewModel(id);
+            return Ok(data.Deal);
         }
+        //public IHttpActionResult GetDealByDealId(int id)
+        //{
+        //    var dealData = _genRepo.Find<Deal>(id);
+        //    return Ok(dealData);
+
+        //}
+        
+
 
         [Route("api/deals/company/{id}")]
-        public IHttpActionResult GetDealsByCompanyId(int id)
+        public IHttpActionResult GetAViewModel(int id)
         {
-            var dealData = _genRepo.Query<Deal>().Where(d => d.CompanyId == id);
-            return Ok(dealData);
+            var data = _dealRepo.getDealViewModel(id);
+            return Ok(data.Deal);
         }
+        //public IHttpActionResult GetDealsByCompanyId(int id)
+        //{
+        //    var dealData = _genRepo.Query<Deal>().Where(d => d.CompanyId == id);
+        //    return Ok(dealData);
+        //}
 
         [Route("api/deals/deal-owner/{id}")]
         public IHttpActionResult GetDealsByOwnerId(int id)
         {
-            var dealData = _genRepo.Query<Deal>().Where(d => d.DealOwnerId == id);
+            var dealData = _genRepo.Query<Deal>().Where(d => d.ContactId == id);
             return Ok(dealData);
         }
 
@@ -63,7 +79,7 @@ namespace CoderCampsCRM.API
                     dealBeingEditted.Stage = dealToAdd.Stage;
                     dealBeingEditted.Amount = dealToAdd.Amount;
                     dealBeingEditted.CloseDate = dealToAdd.CloseDate;
-                    dealBeingEditted.DealOwnerId = dealToAdd.DealOwnerId;
+                    dealBeingEditted.ContactId = dealToAdd.ContactId;
                     dealBeingEditted.CompanyId = dealToAdd.CompanyId;
                     dealBeingEditted.isArchived = dealToAdd.isArchived;
                     _genRepo.SaveChanges();

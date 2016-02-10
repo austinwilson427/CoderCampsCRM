@@ -3,11 +3,12 @@ var MyApp;
     var Controllers;
     (function (Controllers) {
         var DealsController = (function () {
-            function DealsController(dealService, $uibModal, $location, $route) {
+            function DealsController(dealService, $uibModal, $location, $route, companiesService) {
                 this.dealService = dealService;
                 this.$uibModal = $uibModal;
                 this.$location = $location;
                 this.$route = $route;
+                this.companiesService = companiesService;
                 this.stageFilter = 0;
                 this.dealsSelected = [];
                 this.showArchived = false;
@@ -19,9 +20,13 @@ var MyApp;
                 var _this = this;
                 this.dealService.listAllDeals().$promise.then(function (result) {
                     _this.allDeals = [];
+                    var company;
                     for (var i = 0; i < result.length; i++) {
+                        //company = this.companiesService.getCompany(result[i].companyId);
+                        //result[i].company = company;
                         _this.allDeals.push(result[i]);
                     }
+                    console.log(_this.allDeals);
                 });
             };
             DealsController.prototype.sortBy = function (field) {

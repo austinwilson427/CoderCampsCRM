@@ -31,13 +31,19 @@
             </tr>
             <tr>
                 <td>CRM Owner</td>
-                <td>{{vm.dealInfo.dealOwnerId}}</td>
+                <td><a href="contactDetails/{{vm.dealInfo.contact.id}}">{{vm.dealInfo.contact.name}}</a></td>
             </tr>
         </table>
     </div>
     <div class="col-md-7">
+        <div class="activity_button_wrap btn-group" role="group" aria-label="...">
+            <a ui-sref="deal-info.note" class="btn btn-default">New Note</a>
+            <a ui-sref="deal-info.activity" class="btn btn-default">Log Activity</a>
+            <a ui-sref="deal-info.task" class="btn btn-default">Create Task</a>
+            <a ui-sref="deal-info.event" class="btn btn-default">Schedule Event</a>
+        </div>
         <div class="text_wrap">
-            <textarea class="deal_notes" rows="10"></textarea>
+            <div ui-view></div>
         </div>
         
     </div>
@@ -54,7 +60,7 @@
             </tr>
             <tr>
                 <td>Domain</td>
-                <td>{{vm.company.companyDomainName}}</td>
+                <td><a href="{{vm.company.companyDomainName}}">{{vm.company.companyDomainName}}</a></td>
             </tr>
             <tr>
                 <td>Industry</td>
@@ -78,15 +84,15 @@
             </tr>
             <tr>
                 <td>Twitter</td>
-                <td>{{vm.company.companyTwitter}}</td>
+                <td><a href="{{vm.company.companyTwitter}}">{{vm.company.companyTwitter}}</a></td>
             </tr>
             <tr>
                 <td>Facebook</td>
-                <td>{{vm.company.companyFacebook}}</td>
+                <td><a href="{{vm.company.companyFacebook}}">{{vm.company.companyFacebook}}</a></td>
             </tr>
             <tr>
                 <td>LinkedIn</td>
-                <td>{{vm.company.companyLinkedin}}</td>
+                <td><a href="{{vm.company.companyLinkedin}}">{{vm.company.companyLinkedin}}</a></td>
             </tr>
             <tr>
                 <td>Description</td>

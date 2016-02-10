@@ -14,7 +14,7 @@ var MyApp;
                 this.taskService = taskService;
                 this.$location = $location;
             }
-            TaskAddController.prototype.addScore = function () {
+            TaskAddController.prototype.addTask = function () {
                 var _this = this;
                 this.loaded = false;
                 this.taskService.saveTask(this.taskToAdd).then(function () {
@@ -34,7 +34,7 @@ var MyApp;
                 this.$location = $location;
                 this.taskToEdit = this.taskService.getTask($routeParams["id"]);
             }
-            TaskEditController.prototype.editScore = function () {
+            TaskEditController.prototype.editTask = function () {
                 var _this = this;
                 this.taskService.saveTask(this.taskToEdit).then(function () {
                     _this.$location.path("/tasks");

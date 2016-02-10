@@ -26,6 +26,10 @@
             return this.contactResource.save(contact).$promise;
         }
 
+        public editContact(contact) {
+            return this.contactResource.save(contact);
+        }
+
         public deleteContact(id: number) {
             return this.contactResource.remove({ id: id }).$promise;
         }

@@ -47,6 +47,7 @@ namespace CoderCampsCRM.API
                     original.PhoneNumber = contact.PhoneNumber;
                     original.CompanyId = contact.CompanyId;
                     original.UserId = contact.UserId;
+                    _repo.SaveChanges();
                     return Ok();
                 }
             }

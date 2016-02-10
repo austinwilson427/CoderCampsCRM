@@ -46,11 +46,11 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li class="divider-vertical"></li>
-                        <li><a href="#">Dashboard <span class="sr-only">(current)</span></a></li>
-                        <li><a href="/contacts">Contacts</a></li>
-                        <li><a href="#">Companies</a></li>
-                        <li><a href="/deals">Deals</a></li>
-                        <li><a href="/tasks">Tasks</a></li>
+                        <li><a ui-sref="home">Dashboard <span class="sr-only">(current)</span></a></li>
+                        <li><a ui-sref="contacts">Contacts</a></li>
+                        <li><a ui-sref="companies">Companies</a></li>
+                        <li><a ui-sref="deals">Deals</a></li>
+                        <li><a ui-sref="tasks">Tasks</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         
@@ -76,10 +76,7 @@
         </nav> @*NAVBAR END*@
 
 
-
-
-        <ng-view></ng-view>
-
+        <div ui-view></div>
 
 
     </div>
@@ -94,6 +91,7 @@
     <script src="~/Scripts/angular-route.min.js"></script>
     <script src="~/Scripts/angular-resource.min.js"></script>
     <script src="~/Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+    <script src="~/Scripts/angular-ui-router.min.js"></script>
 
     <!--App and Services-->
     <script src="~/ngApp/app.js"></script>
@@ -102,6 +100,7 @@
     <script src="~/ngApp/services/dealService.js"></script>
     <script src="~/ngApp/services/contactService.js"></script>
     <script src="~/ngApp/services/companyService.js"></script>
+    <script src="~/ngApp/services/profileServices.js"></script>
 
     <!--Controllers-->
     <script src="~/ngApp/controllers/controllers.js"></script>
@@ -112,6 +111,8 @@
     <script src="~/ngApp/controllers/contactDetailsController.js"></script>
     <script src="~/ngApp/controllers/contactAddController.js"></script>
     <script src="~/ngApp/controllers/companyContoller.js"></script>
+    <script src="~/ngApp/controllers/taskController.js"></script>
+    <script src="~/ngApp/controllers/ProfileController.js"></script>
 
 </body>
 </html>

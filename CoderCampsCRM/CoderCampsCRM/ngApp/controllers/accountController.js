@@ -31,12 +31,15 @@ var MyApp;
             function LoginController(accountService, $location) {
                 this.accountService = accountService;
                 this.$location = $location;
+                this.test = "Testing";
             }
             LoginController.prototype.login = function () {
                 var _this = this;
                 this.accountService.login(this.loginUser).then(function () {
                     _this.$location.path('/');
                 }).catch(function (results) {
+                    console.log("Error");
+                    console.log(results);
                     _this.validationMessages = results;
                 });
             };
