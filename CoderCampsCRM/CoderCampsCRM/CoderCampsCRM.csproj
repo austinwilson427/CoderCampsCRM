@@ -267,7 +267,6 @@
     <Compile Include="Repositories\Interfaces\IDealRepository.cs" />
     <Compile Include="Repositories\Interfaces\IContactListViewRepository.cs" />
     <Compile Include="Repositories\Interfaces\IContactDetailViewRepository.cs" />
-    <Compile Include="Repositories\Interfaces\IContactListViewRepository.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
