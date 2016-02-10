@@ -19,6 +19,9 @@ var MyApp;
             ContactService.prototype.addContact = function (contact) {
                 return this.contactResource.save(contact).$promise;
             };
+            ContactService.prototype.editContact = function (contact) {
+                return this.contactResource.save(contact);
+            };
             ContactService.prototype.deleteContact = function (id) {
                 return this.contactResource.remove({ id: id }).$promise;
             };

@@ -86,6 +86,20 @@ namespace CoderCampsCRM.Migrations
                 }
             };
             context.Contacts.AddOrUpdate(c => c.Name, contacts);
+
+            var interactions = new ContactInteraction[]
+            {
+                new ContactInteraction
+                {
+                    ContactId = 1,
+                    Date = new DateTime(2012, 02, 29),
+                    Description = "Went very well, he is showing the offer to his colleagues",
+                    Subject = "Follow up on sales pitch",
+                    Id = 54
+                }
+            };
+            context.ContactInteractions.AddOrUpdate(i => i.Subject, interactions);
+
         }
     }
 }
