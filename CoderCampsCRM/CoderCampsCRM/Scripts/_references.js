@@ -14,6 +14,7 @@
 /// <reference path="angular-touch.min.js" />
 /// <reference path="angular-ui/ui-bootstrap.min.js" />
 /// <reference path="angular-ui/ui-bootstrap-tpls.min.js" />
+/// <reference path="angular-ui-router.min.js" />
 /// <reference path="bootstrap.js" />
 /// <reference path="jquery.validate.js" />
 /// <reference path="jquery.validate.unobtrusive.js" />

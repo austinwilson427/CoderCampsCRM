@@ -1,80 +1,86 @@
 var MyApp;
 (function (MyApp) {
-    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap']).config(function ($routeProvider, $locationProvider) {
-        $routeProvider
-            .when('/', {
+    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router']).config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
+        $stateProvider
+            .state('home', {
+            url: '/',
             templateUrl: '/ngApp/views/home.html',
             controller: MyApp.Controllers.HomeController,
             controllerAs: 'controller'
         })
-            .when('/about', {
-            templateUrl: '/ngApp/views/about.html',
-            controller: MyApp.Controllers.AboutController,
-            controllerAs: 'controller'
-        })
-            .when('/login', {
-            templateUrl: '/ngApp/views/login.html',
-            controller: MyApp.Controllers.LoginController,
-            controllerAs: 'controller'
-        })
-            .when('/register', {
-            templateUrl: '/ngApp/views/register.html',
-            controller: MyApp.Controllers.RegisterController,
-            controllerAs: 'vm'
-        })
-            .when('/tasks', {
-            templateUrl: '/ngApp/views/tasks.html',
-            controller: MyApp.Controllers.HomeController,
-            controllerAs: 'vm'
-        })
-            .when('/externalLogin', {
-            templateUrl: '/ngApp/views/externalLogin.html',
-            controller: MyApp.Controllers.ExternalLoginController,
-            controllerAs: 'controller'
-        })
-            .when('/externalRegister', {
-            templateUrl: '/ngApp/views/externalRegister.html',
-            controller: MyApp.Controllers.ExternalRegisterController,
-            controllerAs: 'controller'
-        })
-            .when('/confirmEmail', {
-            templateUrl: '/ngApp/views/confirmEmail.html',
-            controller: MyApp.Controllers.ConfirmEmailController,
-            controllerAs: 'controller'
-        })
-            .when('/deals', {
+            .state('deals', {
+            url: '/deals',
             templateUrl: '/ngApp/views/deals.html',
             controller: MyApp.Controllers.DealsController,
             controllerAs: 'vm'
         })
-            .when('/deals/:id', {
-            templateUrl: '/ngApp/views/deals-info.html',
-            controller: MyApp.Controllers.DealInfoController,
+            .state('tasks', {
+            url: '/tasks',
+            templateUrl: '/ngApp/views/tasks.html',
+            controller: MyApp.Controllers.HomeController,
             controllerAs: 'vm'
         })
-            .when('/companies', {
+            .state('about', {
+            url: '/about',
+            templateUrl: '/ngApp/views/about.html',
+            controller: MyApp.Controllers.AboutController,
+            controllerAs: 'controller'
+        })
+            .state('companies', {
+            url: '/companies',
             templateUrl: '/ngApp/views/companies.html',
             controller: MyApp.Controllers.CompaniesController,
             controllerAs: 'vm'
         })
-            .when('/createcompany', {
+            .state('createCompany', {
+            url: '/createcompany',
             templateUrl: '/ngApp/views/createCompany.html',
             controller: MyApp.Controllers.CompaniesController,
             controllerAs: 'vm'
         })
-            .when('/contacts', {
+            .state('contacts', {
+            url: '/contacts',
             templateUrl: '/ngApp/views/contactListView.html',
             controller: MyApp.Controllers.ContactListController,
             controllerAs: 'vm'
         })
-            .when('/contactDetails/:id', {
+            .state('contactDetails', {
+            url: '/contactDetails/:id',
             templateUrl: '/ngApp/views/contactDetailsView.html',
             controller: MyApp.Controllers.ContactDetailsController,
             controllerAs: 'vm'
         })
-            .otherwise({
-            redirectTo: '/ngApp/views/notFound.html'
+            .state('deal-info', {
+            url: '/deals/:id',
+            templateUrl: '/ngApp/views/deals-info.html',
+            controller: MyApp.Controllers.DealInfoController,
+            controllerAs: 'vm'
+        })
+            .state('deal-info.note', {
+            url: '/note',
+            templateUrl: 'ngApp/views/routes/deal-info-note.html',
+            controller: MyApp.Controllers.DealInfoNoteController,
+            controllerAs: "vm"
+        })
+            .state('deal-info.activity', {
+            url: '/activity',
+            templateUrl: 'ngApp/views/routes/deal-info-activity.html',
+            controller: MyApp.Controllers.DealInfoActivityController,
+            controllerAs: "vm"
+        })
+            .state('deal-info.task', {
+            url: '/task',
+            templateUrl: 'ngApp/views/routes/deal-info-task.html',
+            controller: MyApp.Controllers.DealInfoTaskController,
+            controllerAs: "vm"
+        })
+            .state('deal-info.event', {
+            url: '/event',
+            templateUrl: 'ngApp/views/routes/deal-info-event.html',
+            controller: MyApp.Controllers.DealInfoEventController,
+            controllerAs: "vm"
         });
+        $urlRouterProvider.otherwise('home');
         $locationProvider.html5Mode(true);
     });
     angular.module('MyApp').factory('authInterceptor', function ($q, $window, $location) {

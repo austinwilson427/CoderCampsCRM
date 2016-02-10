@@ -6,8 +6,10 @@
         public dealInfo;
         public company;
 
-        constructor(private dealService: MyApp.Services.DealService, private $routeParams: ng.route.IRouteParamsService, private companiesService: MyApp.Services.CompaniesService) {
-            this.routeId = $routeParams["id"];
+        constructor(private dealService: MyApp.Services.DealService, private companiesService: MyApp.Services.CompaniesService, private $stateParams: ng.ui.IStateParamsService) {
+
+            this.routeId = $stateParams["id"];
+            console.log(this.routeId);
             this.getDeal();
             
         }
@@ -24,4 +26,19 @@
 
     }
 
+    export class DealInfoNoteController {
+
+    }
+
+    export class DealInfoActivityController {
+
+    }
+
+    export class DealInfoTaskController {
+
+    }
+
+    export class DealInfoEventController {
+
+    }
 }
