@@ -19,7 +19,7 @@ namespace CoderCampsCRM.Migrations
             {
                 new Company {Id = 1,
                             CompanyName = "Coder Camps",
-                            CompanyDomainName = "www.codercamps.com",
+                            CompanyDomainName = "https://www.codercamps.com",
                             CompanyPhoneNumber = "855-755-2267",
                             CompanyCountry = "US",
                             CompanyCity = "Pearland",
@@ -57,7 +57,7 @@ namespace CoderCampsCRM.Migrations
                     Amount = 300000m,
                     CloseDate = DateTime.Now,
                     CompanyId = 1,
-                    DealOwnerId = 1
+                    ContactId = 1
                 }
             };
 

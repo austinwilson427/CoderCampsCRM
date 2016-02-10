@@ -1,4 +1,4 @@
-﻿using CoderCampsCRM.Models.ViewModels;
+﻿using CoderCampsCRM.Models;
 using CoderCampsCRM.Repositories;
 using System;
 using System.Collections.Generic;

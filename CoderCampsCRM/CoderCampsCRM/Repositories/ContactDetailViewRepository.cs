@@ -18,7 +18,7 @@ namespace CoderCampsCRM.Repositories
         public ContactDetailViewModel getContactDetailViewModel(int id)
         {
             var contact = _repo.Query<Contact>().Where(c => c.Id == id).FirstOrDefault();
-            var deals = _repo.Query<Deal>().Where(d => d.DealOwnerId == id).ToList();
+            var deals = _repo.Query<Deal>().Where(d => d.ContactId == id).ToList();
             //var tasks = _repo.Query<Task>().Where(t => t.TaskOwnerId == id).ToList();
             var company = _repo.Query<Company>().Where(co => co.Id == contact.CompanyId).FirstOrDefault();
             var interactions = _repo.Query<ContactInteraction>().Where(i => i.ContactId == id).ToList();

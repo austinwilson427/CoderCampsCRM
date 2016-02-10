@@ -12,22 +12,26 @@ namespace CoderCampsCRM.API
     public class DealLogItemsController : ApiController
     {
         private IGenericRepository _genRepo;
+        private IDealRepository _dealRepo;
 
-        public DealLogItemsController(IGenericRepository genRepo)
+        public DealLogItemsController(IGenericRepository genRepo, IDealRepository dealRepo)
         {
             _genRepo = genRepo;
+            _dealRepo = dealRepo;
         }
 
         public IHttpActionResult GetDealLogItems()
         {
-            var dealLogData = _genRepo.Query<DealLogItem>();
-            return Ok(dealLogData);
+            var dealLogData = _dealRepo.getAllDealLogItemsViewModels();
+            //var dealLogData = _genRepo.Query<DealLogItem>();
+            return Ok(dealLogData.DealLogItemsList);
         }
 
         public IHttpActionResult GetADealLogItem(int id)
         {
-            var dealData = _genRepo.Find<DealLogItem>();
-            return Ok(dealData);
+            var dealData = _dealRepo.getDealLogItemViewModel(id);
+            //var dealData = _genRepo.Find<DealLogItem>();
+            return Ok(dealData.DealLogItem);
         }
 
         [Route("api/deallogitems/deal/{id}")]
@@ -56,7 +60,7 @@ namespace CoderCampsCRM.API
                     logItemBeingEditted.EndTime = logItemToAdd.EndTime;
                     logItemBeingEditted.Content = logItemToAdd.Content;
                     logItemBeingEditted.TaskId = logItemToAdd.TaskId;
-                    logItemBeingEditted.AssignedToUserId = logItemToAdd.AssignedToUserId;
+                    logItemBeingEditted.ContactId = logItemToAdd.ContactId;
                     logItemBeingEditted.DealId = logItemToAdd.DealId;
 
                     _genRepo.SaveChanges();

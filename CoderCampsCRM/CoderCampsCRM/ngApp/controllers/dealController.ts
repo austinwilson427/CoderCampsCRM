@@ -19,7 +19,7 @@
         public isSelected;
         public showTrash;
 
-        constructor(private dealService: MyApp.Services.DealService, private $uibModal: ng.ui.bootstrap.IModalService, private $location: ng.ILocationService, private $route: ng.route.IRouteService) {
+        constructor(private dealService: MyApp.Services.DealService, private $uibModal: ng.ui.bootstrap.IModalService, private $location: ng.ILocationService, private $route: ng.route.IRouteService, private companiesService: MyApp.Services.CompaniesService) {
             this.stageFilter = 0;
             this.dealsSelected = [];
             this.showArchived = false;
@@ -27,16 +27,20 @@
             this.sortName = 'dealName';
 
             this.getAllItems();
-
+            
         }
 
         public getAllItems() {
 
             this.dealService.listAllDeals().$promise.then((result) => {
                 this.allDeals = [];
+                let company;
                 for (var i = 0; i < result.length; i++) {
+                    //company = this.companiesService.getCompany(result[i].companyId);
+                    //result[i].company = company;
                     this.allDeals.push(result[i]);
                 }
+                console.log(this.allDeals);
             });
         }
 

@@ -33,16 +33,21 @@
     export class LoginController {
         public loginUser;
         public validationMessages;
+        public test;
 
         public login() {
             this.accountService.login(this.loginUser).then(() => {
                 this.$location.path('/');
             }).catch((results) => {
+                console.log("Error");
+                console.log(results);
                 this.validationMessages = results;
             });
         }
 
-        constructor(private accountService: MyApp.Services.AccountService, private $location: ng.ILocationService) { }
+        constructor(private accountService: MyApp.Services.AccountService, private $location: ng.ILocationService) {
+            this.test = "Testing";
+        }
     }
 
 
