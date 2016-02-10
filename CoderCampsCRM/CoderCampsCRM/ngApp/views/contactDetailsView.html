@@ -1,5 +1,157 @@
 ﻿<div class="row">
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-10 col-md-offset-1 text-center page-header">
         <h1>Contact Details View</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3 col-md-offset-1 table_wrap">
+        <h3>Contact Details</h3>
+        <table class="table deals_table table-hover table-bordered table-responsive">
+            <tr>
+                <td>Name</td>
+                <td class="tableDetailRow" id="name" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.name}}</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td class="tableDetailRow" id="email" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.email}}</td>
+            </tr>
+            <tr>
+                <td>Phone Number</td>
+                <td class="tableDetailRow" id="phoneNumber" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.phoneNumber}}</td>
+            </tr>
+            <tr>
+                <td>Job Title</td>
+                <td class="tableDetailRow" id="jobTitle" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.jobTitle}}</td>
+            </tr>
+        </table>
+        <button class="btn btn-primary" ng-click="vm.editContact()">Edit</button>
+        <button class="btn btn-primary" ng-click="vm.deleteContact()">Delete</button>
+    </div>
+    <div class="col-md-3 col-md-offset-1">
+        <h3>Interactions Log</h3>
+        <textarea class="form-control img-responsive" ng-model="vm.interaction.description" rows="8" cols="20" placeholder="Add a new interaction description..."></textarea>
+        <button class="btn btn-primary" id="interactionBtn" ng-click="vm.addInteraction()" ng-show="vm.interaction.description">Save</button>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-hover table-bordered table-responsive deals_table" id="interactionTable">
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+                            <th>Description</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="interaction in vm.contactView.interactions">
+                            <td>{{interaction.subject}}</td>
+                            <td>{{interaction.description}}</td>
+                            <td>{{interaction.date | date:'MM/dd/yy'}}</td>
+                            <td>{{interaction.date | date:'H:mm a'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3" id="interactionForm">
+        <div class="form-group">
+            <label>Subject</label><input class="form-control" ng-model="vm.interaction.subject" type="text" />
+        </div>
+        <div class="form-group">
+            <label>Date</label><input class="form-control" ng-model="vm.interaction.date" type="datetime-local" />
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3 col-md-offset-1 contactPanel">
+        <h3>Company</h3>
+        <div class="form-group" ng-show="!vm.contactView.company">
+            <div class="btn-group" uib-dropdown is-open="status.isopen">
+                <button type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
+                    Company <span class="caret"></span>
+                </button>
+                <ul uib-dropdown-menu role="menu" aria-labelledby="single-button" ng-repeat="company in vm.contactView.companies">
+                    <li role="menuitem"><a href="#" ng-click="vm.chooseCompany(company.id)">{{company.companyName}}</a></li>
+                </ul>
+            </div>
+        </div>
+        <table class="table table-hover table-responsive" ng-hide="!vm.contactView.company">
+            <tr>
+                <td>Name</td>
+                <td class="tableDetailRow">{{vm.contactView.company.companyName}}</td>
+            </tr>
+            <tr>
+                <td>Industry</td>
+                <td class="tableDetailRow">{{vm.contactView.company.companyIndustry}}</td>
+            </tr>
+            <tr>
+                <td>Country</td>
+                <td class="tableDetailRow">{{vm.contactView.company.companyCountry}}</td>
+            </tr>
+            <tr>
+                <td>City</td>
+                <td class="tableDetailRow">{{vm.contactView.company.companyCity}}</td>
+            </tr>
+            <tr>
+                <td>State</td>
+                <td class="tableDetailRow">{{vm.contactView.company.companyState}}</td>
+            </tr>
+            <tr>
+                <td>Zip</td>
+                <td class="tableDetailRow">{{vm.contactView.company.companyZip}}</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td class="tableDetailRow">{{vm.contactView.company.comapanyAddress}}</td>
+            </tr>
+            <tr>
+                <td>Phone Number</td>
+                <td class="tableDetailRow">{{vm.contactView.company.companyPhoneNumber}}</td>
+            </tr>
+            <tr class="form-group">
+                <td>Description</td>
+                <td class="tableDetailRow"><textarea class="form-control img-responsive" rows="10" cols="40" readonly>{{vm.contactView.company.companyDescription}}</textarea></td>
+            </tr>
+            <tr>
+                <td>Facebook Link</td>
+                <td class="tableDetailRow"><a href="{{vm.contactView.company.companyFacebook}}">{{vm.contactView.company.companyFacebook}}</a></td>
+            </tr>
+            <tr>
+                <td>LinkedIn Link</td>
+                <td class="tableDetailRow"><a href="{{vm.contactView.company.companyLinkedIn}}">{{vm.contactView.company.companyLinkedIn}}</a></td>
+            </tr>
+            <tr>
+                <td>Twitter Link</td>
+                <td class="tableDetailRow"><a href="{{vm.contactView.company.companyTwitter}}">{{vm.contactView.company.companyTwitter}}</a></td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-4 col-md-offset-1">
+        <table class="table table-hover table-bordered table-responsive"></table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3 col-md-offset-1 contactPanel">
+        <h3>Deals</h3>
+        <button class="btn btn-primary">Add Deal</button>
+        <table class="table table-hover" ng-hide="!vm.contactView.company">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Stage</th>
+                    <th>Amount</th>
+                    <th>Close Date</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="deal in vm.contactView.deals">
+                <tr>
+                    <td><a href="/deals/{{deal.id}}">{{deal.dealName}}</a></td>
+                    <td>{{deal.stage}}</td>
+                    <td>{{deal.amount}}</td>
+                    <td>{{deal.closeDate}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>

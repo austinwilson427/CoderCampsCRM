@@ -62,6 +62,9 @@ namespace CoderCampsCRM.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IGenericRepository>().To<GenericRepository>();
+            kernel.Bind<IContactDetailViewRepository>().To<ContactDetailViewRepository>();
+            kernel.Bind<IContactListViewRepository>().To<ContactListViewRepository>();
+            kernel.Bind<IDealRepository>().To<DealRepository>();
         }        
     }
 }

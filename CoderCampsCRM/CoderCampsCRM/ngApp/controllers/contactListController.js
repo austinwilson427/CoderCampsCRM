@@ -7,14 +7,14 @@ var MyApp;
                 this.contactService = contactService;
                 this.$location = $location;
                 this.$uibModal = $uibModal;
-                this.contacts = contactService.getAllContacts();
+                this.contactsView = contactService.getAllContacts();
             }
             ContactListController.prototype.openNewContactModal = function () {
                 this.$uibModal.open({
                     templateUrl: "/ngApp/views/modals/contactAddModal.html",
                     controller: MyApp.Controllers.ContactAddController,
                     controllerAs: 'modal',
-                    size: "md"
+                    size: "sm"
                 });
             };
             ContactListController.prototype.openContactDetailsPage = function (id) {

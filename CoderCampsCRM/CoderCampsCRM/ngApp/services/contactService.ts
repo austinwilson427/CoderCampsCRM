@@ -4,22 +4,30 @@
 
         public contactResource;
         public interactionResource;
+        public contactDetailResource;
+        public contactListResource;
 
         constructor(private $resource: angular.resource.IResourceService) {
-            this.contactResource = $resource("/api/contacts");
+            this.contactResource = $resource("/api/contactList");
             this.interactionResource = $resource("/api/interactions");
+            this.contactDetailResource = $resource("/api/contactDetailView/:id");
+            this.contactListResource = $resource("/api/contactListView");
         }
 
         public getAllContacts() {
-            return this.contactResource.query();
+            return this.contactListResource.get();
         }
 
         public getOneContact(id: number) {
-            return this.contactResource.get({ id: id });
+            return this.contactDetailResource.get({ id: id });
         }
 
         public addContact(contact) {
             return this.contactResource.save(contact).$promise;
+        }
+
+        public editContact(contact) {
+            return this.contactResource.save(contact);
         }
 
         public deleteContact(id: number) {

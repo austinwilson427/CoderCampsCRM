@@ -19,7 +19,7 @@ namespace CoderCampsCRM.Migrations
             {
                 new Company {Id = 1,
                             CompanyName = "Coder Camps",
-                            CompanyDomainName = "www.codercamps.com",
+                            CompanyDomainName = "https://www.codercamps.com",
                             CompanyPhoneNumber = "855-755-2267",
                             CompanyCountry = "US",
                             CompanyCity = "Pearland",
@@ -68,7 +68,7 @@ namespace CoderCampsCRM.Migrations
                     Amount = 300000m,
                     CloseDate = DateTime.Now,
                     CompanyId = 1,
-                    DealOwnerId = 1
+                    ContactId = 1
                 }
             };
 
@@ -79,24 +79,38 @@ namespace CoderCampsCRM.Migrations
                 new Contact
                 {
                     Name = "Joe Fish",
-                    Company = "Fish Industries",
-                    Id = 1,
                     JobTitle = "CEO",
                     Email = "joe@fishindustries.com",
-                    PhoneNumber = "3025667888"
+                    PhoneNumber = "3025667888",
+                    CompanyId = 1,
+                    Id = 1
                 },
 
                 new Contact
                 {
                     Name = "Bob Bobson",
-                    Company = "Bobson and Sons",
-                    Id = 2,
                     JobTitle = "CEO",
                     Email = "bob@bobson.com",
-                    PhoneNumber = "3014524411"
+                    PhoneNumber = "3014524411",
+                    CompanyId = 1,
+                    Id = 2
                 }
             };
-            context.Contacts.AddOrUpdate(c => c.Id, contacts);
+            context.Contacts.AddOrUpdate(c => c.Name, contacts);
+
+            var interactions = new ContactInteraction[]
+            {
+                new ContactInteraction
+                {
+                    ContactId = 1,
+                    Date = new DateTime(2012, 02, 29),
+                    Description = "Went very well, he is showing the offer to his colleagues",
+                    Subject = "Follow up on sales pitch",
+                    Id = 54
+                }
+            };
+            context.ContactInteractions.AddOrUpdate(i => i.Subject, interactions);
+
         }
     }
 }

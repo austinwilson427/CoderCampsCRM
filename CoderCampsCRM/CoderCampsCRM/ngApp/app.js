@@ -20,7 +20,7 @@ var MyApp;
             .when('/register', {
             templateUrl: '/ngApp/views/register.html',
             controller: MyApp.Controllers.RegisterController,
-            controllerAs: 'controller'
+            controllerAs: 'vm'
         })
             .when('/tasks', {
             templateUrl: '/ngApp/views/tasks.html',
@@ -57,12 +57,22 @@ var MyApp;
             controller: MyApp.Controllers.CompaniesController,
             controllerAs: 'vm'
         })
+            .when('/deals/:id', {
+            templateUrl: '/ngApp/views/deals-info.html',
+            controller: MyApp.Controllers.DealInfoController,
+            controllerAs: 'vm'
+        })
+            .when('/companies', {
+            templateUrl: '/ngApp/views/companies.html',
+            controller: MyApp.Controllers.CompaniesController,
+            controllerAs: 'vm'
+        })
             .when('/contacts', {
             templateUrl: '/ngApp/views/contactListView.html',
             controller: MyApp.Controllers.ContactListController,
             controllerAs: 'vm'
         })
-            .when('/contactDetails', {
+            .when('/contactDetails/:id', {
             templateUrl: '/ngApp/views/contactDetailsView.html',
             controller: MyApp.Controllers.ContactDetailsController,
             controllerAs: 'vm'

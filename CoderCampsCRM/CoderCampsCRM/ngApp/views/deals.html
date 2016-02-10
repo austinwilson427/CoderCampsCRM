@@ -1,11 +1,24 @@
 ﻿<div id="wrapper" class="details_wrap toggled">
     <div id="sidebar-wrapper">
+        <label>Show Archived Messages</label>
+        <input type="checkbox" ng-model="vm.showArchived" />
         <label>Filter By Date</label>
         <select class="form-control" ng-model="vm.dateFilter" ng-change="vm.filterBySelection()">
             <option value="all">All Deals</option>
             <option value="today">Deals For Today</option>
             <option value="week">Deals For Week</option>
             <option value="month">Deals For Month</option>
+        </select>
+        <label>Filter By Stage</label>
+        <select class="form-control" ng-model="vm.stageFilter" ng-change="vm.filterBySelection()">
+            <option value="0">All</option>
+            <option value="1">Appointment Scheduled</option>
+            <option value="2">Qualified to Buy</option>
+            <option value="3">Presentation Scheduled</option>
+            <option value="4">Decision Maker Bought In</option>
+            <option value="5">Contract Sent</option>
+            <option value="6">Closed Won</option>
+            <option value="7">Closed Lost</option>
         </select>
         <label>Filter By Amount</label>
         <div class="row">
@@ -15,19 +28,21 @@
             <div class="col-md-6 form-group max_amount">
                 <input class="form-control amount_input" type="text" placeholder="Max Amount" ng-model="vm.maxAmount" ng-change="vm.filterBySelection()" />
             </div>
-        </div>        
+        </div>              
     </div>
     <div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-4">
+                            <a href="#" ng-show="vm.showTrash" ng-click="vm.deleteDealModal()"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                            <a href="#" ng-show="vm.showTrash" ng-click="vm.archiveDealModal()"><span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span></a>
                             <btn id="menu-toggle" class="btn btn-primary filter_button">Filter</btn>
                             <a href="#"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a>
                             <a href="#"><span class="glyphicon glyphicon-th" aria-hidden="true"></span></a>
                         </div>
-                        <div class="col-md-7 form-group no-margin">
+                        <div class="col-md-6 form-group no-margin">
                             <input class="form-control" placeholder="Search all deals in this view..." ng-model="vm.searchPhrase" />
                         </div>
                         <div class="col-md-2">
@@ -37,24 +52,22 @@
                     <div class="table_wrap">
                         <table class="table table-hover table-bordered deals_table">
                             <tr>
+                                <th></th>
                                 <th class="hover_blue" ng-click="vm.sortBy('dealName')">Deal Name <span ng-class="vm.menuDirectionName"></span></th>
                                 <th class="hover_blue" ng-click="vm.sortBy('stage')">Deal Stage <span ng-class="vm.menuDirectionStage"></span></th>
                                 <th class="hover_blue" ng-click="vm.sortBy('closeDate')">Close Date <span ng-class="vm.menuDirectionDate"></span></th>
                                 <th class="hover_blue" ng-click="vm.sortBy('amount')">Amount <span ng-class="vm.menuDirectionAmount"></span></th>
-                                <th class="hover_blue" ng-click="vm.sortBy('dealOwnerId')">Deal Owner Id <span ng-class="vm.menuDirectionOwner"></span></th>
-                                <th class="hover_blue" ng-click="vm.sortBy('companyId')">Company Id <span ng-class="vm.menuDirectionCompany"></span></th>
-                                <th>Edit</th>
-                                <th>Del</th>
+                                <th class="hover_blue" ng-click="vm.sortBy('dealOwnerId')">Deal Owner<span ng-class="vm.menuDirectionOwner"></span></th>
+                                <th class="hover_blue" ng-click="vm.sortBy('companyId')">Company<span ng-class="vm.menuDirectionCompany"></span></th>
                             </tr>
-                            <tr ng-repeat="deal in vm.allDeals | orderBy: vm.sortName : vm.reverse | filter: vm.searchPhrase">
-                                <td><a href="#">{{deal.dealName}}</a></td>
-                                <td>{{deal.stage}}</td>
-                                <td>{{deal.closeDate | date: 'MM/dd/yy'}}</td>
-                                <td>{{deal.amount | currency}}</td>
-                                <td>{{deal.dealOwnerId}}</td>
-                                <td>{{deal.companyId}}</td>
-                                <td><a href="#" ng-click="vm.editDealModal(deal)"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
-                                <td><a href="#" ng-click="vm.deleteDealModal(deal)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
+                            <tr  ng-class="{archived: value.isArchived}" ng-repeat="(key, value) in vm.allDeals | orderBy: vm.sortName : vm.reverse | filter: vm.searchPhrase" ng-if="!value.isArchived || vm.showArchived">
+                                <td><input type="checkbox" ng-model="value.key" ng-click="vm.storeDeal(value)" /> <a ng-show="value.isArchived" href="#" ng-click="vm.unarchiveItem(value)"><span class="glyphicon glyphicon-plus"></span></a></td>
+                                <td><a href="/deals/{{value.id}}">{{value.dealName}}</a>&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="value.key"><a href="#" ng-click="vm.editDealModal(value)"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></span></td>
+                                <td>{{value.stage}}</td>
+                                <td>{{value.closeDate | date: 'MM/dd/yy'}}</td>
+                                <td>{{value.amount | currency}}</td>
+                                <td><a href="contactDetails/{{value.contact.id}}">{{value.contact.name}}</a></td>
+                                <td><a target="_blank" href="{{value.company.companyDomainName}}">{{value.company.companyName}}</a></td>                        
                             </tr>
                         </table>
                     </div>

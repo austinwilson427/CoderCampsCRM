@@ -13,6 +13,12 @@ namespace CoderCampsCRM.Models
     {
 
         public ICollection<Company> Company { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Company { get; set; }
+        public string TimeZone { get; set; }
+        public string PicUrl { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
 
@@ -30,6 +36,7 @@ namespace CoderCampsCRM.Models
         public IDbSet<Company> Companies { get; set; }
         public IDbSet<Contact> Contacts { get; set; }
         public IDbSet<ContactInteraction> ContactInteractions { get; set; }
+        public IDbSet<ProfileUser> ProfileUser { get; set;}
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
