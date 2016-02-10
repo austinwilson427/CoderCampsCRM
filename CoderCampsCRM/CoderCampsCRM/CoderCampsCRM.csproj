@@ -242,30 +242,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602061504327_Initial.cs" />
-    <Compile Include="Migrations\201602061504327_Initial.Designer.cs">
-      <DependentUpon>201602061504327_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602061509160_Initial1.cs" />
-    <Compile Include="Migrations\201602061509160_Initial1.Designer.cs">
-      <DependentUpon>201602061509160_Initial1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602061516564_Initial2.cs" />
-    <Compile Include="Migrations\201602061516564_Initial2.Designer.cs">
-      <DependentUpon>201602061516564_Initial2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602070013436_duran1.cs" />
-    <Compile Include="Migrations\201602070013436_duran1.Designer.cs">
-      <DependentUpon>201602070013436_duran1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602070142552_duran2.cs" />
-    <Compile Include="Migrations\201602070142552_duran2.Designer.cs">
-      <DependentUpon>201602070142552_duran2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602070213090_duran3.cs" />
-    <Compile Include="Migrations\201602070213090_duran3.Designer.cs">
-      <DependentUpon>201602070213090_duran3.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1169,7 +1145,6 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="ngApp\app.ts" />
     <TypeScriptCompile Include="ngApp\controllers\accountController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\contactAddController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\contactDetailsController.ts" />
@@ -1201,26 +1176,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602061504327_Initial.resx">
-      <DependentUpon>201602061504327_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602061509160_Initial1.resx">
-      <DependentUpon>201602061509160_Initial1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602061516564_Initial2.resx">
-      <DependentUpon>201602061516564_Initial2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602070013436_duran1.resx">
-      <DependentUpon>201602070013436_duran1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602070142552_duran2.resx">
-      <DependentUpon>201602070142552_duran2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602070213090_duran3.resx">
-      <DependentUpon>201602070213090_duran3.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
