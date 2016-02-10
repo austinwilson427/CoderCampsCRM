@@ -1,7 +1,11 @@
 ﻿namespace MyApp {
 
-    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap']).config(($routeProvider: ng.route.IRouteProvider, $locationProvider: ng.ILocationProvider) => {
+    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'angular-filepicker']).config(($routeProvider: ng.route.IRouteProvider,
+        $locationProvider: ng.ILocationProvider, filepickerProvider) => {
+        filepickerProvider.setKey('	ANnIsnaUARuBQjAtPZGBQz');
+
         $routeProvider
+        
             .when('/', {
                 templateUrl: '/ngApp/views/home.html',
                 controller: MyApp.Controllers.HomeController,
@@ -10,16 +14,6 @@
             .when('/about', {
                 templateUrl: '/ngApp/views/about.html',
                 controller: MyApp.Controllers.AboutController,
-                controllerAs: 'controller'
-            })
-            .when('/login', {
-                templateUrl: '/ngApp/views/login.html',
-                controller: MyApp.Controllers.LoginController,
-                controllerAs: 'controller'
-            })
-            .when('/register', {
-                templateUrl: '/ngApp/views/register.html',
-                controller: MyApp.Controllers.RegisterController,
                 controllerAs: 'controller'
             })
             .when('/tasks', {
@@ -48,6 +42,11 @@
                 controller: MyApp.Controllers.DealsController,
                 controllerAs: 'vm'
             })
+            .when('/deals/:id', {
+                templateUrl: '/ngApp/views/deals-info.html',
+                controller: MyApp.Controllers.DealInfoController,
+                controllerAs: 'vm'
+            })
             .when('/companies', {
                 templateUrl: '/ngApp/views/companies.html',
                 controller: MyApp.Controllers.CompaniesController,
@@ -59,7 +58,7 @@
                 controller: MyApp.Controllers.ContactListController,
                 controllerAs: 'vm'
             })
-            .when('/contactDetails', {
+            .when('/contactDetails/:id', {
                 templateUrl: '/ngApp/views/contactDetailsView.html',
                 controller: MyApp.Controllers.ContactDetailsController,
                 controllerAs: 'vm'

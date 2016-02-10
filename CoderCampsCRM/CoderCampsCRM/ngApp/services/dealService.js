@@ -12,6 +12,9 @@ var MyApp;
             DealService.prototype.listAllDeals = function () {
                 return this.dealResource.query();
             };
+            DealService.prototype.getDealByDealId = function (id) {
+                return this.dealResource.get({ id: id });
+            };
             DealService.prototype.listAllDealsByCompanyId = function (id) {
                 return this.dealResourceFromCompany.query({ id: id });
             };
@@ -30,4 +33,3 @@ var MyApp;
         angular.module("MyApp").service("dealService", DealService);
     })(Services = MyApp.Services || (MyApp.Services = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=dealService.js.map

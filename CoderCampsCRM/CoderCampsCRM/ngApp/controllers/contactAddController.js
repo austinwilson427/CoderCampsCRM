@@ -3,16 +3,18 @@ var MyApp;
     var Controllers;
     (function (Controllers) {
         var ContactAddController = (function () {
-            function ContactAddController(contactService, $location, $uibModalInstance) {
+            function ContactAddController(contactService, $route, $uibModalInstance, companiesService) {
                 this.contactService = contactService;
-                this.$location = $location;
+                this.$route = $route;
                 this.$uibModalInstance = $uibModalInstance;
+                this.companiesService = companiesService;
+                this.companies = this.companiesService.getCompanies();
             }
             ContactAddController.prototype.addContact = function () {
                 var _this = this;
                 this.contactService.addContact(this.contact).then(function () {
                     _this.closeModal();
-                    window.location.reload();
+                    _this.$route.reload();
                 });
             };
             ContactAddController.prototype.closeModal = function () {
@@ -24,4 +26,3 @@ var MyApp;
         angular.module("MyApp").controller("contactAddController", ContactAddController);
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=contactAddController.js.map

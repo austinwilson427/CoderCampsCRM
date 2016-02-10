@@ -19,4 +19,3 @@ var MyApp;
         Controllers.AboutController = AboutController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=controllers.js.map

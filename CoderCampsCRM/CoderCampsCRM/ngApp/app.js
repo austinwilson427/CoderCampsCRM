@@ -1,6 +1,7 @@
 var MyApp;
 (function (MyApp) {
-    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap']).config(function ($routeProvider, $locationProvider) {
+    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'angular-filepicker']).config(function ($routeProvider, $locationProvider, filepickerProvider) {
+        filepickerProvider.setKey('	ANnIsnaUARuBQjAtPZGBQz');
         $routeProvider
             .when('/', {
             templateUrl: '/ngApp/views/home.html',
@@ -10,16 +11,6 @@ var MyApp;
             .when('/about', {
             templateUrl: '/ngApp/views/about.html',
             controller: MyApp.Controllers.AboutController,
-            controllerAs: 'controller'
-        })
-            .when('/login', {
-            templateUrl: '/ngApp/views/login.html',
-            controller: MyApp.Controllers.LoginController,
-            controllerAs: 'controller'
-        })
-            .when('/register', {
-            templateUrl: '/ngApp/views/register.html',
-            controller: MyApp.Controllers.RegisterController,
             controllerAs: 'controller'
         })
             .when('/tasks', {
@@ -47,6 +38,11 @@ var MyApp;
             controller: MyApp.Controllers.DealsController,
             controllerAs: 'vm'
         })
+            .when('/deals/:id', {
+            templateUrl: '/ngApp/views/deals-info.html',
+            controller: MyApp.Controllers.DealInfoController,
+            controllerAs: 'vm'
+        })
             .when('/companies', {
             templateUrl: '/ngApp/views/companies.html',
             controller: MyApp.Controllers.CompaniesController,
@@ -57,7 +53,7 @@ var MyApp;
             controller: MyApp.Controllers.ContactListController,
             controllerAs: 'vm'
         })
-            .when('/contactDetails', {
+            .when('/contactDetails/:id', {
             templateUrl: '/ngApp/views/contactDetailsView.html',
             controller: MyApp.Controllers.ContactDetailsController,
             controllerAs: 'vm'
@@ -89,4 +85,3 @@ var MyApp;
         $httpProvider.interceptors.push('authInterceptor');
     });
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=app.js.map

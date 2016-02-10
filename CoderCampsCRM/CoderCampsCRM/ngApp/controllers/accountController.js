@@ -3,14 +3,24 @@ var MyApp;
     var Controllers;
     (function (Controllers) {
         var AccountController = (function () {
-            function AccountController(accountService, $location) {
+            function AccountController(accountService, $location, $uibModal) {
                 var _this = this;
                 this.accountService = accountService;
                 this.$location = $location;
+                this.$uibModal = $uibModal;
                 this.getExternalLogins().then(function (results) {
                     _this.externalLogins = results;
                 });
             }
+            AccountController.prototype.showModal = function () {
+                this.$uibModal.open({
+                    templateUrl: "/ngApp/views/login.html",
+                    controller: MyApp.Controllers.LoginController,
+                    controllerAs: "controller",
+                    resolve: {},
+                    size: "sm"
+                });
+            };
             AccountController.prototype.getClaim = function (type) {
                 return this.accountService.getClaim(type);
             };
@@ -28,9 +38,11 @@ var MyApp;
         Controllers.AccountController = AccountController;
         angular.module('MyApp').controller('AccountController', AccountController);
         var LoginController = (function () {
-            function LoginController(accountService, $location) {
+            function LoginController(accountService, $location, $uibModal, $uibModalInstance) {
                 this.accountService = accountService;
                 this.$location = $location;
+                this.$uibModal = $uibModal;
+                this.$uibModalInstance = $uibModalInstance;
             }
             LoginController.prototype.login = function () {
                 var _this = this;
@@ -40,22 +52,58 @@ var MyApp;
                     _this.validationMessages = results;
                 });
             };
+            LoginController.prototype.showRegisterModal = function () {
+                this.$uibModal.open({
+                    templateUrl: "/ngApp/views/register.html",
+                    controller: MyApp.Controllers.RegisterController,
+                    controllerAs: "vm",
+                    resolve: {},
+                    size: "lg"
+                });
+            };
+            LoginController.prototype.closeModal = function () {
+                this.$uibModalInstance.close();
+            };
             return LoginController;
         })();
         Controllers.LoginController = LoginController;
         var RegisterController = (function () {
-            function RegisterController(accountService, $location) {
+            function RegisterController(accountService, filepickerService, $scope, $location, $uibModalInstance) {
                 this.accountService = accountService;
+                this.filepickerService = filepickerService;
+                this.$scope = $scope;
                 this.$location = $location;
+                this.$uibModalInstance = $uibModalInstance;
+                this.picUploaded = false;
+                this.file = {
+                    url: null
+                };
+                this.registerUser = {
+                    picUrl: ""
+                };
             }
+            RegisterController.prototype.pickFile = function () {
+                this.filepickerService.pick({ mimetype: 'image/*' }, this.fileUploaded.bind(this));
+            };
+            RegisterController.prototype.fileUploaded = function (file) {
+                // save file url to database
+                this.file = file;
+                if (this.file.url) {
+                    this.registerUser.picUrl = this.file.url;
+                }
+                this.picUploaded = true;
+                this.$scope.$apply(); // force page to update
+            };
             RegisterController.prototype.register = function () {
                 var _this = this;
-                console.log("hello wordl registrant");
                 this.accountService.register(this.registerUser).then(function () {
                     _this.$location.path('/login');
                 }).catch(function (results) {
                     _this.validationMessages = results;
                 });
+            };
+            RegisterController.prototype.closeModal = function () {
+                this.$uibModalInstance.close();
             };
             return RegisterController;
         })();
@@ -120,4 +168,3 @@ var MyApp;
         Controllers.ConfirmEmailController = ConfirmEmailController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=accountController.js.map

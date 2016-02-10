@@ -68,24 +68,24 @@ namespace CoderCampsCRM.Migrations
                 new Contact
                 {
                     Name = "Joe Fish",
-                    Company = "Fish Industries",
-                    Id = 1,
                     JobTitle = "CEO",
                     Email = "joe@fishindustries.com",
-                    PhoneNumber = "3025667888"
+                    PhoneNumber = "3025667888",
+                    CompanyId = 1,
+                    Id = 1
                 },
 
                 new Contact
                 {
                     Name = "Bob Bobson",
-                    Company = "Bobson and Sons",
-                    Id = 2,
                     JobTitle = "CEO",
                     Email = "bob@bobson.com",
-                    PhoneNumber = "3014524411"
+                    PhoneNumber = "3014524411",
+                    CompanyId = 1,
+                    Id = 2
                 }
             };
-            context.Contacts.AddOrUpdate(c => c.Id, contacts);
+            context.Contacts.AddOrUpdate(c => c.Name, contacts);
         }
     }
 }

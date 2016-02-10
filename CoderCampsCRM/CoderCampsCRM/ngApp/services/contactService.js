@@ -5,14 +5,16 @@ var MyApp;
         var ContactService = (function () {
             function ContactService($resource) {
                 this.$resource = $resource;
-                this.contactResource = $resource("/api/contacts");
+                this.contactResource = $resource("/api/contactList");
                 this.interactionResource = $resource("/api/interactions");
+                this.contactDetailResource = $resource("/api/contactDetailView/:id");
+                this.contactListResource = $resource("/api/contactListView");
             }
             ContactService.prototype.getAllContacts = function () {
-                return this.contactResource.query();
+                return this.contactListResource.get();
             };
             ContactService.prototype.getOneContact = function (id) {
-                return this.contactResource.get({ id: id });
+                return this.contactDetailResource.get({ id: id });
             };
             ContactService.prototype.addContact = function (contact) {
                 return this.contactResource.save(contact).$promise;
@@ -29,4 +31,3 @@ var MyApp;
         angular.module("MyApp").service("contactService", ContactService);
     })(Services = MyApp.Services || (MyApp.Services = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=contactService.js.map

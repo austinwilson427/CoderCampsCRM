@@ -3,7 +3,18 @@
     export class AccountController {
         public externalLogins;
 
+        public showModal() {
+            this.$uibModal.open({
+                templateUrl: "/ngApp/views/login.html",
+                controller: MyApp.Controllers.LoginController,
+                controllerAs: "controller",
+                resolve: {
 
+                }, 
+                size: "sm"
+
+            });
+        }
         public getClaim(type) {
             return this.accountService.getClaim(type);
         }
@@ -20,7 +31,7 @@
             return this.accountService.getExternalLogins();
         }
 
-        constructor(private accountService: MyApp.Services.AccountService, private $location: ng.ILocationService) {
+        constructor(private accountService: MyApp.Services.AccountService, private $location: ng.ILocationService, private $uibModal: angular.ui.bootstrap.IModalService) {
             this.getExternalLogins().then((results) => {
                 this.externalLogins = results;
             });
@@ -41,28 +52,79 @@
                 this.validationMessages = results;
             });
         }
+        public showRegisterModal() {
+            this.$uibModal.open({
+                templateUrl: "/ngApp/views/register.html",
+                controller: MyApp.Controllers.RegisterController,
+                controllerAs: "vm",
+                resolve: {
 
-        constructor(private accountService: MyApp.Services.AccountService, private $location: ng.ILocationService) { }
+                },
+                size: "lg"
+
+            });
+        }
+        public closeModal() {
+            this.$uibModalInstance.close();
+        }
+
+        constructor(private accountService: MyApp.Services.AccountService, private $location: ng.ILocationService, private $uibModal: angular.ui.bootstrap.IModalService,private $uibModalInstance: angular.ui.bootstrap.IModalServiceInstance) { }
     }
 
 
     export class RegisterController {
         public registerUser;
         public validationMessages;
+        public file;
+        public picUploaded;
+
+        public pickFile() {
+            this.filepickerService.pick(
+                { mimetype: 'image/*' },
+                this.fileUploaded.bind(this)
+            );
+        }
+
+        public fileUploaded(file) {
+
+            // save file url to database
+            this.file = file;
+
+            if (this.file.url) {
+                this.registerUser.picUrl = this.file.url;
+            }
+            this.picUploaded = true;
+          
+            this.$scope.$apply(); // force page to update
+        }
 
         public register() {
-            console.log("hello wordl registrant");
+         
+          
             this.accountService.register(this.registerUser).then(() => {
                 this.$location.path('/login');
             }).catch((results) => {
                 this.validationMessages = results;
-            });
+                });
+
+        }
+        public closeModal() {
+            this.$uibModalInstance.close();
         }
 
-        constructor(private accountService: MyApp.Services.AccountService, private $location: ng.ILocationService) { }
+        constructor(private accountService: MyApp.Services.AccountService, private filepickerService, private $scope: ng.IScope, private $location: ng.ILocationService, private $uibModalInstance: angular.ui.bootstrap.IModalServiceInstance) {
+            this.picUploaded = false;
+            this.file = {
+                url: null
+            };
+            this.registerUser = {
+                picUrl: ""
+            };
+
+        }
     }
 
-
+    
 
     export class ExternalLoginController {
 
