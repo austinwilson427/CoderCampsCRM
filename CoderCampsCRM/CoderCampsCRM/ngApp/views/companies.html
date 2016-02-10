@@ -1,0 +1,39 @@
+﻿<br /><br />
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="col-md-10 col-md-offset-2">
+            <div class="row details_wrap">
+                <div class="col-md-8 col-md-offset-2 form-group">
+                    <input type="text" class="form-control full" placeholder="Search companies" ng-model="vm.search" />
+                </div>
+                <div class="col-md-2">
+                    <a href="/createcompany"><button>New Company</button></a>
+                </div>
+            </div>
+            <div class="table_wrap">
+                <table class="table table-bordered table-hover deals_table">
+                    <thead>
+                        <tr>
+                            <th class="hover_blue">Company Name</th>
+                            <th class="hover_blue">Company Create Date</th>
+                            <th class="hover_blue">Company Last Activitye Date</th>
+                            <th class="hover_blue">Company Next Activity Date</th>
+                            <th class="hover_blue">Details</th>
+                            <th class="hover_blue">Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="company in vm.companies | filter: vm.search">
+                            <td>{{company.companyName}}</td>
+                            <td>{{company.companyCreateDate}}</td>
+                            <td>{{company.companyLastActivityeDate}}</td>
+                            <td>{{company.companyNextActivityDate}}</td>
+                            <td><button ng-click="vm.showDetailsModal(company.id)">Details</button></td>
+                            <td><button ng-click="vm.editModal(company.id)">Edit</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
