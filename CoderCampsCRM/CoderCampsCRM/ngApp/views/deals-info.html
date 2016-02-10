@@ -37,13 +37,13 @@
     </div>
     <div class="col-md-7">
         <div class="activity_button_wrap btn-group" role="group" aria-label="...">
-            <button type="button" class="btn btn-default">New Note</button>
-            <button type="button" class="btn btn-default">Log Activity</button>
-            <button type="button" class="btn btn-default">Create Task</button>
-            <button type="button" class="btn btn-default">Schedule Event</button>
+            <a ui-sref="deal-info.note" class="btn btn-default">New Note</a>
+            <a ui-sref="deal-info.activity" class="btn btn-default">Log Activity</a>
+            <a ui-sref="deal-info.task" class="btn btn-default">Create Task</a>
+            <a ui-sref="deal-info.event" class="btn btn-default">Schedule Event</a>
         </div>
         <div class="text_wrap">
-            <textarea class="deal_notes" rows="10"></textarea>
+            <div ui-view></div>
         </div>
         
     </div>

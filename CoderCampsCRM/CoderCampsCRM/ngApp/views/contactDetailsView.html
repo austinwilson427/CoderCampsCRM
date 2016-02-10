@@ -146,7 +146,7 @@
             </thead>
             <tbody ng-repeat="deal in vm.contactView.deals">
                 <tr>
-                    <td><a href="/deals/{{deal.id}}">{{deal.dealName}}</a></td>
+                    <td><a ui-sref="deal-info({id: deal.id})">{{deal.dealName}}</a></td>
                     <td>{{deal.stage}}</td>
                     <td>{{deal.amount}}</td>
                     <td>{{deal.closeDate}}</td>

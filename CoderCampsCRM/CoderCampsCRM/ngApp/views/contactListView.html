@@ -27,7 +27,8 @@
                         <td>{{contact.phoneNumber}}</td>
                         <td>{{contact.company.companyName}}</td>
                         <td>{{contact.jobTitle}}</td>
-                        <td><a href="/contactDetails/{{contact.id}}" class="btn btn-primary">Manage</a></td>
+                        <!--<a href="/contactDetails/{{contact.id}}"-->
+                        <td><a ui-sref="contactDetails({id: contact.id})" class="btn btn-primary">Manage</a></td>
                     </tr>
                 </tbody>
             </table>
