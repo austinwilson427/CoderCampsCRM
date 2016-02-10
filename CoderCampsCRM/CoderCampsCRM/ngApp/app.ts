@@ -33,6 +33,12 @@
                 controller: MyApp.Controllers.CompaniesController,
                 controllerAs: 'vm'
             })
+            .state('createCompany', {
+                url: '/createcompany',
+                templateUrl: '/ngApp/views/createCompany.html',
+                controller: MyApp.Controllers.CompaniesController,
+                controllerAs: 'vm'
+            })
             .state('contacts', {
                 url: '/contacts',
                 templateUrl: '/ngApp/views/contactListView.html',
