@@ -160,6 +160,13 @@ input.amount_input{
     width: 80%;
     margin: auto;
 }
+
+.activity_button_wrap{
+    width: 80%;
+    margin: auto;
+    display: block;
+}
+
 textarea.deal_notes{
     max-width: 100%;
     width: 100%;
