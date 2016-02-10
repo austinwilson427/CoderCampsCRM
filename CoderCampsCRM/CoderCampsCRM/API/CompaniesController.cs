@@ -50,7 +50,7 @@ namespace CoderCampsCRM.API
             if (company.Id == 0)
             {
                 var userId = User.Identity.GetUserId();
-                var user = _repo.Query<ApplicationUser>().Where(u => u.Id == userId).Include(u => u.Company).FirstOrDefault();
+                var user = _repo.Query<ApplicationUser>().Where(u => u.Id == userId).Include(u => u.Companies).FirstOrDefault();
 
                 company.CompanyCreateDate = DateTime.Now;
                 _repo.Add<Company>(company);

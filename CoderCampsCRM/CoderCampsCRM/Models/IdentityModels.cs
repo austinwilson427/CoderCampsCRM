@@ -12,7 +12,7 @@ namespace CoderCampsCRM.Models
     public class ApplicationUser : IdentityUser
     {
 
-        public ICollection<Company> Company { get; set; }
+        public ICollection<Company> Companies { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Company { get; set; }

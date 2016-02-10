@@ -47,16 +47,6 @@ var MyApp;
             controller: MyApp.Controllers.DealsController,
             controllerAs: 'vm'
         })
-            .when('/companies', {
-            templateUrl: '/ngApp/views/companies.html',
-            controller: MyApp.Controllers.CompaniesController,
-            controllerAs: 'vm'
-        })
-            .when('/createcompany', {
-            templateUrl: '/ngApp/views/createCompany.html',
-            controller: MyApp.Controllers.CompaniesController,
-            controllerAs: 'vm'
-        })
             .when('/deals/:id', {
             templateUrl: '/ngApp/views/deals-info.html',
             controller: MyApp.Controllers.DealInfoController,
@@ -64,6 +54,11 @@ var MyApp;
         })
             .when('/companies', {
             templateUrl: '/ngApp/views/companies.html',
+            controller: MyApp.Controllers.CompaniesController,
+            controllerAs: 'vm'
+        })
+            .when('/createcompany', {
+            templateUrl: '/ngApp/views/createCompany.html',
             controller: MyApp.Controllers.CompaniesController,
             controllerAs: 'vm'
         })
