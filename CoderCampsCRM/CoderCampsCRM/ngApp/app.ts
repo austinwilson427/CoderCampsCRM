@@ -58,7 +58,11 @@
                 controller: MyApp.Controllers.CompaniesController,
                 controllerAs: 'vm'
             })
-
+            .when('/createcompany', {
+                templateUrl: '/ngApp/views/createCompany.html',
+                controller: MyApp.Controllers.CompaniesController,
+                controllerAs: 'vm'
+            })
             .when('/contacts', {
                 templateUrl: '/ngApp/views/contactListView.html',
                 controller: MyApp.Controllers.ContactListController,

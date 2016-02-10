@@ -1,5 +1,6 @@
 ﻿using CoderCampsCRM.Models;
 using CoderCampsCRM.Repositories;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace CoderCampsCRM.API
     {
         private IGenericRepository _repo;
 
-        public CompaniesController():this(new GenericRepository())
+        public CompaniesController() : this(new GenericRepository())
         {
         }
 
@@ -23,10 +24,19 @@ namespace CoderCampsCRM.API
         }
         public IHttpActionResult Get()
         {
-            var variables = from v in _repo.Query<Company>()
-                            select v;
+            string userId = User.Identity.GetUserId();
+            //var user = _repo.Query<ApplicationUser>().Where(u => u.Id == userId).Include(u => u.Company).FirstOrDefault();
+            //var company = _repo.Find<Company>();
+            //if (user.Company = userId)
 
-            return Ok(variables.ToList());
+            //var companies = from c in _repo.Query<Company>()
+            //               select c;
+
+            var compList = from c in _repo.Query<Company>()
+                           where c.ApplicationUser_Id == userId
+                           select c;
+
+            return Ok(compList.ToList());
         }
         public IHttpActionResult Get(int id)
         {
@@ -39,8 +49,14 @@ namespace CoderCampsCRM.API
         {
             if (company.Id == 0)
             {
-               
+                var userId = User.Identity.GetUserId();
+                var user = _repo.Query<ApplicationUser>().Where(u => u.Id == userId).Include(u => u.Companies).FirstOrDefault();
+
+                company.CompanyCreateDate = DateTime.Now;
                 _repo.Add<Company>(company);
+                _repo.SaveChanges();
+                //user.Company.Add(company);
+                company.ApplicationUser_Id = userId;
                 _repo.SaveChanges();
                 return Ok(company);
             }
@@ -61,8 +77,9 @@ namespace CoderCampsCRM.API
                 original.CompanyLinkedin = company.CompanyLinkedin;
                 original.CompanyTwitter = company.CompanyTwitter;
 
-                original.CompanyLastActivityeDate = company.CompanyLastActivityeDate;
                 original.CompanyNextActivityDate = company.CompanyNextActivityDate;
+                company.CompanyLastActivityeDate = DateTime.Now;
+                original.CompanyLastActivityeDate = company.CompanyLastActivityeDate;
 
                 _repo.SaveChanges();
                 return Ok(company);

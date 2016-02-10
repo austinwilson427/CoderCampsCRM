@@ -10,11 +10,10 @@ var MyApp;
                 this.companies = this.companiesService.getCompanies();
             }
             CompaniesController.prototype.showDetailsModal = function (id) {
-                console.log(id);
                 this.$uibModal.open({
-                    templateUrl: "/ngApp/views/companyDetailsModal.html",
+                    templateUrl: "/ngApp/views/modals/companyDetails.html",
                     controller: CompanyDetailsController,
-                    controllerAs: 'controller',
+                    controllerAs: 'vm',
                     resolve: {
                         companyId: function () { return id; }
                     },
@@ -23,13 +22,20 @@ var MyApp;
             };
             CompaniesController.prototype.editModal = function (id) {
                 this.$uibModal.open({
-                    templateUrl: "/ngApp/views/editCompanyModal.html",
+                    templateUrl: "/ngApp/views/modals/editCompanyModal.html",
                     controller: EditCompanyController,
-                    controllerAs: 'controller',
+                    controllerAs: 'vm',
                     resolve: {
                         companyId: function () { return id; }
                     },
                     size: 'lg'
+                });
+            };
+            CompaniesController.prototype.save = function () {
+                var _this = this;
+                this.companiesService.createCompany(this.company).then(function () {
+                    _this.company = _this.companiesService.getCompanies();
+                    _this.$location.path("/createcompany");
                 });
             };
             CompaniesController.prototype.deleteCompany = function (id) {
@@ -46,20 +52,25 @@ var MyApp;
             function CompanyDetailsController(companyId, companiesService) {
                 this.companyId = companyId;
                 this.companiesService = companiesService;
+                this.companies = this.companiesService.getCompanies();
                 this.company = companiesService.getCompany(companyId);
             }
             return CompanyDetailsController;
         })();
         var EditCompanyController = (function () {
-            function EditCompanyController(companyId, companiesService, $location, $routeParams) {
+            function EditCompanyController(companyId, $uibModalInstance, companiesService, $location, $routeParams, $route) {
                 this.companyId = companyId;
+                this.$uibModalInstance = $uibModalInstance;
                 this.companiesService = companiesService;
                 this.$location = $location;
+                this.$route = $route;
                 this.company = companiesService.getCompany(companyId);
             }
             EditCompanyController.prototype.save = function () {
                 var _this = this;
                 this.companiesService.editCompany(this.company).then(function () {
+                    _this.$uibModalInstance.close();
+                    _this.$route.reload();
                     _this.$location.path("/companies");
                 });
             };

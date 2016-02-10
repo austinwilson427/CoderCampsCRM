@@ -2,6 +2,7 @@
 
     export class CompaniesController {
         public companies;
+        public company;
 
         constructor(private $uibModal: angular.ui.bootstrap.IModalService,
             private companiesService: MyApp.Services.CompaniesService,
@@ -9,11 +10,11 @@
             this.companies = this.companiesService.getCompanies();
         }
         public showDetailsModal(id) {
-            console.log(id);
+
             this.$uibModal.open({
-                templateUrl: "/ngApp/views/companyDetailsModal.html",
+                templateUrl: "/ngApp/views/modals/companyDetails.html",
                 controller: CompanyDetailsController,
-                controllerAs: 'controller',
+                controllerAs: 'vm',
                 resolve: {
                     companyId: () => id
                 },
@@ -23,9 +24,9 @@
 
         public editModal(id) {
             this.$uibModal.open({
-                templateUrl: "/ngApp/views/editCompanyModal.html",
+                templateUrl: "/ngApp/views/modals/editCompanyModal.html",
                 controller: EditCompanyController,
-                controllerAs: 'controller',
+                controllerAs: 'vm',
                 resolve: {
                     companyId: () => id
                 },
@@ -33,6 +34,12 @@
             });
         }
 
+        public save() {
+            this.companiesService.createCompany(this.company).then(() => {
+                this.company = this.companiesService.getCompanies();
+                this.$location.path("/createcompany");
+            });
+        }
 
         public deleteCompany(id) {
             this.companiesService.deleteCompany(id).then(() => {
@@ -46,9 +53,10 @@
     }
     class CompanyDetailsController {
         public company;
+        public companies;
 
         constructor(private companyId, private companiesService: MyApp.Services.CompaniesService) {
-
+            this.companies = this.companiesService.getCompanies();
             this.company = companiesService.getCompany(companyId);
 
         }
@@ -64,18 +72,21 @@
         public company;
 
         constructor(private companyId,
+            private $uibModalInstance: angular.ui.bootstrap.IModalServiceInstance,
             private companiesService: MyApp.Services.CompaniesService,
-            private $location: ng.ILocationService, $routeParams: ng.route.IRouteParamsService) {
-            
+            private $location: ng.ILocationService, $routeParams: ng.route.IRouteParamsService, private $route: ng.route.IRouteService) {
+
             this.company = companiesService.getCompany(companyId);
 
         }
 
         public save() {
-           
+
             this.companiesService.editCompany(this.company).then(() => {
-               
+                this.$uibModalInstance.close();
+                this.$route.reload();
                 this.$location.path("/companies");
+
             });
         }
 
