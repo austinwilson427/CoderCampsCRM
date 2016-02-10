@@ -28,3 +28,4 @@ var MyApp;
         angular.module("MyApp").service("taskService", TaskService);
     })(Services = MyApp.Services || (MyApp.Services = {}));
 })(MyApp || (MyApp = {}));
+//# sourceMappingURL=taskService.js.map
