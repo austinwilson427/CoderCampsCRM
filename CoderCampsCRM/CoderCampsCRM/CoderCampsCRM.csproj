@@ -291,9 +291,11 @@
     <Content Include="GitIgnore\.gitignore" />
     <Content Include="Global.asax" />
     <Content Include="ngApp\views\about.html" />
+    <Content Include="ngApp\views\companies.html" />
     <Content Include="ngApp\views\confirmEmail.html" />
     <Content Include="ngApp\views\contactDetailsView.html" />
     <Content Include="ngApp\views\contactListView.html" />
+    <Content Include="ngApp\views\createcompany.html" />
     <Content Include="ngApp\views\deals-info.html" />
     <Content Include="ngApp\views\deals.html" />
     <Content Include="ngApp\views\externalLogin.html" />
@@ -302,9 +304,11 @@
     <Content Include="ngApp\views\login.html" />
     <Content Include="ngApp\views\modals\add-deal.html" />
     <Content Include="ngApp\views\modals\archive-deal.html" />
+    <Content Include="ngApp\views\modals\companyDetails.html" />
     <Content Include="ngApp\views\modals\delete-deal.html" />
     <Content Include="ngApp\views\modals\edit-deal.html" />
     <Content Include="ngApp\views\modals\contactAddModal.html" />
+    <Content Include="ngApp\views\modals\editCompanyModal.html" />
     <Content Include="ngApp\views\notFound.html" />
     <Content Include="ngApp\views\profile.html" />
     <Content Include="ngApp\views\register.html" />
