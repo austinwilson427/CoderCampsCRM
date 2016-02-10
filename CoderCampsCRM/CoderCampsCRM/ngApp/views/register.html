@@ -1,4 +1,4 @@
-﻿{{vm.validationMessages}}
+﻿
 <div class="container" style="padding-top: 60px;">
     <!--<form ng-submit="controller.register()">-->
     <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
@@ -19,9 +19,19 @@
            
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="text-center">
-                        <img src="http://stanleywisconsin.us/templates/Itta%20Bena/images/default_avatar.jpg" class="avatar img-circle img-thumbnail" alt="avatar">
+                        <img ng-show="!vm.picUploaded" src="http://stanleywisconsin.us/templates/Itta%20Bena/images/default_avatar.jpg" 
+                             class="avatar img-circle img-thumbnail" alt="avatar">
+                        <img ng-show="vm.picUploaded" ng-src="{{vm.registerUser.picUrl}}" class="avatar img-circle img-thumbnail" alt="userPic" />
                         <h6>Upload a different photo...</h6>
-                        <input type="file" class="text-center center-block well well-sm">
+                       
+                        <!------Filepicker code-->
+                        <button ng-click="vm.pickFile()">Upload</button>
+
+                       
+                        <!-- download from https://raw.githubusercontent.com/filepicker/filepicker-angular/develop/dist/angular_filepicker.min.js -->
+
+
+                        <!----filepickercode-->
                     </div>
                 </div>
 
@@ -58,7 +68,7 @@
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Phone Number:</label>
                             <div class="col-lg-8">
-                                <input ng-model="vm.registerUser.phoneNumber" class="form-control" value="" type="number" placeholder="Your phone number here">
+                                <input ng-model="vm.registerUser.phoneNumber" class="form-control" value="" type="text" placeholder="Your phone number here">
                             </div>
                         </div>
 
@@ -109,10 +119,22 @@
                             <div class="col-md-8">
                                 <input class="btn btn-primary" type="submit" value="Save and Register">
                                 <span></span>
-                                <input class="btn btn-default" value="Cancel" type="reset">
+                                <input class="btn btn-default" value="Reset" type="reset">
+                                <a class="btn btn-danger" ng-click="vm.closeModal()">Cancel</a>
                                
                             </div>
                         </div>
+                        <div>
+                            <ul>
+                                <li ng-repeat="message in vm.validationMessages">
+                                  {{message}}
+                                </li>
+                                  
+                            </ul>
+                            
+
+                        </div>
+
                     </form>
                 </div>
         </div>

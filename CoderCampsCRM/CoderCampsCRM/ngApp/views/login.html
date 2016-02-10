@@ -20,7 +20,7 @@
 
     <form ng-submit="controller.login()">
         <div>
-            <label>Email:</label>
+            <label>Username:</label>
             <input ng-model="controller.loginUser.userName" />
         </div>
         <div>
@@ -28,6 +28,7 @@
             <input ng-model="controller.loginUser.password" />
         </div>
         <input type="submit" value="Login" />
-        <a href="/register">Register</a>
+        <a href="#" ng-click="controller.showRegisterModal()">Register</a>
+        <a class="btn btn-danger" ng-click="controller.closeModal()">Cancel</a>
     </form>
 </fieldset>
