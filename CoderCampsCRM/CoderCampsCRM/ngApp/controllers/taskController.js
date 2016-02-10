@@ -64,3 +64,4 @@ var MyApp;
         Controllers.TaskDeleteController = TaskDeleteController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
+//# sourceMappingURL=taskController.js.map
