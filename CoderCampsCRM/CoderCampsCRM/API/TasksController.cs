@@ -22,7 +22,7 @@ namespace CoderCampsCRM.API
 
 
 
-            public IHttpActionResult GetAllItems()
+            public IHttpActionResult GetAllTasks()
             {
                 var data = _repo.Query<UserTask>();
 
@@ -30,14 +30,14 @@ namespace CoderCampsCRM.API
             }
 
             [Route("api/tasks/{id}")]
-            public IHttpActionResult GetIndItem(int id)
+            public IHttpActionResult GetIndTask(int id)
             {
                 var data = _repo.Find<UserTask>(id);
 
                 return Ok(data);
             }
 
-            public IHttpActionResult PostScore(UserTask taskToAdd)
+            public IHttpActionResult PostTask(UserTask taskToAdd)
             {
                 if (ModelState.IsValid)
                 {
@@ -56,9 +56,9 @@ namespace CoderCampsCRM.API
                         var originalTask = _repo.Find<UserTask>(taskToAdd.Id);
 
                         originalTask.Status = taskToAdd.Status;
-                        originalTask.TaskType = taskToAdd.TaskType;
-                        originalTask.TaskDueDate = taskToAdd.TaskDueDate;
-                        originalTask.TaskDescription = taskToAdd.TaskDescription;
+                        originalTask.Type = taskToAdd.Type;
+                        originalTask.DueDate = taskToAdd.DueDate;
+                        originalTask.Description = taskToAdd.Description;
 
 
                         _repo.SaveChanges();
@@ -71,7 +71,7 @@ namespace CoderCampsCRM.API
 
             }
 
-            public IHttpActionResult DeleteScore(int id)
+            public IHttpActionResult DeleteTask(int id)
 
             {
                 _repo.Delete<UserTask>(id);

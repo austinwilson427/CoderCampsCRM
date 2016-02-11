@@ -16,8 +16,8 @@ var MyApp;
             TaskService.prototype.getTask = function (id) {
                 return this.taskResource.get({ id: id });
             };
-            TaskService.prototype.saveTask = function (score) {
-                return this.taskResource.save(score).$promise;
+            TaskService.prototype.saveTask = function (task) {
+                return this.taskResource.save(task).$promise;
             };
             TaskService.prototype.deleteTask = function (id) {
                 return this.taskResource.delete({ Id: id }).$promise;
@@ -28,4 +28,3 @@ var MyApp;
         angular.module("MyApp").service("taskService", TaskService);
     })(Services = MyApp.Services || (MyApp.Services = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=taskService.js.map

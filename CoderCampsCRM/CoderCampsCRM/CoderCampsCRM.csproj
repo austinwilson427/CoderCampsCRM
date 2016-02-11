@@ -248,6 +248,10 @@
     <Compile Include="Migrations\201602110059587_tasks.Designer.cs">
       <DependentUpon>201602110059587_tasks.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602110417568_tasks1.cs" />
+    <Compile Include="Migrations\201602110417568_tasks1.Designer.cs">
+      <DependentUpon>201602110417568_tasks1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -310,6 +314,7 @@
     <Content Include="ngApp\views\routes\deal-info-event.html" />
     <Content Include="ngApp\views\routes\deal-info-activity.html" />
     <Content Include="ngApp\views\routes\deal-info-note.html" />
+    <Content Include="ngApp\views\task-details.html" />
     <Content Include="ngApp\views\tasks.html" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
@@ -1205,6 +1210,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201602110059587_tasks.resx">
       <DependentUpon>201602110059587_tasks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602110417568_tasks1.resx">
+      <DependentUpon>201602110417568_tasks1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

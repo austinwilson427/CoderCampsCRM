@@ -21,8 +21,8 @@
             return this.taskResource.get({ id: id });
         }
 
-        public saveTask(score) {
-            return this.taskResource.save(score).$promise;
+        public saveTask(task) {
+            return this.taskResource.save(task).$promise;
         }
         public deleteTask(id: number) {
             return this.taskResource.delete({ Id: id }).$promise;
