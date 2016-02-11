@@ -3,10 +3,11 @@ var MyApp;
     var Controllers;
     (function (Controllers) {
         var ContactDetailsController = (function () {
-            function ContactDetailsController(contactService, $location, $uibModal, $stateParams) {
+            function ContactDetailsController(contactService, $location, $uibModal, $stateParams, $state) {
                 this.contactService = contactService;
                 this.$location = $location;
                 this.$uibModal = $uibModal;
+                this.$state = $state;
                 this.contact = {};
                 this.contactView = this.contactService.getOneContact($stateParams['id']);
             }
@@ -46,7 +47,10 @@ var MyApp;
             };
             ContactDetailsController.prototype.addInteraction = function () {
                 this.interaction.contactId = this.contactView.contact.id;
-                return this.contactService.addInteraction(this.interaction).then(this.$location.path("/contacts"));
+                return this.contactService.addInteraction(this.interaction).then(this.$state.reload());
+            };
+            ContactDetailsController.prototype.deleteInteraction = function (id) {
+                return this.contactService.deleteInteraction(id).then(this.$state.reload());
             };
             return ContactDetailsController;
         })();
