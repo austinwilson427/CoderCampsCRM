@@ -5,14 +5,14 @@
         public contact;
         public companies;
 
-        constructor(private contactService: MyApp.Services.ContactService, private $route: ng.route.IRouteService, private $uibModalInstance: ng.ui.bootstrap.IModalServiceInstance, private companiesService: MyApp.Services.CompaniesService) {
+        constructor(private contactService: MyApp.Services.ContactService, private $state: ng.ui.IStateService, private $uibModalInstance: ng.ui.bootstrap.IModalServiceInstance, private companiesService: MyApp.Services.CompaniesService) {
             this.companies = this.companiesService.getCompanies();
         }
 
         public addContact() {
             this.contactService.addContact(this.contact).then(() => {
                 this.closeModal();
-                this.$route.reload();
+                this.$state.reload();
             });
         }
 

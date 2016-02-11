@@ -28,6 +28,9 @@ var MyApp;
             ContactService.prototype.addInteraction = function (interaction) {
                 return this.interactionResource.save(interaction).$promise;
             };
+            ContactService.prototype.deleteInteraction = function (id) {
+                return this.interactionResource.remove({ id: id }).$promise;
+            };
             return ContactService;
         })();
         Services.ContactService = ContactService;

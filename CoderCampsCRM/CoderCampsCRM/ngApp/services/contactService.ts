@@ -37,6 +37,10 @@
         public addInteraction(interaction) {
             return this.interactionResource.save(interaction).$promise;
         }
+
+        public deleteInteraction(id: number) {
+            return this.interactionResource.remove({ id: id }).$promise;
+        }
     }
     angular.module("MyApp").service("contactService", ContactService);
 }

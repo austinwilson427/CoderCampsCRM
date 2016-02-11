@@ -76,6 +76,75 @@ namespace CoderCampsCRM.Migrations
                                 CompanyAttachments ="http://media.dcentertainment.com/sites/default/files/MAD-Magazine-Arizona-Citizenship-Letter-1.jpg"}
             };
             context.Companies.AddOrUpdate(c => c.CompanyName, companies);
+
+            UserTask[] tasks = new UserTask[] {
+                new UserTask {Id = 1, Status = "New", TaskDescription = "Call Brian to discuss contract", TaskDueDate = "3/1/2016", TaskStartDate = "2/10/2016", TaskType ="Call"},
+                new UserTask {Id = 2, Status = "In Progress", TaskDescription = "Pick up Kids", TaskDueDate = "3/1/2016", TaskStartDate = "2/10/2016", TaskType ="In Person Meeting"},
+                new UserTask {Id = 3, Status = "In Progress", TaskDescription = "Submit ", TaskDueDate = "3/1/2016", TaskStartDate = "2/10/2016", TaskType ="Call"},
+                new UserTask {Id = 4, Status = "Completed", TaskDescription = "Call Brian to discuss contract", TaskDueDate = "3/1/2016", TaskStartDate = "2/10/2016", TaskType ="Call"},
+                new UserTask {Id = 5, Status = "Completed", TaskDescription = "Call Brian to discuss contract", TaskDueDate = "3/1/2016", TaskStartDate = "2/10/2016", TaskType ="Call"},
+
+
+        };
+            context.Tasks.AddOrUpdate(t => t.Id, tasks);
+
+            var contacts = new Contact[]
+            {
+                new Contact
+                {
+                    Name = "Joe Fish",
+                    CompanyId = 1,
+                    Email = "joe@joe.com",
+                    JobTitle = "CEO",
+                    Country = "USA",
+                    City = "Redmond",
+                    State = "WA",
+                    PhoneNumber = "3024456677",
+                    StreetAddress = "22 Fish Road",
+                    Id = 1,
+                    Zip = "90851"
+                },
+
+                new Contact
+                {
+                    Name = "Bob Arthur",
+                    CompanyId = 2,
+                    Email = "bob@bob.com",
+                    JobTitle = "Developer",
+                    Country = "USA",
+                    City = "Dallas",
+                    State = "TX",
+                    PhoneNumber = "3024456677",
+                    StreetAddress = "22 Angel Road",
+                    Id = 2,
+                    Zip = "20468"
+                }
+            };
+
+            context.Contacts.AddOrUpdate(c => c.Id, contacts);
+
+            var interactions = new ContactInteraction[]
+            {
+                new ContactInteraction
+                {
+                    Id = 1,
+                    ContactId = 1,
+                    Date = new DateTime(2016, 02, 10, 17, 19, 52),
+                    Subject = "Follow Up",
+                    Description = "Joe seems interested in our service. I'm expecting a sale in a few days",
+                },
+
+                new ContactInteraction
+                {
+                    Id = 2,
+                    ContactId = 2,
+                    Date = new DateTime(2016, 02, 8, 14, 48, 22),
+                    Subject = "Sales Pitch",
+                    Description = "Bob was not impressed, he was angry. Red flag here",
+                }
+            };
+
+            context.ContactInteractions.AddOrUpdate(i => i.Id, interactions);
         }
     }
 }

@@ -6,7 +6,7 @@
         public interaction;  
         public contact;
 
-        constructor(private contactService: MyApp.Services.ContactService, private $location: ng.ILocationService, private $uibModal: ng.ui.bootstrap.IModalService, $stateParams: ng.ui.IStateParamsService) {
+        constructor(private contactService: MyApp.Services.ContactService, private $location: ng.ILocationService, private $uibModal: ng.ui.bootstrap.IModalService, $stateParams: ng.ui.IStateParamsService, private $state: ng.ui.IStateService) {
             this.contact = {};
             this.contactView = this.contactService.getOneContact($stateParams['id']);
         }
@@ -54,7 +54,12 @@
         public addInteraction() {
             this.interaction.contactId = this.contactView.contact.id;
             return this.contactService.addInteraction(this.interaction).then(
-                this.$location.path("/contacts"));
+                this.$state.reload());
+        }
+
+        public deleteInteraction(id) {
+            return this.contactService.deleteInteraction(id).then(
+                this.$state.reload());
         }
     }
 }

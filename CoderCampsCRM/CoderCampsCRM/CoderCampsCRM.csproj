@@ -243,13 +243,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602101726080_initial.cs" />
-    <Compile Include="Migrations\201602101726080_initial.Designer.cs">
-      <DependentUpon>201602101726080_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201602102246180_initial.cs" />
+    <Compile Include="Migrations\201602102246180_initial.Designer.cs">
+      <DependentUpon>201602102246180_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602102133129_2.cs" />
-    <Compile Include="Migrations\201602102133129_2.Designer.cs">
-      <DependentUpon>201602102133129_2.cs</DependentUpon>
+    <Compile Include="Migrations\201602102256420_2.cs" />
+    <Compile Include="Migrations\201602102256420_2.Designer.cs">
+      <DependentUpon>201602102256420_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602110110031_3.cs" />
+    <Compile Include="Migrations\201602110110031_3.Designer.cs">
+      <DependentUpon>201602110110031_3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -279,6 +283,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-CoderCampsCRM-20151020080840.mdf" />
+    <Content Include="App_Data\aspnet-CoderCampsCRM-20151020080840_log.ldf">
+      <DependentUpon>aspnet-CoderCampsCRM-20151020080840.mdf</DependentUpon>
+    </Content>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -312,6 +320,10 @@
     <Content Include="ngApp\views\notFound.html" />
     <Content Include="ngApp\views\profile.html" />
     <Content Include="ngApp\views\register.html" />
+    <Content Include="ngApp\views\routes\deal-info-activity.html" />
+    <Content Include="ngApp\views\routes\deal-info-event.html" />
+    <Content Include="ngApp\views\routes\deal-info-note.html" />
+    <Content Include="ngApp\views\routes\deal-info-task.html" />
     <Content Include="ngApp\views\tasks.html" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
@@ -1158,9 +1170,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\version.json" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
@@ -1202,11 +1212,14 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602101726080_initial.resx">
-      <DependentUpon>201602101726080_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602102246180_initial.resx">
+      <DependentUpon>201602102246180_initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602102133129_2.resx">
-      <DependentUpon>201602102133129_2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602102256420_2.resx">
+      <DependentUpon>201602102256420_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602110110031_3.resx">
+      <DependentUpon>201602110110031_3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

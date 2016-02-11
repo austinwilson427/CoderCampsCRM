@@ -7,25 +7,16 @@
                 </a>
             </li>
             <li>
-                <a href="#">Dashboard</a>
+                <a href="#">All Contacts</a>
             </li>
             <li>
-                <a href="#">Shortcuts</a>
+                <a href="#">Filter by company</a>
             </li>
             <li>
-                <a href="#">Overview</a>
+                <a href="#">Filter by associated deals</a>
             </li>
             <li>
-                <a href="#">Events</a>
-            </li>
-            <li>
-                <a href="#">About</a>
-            </li>
-            <li>
-                <a href="#">Services</a>
-            </li>
-            <li>
-                <a href="#">Contact</a>
+                <a href="#">Filter by associated tasks</a>
             </li>
         </ul>
     </div>
@@ -51,6 +42,8 @@
                             <th class="hover_blue" style="cursor: default">Phone Number</th>
                             <th class="hover_blue" ng-click="sortType = 'companyName'; sortReverse = !sortReverse; vm.invertArrow(id)">Company<span id="company" class="glyphicon glyphicon-chevron-down"></span></th>
                             <th class="hover_blue" ng-click="sortType = 'jobTitle'; sortReverse = !sortReverse; vm.invertArrow(id)">Job Title<span id="jobTitle" class="glyphicon glyphicon-chevron-down"></span></th>
+                            <th class="hover_blue" ng-click="sortType = 'country'; sortReverse = !sortReverse; vm.invertArrow(id)">Country<span id="country" class="glyphicon glyphicon-chevron-down"></span></th>
+                            <th class="hover_blue" ng-click="sortType = 'city'; sortReverse = !sortReverse; vm.invertArrow(id)">City<span id="city" class="glyphicon glyphicon-chevron-down"></span></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,6 +53,8 @@
                             <td>{{contact.phoneNumber}}</td>
                             <td>{{contact.company.companyName}}</td>
                             <td>{{contact.jobTitle}}</td>
+                            <td>{{contact.country}}</td>
+                            <td>{{contact.city}}</td>
                             <td id="manageRow"><a href="/contactDetails/{{contact.id}}" class="btn btn-primary">Manage</a></td>
                         </tr>
                     </tbody>
