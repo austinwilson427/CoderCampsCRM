@@ -6,6 +6,15 @@
         storeUserInfo(userInfo) {
             // store auth token
             this.$window.sessionStorage.setItem('token', userInfo.access_token);
+            this.$window.sessionStorage.setItem('userName', userInfo.userName);
+            this.$window.sessionStorage.setItem('firstName', userInfo.firstName);
+            this.$window.sessionStorage.setItem('lastName', userInfo.lastName);
+            this.$window.sessionStorage.setItem('company', userInfo.company);
+            this.$window.sessionStorage.setItem('timeZone', userInfo.timeZone);
+            this.$window.sessionStorage.setItem('picUrl', userInfo.picUrl);
+            this.$window.sessionStorage.setItem('email', userInfo.email);
+            this.$window.sessionStorage.setItem('phoneNumber', userInfo.phoneNumber);
+
             // store claims
             for (let prop in userInfo) {
                 if (prop.indexOf('claim_') == 0) {

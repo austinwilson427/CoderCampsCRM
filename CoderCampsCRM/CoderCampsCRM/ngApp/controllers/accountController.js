@@ -47,6 +47,7 @@ var MyApp;
             LoginController.prototype.login = function () {
                 var _this = this;
                 this.accountService.login(this.loginUser).then(function () {
+                    _this.closeModal();
                     _this.$location.path('/');
                 }).catch(function (results) {
                     console.log("Error");
@@ -55,11 +56,14 @@ var MyApp;
                 });
             };
             LoginController.prototype.showRegisterModal = function () {
+                this.closeModal();
                 this.$uibModal.open({
                     templateUrl: "/ngApp/views/register.html",
                     controller: MyApp.Controllers.RegisterController,
                     controllerAs: "vm",
-                    resolve: {},
+                    resolve: {
+                        userInfo: null
+                    },
                     size: "lg"
                 });
             };
@@ -70,21 +74,30 @@ var MyApp;
         })();
         Controllers.LoginController = LoginController;
         var RegisterController = (function () {
-            function RegisterController(accountService, filepickerService, $scope, $location, $uibModalInstance) {
+            function RegisterController(accountService, filepickerService, $scope, $location, $uibModalInstance, $uibModal, userInfo) {
                 this.accountService = accountService;
                 this.filepickerService = filepickerService;
                 this.$scope = $scope;
                 this.$location = $location;
                 this.$uibModalInstance = $uibModalInstance;
-                this.picUploaded = false;
+                this.$uibModal = $uibModal;
+                this.userInfo = userInfo;
+                if (this.userInfo) {
+                    this.registerUser = this.userInfo;
+                    this.picUploaded = true;
+                }
+                else {
+                    this.picUploaded = false;
+                    this.registerUser = {
+                        picUrl: ""
+                    };
+                }
                 this.file = {
                     url: null
                 };
-                this.registerUser = {
-                    picUrl: ""
-                };
             }
             RegisterController.prototype.pickFile = function () {
+                this.closeModal();
                 this.filepickerService.pick({ mimetype: 'image/*' }, this.fileUploaded.bind(this));
             };
             RegisterController.prototype.fileUploaded = function (file) {
@@ -93,8 +106,15 @@ var MyApp;
                 if (this.file.url) {
                     this.registerUser.picUrl = this.file.url;
                 }
-                this.picUploaded = true;
-                this.$scope.$apply(); // force page to update
+                this.$uibModal.open({
+                    templateUrl: "/ngApp/views/register.html",
+                    controller: MyApp.Controllers.RegisterController,
+                    controllerAs: "vm",
+                    resolve: {
+                        userInfo: this.registerUser
+                    },
+                    size: "lg"
+                });
             };
             RegisterController.prototype.register = function () {
                 var _this = this;
