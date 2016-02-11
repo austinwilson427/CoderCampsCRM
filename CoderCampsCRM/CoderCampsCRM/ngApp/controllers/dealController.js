@@ -379,3 +379,4 @@ var MyApp;
         })();
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
+//# sourceMappingURL=dealController.js.map
