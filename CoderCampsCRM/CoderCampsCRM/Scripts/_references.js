@@ -1,4 +1,5 @@
 ﻿/// <autosync enabled="true" />
+/// <reference path="../ngapp/scripts/angular_filepicker.min.js" />
 /// <reference path="angular.min.js" />
 /// <reference path="angular-animate.min.js" />
 /// <reference path="angular-aria.min.js" />
