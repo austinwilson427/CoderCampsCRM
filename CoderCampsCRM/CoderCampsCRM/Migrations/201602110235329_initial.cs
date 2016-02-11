@@ -65,7 +65,7 @@ namespace CoderCampsCRM.Migrations
                         Zip = c.String(),
                         StreetAddress = c.String(),
                         JobTitle = c.String(),
-                        LastInteraction = c.DateTime(nullable: false),
+                        LastInteraction = c.DateTime(),
                         UserId = c.String(maxLength: 128),
                         CompanyId = c.Int(),
                     })
@@ -199,6 +199,19 @@ namespace CoderCampsCRM.Migrations
                 .PrimaryKey(t => t.Id)
                 .Index(t => t.Name, unique: true, name: "RoleNameIndex");
             
+            CreateTable(
+                "dbo.UserTasks",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        TaskType = c.String(),
+                        TaskStartDate = c.String(),
+                        TaskDueDate = c.String(),
+                        TaskDescription = c.String(),
+                        Status = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
         }
         
         public override void Down()
@@ -229,6 +242,7 @@ namespace CoderCampsCRM.Migrations
             DropIndex("dbo.Contacts", new[] { "UserId" });
             DropIndex("dbo.ContactInteractions", new[] { "ContactId" });
             DropIndex("dbo.Companies", new[] { "ApplicationUser_Id1" });
+            DropTable("dbo.UserTasks");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.ProfileUsers");
             DropTable("dbo.Deals");

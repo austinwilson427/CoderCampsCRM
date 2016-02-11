@@ -39,7 +39,6 @@ namespace CoderCampsCRM.Models
         public IDbSet<Contact> Contacts { get; set; }
         public IDbSet<ContactInteraction> ContactInteractions { get; set; }
         public IDbSet<ProfileUser> ProfileUser { get; set;}
-        public IDbSet<UserTask> Tasks { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

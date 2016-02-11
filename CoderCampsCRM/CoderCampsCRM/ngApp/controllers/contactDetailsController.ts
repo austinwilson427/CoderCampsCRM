@@ -9,6 +9,7 @@
         constructor(private contactService: MyApp.Services.ContactService, private $location: ng.ILocationService, private $uibModal: ng.ui.bootstrap.IModalService, $stateParams: ng.ui.IStateParamsService, private $state: ng.ui.IStateService) {
             this.contact = {};
             this.contactView = this.contactService.getOneContact($stateParams['id']);
+            debugger;
         }
 
         public deleteContact() {

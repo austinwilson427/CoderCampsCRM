@@ -244,9 +244,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602110059587_tasks.cs" />
-    <Compile Include="Migrations\201602110059587_tasks.Designer.cs">
-      <DependentUpon>201602110059587_tasks.cs</DependentUpon>
+    <Compile Include="Migrations\201602110235329_initial.cs" />
+    <Compile Include="Migrations\201602110235329_initial.Designer.cs">
+      <DependentUpon>201602110235329_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -276,6 +276,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-CoderCampsCRM-20151020080840.mdf" />
+    <Content Include="App_Data\aspnet-CoderCampsCRM-20151020080840_log.ldf">
+      <DependentUpon>aspnet-CoderCampsCRM-20151020080840.mdf</DependentUpon>
+    </Content>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -1159,9 +1163,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\version.json" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
@@ -1203,8 +1205,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602110059587_tasks.resx">
-      <DependentUpon>201602110059587_tasks.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602110235329_initial.resx">
+      <DependentUpon>201602110235329_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -10,6 +10,7 @@ var MyApp;
                 this.$state = $state;
                 this.contact = {};
                 this.contactView = this.contactService.getOneContact($stateParams['id']);
+                debugger;
             }
             ContactDetailsController.prototype.deleteContact = function () {
                 return this.contactService.deleteContact(this.contactView.contact.id).then(this.$location.path("/contacts"));
