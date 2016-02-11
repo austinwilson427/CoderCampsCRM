@@ -67,4 +67,33 @@
             this.$location.path("/tasks");
         }
     }
+
+
+    class AddTaskModal {
+
+        public validationErrors;
+
+        constructor(private taskService: MyApp.Services.TaskService, private $location: ng.ILocationService, private $uibModalInstance: ng.ui.bootstrap.IModalServiceInstance, private $route: ng.route.IRouteService) { }
+
+        public addTask(taskToAdd) {
+            console.log(taskToAdd);
+            this.taskService.saveTask(taskToAdd).then(() => {
+                this.closeModal();
+                this.$location.path('/tasks');
+                this.$route.reload();
+            }).catch((error) => {
+
+                let validationErrors = [];
+                for (let i in error.data.modelState) {
+                    let errorMessage = error.data.modelState[i];
+                    validationErrors = validationErrors.concat(errorMessage);
+                }
+                this.validationErrors = validationErrors;
+            });
+        }
+
+        public closeModal() {
+            this.$uibModalInstance.close();
+        }
+    }
 }

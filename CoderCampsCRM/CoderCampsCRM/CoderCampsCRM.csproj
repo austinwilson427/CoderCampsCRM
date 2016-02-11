@@ -202,6 +202,7 @@
     <Compile Include="API\DealsViewController.cs" />
     <Compile Include="API\InteractionsController.cs" />
     <Compile Include="API\MoviesController.cs" />
+    <Compile Include="API\TasksController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -242,10 +243,6 @@
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602110000559_initial.cs" />
-    <Compile Include="Migrations\201602110000559_initial.Designer.cs">
-      <DependentUpon>201602110000559_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -312,6 +309,7 @@
     <Content Include="ngApp\views\routes\deal-info-event.html" />
     <Content Include="ngApp\views\routes\deal-info-activity.html" />
     <Content Include="ngApp\views\routes\deal-info-note.html" />
+    <Content Include="ngApp\views\task-details.html" />
     <Content Include="ngApp\views\tasks.html" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
@@ -344,6 +342,7 @@
     <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\angular_filepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -386,7 +385,6 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Scripts\angular-route.min.js.map" />
-    <Content Include="ngApp\scripts\angular_filepicker.min.js" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
@@ -1203,11 +1201,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602110000559_initial.resx">
-      <DependentUpon>201602110000559_initial.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

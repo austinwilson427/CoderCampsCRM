@@ -13,6 +13,7 @@
     <link href="~/Content/Site.css" rel="stylesheet" />
     <link href="~/Content/simple-sidebar.css" rel="stylesheet" />
     
+    
 </head>
 <body ng-controller="AccountController as account">
     <div class="container-fluid">
@@ -64,8 +65,8 @@
                                 <li role="separator" class="divider"></li>
                                 <li><a href="#">Settings</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a ng-click ="account.showModal() "href="#" ng-show="!account.isLoggedIn()">Log In</a></li>
-                                <li><a href="/" ng-click="account.logout()" ng-show="account.isLoggedIn()">Log Out</a></li>
+                                <li><a ui-sref="login" ng-show="!account.isLoggedIn()">Log In</a></li>
+                                <li><a ui-sref="home" ng-click="account.logout()" ng-show="account.isLoggedIn()">Log Out</a></li>
                             </ul>
                         </li>
                         <li class="divider-vertical"></li>
@@ -91,18 +92,19 @@
     <script src="~/Scripts/angular-route.min.js"></script>
     <script src="~/Scripts/angular-resource.min.js"></script>
     <script src="~/Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
-    <script type="text/javascript" src="//api.filepicker.io/v2/filepicker.js"></script>
-    <script src="~/ngApp/scripts/angular_filepicker.min.js"></script>
     <script src="~/Scripts/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="//api.filestackapi.com/filestack.js"></script>
+    <script src="~/Scripts/angular_filepicker.min.js"></script>
 
     <!--App and Services-->
-    <script src="~/ngApp/app.js"></script>
+    <script src="~/ngApp/app.js"></script>    
     <script src="~/ngApp/services/services.js"></script>
     <script src="~/ngApp/services/accountService.js"></script>
     <script src="~/ngApp/services/dealService.js"></script>
     <script src="~/ngApp/services/contactService.js"></script>
     <script src="~/ngApp/services/companyService.js"></script>
     <script src="~/ngApp/services/profileServices.js"></script>
+    <script src="~/ngApp/services/taskService.js"></script>
 
     <!--Controllers-->
     <script src="~/ngApp/controllers/controllers.js"></script>
