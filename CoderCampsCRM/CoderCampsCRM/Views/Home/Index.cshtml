@@ -64,8 +64,8 @@
                                 <li role="separator" class="divider"></li>
                                 <li><a href="#">Settings</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="/login" ng-show="!account.isLoggedIn()">Log In</a></li>
-                                <li><a href="/" ng-click="account.logout()" ng-show="account.isLoggedIn()">Log Out</a></li>
+                                <li><a ui-sref="/login" ng-show="!account.isLoggedIn()">Log In</a></li>
+                                <li><a ui-sref="/" ng-click="account.logout()" ng-show="account.isLoggedIn()">Log Out</a></li>
                             </ul>
                         </li>
                         <li class="divider-vertical"></li>

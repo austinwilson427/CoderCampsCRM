@@ -1,7 +1,7 @@
 ﻿namespace MyApp {
 
-    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router']).config(($locationProvider: ng.ILocationProvider, $stateProvider: ng.ui.IStateProvider, $urlRouterProvider: ng.ui.IUrlRouterProvider) => {
-
+    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router', 'angular-filepicker']).config(($locationProvider: ng.ILocationProvider, $stateProvider: ng.ui.IStateProvider, $urlRouterProvider: ng.ui.IUrlRouterProvider, filepickerProvider) => {
+        filepickerProvider.setKey(' ANnIsnaUARuBQjAtPZGBQz');
         $stateProvider
             .state('home', {
                 url: '/',
@@ -84,7 +84,7 @@
 
         $urlRouterProvider.otherwise('home');
         $locationProvider.html5Mode(true);
-        
+
     });
 
     angular.module('MyApp').factory('authInterceptor', (

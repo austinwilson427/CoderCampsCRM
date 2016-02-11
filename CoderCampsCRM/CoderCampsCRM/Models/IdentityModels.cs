@@ -32,6 +32,7 @@ namespace CoderCampsCRM.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public IDbSet<UserTask> Tasks { get; set; }
         public IDbSet<Deal> Deals { get; set; }
         public IDbSet<DealLogItem> DealLogItems { get; set; }
         public IDbSet<Company> Companies { get; set; }
