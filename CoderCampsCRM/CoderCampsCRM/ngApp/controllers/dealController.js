@@ -3,11 +3,12 @@ var MyApp;
     var Controllers;
     (function (Controllers) {
         var DealsController = (function () {
-            function DealsController(dealService, $uibModal, $location, $route) {
+            function DealsController(dealService, $uibModal, $location, $route, companiesService) {
                 this.dealService = dealService;
                 this.$uibModal = $uibModal;
                 this.$location = $location;
                 this.$route = $route;
+                this.companiesService = companiesService;
                 this.stageFilter = 0;
                 this.dealsSelected = [];
                 this.showArchived = false;
@@ -164,7 +165,7 @@ var MyApp;
                             }
                             else if (today_month == inner_month && today_date == inner_date && today_year == inner_year) {
                                 filteredDates.push(result[i_1]);
-                        }
+                            }
                         }
                         else if (_this.dateFilter == "month") {
                             if (inner_set < month_from_today && inner_full_num >= today_num) {
@@ -172,7 +173,7 @@ var MyApp;
                             }
                             else if (today_month == inner_month && today_date == inner_date && today_year == inner_year) {
                                 filteredDates.push(result[i_1]);
-                        }
+                            }
                         }
                         else {
                             filteredDates.push(result[i_1]);
