@@ -8,10 +8,10 @@ namespace CoderCampsCRM.Models
     public class UserTask
     {
         public int Id { get; set; }
-        public string TaskType { get; set; }
-        public string TaskStartDate { get; set; }
-        public string TaskDueDate { get; set; }
-        public string TaskDescription { get; set; }
+        public string Type { get; set; }
+        public string StartDate { get; set; }
+        public string DueDate { get; set; }
+        public string Description { get; set; }
         public string Status { get; set; }
     }
 }
