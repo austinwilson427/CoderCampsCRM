@@ -1,5 +1,7 @@
 namespace CoderCampsCRM.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
     using System;
     using System.Data.Entity;
@@ -15,8 +17,44 @@ namespace CoderCampsCRM.Migrations
 
         protected override void Seed(CoderCampsCRM.Models.ApplicationDbContext context)
         {
+
+            var userStore = new UserStore<ApplicationUser>(context);
+            var userManager = new ApplicationUserManager(userStore);
+
+            var user = userManager.FindByName("deneme@gmail.com");
+
+            if (user == null)
+            {
+                user = new ApplicationUser
+                {
+                    UserName = "deneme@gmail.com",
+                    Email = "deneme@gmail.com",
+                    FirstName = "deneme",
+                    LastName = "deneme"
+                };
+
+                userManager.Create(user, "Deneme@123");
+                userManager.AddClaim(user.Id, new System.Security.Claims.Claim("Admin", "true"));
+
+            }
+            var user2 = userManager.FindByName("deneme2@gmail.com");
+            if (user2 == null)
+            {
+                user2 = new ApplicationUser
+                {
+                    UserName = "deneme2@gmail.com",
+                    Email = "deneme2@gmail.com",
+                    FirstName = "deneme ",
+                    LastName = "deneme"
+                };
+                userManager.Create(user2, "Deneme@123");
+                userManager.AddClaim(user2.Id, new System.Security.Claims.Claim("User", "true"));
+            }
+
+
             Company[] companies = new Company[]
             {
+
                 new Company {
                                 CompanyName = "Coder Camps",
                                 CompanyDomainName ="www.codercamps.com",

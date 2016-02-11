@@ -1,6 +1,7 @@
 var MyApp;
 (function (MyApp) {
-    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router']).config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
+    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router', 'angular-filepicker']).config(function ($locationProvider, $stateProvider, $urlRouterProvider, filepickerProvider) {
+        filepickerProvider.setKey(' ANnIsnaUARuBQjAtPZGBQz');
         $stateProvider
             .state('home', {
             url: '/',
@@ -105,4 +106,3 @@ var MyApp;
         $httpProvider.interceptors.push('authInterceptor');
     });
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=app.js.map
