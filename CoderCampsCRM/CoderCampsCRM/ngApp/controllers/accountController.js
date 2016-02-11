@@ -47,6 +47,7 @@ var MyApp;
             LoginController.prototype.login = function () {
                 var _this = this;
                 this.accountService.login(this.loginUser).then(function () {
+                    _this.closeModal();
                     _this.$location.path('/');
                 }).catch(function (results) {
                     console.log("Error");
@@ -86,7 +87,7 @@ var MyApp;
                     this.picUploaded = true;
                 }
                 else {
-                    this.picUploaded = false;
+                this.picUploaded = false;
                     this.registerUser = {
                         picUrl: ""
                     };
@@ -105,7 +106,6 @@ var MyApp;
                 if (this.file.url) {
                     this.registerUser.picUrl = this.file.url;
                 }
-                this.picUploaded = true;
                 this.$uibModal.open({
                     templateUrl: "/ngApp/views/register.html",
                     controller: MyApp.Controllers.RegisterController,
@@ -115,7 +115,6 @@ var MyApp;
                     },
                     size: "lg"
                 });
-                //this.$scope.$apply(); // force page to update
             };
             RegisterController.prototype.register = function () {
                 var _this = this;

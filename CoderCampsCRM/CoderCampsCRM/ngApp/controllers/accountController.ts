@@ -48,6 +48,7 @@
 
         public login() {
             this.accountService.login(this.loginUser).then(() => {
+                this.closeModal();
                 this.$location.path('/');
             }).catch((results) => {
                 console.log("Error");
@@ -98,8 +99,7 @@
             if (this.file.url) {
                 this.registerUser.picUrl = this.file.url;
             }
-            this.picUploaded = true;
-           
+          
             this.$uibModal.open({
                 templateUrl: "/ngApp/views/register.html",
                 controller: MyApp.Controllers.RegisterController,
@@ -110,9 +110,6 @@
                 size: "lg"
 
             });
-
-            //this.$scope.$apply(); // force page to update
-
         }
 
         public register() {
@@ -135,7 +132,7 @@
                 this.registerUser = this.userInfo;
                 this.picUploaded = true;
             } else {
-                this.picUploaded = false;
+            this.picUploaded = false;
                 this.registerUser = {
                     picUrl: ""
                 };
@@ -144,7 +141,7 @@
             this.file = {
                 url: null
             };
-            
+
 
         }
     }
