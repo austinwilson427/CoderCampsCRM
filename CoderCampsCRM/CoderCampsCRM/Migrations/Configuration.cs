@@ -76,6 +76,19 @@ namespace CoderCampsCRM.Migrations
                                 CompanyAttachments ="http://media.dcentertainment.com/sites/default/files/MAD-Magazine-Arizona-Citizenship-Letter-1.jpg"}
             };
             context.Companies.AddOrUpdate(c => c.CompanyName, companies);
+
+            UserTask[] tasks = new UserTask[] {
+                new UserTask {Id = 1, Status = "New", TaskDescription = "Call Brian to discuss contract", TaskDueDate = "3/1/2016", TaskStartDate = "2/10/2016", TaskType ="Call"},
+                new UserTask {Id = 2, Status = "In Progress", TaskDescription = "Pick up Kids", TaskDueDate = "3/1/2016", TaskStartDate = "2/10/2016", TaskType ="In Person Meeting"},
+                new UserTask {Id = 3, Status = "In Progress", TaskDescription = "Submit ", TaskDueDate = "3/1/2016", TaskStartDate = "2/10/2016", TaskType ="Call"},
+                new UserTask {Id = 4, Status = "Completed", TaskDescription = "Call Brian to discuss contract", TaskDueDate = "3/1/2016", TaskStartDate = "2/10/2016", TaskType ="Call"},
+                new UserTask {Id = 5, Status = "Completed", TaskDescription = "Call Brian to discuss contract", TaskDueDate = "3/1/2016", TaskStartDate = "2/10/2016", TaskType ="Call"},
+
+
+        };
+            context.Tasks.AddOrUpdate(t => t.Id, tasks);
+
         }
     }
 }
+

@@ -202,6 +202,7 @@
     <Compile Include="API\DealsViewController.cs" />
     <Compile Include="API\InteractionsController.cs" />
     <Compile Include="API\MoviesController.cs" />
+    <Compile Include="API\TasksController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -243,9 +244,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602102234535_initial.cs" />
-    <Compile Include="Migrations\201602102234535_initial.Designer.cs">
-      <DependentUpon>201602102234535_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201602110059587_tasks.cs" />
+    <Compile Include="Migrations\201602110059587_tasks.Designer.cs">
+      <DependentUpon>201602110059587_tasks.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -1201,8 +1202,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602102234535_initial.resx">
-      <DependentUpon>201602102234535_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602110059587_tasks.resx">
+      <DependentUpon>201602110059587_tasks.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

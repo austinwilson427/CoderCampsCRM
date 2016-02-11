@@ -17,7 +17,7 @@ var MyApp;
             .state('tasks', {
             url: '/tasks',
             templateUrl: '/ngApp/views/tasks.html',
-            controller: MyApp.Controllers.HomeController,
+            controller: MyApp.Controllers.TaskListController,
             controllerAs: 'vm'
         })
             .state('about', {
