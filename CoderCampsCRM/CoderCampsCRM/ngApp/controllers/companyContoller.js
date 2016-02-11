@@ -35,7 +35,7 @@ var MyApp;
                 var _this = this;
                 this.companiesService.createCompany(this.company).then(function () {
                     _this.company = _this.companiesService.getCompanies();
-                    _this.$location.path("/createcompany");
+                    _this.$location.path("/companies");
                 });
             };
             CompaniesController.prototype.deleteCompany = function (id) {
@@ -79,4 +79,3 @@ var MyApp;
         Controllers.EditCompanyController = EditCompanyController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=companyContoller.js.map

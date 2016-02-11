@@ -55,7 +55,7 @@ namespace CoderCampsCRM.API
                 company.CompanyCreateDate = DateTime.Now;
                 _repo.Add<Company>(company);
                 _repo.SaveChanges();
-                //user.Company.Add(company);
+                user.Companies.Add(company);
                 company.ApplicationUser_Id = userId;
                 _repo.SaveChanges();
                 return Ok(company);

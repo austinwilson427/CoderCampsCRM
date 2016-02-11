@@ -1,5 +1,7 @@
 namespace CoderCampsCRM.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
     using System;
     using System.Data.Entity;
@@ -15,8 +17,44 @@ namespace CoderCampsCRM.Migrations
 
         protected override void Seed(CoderCampsCRM.Models.ApplicationDbContext context)
         {
+
+            var userStore = new UserStore<ApplicationUser>(context);
+            var userManager = new ApplicationUserManager(userStore);
+
+            var user = userManager.FindByName("deneme@gmail.com");
+
+            if (user == null)
+            {
+                user = new ApplicationUser
+                {
+                    UserName = "deneme@gmail.com",
+                    Email = "deneme@gmail.com",
+                    FirstName = "deneme",
+                    LastName = "deneme"
+                };
+
+                userManager.Create(user, "Deneme@123");
+                userManager.AddClaim(user.Id, new System.Security.Claims.Claim("Admin", "true"));
+
+            }
+            var user2 = userManager.FindByName("deneme2@gmail.com");
+            if (user2 == null)
+            {
+                user2 = new ApplicationUser
+                {
+                    UserName = "deneme2@gmail.com",
+                    Email = "deneme2@gmail.com",
+                    FirstName = "deneme ",
+                    LastName = "deneme"
+                };
+                userManager.Create(user2, "Deneme@123");
+                userManager.AddClaim(user2.Id, new System.Security.Claims.Claim("User", "true"));
+            }
+
+
             Company[] companies = new Company[]
             {
+
                 new Company {
                                 CompanyName = "Coder Camps",
                                 CompanyDomainName ="www.codercamps.com",
@@ -76,6 +114,19 @@ namespace CoderCampsCRM.Migrations
                                 CompanyAttachments ="http://media.dcentertainment.com/sites/default/files/MAD-Magazine-Arizona-Citizenship-Letter-1.jpg"}
             };
             context.Companies.AddOrUpdate(c => c.CompanyName, companies);
+
+            UserTask[] tasks = new UserTask[] {
+                new UserTask {Id = 1, Status = "New", Description = "Call Brian to discuss contract", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="Call"},
+                new UserTask {Id = 2, Status = "In Progress", Description = "Pick up Kids", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="In Person Meeting"},
+                new UserTask {Id = 3, Status = "In Progress", Description = "Submit ", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="Call"},
+                new UserTask {Id = 4, Status = "Completed", Description = "Call Brian to discuss contract", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="Call"},
+                new UserTask {Id = 5, Status = "Completed", Description = "Call Brian to discuss contract", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="Call"},
+
+
+        };
+            context.Tasks.AddOrUpdate(t => t.Id, tasks);
+
         }
     }
 }
+

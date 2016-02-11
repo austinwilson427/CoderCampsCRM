@@ -37,7 +37,7 @@
         public save() {
             this.companiesService.createCompany(this.company).then(() => {
                 this.company = this.companiesService.getCompanies();
-                this.$location.path("/createcompany");
+                this.$location.path("/companies");
             });
         }
 
