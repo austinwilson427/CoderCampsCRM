@@ -13,7 +13,7 @@ namespace CoderCampsCRM.Models
         public DateTime StartTime { get; set; }
         public DateTime? EndTime { get; set; }
         public string Content { get; set; }
-
+        public string SubmittedBy { get; set; }
         public int? TaskId { get; set; }
         //[ForeignKey("TaskId")]
         //public Task Task { get; set; }
@@ -22,9 +22,10 @@ namespace CoderCampsCRM.Models
         [ForeignKey("ContactId")]
         public Contact Contact { get; set; }
 
+        public int? DealId { get; set; }
         [ForeignKey("DealId")]
         public Deal Deal { get; set; }
-        public int DealId { get; set; }
+        
 
     }
 }

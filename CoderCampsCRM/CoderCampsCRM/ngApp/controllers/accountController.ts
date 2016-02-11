@@ -56,12 +56,13 @@
             });
         }
         public showRegisterModal() {
+            this.closeModal();
             this.$uibModal.open({
                 templateUrl: "/ngApp/views/register.html",
                 controller: MyApp.Controllers.RegisterController,
                 controllerAs: "vm",
                 resolve: {
-
+                    userInfo: null
                 },
                 size: "lg"
 
@@ -78,10 +79,11 @@
     export class RegisterController {
         public registerUser;
         public validationMessages;
-        public file;
         public picUploaded;
+        public file;
 
         public pickFile() {
+            this.closeModal();
             this.filepickerService.pick(
                 { mimetype: 'image/*' },
                 this.fileUploaded.bind(this)
@@ -97,8 +99,20 @@
                 this.registerUser.picUrl = this.file.url;
             }
             this.picUploaded = true;
-          
-            this.$scope.$apply(); // force page to update
+           
+            this.$uibModal.open({
+                templateUrl: "/ngApp/views/register.html",
+                controller: MyApp.Controllers.RegisterController,
+                controllerAs: "vm",
+                resolve: {
+                    userInfo: this.registerUser
+                },
+                size: "lg"
+
+            });
+
+            //this.$scope.$apply(); // force page to update
+
         }
 
         public register() {
@@ -115,14 +129,22 @@
             this.$uibModalInstance.close();
         }
 
-        constructor(private accountService: MyApp.Services.AccountService, private filepickerService, private $scope: ng.IScope, private $location: ng.ILocationService, private $uibModalInstance: angular.ui.bootstrap.IModalServiceInstance) {
-            this.picUploaded = false;
+        constructor(private accountService: MyApp.Services.AccountService, private filepickerService, private $scope: ng.IScope, private $location: ng.ILocationService, private $uibModalInstance: angular.ui.bootstrap.IModalServiceInstance, private $uibModal: angular.ui.bootstrap.IModalService, public userInfo) {
+            
+            if (this.userInfo) {
+                this.registerUser = this.userInfo;
+                this.picUploaded = true;
+            } else {
+                this.picUploaded = false;
+                this.registerUser = {
+                    picUrl: ""
+                };
+            }
+
             this.file = {
                 url: null
             };
-            this.registerUser = {
-                picUrl: ""
-            };
+            
 
         }
     }

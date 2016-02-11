@@ -6,6 +6,7 @@
         storeUserInfo(userInfo) {
             // store auth token
             this.$window.sessionStorage.setItem('token', userInfo.access_token);
+            
             // store claims
             for (let prop in userInfo) {
                 if (prop.indexOf('claim_') == 0) {

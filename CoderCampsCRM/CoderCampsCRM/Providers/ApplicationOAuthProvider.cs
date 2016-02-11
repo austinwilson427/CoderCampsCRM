@@ -90,7 +90,7 @@ namespace CoderCampsCRM.Providers
         {
             IDictionary<string, string> data = new Dictionary<string, string>
             {
-                { "userName", user.UserName },
+                { "userName", user.UserName }
             };
 
             // add claims (modified by Stephen)
