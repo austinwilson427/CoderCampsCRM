@@ -1,7 +1,7 @@
 ﻿namespace MyApp {
 
     angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router', 'angular-filepicker']).config(($locationProvider: ng.ILocationProvider, $stateProvider: ng.ui.IStateProvider, $urlRouterProvider: ng.ui.IUrlRouterProvider, filepickerProvider) => {
-        filepickerProvider.setKey(' ANnIsnaUARuBQjAtPZGBQz');
+        filepickerProvider.setKey('ANnIsnaUARuBQjAtPZGBQz');
         $stateProvider
             .state('home', {
                 url: '/',
@@ -68,6 +68,7 @@
                 templateUrl: 'ngApp/views/routes/deal-info-note.html',
                 controller: MyApp.Controllers.DealInfoNoteController,
                 controllerAs: "vm"
+              
             })
             .state('deal-info.activity', {
                 url: '/activity',

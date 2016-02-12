@@ -1,3 +1,4 @@
 ﻿<div>
-    <textarea class="deal_notes" rows="10">Note formatting here</textarea>
+    <textarea ng-model="vm.noteContent" class="deal_notes" rows="10" placeholder="Start typing to leave a note..."></textarea>
 </div>
+<button ng-show="vm.noteContent" ng-click="vm.submitNote()" class="btn btn-success">Add Note</button>

@@ -13,5 +13,7 @@ namespace CoderCampsCRM.Models
         public string DueDate { get; set; }
         public string Description { get; set; }
         public string Status { get; set; }
+        public int? DealId { get; set; }
+
     }
 }

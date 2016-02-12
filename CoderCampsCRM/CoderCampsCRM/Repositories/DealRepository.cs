@@ -55,6 +55,24 @@ namespace CoderCampsCRM.Repositories
             return dealViewModel;
         }
 
+        public DealViewModel getDealLogItemViewModelByDealId(int id)
+        {
+            var dealLogItems = _repo.Query<DealLogItem>().ToList();
+
+            var deals = _repo.Query<Deal>().ToList();
+
+            var companies = _repo.Query<Company>().ToList();
+
+            var contacts = _repo.Query<Contact>().ToList();
+
+            var dealViewModel = new DealViewModel
+            {
+                DealLogItemsList = dealLogItems
+            };
+
+            return dealViewModel;
+        }
+
         ///////////////Deal Items///////////////
         ////////////////////////////////////////
         public DealViewModel getAllDealViewModels()
