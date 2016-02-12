@@ -193,6 +193,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\ContactFilterViewController.cs" />
     <Compile Include="API\ContactListController.cs" />
     <Compile Include="API\CompaniesController.cs" />
     <Compile Include="API\ContactDetailViewController.cs" />
@@ -248,10 +249,15 @@
     <Compile Include="Migrations\201602110235329_initial.Designer.cs">
       <DependentUpon>201602110235329_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602120147180_2.cs" />
+    <Compile Include="Migrations\201602120147180_2.Designer.cs">
+      <DependentUpon>201602120147180_2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\ContactLookupModels.cs" />
     <Compile Include="Models\ContactInteraction.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\ProfileUser.cs" />
@@ -1207,6 +1213,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201602110235329_initial.resx">
       <DependentUpon>201602110235329_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602120147180_2.resx">
+      <DependentUpon>201602120147180_2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

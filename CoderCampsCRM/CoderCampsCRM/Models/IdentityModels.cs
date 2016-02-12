@@ -37,6 +37,8 @@ namespace CoderCampsCRM.Models
         public IDbSet<DealLogItem> DealLogItems { get; set; }
         public IDbSet<Company> Companies { get; set; }
         public IDbSet<Contact> Contacts { get; set; }
+        public IDbSet<DealContact> DealContacts { get; set; }
+        public IDbSet<TaskContact> TaskContacts { get; set; }
         public IDbSet<ContactInteraction> ContactInteractions { get; set; }
         public IDbSet<ProfileUser> ProfileUser { get; set;}
 

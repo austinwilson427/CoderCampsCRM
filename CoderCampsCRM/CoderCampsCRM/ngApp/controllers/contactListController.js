@@ -3,10 +3,11 @@ var MyApp;
     var Controllers;
     (function (Controllers) {
         var ContactListController = (function () {
-            function ContactListController(contactService, $location, $uibModal) {
+            function ContactListController(contactService, $location, $uibModal, $state) {
                 this.contactService = contactService;
                 this.$location = $location;
                 this.$uibModal = $uibModal;
+                this.$state = $state;
                 this.contactsView = contactService.getAllContacts();
             }
             ContactListController.prototype.openNewContactModal = function () {
@@ -15,6 +16,24 @@ var MyApp;
                     controller: MyApp.Controllers.ContactAddController,
                     controllerAs: 'modal',
                     size: "sm"
+                });
+            };
+            ContactListController.prototype.filterByCompanies = function () {
+                var _this = this;
+                return this.contactService.filterByCompanies(this.filterChoice).then(function (result) {
+                    _this.contactsView = result;
+                });
+            };
+            ContactListController.prototype.filterByDeals = function () {
+                var _this = this;
+                return this.contactService.filterByDeals(this.filterChoice).then(function (result) {
+                    _this.contactsView = result;
+                });
+            };
+            ContactListController.prototype.filterByTasks = function () {
+                var _this = this;
+                return this.contactService.filterByTasks(this.filterChoice).then(function (result) {
+                    _this.contactsView = result;
                 });
             };
             ContactListController.prototype.invertArrow = function (id) {
