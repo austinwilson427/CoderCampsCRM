@@ -209,6 +209,15 @@ table.activity td{
     padding: 5px;
 }
 
+.list_custom_wrap{
+    margin: 40px auto;
+}
+
+.contact_to_add{
+    width: 60%;
+    margin: 10px auto 80px;
+    text-align: center;
+}
 /*-------------------Contacts Section--------------------------*/
 
 .error {

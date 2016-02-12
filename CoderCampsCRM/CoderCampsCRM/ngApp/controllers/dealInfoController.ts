@@ -6,12 +6,15 @@
         public dealInfo;
         public company;
         public dealLogItems;
+        public dealContacts;
+        public allContacts;
+        public contactIdToAdd;
 
-        constructor(private dealService: MyApp.Services.DealService, private $stateParams: ng.ui.IStateParamsService, private dealLogItemService: MyApp.Services.DealLogItemService) {
-
+        constructor(private dealService: MyApp.Services.DealService, private $stateParams: ng.ui.IStateParamsService, private dealLogItemService: MyApp.Services.DealLogItemService, private dealContactService: MyApp.Services.DealContactService, private contactService: MyApp.Services.ContactService, private $route: ng.route.IRouteService, private $location: ng.ILocationService) {
             this.routeId = $stateParams["id"];
             this.getDeal();
             this.getDealLogItemsByRouteId();
+            this.getContactsByDealId();
         }
 
         public getDeal() {
@@ -23,12 +26,47 @@
 
         public getDealLogItemsByRouteId() {
             this.dealLogItemService.listDealLogItemsByDealId(this.routeId).$promise.then((result) => {
-                console.log(result);
                 this.dealLogItems = result;
-                //console.log(this.dealLogItems);
             });
         }
 
+        public getContactsByDealId() {
+
+            this.dealContactService.getAllDealContactsByDealId(this.routeId).$promise.then((result) => {
+                this.dealContacts = result;
+                this.contactService.getAllContacts().$promise.then((result) => {
+                    this.allContacts = result;
+                    for (var i = 0; i < this.dealContacts.length; i++) {
+                        for (var j = 0; j < this.allContacts.contacts.length; j++) {
+                            if (this.allContacts.contacts[j].id == this.dealContacts[i].contactId) {
+                                this.allContacts.contacts.splice(j, 1);
+                            }
+                        }
+                    }
+                });
+            });
+
+        }
+
+        public addDealContact() {
+            let dealContactToAdd = {
+                dealId: null,
+                contactId: null
+            }
+            dealContactToAdd.dealId = this.routeId;
+            dealContactToAdd.contactId = this.contactIdToAdd;
+
+            this.dealContactService.saveDealContact(dealContactToAdd).then((result) => {
+                this.getContactsByDealId();
+            });
+
+        }
+
+        public deleteDealContact(id) {
+            this.dealContactService.deleteDealContact(id).then((result) => {                
+                this.getContactsByDealId();
+            });
+        }
     }
 
     export class DealInfoNoteController {
@@ -64,9 +102,10 @@
             noteToSubmit.content = this.noteContent;
             noteToSubmit.dealId = this.dealInfo.id;
             /*Temporary ContactId*/
-            noteToSubmit.contactId = 1;
+            //noteToSubmit.contactId = 1;
             /*Temporary SubmittedBy*/
             noteToSubmit.submittedBy = "Austin Wilson";
+            console.log(noteToSubmit);
             this.dealLogItemService.saveDealLogItem(noteToSubmit).then(() => {
                 location.reload(false);
             }).catch((error) => {
@@ -315,7 +354,7 @@
                 this.taskService.saveTask(formatTask).then(() => {
                     location.reload(false);
                 })
-                
+
             }).catch((error) => {
 
                 let validationErrors = [];
