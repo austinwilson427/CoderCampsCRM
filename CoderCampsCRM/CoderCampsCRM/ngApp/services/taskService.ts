@@ -13,10 +13,6 @@
             return this.taskResource.query();
         }
 
-        public getTasks() {
-            return this.taskResource.query();
-        }
-
         public getTask(id) {
             return this.taskResource.get({ id: id });
         }

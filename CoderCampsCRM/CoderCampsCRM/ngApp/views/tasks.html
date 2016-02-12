@@ -62,12 +62,12 @@
                                                 <td>{{task.dueDate}}</td>
                                                 <td>
                                                     <a href="/edit/{{task.id}}"><span style="color: orangered" class="glyphicon glyphicon-edit"></span></a>
-                                                    <a href="/delete/{{task.id}}"><span style="color: red" class="glyphicon glyphicon-trash"></span></a>
+                                                    <a href="/deletetask/{{task.id}}"><span style="color: red" class="glyphicon glyphicon-trash"></span></a>
                                                 </td>
                                             </tr>
                                         </table>
                                         <br />
-                                        <div align="center"><a href="/add" class="btn btn-default">Add Task</a></div>
+                                        <div align="center"><a ui-sref="addtask" class="btn btn-default">Add Task</a></div>
                                     </form>
                                 </div>
                             </div>

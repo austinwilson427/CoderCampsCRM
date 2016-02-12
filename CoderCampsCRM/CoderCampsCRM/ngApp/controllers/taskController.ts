@@ -55,8 +55,8 @@
     export class TaskDeleteController {
         public taskToDelete;
 
-        constructor(private taskService: MyApp.Services.TaskService, private $location: ng.ILocationService, $routeParams: ng.route.IRouteParamsService) {
-            this.taskToDelete = taskService.getTask($routeParams["id"]);
+        constructor(private taskService: MyApp.Services.TaskService, private $location: ng.ILocationService, $stateParams: ng.route.IRouteParamsService) {
+            this.taskToDelete = taskService.getTask($stateParams["id"]);
         }
 
         deleteTask() {
