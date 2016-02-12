@@ -36,7 +36,7 @@ namespace CoderCampsCRM.API
             //               where c.ApplicationUser_Id == userId
             //               select c;
 
-           // return Ok(compList.ToList());
+            //return Ok(compList.ToList());
             return Ok(companies.ToList());
         }
         public IHttpActionResult Get(int id)
