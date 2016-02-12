@@ -18,7 +18,7 @@ var MyApp;
             .state('tasks', {
             url: '/tasks',
             templateUrl: '/ngApp/views/tasks.html',
-            controller: MyApp.Controllers.TaskListController,
+            controller: MyApp.Controllers.HomeController,
             controllerAs: 'vm'
         })
             .state('taskdetails', {
@@ -118,3 +118,4 @@ var MyApp;
         $httpProvider.interceptors.push('authInterceptor');
     });
 })(MyApp || (MyApp = {}));
+//# sourceMappingURL=app.js.map

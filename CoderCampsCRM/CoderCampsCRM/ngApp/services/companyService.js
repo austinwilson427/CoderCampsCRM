@@ -28,3 +28,4 @@ var MyApp;
         angular.module("MyApp").service("companiesService", CompaniesService);
     })(Services = MyApp.Services || (MyApp.Services = {}));
 })(MyApp || (MyApp = {}));
+//# sourceMappingURL=companyService.js.map

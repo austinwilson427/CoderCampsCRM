@@ -81,27 +81,6 @@ namespace CoderCampsCRM.Migrations
                                     CloseDate = DateTime.Today,
                                     isArchived = false}
                     },
-                    UserTasks = new UserTask[]
-                    {
-                          new UserTask {Id = 3,
-                                        Status = "In Progress",
-                                        Description = "Submit ",
-                                        DueDate = "3/1/2016",
-                                        StartDate = "2/10/2016",
-                                        Type ="Call"},
-                          new UserTask {Id = 4,
-                                        Status = "Completed",
-                                        Description = "Call Brian to discuss contract",
-                                        DueDate = "3/1/2016",
-                                        StartDate = "2/10/2016",
-                                        Type ="Call"},
-                          new UserTask {Id = 5,
-                                        Status = "Completed",
-                                        Description = "Call Brian to discuss contract",
-                                        DueDate = "3/1/2016",
-                                        StartDate = "2/10/2016",
-                                        Type ="Call"},
-                    }
 
 
                 };
@@ -167,41 +146,26 @@ namespace CoderCampsCRM.Migrations
                                     CloseDate = DateTime.Today,
                                     isArchived = false}
                     },
-                    UserTasks = new UserTask[]
-                    {
-                          new UserTask {Id = 1,
-                                        Status = "New",
-                                        Description = "Call Brian to discuss contract",
-                                        DueDate = "3/1/2016",
-                                        StartDate = "2/10/2016",
-                                        Type ="Call"},
-                          new UserTask {Id = 2,
-                                        Status = "In Progress",
-                                        Description = "Pick up Kids",
-                                        DueDate = "3/1/2016",
-                                        StartDate = "2/10/2016",
-                                        Type ="In Person Meeting"}
-                    }
                 };
-                userManager.Create(user2, "Deneme@123");
-                userManager.AddClaim(user2.Id, new System.Security.Claims.Claim("User", "true"));
+
+
+
+
+
+                UserTask[] tasks = new UserTask[] {
+
+
+                new UserTask {Id = 1, Status = "In Progress", Description = "Submit ", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="Email"},
+                new UserTask {Id = 2, Status = "Not Started", Description = "Call Brian to discuss contract", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="Call"},
+                new UserTask {Id = 3, Status = "In Progress", Description = "Lunch with Stacey", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="Meeting"},
+                new UserTask {Id = 4, Status = "Completed", Description = "Schedule Meeting for Lunch", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="Email"},
+                new UserTask {Id = 5, Status = "Completed", Description = "Call Brian to discuss contract", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="Call"},
+
+
+        };
+                context.Tasks.AddOrUpdate(t => t.Id, tasks);
+
             }
-
-
-           
-            
-
-        //    UserTask[] tasks = new UserTask[] {
-              
-                
-        //        new UserTask {Id = 3, Status = "In Progress", Description = "Submit ", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="Call"},
-        //        new UserTask {Id = 4, Status = "Completed", Description = "Call Brian to discuss contract", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="Call"},
-        //        new UserTask {Id = 5, Status = "Completed", Description = "Call Brian to discuss contract", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="Call"},
-
-
-        //};
-        //    context.Tasks.AddOrUpdate(t => t.Id, tasks);
-
         }
     }
 }
