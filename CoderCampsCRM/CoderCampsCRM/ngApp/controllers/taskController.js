@@ -62,6 +62,34 @@ var MyApp;
             return TaskDeleteController;
         })();
         Controllers.TaskDeleteController = TaskDeleteController;
+        var AddTaskModal = (function () {
+            function AddTaskModal(taskService, $location, $uibModalInstance, $route) {
+                this.taskService = taskService;
+                this.$location = $location;
+                this.$uibModalInstance = $uibModalInstance;
+                this.$route = $route;
+            }
+            AddTaskModal.prototype.addTask = function (taskToAdd) {
+                var _this = this;
+                console.log(taskToAdd);
+                this.taskService.saveTask(taskToAdd).then(function () {
+                    _this.closeModal();
+                    _this.$location.path('/tasks');
+                    _this.$route.reload();
+                }).catch(function (error) {
+                    var validationErrors = [];
+                    for (var i in error.data.modelState) {
+                        var errorMessage = error.data.modelState[i];
+                        validationErrors = validationErrors.concat(errorMessage);
+                    }
+                    _this.validationErrors = validationErrors;
+                });
+            };
+            AddTaskModal.prototype.closeModal = function () {
+                this.$uibModalInstance.close();
+            };
+            return AddTaskModal;
+        })();
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
 //# sourceMappingURL=taskController.js.map

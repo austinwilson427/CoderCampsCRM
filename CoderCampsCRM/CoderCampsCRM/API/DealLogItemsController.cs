@@ -37,15 +37,15 @@ namespace CoderCampsCRM.API
         [Route("api/deallogitems/deal/{id}")]
         public IHttpActionResult GetDealLogItemsByDealId(int id)
         {
-            var dealData = _genRepo.Query<DealLogItem>().Where(d => d.DealId == id);
-            return Ok(dealData);
+            var dealData = _dealRepo.getDealLogItemViewModelByDealId(id);
+            //var dealData = _genRepo.Query<DealLogItem>().Where(d => d.DealId == id);
+            return Ok(dealData.DealLogItemsList);
         }
 
         public IHttpActionResult PostDealLogItem(DealLogItem logItemToAdd)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-
                 if (logItemToAdd.Id == 0)
                 {
                     _genRepo.Add<DealLogItem>(logItemToAdd);
