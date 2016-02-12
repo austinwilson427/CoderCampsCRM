@@ -57,6 +57,12 @@
                 controller: MyApp.Controllers.CompaniesController,
                 controllerAs: 'vm'
             })
+            .state('editCompanyModal', {
+                url: '/createcompany',
+                templateUrl: '/ngApp/views/modals/editCompanyModal.html',
+                controller: MyApp.Controllers.EditCompanyController,
+                controllerAs: 'vm'
+            })
             .state('contacts', {
                 url: '/contacts',
                 templateUrl: '/ngApp/views/contactListView.html',

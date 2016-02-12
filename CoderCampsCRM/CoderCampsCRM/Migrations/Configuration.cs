@@ -30,50 +30,9 @@ namespace CoderCampsCRM.Migrations
                     UserName = "deneme@gmail.com",
                     Email = "deneme@gmail.com",
                     FirstName = "deneme",
-                    LastName = "deneme"
-                };
-
-                userManager.Create(user, "Deneme@123");
-                userManager.AddClaim(user.Id, new System.Security.Claims.Claim("Admin", "true"));
-
-            }
-            var user2 = userManager.FindByName("deneme2@gmail.com");
-            if (user2 == null)
+                    LastName = "deneme",
+                    Companies = new Company[]
             {
-                user2 = new ApplicationUser
-                {
-                    UserName = "deneme2@gmail.com",
-                    Email = "deneme2@gmail.com",
-                    FirstName = "deneme ",
-                    LastName = "deneme"
-                };
-                userManager.Create(user2, "Deneme@123");
-                userManager.AddClaim(user2.Id, new System.Security.Claims.Claim("User", "true"));
-            }
-
-
-            Company[] companies = new Company[]
-            {
-
-                new Company {
-                                CompanyName = "Coder Camps",
-                                CompanyDomainName ="www.codercamps.com",
-                                CompanyPhoneNumber ="855-755-2267",
-                                CompanyCountry ="US",
-                                CompanyCity ="Pearland",
-                                CompanyState ="TX",
-                                CompanyZip ="77584",
-                                ComapanyAddress ="11200 Broadway Street Suite 2731",
-                                CompanyDescription ="Coder Camps are hands-on coding “boot camps” focused on teaching motivated...",
-                                CompanyIndustry ="Education",
-                                CompanyIsPublic = true,
-                                CompanyFacebook ="https://www.facebook.com/CoderCamps/",
-                                CompanyLinkedin ="https://www.linkedin.com/company/coder-camps",
-                                CompanyTwitter ="https://twitter.com/codercamps",
-                                CompanyCreateDate = DateTime.Now,
-                                CompanyLastActivityeDate = null,
-                                CompanyNextActivityDate = null,
-                                CompanyAttachments ="http://scarc.library.oregonstate.edu/omeka/files/original/carnes02_7e59912282.jpg"},
                 new Company {
                                 CompanyName = "The Verge",
                                 CompanyDomainName ="www.theverge.com",
@@ -92,7 +51,55 @@ namespace CoderCampsCRM.Migrations
                                 CompanyCreateDate = DateTime.Now,
                                 CompanyLastActivityeDate = null,
                                 CompanyNextActivityDate = null,
-                                CompanyAttachments ="http://media.dcentertainment.com/sites/default/files/MAD-Magazine-Arizona-Citizenship-Letter-1.jpg"},
+                                CompanyAttachments ="http://media.dcentertainment.com/sites/default/files/MAD-Magazine-Arizona-Citizenship-Letter-1.jpg"
+                        }
+
+                    },
+                    Contacts = new Contact[]
+                    {
+                        new Contact { Name = " Cliff Barnes" ,
+                                      Email = "cliff.barnes@gmail.com",
+                                      PhoneNumber = "222-333-1111",
+                                      JobTitle = "Merchant Manager"
+                                    },
+                        new Contact { Name = "Sue Ellen Ewing" ,
+                                      Email = "sue@gmail.com",
+                                      PhoneNumber = "666-111-9999",
+                                      JobTitle = "Merchant Officer"
+                        }
+                    },
+                    Deals = new Deal[]
+                    {
+                        new Deal {  DealName = "Deal 3",
+                                    Stage = "Appintment Scheduled",
+                                    Amount = 7000m,
+                                    CloseDate = DateTime.Today,
+                                    isArchived = true},
+                        new Deal {  DealName = "Deal 4",
+                                    Stage = "COntract Sent",
+                                    Amount = 150000m,
+                                    CloseDate = DateTime.Today,
+                                    isArchived = false}
+                    },
+
+
+                };
+
+                userManager.Create(user, "Deneme@123");
+                userManager.AddClaim(user.Id, new System.Security.Claims.Claim("Admin", "true"));
+
+            }
+            var user2 = userManager.FindByName("deneme2@gmail.com");
+            if (user2 == null)
+            {
+                user2 = new ApplicationUser
+                {
+                    UserName = "deneme2@gmail.com",
+                    Email = "deneme2@gmail.com",
+                    FirstName = "deneme ",
+                    LastName = "deneme",
+                    Companies = new Company[]
+                    {
                  new Company {
                                 CompanyName = "scotch-soda",
                                 CompanyDomainName ="www.scotch-soda.com",
@@ -112,22 +119,55 @@ namespace CoderCampsCRM.Migrations
                                 CompanyLastActivityeDate = null,
                                 CompanyNextActivityDate = null,
                                 CompanyAttachments ="http://media.dcentertainment.com/sites/default/files/MAD-Magazine-Arizona-Citizenship-Letter-1.jpg"}
+                    },
+                    Contacts = new Contact[]
+                    {
+                        new Contact { Name = "Bobby Ewing" ,
+                                      Email = "bobby.ewing@gmail.com",
+                                      PhoneNumber = "333-222-5555",
+                                      JobTitle = "Merchant Manager"
+                                    },
+                        new Contact { Name = "Clayton Farlow" ,
+                                      Email = "clayton@gmail.com",
+                                      PhoneNumber = "333-222-5555",
+                                      JobTitle = "Merchant Officer"
+                        }
+                    },
+                    Deals = new Deal[]
+                    {
+                        new Deal {  DealName = "Deal 1",
+                                    Stage = "Appintment Scheduled",
+                                    Amount = 5000m,
+                                    CloseDate = DateTime.Today,
+                                    isArchived = true},
+                        new Deal {  DealName = "Deal 2",
+                                    Stage = "COntract Sent",
+                                    Amount = 50000m,
+                                    CloseDate = DateTime.Today,
+                                    isArchived = false}
+                    },
             };
-            context.Companies.AddOrUpdate(c => c.CompanyName, companies);
+
+
+
+
 
             UserTask[] tasks = new UserTask[] {
-                new UserTask {Id = 1, Status = "New", Description = "Call Brian to discuss contract", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="Call"},
-                new UserTask {Id = 2, Status = "In Progress", Description = "Pick up Kids", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="In Person Meeting"},
-                new UserTask {Id = 3, Status = "In Progress", Description = "Submit ", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="Call"},
-                new UserTask {Id = 4, Status = "Completed", Description = "Call Brian to discuss contract", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="Call"},
+
+
+                new UserTask {Id = 1, Status = "In Progress", Description = "Submit ", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="Email"},
+                new UserTask {Id = 2, Status = "Not Started", Description = "Call Brian to discuss contract", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="Call"},
+                new UserTask {Id = 3, Status = "In Progress", Description = "Lunch with Stacey", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="Meeting"},
+                new UserTask {Id = 4, Status = "Completed", Description = "Schedule Meeting for Lunch", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="Email"},
                 new UserTask {Id = 5, Status = "Completed", Description = "Call Brian to discuss contract", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="Call"},
 
 
-            };
+        };
             context.Tasks.AddOrUpdate(t => t.Id, tasks);
-           
+
 
         }
     }
+}
 }
 

@@ -3,33 +3,34 @@ var MyApp;
     var Controllers;
     (function (Controllers) {
         var ContactDetailsController = (function () {
-            function ContactDetailsController(contactService, $location, $uibModal, $stateParams) {
+            function ContactDetailsController(contactService, $location, $uibModal, $stateParams, $state) {
                 this.contactService = contactService;
                 this.$location = $location;
                 this.$uibModal = $uibModal;
+                this.$state = $state;
                 this.contact = {};
                 this.contactView = this.contactService.getOneContact($stateParams['id']);
+                debugger;
             }
             ContactDetailsController.prototype.deleteContact = function () {
                 return this.contactService.deleteContact(this.contactView.contact.id).then(this.$location.path("/contacts"));
             };
             ContactDetailsController.prototype.editContact = function () {
-                $("#name").attr("contenteditable", "true").attr("style", "background-color: rgb(255, 255, 194)");
-                $("#email").attr("contenteditable", "true").attr("style", "background-color: rgb(255, 255, 194)");
-                $("#phoneNumber").attr("contenteditable", "true").attr("style", "background-color: rgb(255, 255, 194)");
-                $("#jobTitle").attr("contenteditable", "true").attr("style", "background-color: rgb(255, 255, 194)");
+                $(".tdEdit").attr("contenteditable", "true").attr("style", "background-color: rgb(255, 255, 194)");
             };
             ContactDetailsController.prototype.confirmEdit = function () {
-                $("#name").removeAttr("contenteditable").removeAttr("style");
-                $("#email").removeAttr("contenteditable").removeAttr("style");
-                $("#phoneNumber").removeAttr("contenteditable").removeAttr("style");
-                $("#jobTitle").removeAttr("contenteditable").removeAttr("style");
+                $(".tdEdit").removeAttr("contenteditable").removeAttr("style");
                 this.contact.id = this.contactView.contact.id;
                 this.contact.companyId = this.contactView.contact.companyId;
                 this.contact.name = $("#name").text();
                 this.contact.email = $("#email").text();
                 this.contact.phoneNumber = $("#phoneNumber").text();
                 this.contact.jobTitle = $("#jobTitle").text();
+                this.contact.country = $("#country").text();
+                this.contact.city = $("#city").text();
+                this.contact.state = $("#state").text();
+                this.contact.zip = $("#zip").text();
+                this.contact.streetAddress = $("#streetAddress").text();
                 return this.contactService.editContact(this.contact);
             };
             ContactDetailsController.prototype.chooseCompany = function (companyId) {
@@ -39,11 +40,18 @@ var MyApp;
                 this.contact.email = $("#email").text();
                 this.contact.phoneNumber = $("#phoneNumber").text();
                 this.contact.jobTitle = $("#jobTitle").text();
+                this.contact.city = $("#city").text();
+                this.contact.state = $("#state").text();
+                this.contact.zip = $("#zip").text();
+                this.contact.streetAddress = $("#streetAddress").text();
                 return this.contactService.editContact(this.contact);
             };
             ContactDetailsController.prototype.addInteraction = function () {
                 this.interaction.contactId = this.contactView.contact.id;
-                return this.contactService.addInteraction(this.interaction).then(this.$location.path("/contacts"));
+                return this.contactService.addInteraction(this.interaction).then(this.$state.reload());
+            };
+            ContactDetailsController.prototype.deleteInteraction = function (id) {
+                return this.contactService.deleteInteraction(id).then(this.$state.reload());
             };
             return ContactDetailsController;
         })();
