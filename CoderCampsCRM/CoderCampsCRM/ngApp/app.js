@@ -1,10 +1,9 @@
 var MyApp;
 (function (MyApp) {
-    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router', 'angular-filepicker']).config(function ($locationProvider, $stateProvider, $urlRouterProvider, filepickerProvider) {
-        filepickerProvider.setKey('ANnIsnaUARuBQjAtPZGBQz');
-        $stateProvider
-            .state('home', {
-            url: '/',
+    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'angular-filepicker']).config(function ($routeProvider, $locationProvider, filepickerProvider) {
+        filepickerProvider.setKey('	ANnIsnaUARuBQjAtPZGBQz');
+       $StateProvider
+            .when('/', {
             templateUrl: '/ngApp/views/home.html',
             controller: MyApp.Controllers.HomeController,
             controllerAs: 'controller'
@@ -15,16 +14,19 @@ var MyApp;
             controller: MyApp.Controllers.DealsController,
             controllerAs: 'vm'
         })
-            .state('tasks', {
-            url: '/tasks',
-            templateUrl: '/ngApp/views/tasks.html',
-            controller: MyApp.Controllers.TaskListController,
-            controllerAs: 'vm'
+            .when('/login', {
+            templateUrl: '/ngApp/views/login.html',
+            controller: MyApp.Controllers.LoginController,
+            controllerAs: 'controller'
         })
-            .state('taskdetails', {
-            url: '/task-details',
-            templateUrl: '/ngApp/views/task-details.html',
-            controller: MyApp.Controllers.TaskListController,
+            .when('/register', {
+            templateUrl: '/ngApp/views/register.html',
+            controller: MyApp.Controllers.RegisterController,
+            controllerAs: 'controller'
+        })
+            .when('/tasks', {
+            templateUrl: '/ngApp/views/tasks.html',
+            controller: MyApp.Controllers.HomeController,
             controllerAs: 'vm'
         })
             .state('about', {
@@ -39,9 +41,8 @@ var MyApp;
             controller: MyApp.Controllers.CompaniesController,
             controllerAs: 'vm'
         })
-            .state('createCompany', {
-            url: '/createcompany',
-            templateUrl: '/ngApp/views/createCompany.html',
+            .when('/companies', {
+            templateUrl: '/ngApp/views/companies.html',
             controller: MyApp.Controllers.CompaniesController,
             controllerAs: 'vm'
         })
