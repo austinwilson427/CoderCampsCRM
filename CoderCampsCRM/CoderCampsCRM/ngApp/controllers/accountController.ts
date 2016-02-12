@@ -80,8 +80,8 @@
     export class RegisterController {
         public registerUser;
         public validationMessages;
-        public file;
         public picUploaded;
+        public file;
 
         public pickFile() {
             this.closeModal();
@@ -99,7 +99,7 @@
             if (this.file.url) {
                 this.registerUser.picUrl = this.file.url;
             }
-           
+          
             this.$uibModal.open({
                 templateUrl: "/ngApp/views/register.html",
                 controller: MyApp.Controllers.RegisterController,
@@ -127,11 +127,12 @@
         }
 
         constructor(private accountService: MyApp.Services.AccountService, private filepickerService, private $scope: ng.IScope, private $location: ng.ILocationService, private $uibModalInstance: angular.ui.bootstrap.IModalServiceInstance, private $uibModal: angular.ui.bootstrap.IModalService, public userInfo) {
+            
             if (this.userInfo) {
                 this.registerUser = this.userInfo;
                 this.picUploaded = true;
             } else {
-                this.picUploaded = false;
+            this.picUploaded = false;
                 this.registerUser = {
                     picUrl: ""
                 };
@@ -140,6 +141,7 @@
             this.file = {
                 url: null
             };
+
 
         }
     }

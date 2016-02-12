@@ -11,7 +11,7 @@
         <h4>{{vm.dealInfo.closeDate | date: 'MM/dd/yy'}}</h4>
     </div>
 </div>
-<div class="row">
+<div class="row first_main_row">
     <div class="col-md-5">
         <table class="table">
             <tr>
@@ -45,7 +45,6 @@
         <div class="text_wrap">
             <div ui-view></div>
         </div>
-        
     </div>
 </div>
 <div class="row">
@@ -99,5 +98,26 @@
                 <td>{{vm.company.companyDescription}}</td>
             </tr>
         </table>
+    </div>
+    <div class="col-md-7">
+        <div class="log_item_wrap">
+            <table class="table table-condensed table-bordered log_items" ng-repeat="item in vm.dealLogItems">
+                <tr ng-if="item.type=='Note'">
+                    <td class="submitted_cell">{{item.submittedBy}} left a note</td>
+                    <td class="start_time_cell">{{item.startTime | date: 'short'}}</td>
+                </tr>
+                <tr ng-if="item.type=='Activity'">
+                    <td class="submitted_cell">{{item.submittedBy}} logged an activity</td>
+                    <td class="start_time_cell">{{item.startTime | date: 'short'}}</td>
+                </tr>
+                <tr ng-if="item.type=='Task'">
+                    <td class="submitted_cell">{{item.submittedBy}} created a task for {{item.contact.name}}</td>
+                    <td class="start_time_cell">{{item.startTime | date: 'short'}}</td>
+                </tr>
+                <tr>
+                    <td class="content_cell" colspan="2">{{item.content}}</td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>

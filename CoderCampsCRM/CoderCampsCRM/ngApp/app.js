@@ -1,9 +1,10 @@
 var MyApp;
 (function (MyApp) {
-    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'angular-filepicker']).config(function ($routeProvider, $locationProvider, filepickerProvider) {
-        filepickerProvider.setKey('	ANnIsnaUARuBQjAtPZGBQz');
-       $StateProvider
-            .when('/', {
+    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router', 'angular-filepicker']).config(function ($locationProvider, $stateProvider, $urlRouterProvider, filepickerProvider) {
+        filepickerProvider.setKey('ANnIsnaUARuBQjAtPZGBQz');
+        $stateProvider
+            .state('home', {
+            url: '/',
             templateUrl: '/ngApp/views/home.html',
             controller: MyApp.Controllers.HomeController,
             controllerAs: 'controller'
@@ -14,19 +15,16 @@ var MyApp;
             controller: MyApp.Controllers.DealsController,
             controllerAs: 'vm'
         })
-            .when('/login', {
-            templateUrl: '/ngApp/views/login.html',
-            controller: MyApp.Controllers.LoginController,
-            controllerAs: 'controller'
-        })
-            .when('/register', {
-            templateUrl: '/ngApp/views/register.html',
-            controller: MyApp.Controllers.RegisterController,
-            controllerAs: 'controller'
-        })
-            .when('/tasks', {
+            .state('tasks', {
+            url: '/tasks',
             templateUrl: '/ngApp/views/tasks.html',
-            controller: MyApp.Controllers.HomeController,
+            controller: MyApp.Controllers.TaskListController,
+            controllerAs: 'vm'
+        })
+            .state('taskdetails', {
+            url: '/task-details',
+            templateUrl: '/ngApp/views/task-details.html',
+            controller: MyApp.Controllers.TaskListController,
             controllerAs: 'vm'
         })
             .state('about', {
@@ -41,8 +39,9 @@ var MyApp;
             controller: MyApp.Controllers.CompaniesController,
             controllerAs: 'vm'
         })
-            .when('/companies', {
-            templateUrl: '/ngApp/views/companies.html',
+            .state('createCompany', {
+            url: '/createcompany',
+            templateUrl: '/ngApp/views/createCompany.html',
             controller: MyApp.Controllers.CompaniesController,
             controllerAs: 'vm'
         })
@@ -113,3 +112,4 @@ var MyApp;
         $httpProvider.interceptors.push('authInterceptor');
     });
 })(MyApp || (MyApp = {}));
+//# sourceMappingURL=app.js.map

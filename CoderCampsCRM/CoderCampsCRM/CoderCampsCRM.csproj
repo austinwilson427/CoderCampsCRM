@@ -199,6 +199,7 @@
     <Compile Include="API\DealsController.cs" />
     <Compile Include="API\InteractionsController.cs" />
     <Compile Include="API\MoviesController.cs" />
+    <Compile Include="API\TasksController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -269,6 +270,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="GitIgnore\.gitignore" />
     <Content Include="Global.asax" />
+    <Content Include="ngApp\scripts\angular_filepicker.min.js" />
     <Content Include="ngApp\views\about.html" />
     <Content Include="ngApp\views\confirmEmail.html" />
     <Content Include="ngApp\views\contactDetailsView.html" />
@@ -1151,6 +1153,7 @@
     <TypeScriptCompile Include="ngApp\services\accountService.ts" />
     <TypeScriptCompile Include="ngApp\services\contactService.ts" />
     <TypeScriptCompile Include="ngApp\services\companyService.ts" />
+    <TypeScriptCompile Include="ngApp\services\dealLogItemService.ts" />
     <TypeScriptCompile Include="ngApp\services\dealService.ts" />
     <TypeScriptCompile Include="ngApp\services\profileServices.ts" />
     <TypeScriptCompile Include="ngApp\services\services.ts" />
@@ -1172,23 +1175,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602061504327_Initial.resx">
-      <DependentUpon>201602061504327_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602061509160_Initial1.resx">
-      <DependentUpon>201602061509160_Initial1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602061516564_Initial2.resx">
-      <DependentUpon>201602061516564_Initial2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602070013436_duran1.resx">
-      <DependentUpon>201602070013436_duran1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602070142552_duran2.resx">
-      <DependentUpon>201602070142552_duran2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602070213090_duran3.resx">
-      <DependentUpon>201602070213090_duran3.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602121856009_initial_fixed.resx">
+      <DependentUpon>201602121856009_initial_fixed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

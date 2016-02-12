@@ -3,11 +3,15 @@
     export class CompaniesController {
         public companies;
         public company;
+        public contactsView;
 
         constructor(private $uibModal: angular.ui.bootstrap.IModalService,
             private companiesService: MyApp.Services.CompaniesService,
+            private contactService: MyApp.Services.ContactService,
             private $location: angular.ILocationService) {
             this.companies = this.companiesService.getCompanies();
+            this.contactsView = contactService.getAllContacts();
+            console.log(this.contactsView);
         }
         public showDetailsModal(id) {
 
@@ -30,6 +34,14 @@
                 resolve: {
                     companyId: () => id
                 },
+                size: 'lg'
+            });
+        }
+        public createcompanyModal() {
+            this.$uibModal.open({
+                templateUrl: "/ngApp/views/modals/createcompanyModal.html",
+                controller: CompaniesController,
+                controllerAs: 'vm',
                 size: 'lg'
             });
         }
