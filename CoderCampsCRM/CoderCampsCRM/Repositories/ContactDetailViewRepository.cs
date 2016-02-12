@@ -19,7 +19,7 @@ namespace CoderCampsCRM.Repositories
         {
             var contact = _repo.Query<Contact>().Where(c => c.Id == id).FirstOrDefault();
             var deals = _repo.Query<Deal>().Where(d => d.ContactId == id).ToList();
-            //var tasks = _repo.Query<Task>().Where(t => t.TaskOwnerId == id).ToList();
+            var tasks = _repo.Query<UserTask>().Where(t => t.Id == id).ToList();
             var company = _repo.Query<Company>().Where(co => co.Id == contact.CompanyId).FirstOrDefault();
             var interactions = _repo.Query<ContactInteraction>().Where(i => i.ContactId == id).ToList();
             var companies = _repo.Query<Company>().ToList();
@@ -31,7 +31,7 @@ namespace CoderCampsCRM.Repositories
                 Deals = deals,
                 Companies = companies,
                 Interactions = interactions,
-                //Tasks = tasks
+                Tasks = tasks
             };
 
             return contactDetailViewModel;

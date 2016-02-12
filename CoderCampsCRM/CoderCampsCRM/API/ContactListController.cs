@@ -47,6 +47,12 @@ namespace CoderCampsCRM.API
                     original.PhoneNumber = contact.PhoneNumber;
                     original.CompanyId = contact.CompanyId;
                     original.UserId = contact.UserId;
+                    original.City = contact.City;
+                    original.Country = contact.Country;
+                    original.LastInteraction = contact.LastInteraction;
+                    original.State = contact.State;
+                    original.StreetAddress = contact.StreetAddress;
+                    original.Zip = contact.Zip;
                     _repo.SaveChanges();
                     return Ok();
                 }

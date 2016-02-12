@@ -18,9 +18,9 @@ namespace CoderCampsCRM.API
             _repo = repo;
         }
 
-        public IHttpActionResult getContactListViewModel()
+        public IHttpActionResult GetContactListViewModel()
         {
-            return Ok(_repo.getContactListViewModel());
+            return Ok(_repo.GetContactListViewModel());
         }
     }
 }
