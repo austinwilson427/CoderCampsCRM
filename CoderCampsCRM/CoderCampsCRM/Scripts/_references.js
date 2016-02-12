@@ -4,6 +4,7 @@
 /// <reference path="angular-animate.min.js" />
 /// <reference path="angular-aria.min.js" />
 /// <reference path="angular-cookies.min.js" />
+/// <reference path="angular-dragdrop.min.js" />
 /// <reference path="angular-loader.min.js" />
 /// <reference path="angular-message-format.min.js" />
 /// <reference path="angular-messages.min.js" />

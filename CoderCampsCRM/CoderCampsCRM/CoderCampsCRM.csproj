@@ -252,6 +252,10 @@
     <Compile Include="Migrations\201602110417568_tasks1.Designer.cs">
       <DependentUpon>201602110417568_tasks1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602120102217_task_update.cs" />
+    <Compile Include="Migrations\201602120102217_task_update.Designer.cs">
+      <DependentUpon>201602120102217_task_update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -302,6 +306,7 @@
     <Content Include="ngApp\views\home.html" />
     <Content Include="ngApp\views\login.html" />
     <Content Include="ngApp\views\modals\add-deal.html" />
+    <Content Include="ngApp\views\modals\addtask.html" />
     <Content Include="ngApp\views\modals\companies.html" />
     <Content Include="ngApp\views\modals\archive-deal.html" />
     <Content Include="ngApp\views\modals\delete-deal.html" />
@@ -323,6 +328,7 @@
     <Content Include="Scripts\angular-cookies.js" />
     <Content Include="Scripts\angular-cookies.min.js" />
     <Content Include="Scripts\angular-csp.css" />
+    <Content Include="Scripts\angular-dragdrop.min.js" />
     <Content Include="Scripts\angular-loader.js" />
     <Content Include="Scripts\angular-loader.min.js" />
     <Content Include="Scripts\angular-message-format.js" />
@@ -1173,6 +1179,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="ngApp\app.ts" />
+    <TypeScriptCompile Include="ngApp\callendar.ts" />
     <TypeScriptCompile Include="ngApp\controllers\accountController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\contactAddController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\contactDetailsController.ts" />
@@ -1213,6 +1220,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602110417568_tasks1.resx">
       <DependentUpon>201602110417568_tasks1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602120102217_task_update.resx">
+      <DependentUpon>201602120102217_task_update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -36,64 +36,56 @@
     <div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-md-12">
                     <h1>Tasks / To-Do's</h1>
                     <btn id="menu-toggle" class="btn btn-default">Add Filter</btn>
                     <br />
                     <br />
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="wrap_table">
-                                    <form>
-                                        <table class="mine table table-hover">
-                                            <tr>
-                                                <th>Start Date</th>
-                                                <th>Status</th>
-                                                <th>Description</th>
-                                                <th>Type</th>
-                                                <th>Due Date</th>
-                                                <th>Edit/Delete</th>
-                                            </tr>
-                                            <tr ng-repeat="task in vm.tasks">
-                                                <td>{{task.startDate}}</td>
-                                                <td>{{task.status}}</td>
-                                                <td>{{task.description}}</td>
-                                                <td>{{task.type}}</td>
-                                                <td>{{task.dueDate}}</td>
-                                                <td>
-                                                    <a href="/edit/{{task.id}}"><span style="color: orangered" class="glyphicon glyphicon-edit"></span></a>
-                                                    <a href="/delete/{{task.id}}"><span style="color: red" class="glyphicon glyphicon-trash"></span></a>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                        <br />
-                                        <div align="center"><a href="/add" class="btn btn-default">Add Task</a></div>
-                                    </form>
-                                </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="wrap_table">
+                                <form>
+                                    <table class="mine table table-hover">
+                                        <tr>
+                                            <th>Start Date</th>
+                                            <th>Status</th>
+                                            <th>Description</th>
+                                            <th>Type</th>
+                                            <th>Due Date</th>
+                                            <th>Edit/Delete</th>
+                                        </tr>
+                                        <tr ng-repeat="task in vm.tasks">
+                                            <td>{{task.startDate}}</td>
+                                            <td>{{task.status}}</td>
+                                            <td>{{task.description}}</td>
+                                            <td>{{task.type}}</td>
+                                            <td>{{task.dueDate}}</td>
+                                            <td>
+                                                <a href="/edit/{{task.id}}"><span style="color: orangered" class="glyphicon glyphicon-edit"></span></a>
+                                                <a href="/delete/{{task.id}}"><span style="color: red" class="glyphicon glyphicon-trash"></span></a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <br />
+                                    <div align="center"><a class="btn btn-default" ng-click="vm.addTaskModal()">Add Task</a></div>
+                                </form>
                             </div>
                         </div>
-                    </div>
-
-                    
-                </div>
-                <div class="container-fluid">
-                    <div class="col-md-6">
+                        <div class="col-md-7">
+                            TEST
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- /#page-content-wrapper -->
-
-
+</div>
+<!-- /#page-content-wrapper -->
 <!-- /#wrapper -->
-
-
-
 <!-- Menu Toggle Script -->
 <script>
-        $("#menu-toggle").click(function (e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
 </script>
