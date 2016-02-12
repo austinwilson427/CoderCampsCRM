@@ -145,4 +145,3 @@ var MyApp;
         angular.module('MyApp').service('accountService', AccountService);
     })(Services = MyApp.Services || (MyApp.Services = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=accountService.js.map

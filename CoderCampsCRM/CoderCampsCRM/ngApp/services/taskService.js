@@ -10,9 +10,6 @@ var MyApp;
             TaskService.prototype.listTasks = function () {
                 return this.taskResource.query();
             };
-            TaskService.prototype.getTasks = function () {
-                return this.taskResource.query();
-            };
             TaskService.prototype.getTask = function (id) {
                 return this.taskResource.get({ id: id });
             };
@@ -28,4 +25,3 @@ var MyApp;
         angular.module("MyApp").service("taskService", TaskService);
     })(Services = MyApp.Services || (MyApp.Services = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=taskService.js.map

@@ -21,6 +21,18 @@ var MyApp;
             controller: MyApp.Controllers.TaskListController,
             controllerAs: 'vm'
         })
+            .state('addtask', {
+            url: '/addtask',
+            templateUrl: '/ngApp/views/addtask.html',
+            controller: MyApp.Controllers.TaskAddController,
+            controllerAs: 'vm'
+        })
+            .state('deletetask', {
+            url: '/deletetask/:id',
+            templateUrl: '/ngApp/views/deletetask.html',
+            controller: MyApp.Controllers.TaskDeleteController,
+            controllerAs: 'vm'
+        })
             .state('taskdetails', {
             url: '/task-details',
             templateUrl: '/ngApp/views/task-details.html',
@@ -112,4 +124,3 @@ var MyApp;
         $httpProvider.interceptors.push('authInterceptor');
     });
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=app.js.map
