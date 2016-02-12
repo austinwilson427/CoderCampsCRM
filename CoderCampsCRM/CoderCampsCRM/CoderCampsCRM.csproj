@@ -245,14 +245,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602122030122_initial.cs" />
-    <Compile Include="Migrations\201602122030122_initial.Designer.cs">
-      <DependentUpon>201602122030122_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602122231129_initial1.cs" />
-    <Compile Include="Migrations\201602122231129_initial1.Designer.cs">
-      <DependentUpon>201602122231129_initial1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1175,14 +1167,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\version.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602122030122_initial.resx">
-      <DependentUpon>201602122030122_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602122231129_initial1.resx">
-      <DependentUpon>201602122231129_initial1.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
