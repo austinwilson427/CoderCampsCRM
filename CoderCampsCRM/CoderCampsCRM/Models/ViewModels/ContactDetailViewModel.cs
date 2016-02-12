@@ -12,6 +12,6 @@ namespace CoderCampsCRM.Models
         public List<Deal> Deals { get; set; }
         public List<Company> Companies { get; set; }
         public List<ContactInteraction> Interactions { get; set; }
-        //public List<Task> Tasks { get; set; }
+        public List<UserTask> Tasks { get; set; }
     }
 }

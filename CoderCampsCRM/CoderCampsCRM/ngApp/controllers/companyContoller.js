@@ -3,11 +3,15 @@ var MyApp;
     var Controllers;
     (function (Controllers) {
         var CompaniesController = (function () {
-            function CompaniesController($uibModal, companiesService, $location) {
+            function CompaniesController($uibModal, companiesService, dealService, contactService, $location) {
                 this.$uibModal = $uibModal;
                 this.companiesService = companiesService;
+                this.dealService = dealService;
+                this.contactService = contactService;
                 this.$location = $location;
                 this.companies = this.companiesService.getCompanies();
+                this.contactsView = contactService.getAllContacts();
+                console.log(this.contactsView);
             }
             CompaniesController.prototype.showDetailsModal = function (id) {
                 this.$uibModal.open({
@@ -28,6 +32,14 @@ var MyApp;
                     resolve: {
                         companyId: function () { return id; }
                     },
+                    size: 'lg'
+                });
+            };
+            CompaniesController.prototype.createcompanyModal = function () {
+                this.$uibModal.open({
+                    templateUrl: "/ngApp/views/modals/createcompanyModal.html",
+                    controller: CompaniesController,
+                    controllerAs: 'vm',
                     size: 'lg'
                 });
             };
@@ -79,3 +91,4 @@ var MyApp;
         Controllers.EditCompanyController = EditCompanyController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
+//# sourceMappingURL=companyContoller.js.map

@@ -9,7 +9,33 @@ var MyApp;
                 this.interactionResource = $resource("/api/interactions");
                 this.contactDetailResource = $resource("/api/contactDetailView/:id");
                 this.contactListResource = $resource("/api/contactListView");
+                this.contactFilterResource = $resource("/api/contactFilterView/:id", null, {
+                    filterByCompanies: {
+                        method: 'GET',
+                        url: '/api/contactFilterView/filterByCompanies/:id',
+                        isArray: false
+                    },
+                    filterByDeals: {
+                        method: 'GET',
+                        url: '/api/contactFilterView/filterByDeals/:id',
+                        isArray: false
+                    },
+                    filterByTasks: {
+                        method: 'GET',
+                        url: '/api/contactFilterView/filterByTasks/:id',
+                        isArray: false
+                    }
+                });
             }
+            ContactService.prototype.filterByCompanies = function (id) {
+                return this.contactFilterResource.filterByCompanies({ id: id }).$promise;
+            };
+            ContactService.prototype.filterByDeals = function (id) {
+                return this.contactFilterResource.filterByDeals({ id: id }).$promise;
+            };
+            ContactService.prototype.filterByTasks = function (id) {
+                return this.contactFilterResource.filterByTasks({ id: id }).$promise;
+            };
             ContactService.prototype.getAllContacts = function () {
                 return this.contactListResource.get();
             };
@@ -28,9 +54,13 @@ var MyApp;
             ContactService.prototype.addInteraction = function (interaction) {
                 return this.interactionResource.save(interaction).$promise;
             };
+            ContactService.prototype.deleteInteraction = function (id) {
+                return this.interactionResource.remove({ id: id }).$promise;
+            };
             return ContactService;
         })();
         Services.ContactService = ContactService;
         angular.module("MyApp").service("contactService", ContactService);
     })(Services = MyApp.Services || (MyApp.Services = {}));
 })(MyApp || (MyApp = {}));
+//# sourceMappingURL=contactService.js.map

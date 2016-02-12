@@ -14,6 +14,9 @@ namespace CoderCampsCRM.Models
     {
 
         public ICollection<Company> Companies { get; set; }
+        public ICollection<Contact> Contacts { get; set; }
+        public ICollection<Deal> Deals { get; set; }
+        public ICollection<UserTask> UserTasks { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Company { get; set; }
@@ -37,6 +40,8 @@ namespace CoderCampsCRM.Models
         public IDbSet<DealLogItem> DealLogItems { get; set; }
         public IDbSet<Company> Companies { get; set; }
         public IDbSet<Contact> Contacts { get; set; }
+        public IDbSet<DealContact> DealContacts { get; set; }
+        public IDbSet<TaskContact> TaskContacts { get; set; }
         public IDbSet<ContactInteraction> ContactInteractions { get; set; }
         public IDbSet<ProfileUser> ProfileUser { get; set;}
 

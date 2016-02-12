@@ -3,7 +3,7 @@ namespace CoderCampsCRM.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -59,7 +59,13 @@ namespace CoderCampsCRM.Migrations
                         Name = c.String(),
                         Email = c.String(),
                         PhoneNumber = c.String(),
+                        Country = c.String(),
+                        City = c.String(),
+                        State = c.String(),
+                        Zip = c.String(),
+                        StreetAddress = c.String(),
                         JobTitle = c.String(),
+                        LastInteraction = c.DateTime(),
                         UserId = c.String(maxLength: 128),
                         CompanyId = c.Int(),
                     })
@@ -193,6 +199,19 @@ namespace CoderCampsCRM.Migrations
                 .PrimaryKey(t => t.Id)
                 .Index(t => t.Name, unique: true, name: "RoleNameIndex");
             
+            CreateTable(
+                "dbo.UserTasks",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        TaskType = c.String(),
+                        TaskStartDate = c.String(),
+                        TaskDueDate = c.String(),
+                        TaskDescription = c.String(),
+                        Status = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
         }
         
         public override void Down()
@@ -223,6 +242,7 @@ namespace CoderCampsCRM.Migrations
             DropIndex("dbo.Contacts", new[] { "UserId" });
             DropIndex("dbo.ContactInteractions", new[] { "ContactId" });
             DropIndex("dbo.Companies", new[] { "ApplicationUser_Id1" });
+            DropTable("dbo.UserTasks");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.ProfileUsers");
             DropTable("dbo.Deals");

@@ -193,6 +193,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\ContactFilterViewController.cs" />
     <Compile Include="API\ContactListController.cs" />
     <Compile Include="API\CompaniesController.cs" />
     <Compile Include="API\ContactDetailViewController.cs" />
@@ -244,42 +245,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602111329483_initial.cs" />
-    <Compile Include="Migrations\201602111329483_initial.Designer.cs">
-      <DependentUpon>201602111329483_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201602110235329_initial.cs" />
+    <Compile Include="Migrations\201602110235329_initial.Designer.cs">
+      <DependentUpon>201602110235329_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602111423235_initial1.cs" />
-    <Compile Include="Migrations\201602111423235_initial1.Designer.cs">
-      <DependentUpon>201602111423235_initial1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602111458565_initial2.cs" />
-    <Compile Include="Migrations\201602111458565_initial2.Designer.cs">
-      <DependentUpon>201602111458565_initial2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602111855010_initial3.cs" />
-    <Compile Include="Migrations\201602111855010_initial3.Designer.cs">
-      <DependentUpon>201602111855010_initial3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602112352282_initial4.cs" />
-    <Compile Include="Migrations\201602112352282_initial4.Designer.cs">
-      <DependentUpon>201602112352282_initial4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602120037262_initial5.cs" />
-    <Compile Include="Migrations\201602120037262_initial5.Designer.cs">
-      <DependentUpon>201602120037262_initial5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602120043153_initial6.cs" />
-    <Compile Include="Migrations\201602120043153_initial6.Designer.cs">
-      <DependentUpon>201602120043153_initial6.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602120050339_initial7.cs" />
-    <Compile Include="Migrations\201602120050339_initial7.Designer.cs">
-      <DependentUpon>201602120050339_initial7.cs</DependentUpon>
+    <Compile Include="Migrations\201602120147180_2.cs" />
+    <Compile Include="Migrations\201602120147180_2.Designer.cs">
+      <DependentUpon>201602120147180_2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\ContactLookupModels.cs" />
     <Compile Include="Models\ContactInteraction.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\ProfileUser.cs" />
@@ -297,13 +275,17 @@
     <Compile Include="Repositories\ContactListViewRepository.cs" />
     <Compile Include="Repositories\DealRepository.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
-    <Compile Include="Repositories\Interfaces\IDealRepository.cs" />
     <Compile Include="Repositories\Interfaces\IContactListViewRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IDealRepository.cs" />
     <Compile Include="Repositories\Interfaces\IContactDetailViewRepository.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-CoderCampsCRM-20151020080840.mdf" />
+    <Content Include="App_Data\aspnet-CoderCampsCRM-20151020080840_log.ldf">
+      <DependentUpon>aspnet-CoderCampsCRM-20151020080840.mdf</DependentUpon>
+    </Content>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -316,12 +298,13 @@
     <Content Include="GitIgnore\.gitignore" />
     <Content Include="Global.asax" />
     <Content Include="ngApp\scripts\angular_filepicker.min.js" />
+    <Content Include="ngApp\scripts\drag.js" />
+    <Content Include="ngApp\scripts\ngDraggable.js" />
     <Content Include="ngApp\views\about.html" />
     <Content Include="ngApp\views\companies.html" />
     <Content Include="ngApp\views\confirmEmail.html" />
     <Content Include="ngApp\views\contactDetailsView.html" />
     <Content Include="ngApp\views\contactListView.html" />
-    <Content Include="ngApp\views\createcompany.html" />
     <Content Include="ngApp\views\deals-info.html" />
     <Content Include="ngApp\views\deals.html" />
     <Content Include="ngApp\views\externalLogin.html" />
@@ -416,7 +399,6 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Scripts\angular-route.min.js.map" />
-    <Content Include="ngApp\scripts\angular_filepicker.min.js" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
@@ -1191,9 +1173,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\version.json" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
@@ -1236,29 +1216,11 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602111329483_initial.resx">
-      <DependentUpon>201602111329483_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602110235329_initial.resx">
+      <DependentUpon>201602110235329_initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602111423235_initial1.resx">
-      <DependentUpon>201602111423235_initial1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602111458565_initial2.resx">
-      <DependentUpon>201602111458565_initial2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602111855010_initial3.resx">
-      <DependentUpon>201602111855010_initial3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602112352282_initial4.resx">
-      <DependentUpon>201602112352282_initial4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602120037262_initial5.resx">
-      <DependentUpon>201602120037262_initial5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602120043153_initial6.resx">
-      <DependentUpon>201602120043153_initial6.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602120050339_initial7.resx">
-      <DependentUpon>201602120050339_initial7.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602120147180_2.resx">
+      <DependentUpon>201602120147180_2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
