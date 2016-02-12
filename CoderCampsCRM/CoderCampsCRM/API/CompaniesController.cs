@@ -29,14 +29,15 @@ namespace CoderCampsCRM.API
             //var company = _repo.Find<Company>();
             //if (user.Company = userId)
 
-            //var companies = from c in _repo.Query<Company>()
+            var companies = from c in _repo.Query<Company>()
+                            select c;
+
+            //var compList = from c in _repo.Query<Company>()
+            //               where c.ApplicationUser_Id == userId
             //               select c;
 
-            var compList = from c in _repo.Query<Company>()
-                           where c.ApplicationUser_Id == userId
-                           select c;
-
-            return Ok(compList.ToList());
+           // return Ok(compList.ToList());
+            return Ok(companies.ToList());
         }
         public IHttpActionResult Get(int id)
         {
