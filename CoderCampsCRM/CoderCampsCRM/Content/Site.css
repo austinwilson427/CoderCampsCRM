@@ -209,6 +209,9 @@ table.activity td{
     padding: 5px;
 }
 
+.list_custom_wrap{
+    margin: 40px auto;
+}
 /*-------------------Contacts Section--------------------------*/
 
 .error {

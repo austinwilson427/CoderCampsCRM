@@ -123,8 +123,9 @@ namespace CoderCampsCRM.Migrations
                 new UserTask {Id = 5, Status = "Completed", Description = "Call Brian to discuss contract", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="Call"},
 
 
-        };
+            };
             context.Tasks.AddOrUpdate(t => t.Id, tasks);
+           
 
         }
     }

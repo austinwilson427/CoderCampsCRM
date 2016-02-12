@@ -13,7 +13,7 @@ namespace CoderCampsCRM.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201602111855010_initial3"; }
+            get { return "201602121343262_initial3"; }
         }
         
         string IMigrationMetadata.Source

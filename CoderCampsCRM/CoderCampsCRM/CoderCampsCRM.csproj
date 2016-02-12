@@ -244,37 +244,21 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602111329483_initial.cs" />
-    <Compile Include="Migrations\201602111329483_initial.Designer.cs">
-      <DependentUpon>201602111329483_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201602120233166_initial.cs" />
+    <Compile Include="Migrations\201602120233166_initial.Designer.cs">
+      <DependentUpon>201602120233166_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602111423235_initial1.cs" />
-    <Compile Include="Migrations\201602111423235_initial1.Designer.cs">
-      <DependentUpon>201602111423235_initial1.cs</DependentUpon>
+    <Compile Include="Migrations\201602120256234_initial1.cs" />
+    <Compile Include="Migrations\201602120256234_initial1.Designer.cs">
+      <DependentUpon>201602120256234_initial1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602111458565_initial2.cs" />
-    <Compile Include="Migrations\201602111458565_initial2.Designer.cs">
-      <DependentUpon>201602111458565_initial2.cs</DependentUpon>
+    <Compile Include="Migrations\201602121339482_initial2.cs" />
+    <Compile Include="Migrations\201602121339482_initial2.Designer.cs">
+      <DependentUpon>201602121339482_initial2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602111855010_initial3.cs" />
-    <Compile Include="Migrations\201602111855010_initial3.Designer.cs">
-      <DependentUpon>201602111855010_initial3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602112352282_initial4.cs" />
-    <Compile Include="Migrations\201602112352282_initial4.Designer.cs">
-      <DependentUpon>201602112352282_initial4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602120037262_initial5.cs" />
-    <Compile Include="Migrations\201602120037262_initial5.Designer.cs">
-      <DependentUpon>201602120037262_initial5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602120043153_initial6.cs" />
-    <Compile Include="Migrations\201602120043153_initial6.Designer.cs">
-      <DependentUpon>201602120043153_initial6.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602120050339_initial7.cs" />
-    <Compile Include="Migrations\201602120050339_initial7.Designer.cs">
-      <DependentUpon>201602120050339_initial7.cs</DependentUpon>
+    <Compile Include="Migrations\201602121343262_initial3.cs" />
+    <Compile Include="Migrations\201602121343262_initial3.Designer.cs">
+      <DependentUpon>201602121343262_initial3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -309,6 +293,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\DragAndDrop.css" />
     <Content Include="Content\simple-sidebar.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="favicon.ico" />
@@ -316,6 +301,8 @@
     <Content Include="GitIgnore\.gitignore" />
     <Content Include="Global.asax" />
     <Content Include="ngApp\scripts\angular_filepicker.min.js" />
+    <Content Include="ngApp\scripts\drag.js" />
+    <Content Include="ngApp\scripts\ngDraggable.js" />
     <Content Include="ngApp\views\about.html" />
     <Content Include="ngApp\views\companies.html" />
     <Content Include="ngApp\views\confirmEmail.html" />
@@ -342,6 +329,8 @@
     <Content Include="ngApp\views\routes\deal-info-event.html" />
     <Content Include="ngApp\views\routes\deal-info-activity.html" />
     <Content Include="ngApp\views\routes\deal-info-note.html" />
+    <Content Include="ngApp\views\routes\deal-list-view.html" />
+    <Content Include="ngApp\views\routes\deal-table-view.html" />
     <Content Include="ngApp\views\tasks.html" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
@@ -1236,29 +1225,17 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602111329483_initial.resx">
-      <DependentUpon>201602111329483_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602120233166_initial.resx">
+      <DependentUpon>201602120233166_initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602111423235_initial1.resx">
-      <DependentUpon>201602111423235_initial1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602120256234_initial1.resx">
+      <DependentUpon>201602120256234_initial1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602111458565_initial2.resx">
-      <DependentUpon>201602111458565_initial2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602121339482_initial2.resx">
+      <DependentUpon>201602121339482_initial2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602111855010_initial3.resx">
-      <DependentUpon>201602111855010_initial3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602112352282_initial4.resx">
-      <DependentUpon>201602112352282_initial4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602120037262_initial5.resx">
-      <DependentUpon>201602120037262_initial5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602120043153_initial6.resx">
-      <DependentUpon>201602120043153_initial6.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602120050339_initial7.resx">
-      <DependentUpon>201602120050339_initial7.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602121343262_initial3.resx">
+      <DependentUpon>201602121343262_initial3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

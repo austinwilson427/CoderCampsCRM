@@ -24,6 +24,7 @@ namespace CoderCampsCRM.Models
         public Company Company { get; set; }
 
         
-        /*public List<Contact> Contacts { get; set; }*/
+        //public List<Contact> Contacts { get; set; }
+
     }
 }
