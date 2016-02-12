@@ -11,113 +11,147 @@
         <h4>{{vm.dealInfo.closeDate | date: 'MM/dd/yy'}}</h4>
     </div>
 </div>
-<div class="row first_main_row">
-    <div class="col-md-5">
-        <table class="table">
-            <tr>
-                <th colspan="2" class="text-center">About</th>
-            </tr>
-            <tr>
-                <td>Amount</td>
-                <td>{{vm.dealInfo.amount | currency}}</td>
-            </tr>
-            <tr>
-                <td>Deal Stage</td>
-                <td>{{vm.dealInfo.stage}}</td>
-            </tr>
-            <tr>
-                <td>Close Date</td>
-                <td>{{vm.dealInfo.closeDate | date: 'MM/dd/yy'}}</td>
-            </tr>
-            <tr>
-                <td>CRM Owner</td>
-                <td><a href="contactDetails/{{vm.dealInfo.contact.id}}">{{vm.dealInfo.contact.name}}</a></td>
-            </tr>
-        </table>
-    </div>
-    <div class="col-md-7">
-        <div class="activity_button_wrap btn-group" role="group" aria-label="...">
-            <a ui-sref="deal-info.note" class="btn btn-default">New Note</a>
-            <a ui-sref="deal-info.activity" class="btn btn-default">Log Activity</a>
-            <a ui-sref="deal-info.task" class="btn btn-default">Create Task</a>
-            <a ui-sref="deal-info.event" class="btn btn-default">Schedule Event</a>
-        </div>
-        <div class="text_wrap">
-            <div ui-view></div>
-        </div>
-    </div>
-</div>
 <div class="row">
-    <div class="col-md-5">
-        <table class="table">
-            <tr>
-                <th colspan="2" class="text-center">Company</th>
-            </tr>
-            <tr>
-                <td>Name</td>
-                <td>{{vm.company.companyName}}</td>
-            </tr>
-            <tr>
-                <td>Domain</td>
-                <td><a href="{{vm.company.companyDomainName}}">{{vm.company.companyDomainName}}</a></td>
-            </tr>
-            <tr>
-                <td>Industry</td>
-                <td>{{vm.company.companyIndustry}}</td>
-            </tr>
-            <tr>
-                <td>Phone</td>
-                <td>{{vm.company.companyPhoneNumber}}</td>
-            </tr>
-            <tr>
-                <td>City</td>
-                <td>{{vm.company.companyCity}}</td>
-            </tr>
-            <tr>
-                <td>State</td>
-                <td>{{vm.company.companyState}}</td>
-            </tr>
-            <tr>
-                <td>Zip Code</td>
-                <td>{{vm.company.companyZip}}</td>
-            </tr>
-            <tr>
-                <td>Twitter</td>
-                <td><a href="{{vm.company.companyTwitter}}">{{vm.company.companyTwitter}}</a></td>
-            </tr>
-            <tr>
-                <td>Facebook</td>
-                <td><a href="{{vm.company.companyFacebook}}">{{vm.company.companyFacebook}}</a></td>
-            </tr>
-            <tr>
-                <td>LinkedIn</td>
-                <td><a href="{{vm.company.companyLinkedin}}">{{vm.company.companyLinkedin}}</a></td>
-            </tr>
-            <tr>
-                <td>Description</td>
-                <td>{{vm.company.companyDescription}}</td>
-            </tr>
-        </table>
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+                    <tr>
+                        <th colspan="2" class="text-center">About</th>
+                    </tr>
+                    <tr>
+                        <td>Amount</td>
+                        <td>{{vm.dealInfo.amount | currency}}</td>
+                    </tr>
+                    <tr>
+                        <td>Deal Stage</td>
+                        <td>{{vm.dealInfo.stage}}</td>
+                    </tr>
+                    <tr>
+                        <td>Close Date</td>
+                        <td>{{vm.dealInfo.closeDate | date: 'MM/dd/yy'}}</td>
+                    </tr>
+                    <tr>
+                        <td>CRM Owner</td>
+                        <td><a href="contactDetails/{{vm.dealInfo.contact.id}}">{{vm.dealInfo.contact.name}}</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+                    <tr>
+                        <th colspan="2" class="text-center">Company</th>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>{{vm.company.companyName}}</td>
+                    </tr>
+                    <tr>
+                        <td>Domain</td>
+                        <td><a href="{{vm.company.companyDomainName}}">{{vm.company.companyDomainName}}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Industry</td>
+                        <td>{{vm.company.companyIndustry}}</td>
+                    </tr>
+                    <tr>
+                        <td>Phone</td>
+                        <td>{{vm.company.companyPhoneNumber}}</td>
+                    </tr>
+                    <tr>
+                        <td>City</td>
+                        <td>{{vm.company.companyCity}}</td>
+                    </tr>
+                    <tr>
+                        <td>State</td>
+                        <td>{{vm.company.companyState}}</td>
+                    </tr>
+                    <tr>
+                        <td>Zip Code</td>
+                        <td>{{vm.company.companyZip}}</td>
+                    </tr>
+                    <tr>
+                        <td>Twitter</td>
+                        <td><a href="{{vm.company.companyTwitter}}">{{vm.company.companyTwitter}}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Facebook</td>
+                        <td><a href="{{vm.company.companyFacebook}}">{{vm.company.companyFacebook}}</a></td>
+                    </tr>
+                    <tr>
+                        <td>LinkedIn</td>
+                        <td><a href="{{vm.company.companyLinkedin}}">{{vm.company.companyLinkedin}}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td>{{vm.company.companyDescription}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+                    <tr><th colspan="4" class="text-center">Contacts</th></tr>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                    </tr>
+                    <tr ng-repeat="dealContact in vm.dealContacts">
+                        <td><a ui-sref="contactDetails({id: dealContact.contact.id})">{{dealContact.contact.name}}</a></td>
+                        <td>{{dealContact.contact.email}}</td>
+                        <td>{{dealContact.contact.phoneNumber}}</td>
+                        <td><a href="#" ng-click="vm.deleteDealContact(dealContact.id)"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a></td>
+                    </tr>
+                </table>
+                <div class="contact_to_add form-group">
+                    <label class="text-center">Select Contact To Add</label>
+                    <select ng-model="vm.contactIdToAdd" ng-change="vm.addDealContact()" class="form-control full">
+                        <option value="{{remaining.id}}" ng-repeat="remaining in vm.allContacts.contacts">{{remaining.name}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-7">
-        <div class="log_item_wrap">
-            <table class="table table-condensed table-bordered log_items" ng-repeat="item in vm.dealLogItems">
-                <tr ng-if="item.type=='Note'">
-                    <td class="submitted_cell">{{item.submittedBy}} left a note</td>
-                    <td class="start_time_cell">{{item.startTime | date: 'short'}}</td>
-                </tr>
-                <tr ng-if="item.type=='Activity'">
-                    <td class="submitted_cell">{{item.submittedBy}} logged an activity</td>
-                    <td class="start_time_cell">{{item.startTime | date: 'short'}}</td>
-                </tr>
-                <tr ng-if="item.type=='Task'">
-                    <td class="submitted_cell">{{item.submittedBy}} created a task for {{item.contact.name}}</td>
-                    <td class="start_time_cell">{{item.startTime | date: 'short'}}</td>
-                </tr>
-                <tr>
-                    <td class="content_cell" colspan="2">{{item.content}}</td>
-                </tr>
-            </table>
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="activity_button_wrap btn-group" role="group" aria-label="...">
+                    <a ui-sref="deal-info.note" class="btn btn-default">New Note</a>
+                    <a ui-sref="deal-info.activity" class="btn btn-default">Log Activity</a>
+                    <a ui-sref="deal-info.task" class="btn btn-default">Create Task</a>
+                    <a ui-sref="deal-info.event" class="btn btn-default">Schedule Event</a>
+                </div>
+                <div class="text_wrap">
+                    <div ui-view></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="log_item_wrap">
+                    <table class="table table-condensed table-bordered log_items" ng-repeat="item in vm.dealLogItems">
+                        <tr ng-if="item.type=='Note'">
+                            <td class="submitted_cell">{{item.submittedBy}} left a note</td>
+                            <td class="start_time_cell">{{item.startTime | date: 'short'}}</td>
+                        </tr>
+                        <tr ng-if="item.type=='Activity'">
+                            <td class="submitted_cell">{{item.submittedBy}} logged an activity</td>
+                            <td class="start_time_cell">{{item.startTime | date: 'short'}}</td>
+                        </tr>
+                        <tr ng-if="item.type=='Task'">
+                            <td class="submitted_cell">{{item.submittedBy}} created a task for {{item.contact.name}}</td>
+                            <td class="start_time_cell">{{item.startTime | date: 'short'}}</td>
+                        </tr>
+                        <tr>
+                            <td class="content_cell" colspan="2">{{item.content}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>

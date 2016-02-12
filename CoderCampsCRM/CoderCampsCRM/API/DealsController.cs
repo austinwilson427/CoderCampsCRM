@@ -33,14 +33,6 @@ namespace CoderCampsCRM.API
             var data = _dealRepo.getDealViewModel(id);
             return Ok(data.Deal);
         }
-        //public IHttpActionResult GetDealByDealId(int id)
-        //{
-        //    var dealData = _genRepo.Find<Deal>(id);
-        //    return Ok(dealData);
-
-        //}
-        
-
 
         [Route("api/deals/company/{id}")]
         public IHttpActionResult GetAViewModel(int id)
@@ -48,11 +40,6 @@ namespace CoderCampsCRM.API
             var data = _dealRepo.getDealViewModel(id);
             return Ok(data.Deal);
         }
-        //public IHttpActionResult GetDealsByCompanyId(int id)
-        //{
-        //    var dealData = _genRepo.Query<Deal>().Where(d => d.CompanyId == id);
-        //    return Ok(dealData);
-        //}
 
         [Route("api/deals/deal-owner/{id}")]
         public IHttpActionResult GetDealsByOwnerId(int id)
