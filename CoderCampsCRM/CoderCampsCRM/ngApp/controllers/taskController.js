@@ -47,10 +47,10 @@ var MyApp;
         })();
         Controllers.TaskEditController = TaskEditController;
         var TaskDeleteController = (function () {
-            function TaskDeleteController(taskService, $location, $routeParams) {
+            function TaskDeleteController(taskService, $location, $stateParams) {
                 this.taskService = taskService;
                 this.$location = $location;
-                this.taskToDelete = taskService.getTask($routeParams["id"]);
+                this.taskToDelete = taskService.getTask($stateParams["id"]);
             }
             TaskDeleteController.prototype.deleteTask = function () {
                 var _this = this;

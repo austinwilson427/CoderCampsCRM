@@ -1,5 +1,99 @@
-﻿<br /><br />
-<div class="row">
+﻿
+<div id="wrapper" class="details_wrap toggled">
+    <div id="sidebar-wrapper">
+       
+        <label>Filter By Date</label>
+        <select class="form-control" ng-model="vm.dateFilter" ng-change="vm.filterBySelection()">
+            <option value="all">All Deals</option>
+            <option value="today">Deals For Today</option>
+            <option value="week">Deals For Week</option>
+            <option value="month">Deals For Month</option>
+        </select>
+        <label>Filter Country</label>
+        <select class="form-control" ng-model="vm.stageFilter" ng-change="vm.filterBySelection()">
+            <option value="0">All</option>
+            <option value="1">Appointment Scheduled</option>
+            <option value="2">Qualified to Buy</option>
+            <option value="3">Presentation Scheduled</option>
+            <option value="4">Decision Maker Bought In</option>
+            <option value="5">Contract Sent</option>
+            <option value="6">Closed Won</option>
+            <option value="7">Closed Lost</option>
+        </select>
+        <label>Filter By Amount</label>
+        <div class="row">
+            <div class="col-md-6 form-group min_amount">
+                <input class="form-control amount_input" type="text" placeholder="Min Amount" ng-model="vm.minAmount" ng-change="vm.filterBySelection()" />
+            </div>
+            <div class="col-md-6 form-group max_amount">
+                <input class="form-control amount_input" type="text" placeholder="Max Amount" ng-model="vm.maxAmount" ng-change="vm.filterBySelection()" />
+            </div>
+        </div>
+    </div>
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <a href="#" ng-show="vm.showTrash" ng-click="vm.deleteDealModal()"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                            <a href="#" ng-show="vm.showTrash" ng-click="vm.archiveDealModal()"><span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span></a>
+                            <btn id="menu-toggle" class="btn btn-primary filter_button">Filter</btn>
+                            <a href="#"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a>
+                            <a href="#"><span class="glyphicon glyphicon-th" aria-hidden="true"></span></a>
+                        </div>
+                        <div class="col-md-6 form-group no-margin">
+                            <input class="form-control" placeholder="Search all deals in this view..." ng-model="vm.searchPhrase" />
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-primary" ng-click="vm.createcompanyModal()">+ Add Company</button>
+                        </div>
+                    </div>
+                    <div class="table_wrap">
+                        <table class="table table-hover table-bordered deals_table">
+                            <tr>
+                               
+                                <th class="hover_blue">Company Name</th>
+                                <th class="hover_blue">Company Contacts</th>
+                                <th class="hover_blue">Company Deals</th>
+                                <th class="hover_blue">Company Tasks</th>
+                                <th class="hover_blue">Company Create Date</th>
+                                <th class="hover_blue">Company Last Activity Date</th>
+                                <th class="hover_blue">Company Next Activity Date </th>
+                               
+                               
+                            </tr>
+                            <tr  ng-repeat="company in vm.companies | filter: vm.search">
+                                <!--<td><input type="checkbox" ng-model="value.key" ng-click="vm.storeDeal(value)" /> <a ng-show="value.isArchived" href="#" ng-click="vm.unarchiveItem(value)"><span class="glyphicon glyphicon-plus"></span></a></td>-->
+                                <td><a ui-sref="companies({id: companies.id})">{{company.companyName}}</a>&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="value.key"><a href="#" ng-click="vm.editDealModal(value)"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></span></td>
+                                <td ng-model="vm.contactsView.contact " ng-repeat="contact in vm.company.contactsView">{{contact.name}}</td>
+                                <td></td>
+                                <td></td>
+                                <td>{{company.companyCreateDate | date: 'MM/dd/yy'}}</td>
+                                <td>{{company.companyLastActivityeDate | date: 'MM/dd/yy'}}</td>
+                                <td>{{company.companyNextActivityDate  | date: 'MM/dd/yy'}}</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+</script>
+
+
+
+
+<!--<div class="row">
     <div class="col-md-12 ">
         <div class="col-md-10 col-md-offset-2">
             <div class="row details_wrap">
@@ -36,4 +130,4 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->

@@ -36,78 +36,64 @@
     <div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-lg-6">
                     <h1>Tasks / To-Do's</h1>
                     <btn id="menu-toggle" class="btn btn-default">Add Filter</btn>
                     <br />
                     <br />
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="wrap_table">
-                                <form>
-                                    <table class="mine table table-hover">
-                                        <tr>
-                                            <th>Start Date</th>
-                                            <th>Status</th>
-                                            <th>Description</th>
-                                            <th>Type</th>
-                                            <th>Due Date</th>
-                                            <th>Edit/Delete</th>
-                                        </tr>
-                                        <tr ng-repeat="task in vm.tasks">
-                                            <td>{{task.startDate}}</td>
-                                            <td>{{task.status}}</td>
-                                            <td>{{task.description}}</td>
-                                            <td>{{task.type}}</td>
-                                            <td>{{task.dueDate}}</td>
-                                            <td>
-                                                <a href="/edit/{{task.id}}"><span style="color: orangered" class="glyphicon glyphicon-edit"></span></a>
-                                                <a href="/delete/{{task.id}}"><span style="color: red" class="glyphicon glyphicon-trash"></span></a>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                    <br />
-                                    <div align="center"><a class="btn btn-default" ng-click="vm.addTaskModal()">Add Task</a></div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <div id='wrap'>
-
-                                <div id='external-events'>
-                                    <div id='external-events-listing'>
-                                        <h4>Draggable Events</h4>
-                                        <div class='fc-event'>My Event 1</div>
-                                        <div class='fc-event'>My Event 2</div>
-                                        <div class='fc-event'>My Event 3</div>
-                                        <div class='fc-event'>My Event 4</div>
-                                        <div class='fc-event'>My Event 5</div>
-                                    </div>
-                                    <p>
-                                        <input type='checkbox' id='drop-remove' checked='checked' />
-                                        <label for='drop-remove'>remove after drop</label>
-                                    </p>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="wrap_table">
+                                    <form>
+                                        <table class="mine table table-hover">
+                                            <tr>
+                                                <th>Start Date</th>
+                                                <th>Status</th>
+                                                <th>Description</th>
+                                                <th>Type</th>
+                                                <th>Due Date</th>
+                                                <th>Edit/Delete</th>
+                                            </tr>
+                                            <tr ng-repeat="task in vm.tasks">
+                                                <td>{{task.startDate}}</td>
+                                                <td>{{task.status}}</td>
+                                                <td>{{task.description}}</td>
+                                                <td>{{task.type}}</td>
+                                                <td>{{task.dueDate}}</td>
+                                                <td>
+                                                    <a href="/edit/{{task.id}}"><span style="color: orangered" class="glyphicon glyphicon-edit"></span></a>
+                                                    <a href="/deletetask/{{task.id}}"><span style="color: red" class="glyphicon glyphicon-trash"></span></a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <br />
+                                        <div align="center"><a ui-sref="addtask" class="btn btn-default">Add Task</a></div>
+                                    </form>
                                 </div>
-
-                                <div id='calendar'></div>
-
-                                <div style='clear:both'></div>
-
                             </div>
                         </div>
+                    </div>
+
+                    
+                </div>
+                <div class="container-fluid">
+                    <div class="col-md-6">
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- /#page-content-wrapper -->
+    <!-- /#page-content-wrapper -->
+
+
 <!-- /#wrapper -->
+
+
+
 <!-- Menu Toggle Script -->
-<script src="../callendar.js"></script>
 <script>
-    $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
 </script>
