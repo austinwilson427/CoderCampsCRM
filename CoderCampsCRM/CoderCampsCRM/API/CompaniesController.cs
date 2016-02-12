@@ -49,16 +49,17 @@ namespace CoderCampsCRM.API
         {
             if (company.Id == 0)
             {
-                var userId = User.Identity.GetUserId();
-                var user = _repo.Query<ApplicationUser>().Where(u => u.Id == userId).Include(u => u.Companies).FirstOrDefault();
+                //var userId = User.Identity.GetUserId();
+                //var user = _repo.Query<ApplicationUser>().Where(u => u.Id == userId).Include(u => u.Companies).FirstOrDefault();
 
-                company.CompanyCreateDate = DateTime.Now;
-                _repo.Add<Company>(company);
-                _repo.SaveChanges();
-                user.Companies.Add(company);
-                company.ApplicationUser_Id = userId;
-                _repo.SaveChanges();
-                return Ok(company);
+                //company.CompanyCreateDate = DateTime.Now;
+                //_repo.Add<Company>(company);
+                //_repo.SaveChanges();
+                //user.Companies.Add(company);
+                //company.ApplicationUser_Id = userId;
+                //_repo.SaveChanges();
+                //return Ok(company);
+                return Ok();
             }
             else {
                 var original = _repo.Find<Company>(company.Id);

@@ -87,7 +87,7 @@ var MyApp;
                     this.picUploaded = true;
                 }
                 else {
-                this.picUploaded = false;
+                    this.picUploaded = false;
                     this.registerUser = {
                         picUrl: ""
                     };
@@ -190,3 +190,4 @@ var MyApp;
         Controllers.ConfirmEmailController = ConfirmEmailController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
+//# sourceMappingURL=accountController.js.map
