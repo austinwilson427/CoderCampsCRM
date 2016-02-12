@@ -1179,7 +1179,6 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="ngApp\app.ts" />
-    <TypeScriptCompile Include="ngApp\callendar.ts" />
     <TypeScriptCompile Include="ngApp\controllers\accountController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\contactAddController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\contactDetailsController.ts" />
