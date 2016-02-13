@@ -6,7 +6,7 @@
         public filterChoice;
 
         constructor(private contactService: MyApp.Services.ContactService, private $location: ng.ILocationService, private $uibModal: angular.ui.bootstrap.IModalService, private $state: ng.ui.IStateService) {         
-            this.contactsView = contactService.getAllContacts();
+            this.showAllContacts();
 
         }
 
@@ -35,6 +35,10 @@
             return this.contactService.filterByTasks(this.filterChoice).then((result) => {
                 this.contactsView = result
             });
+        }
+
+        public showAllContacts() {
+            this.contactsView = this.contactService.getAllContacts();
         }
 
         public invertArrow(id) {

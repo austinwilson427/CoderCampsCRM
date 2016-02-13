@@ -223,3 +223,13 @@ textarea.deal_notes{
     border-right: hidden;
     background-color: white;
 }
+
+.filterSideBarContent{
+    max-width: 200px;
+    margin-left: 20px;
+}
+
+#filterBtn{
+    margin-top: 20px;
+    margin-left: 20px;
+}

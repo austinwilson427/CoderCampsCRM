@@ -23,4 +23,6 @@
 /// <reference path="jquery-2.1.4.min.js" />
 /// <reference path="jquery-2.2.0.min.js" />
 /// <reference path="modernizr-2.6.2.js" />
+/// <reference path="moment.min.js" />
+/// <reference path="moment-with-locales.min.js" />
 /// <reference path="respond.js" />

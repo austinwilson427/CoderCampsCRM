@@ -5,11 +5,11 @@
         public contactView;  
         public interaction;  
         public contact;
+        public companyChoice;
 
         constructor(private contactService: MyApp.Services.ContactService, private $location: ng.ILocationService, private $uibModal: ng.ui.bootstrap.IModalService, $stateParams: ng.ui.IStateParamsService, private $state: ng.ui.IStateService) {
             this.contact = {};
             this.contactView = this.contactService.getOneContact($stateParams['id']);
-            debugger;
         }
 
         public deleteContact() {
@@ -24,7 +24,8 @@
         public confirmEdit() {
             $(".tdEdit").removeAttr("contenteditable").removeAttr("style");
             this.contact.id = this.contactView.contact.id;
-            this.contact.companyId = this.contactView.contact.companyId;            
+            this.contact.companyId = this.contactView.contact.companyId;  
+            this.contact.lastInteraction = $("#lastInteraction").text();          
             this.contact.name = $("#name").text();
             this.contact.email = $("#email").text();
             this.contact.phoneNumber = $("#phoneNumber").text();
@@ -37,10 +38,11 @@
             return this.contactService.editContact(this.contact);
         }
 
-        public chooseCompany(companyId) {
+        public chooseCompany() {
             
             this.contact.id = this.contactView.contact.id;
-            this.contact.companyId = companyId;
+            this.contact.companyId = this.companyChoice;
+            this.contact.lastInteraction = $("#lastInteraction").text();
             this.contact.name = $("#name").text();
             this.contact.email = $("#email").text();
             this.contact.phoneNumber = $("#phoneNumber").text();
@@ -49,7 +51,7 @@
             this.contact.state = $("#state").text();
             this.contact.zip = $("#zip").text();
             this.contact.streetAddress = $("#streetAddress").text(); 
-            return this.contactService.editContact(this.contact);            
+            return this.contactService.editContact(this.contact).then(this.$state.reload());            
         }
         
         public addInteraction() {

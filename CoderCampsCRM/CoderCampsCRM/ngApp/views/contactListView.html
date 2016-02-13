@@ -1,17 +1,18 @@
 ﻿<div id="wrapper" class="details_wrap toggled">
     <div id="sidebar-wrapper">
         <label>Filter by Company</label>
-        <select class="form-control" ng-change="vm.filterByCompanies()" ng-model="vm.filterChoice">
+        <select class="form-control filterSideBarContent" ng-change="vm.filterByCompanies()" ng-model="vm.filterChoice">
             <option ng-repeat="company in vm.contactsView.companies" value="{{company.id}}">{{company.companyName}}</option>
         </select>
         <label>Filter by associated deals</label>
-        <select class="form-control" ng-change="vm.filterByDeals()" ng-model="vm.filterChoice">
+        <select class="form-control filterSideBarContent" ng-change="vm.filterByDeals()" ng-model="vm.filterChoice">
             <option ng-repeat="deal in vm.contactsView.deals" value="{{deal.id}}">{{deal.dealName}}</option>
         </select>
         <label>Filter by associated tasks</label>
-        <select class="form-control" ng-change="vm.filterByTasks()" ng-model="vm.filterChoice">
+        <select class="form-control filterSideBarContent" ng-change="vm.filterByTasks()" ng-model="vm.filterChoice">
             <option ng-repeat="task in vm.contactsView.tasks" value="{{task.id}}">{{task.taskDescription}}</option>
         </select>
+        <button class="btn btn-primary" id="filterBtn" ng-click="vm.showAllContacts()">Show all contacts</button>
     </div>
     <div class="row" id="page-content-wrapper">
         <div class="col-md-12">
@@ -30,24 +31,26 @@
                 <table class="table table-bordered table-hover deals_table">
                     <thead>
                         <tr>
-                            <th class="hover_blue" ng-click="sortType = 'name'; sortReverse = !sortReverse; vm.invertArrow(id)">Name<span id="name" class="glyphicon glyphicon-chevron-down"></span></th>
-                            <th class="hover_blue" style="cursor: default">Email</th>
-                            <th class="hover_blue" style="cursor: default">Phone Number</th>
+                            <th class="hover_blue" ng-click="sortType = 'name'; sortReverse = !sortReverse; vm.invertArrow(id)">Name<span id="name" class="glyphicon glyphicon-chevron-down"></span></th>                                          
                             <th class="hover_blue" ng-click="sortType = 'companyName'; sortReverse = !sortReverse; vm.invertArrow(id)">Company<span id="company" class="glyphicon glyphicon-chevron-down"></span></th>
                             <th class="hover_blue" ng-click="sortType = 'jobTitle'; sortReverse = !sortReverse; vm.invertArrow(id)">Job Title<span id="jobTitle" class="glyphicon glyphicon-chevron-down"></span></th>
-                            <th class="hover_blue" ng-click="sortType = 'country'; sortReverse = !sortReverse; vm.invertArrow(id)">Country<span id="country" class="glyphicon glyphicon-chevron-down"></span></th>
+                            <th class="hover_blue" style="cursor: default">Email</th>
+                            <th class="hover_blue" style="cursor: default">Phone Number</th>
+                            <th class="hover_blue" ng-click="sortType = 'country'; sortReverse = !sortReverse; vm.invertArrow(id)">Country<span id="country" class="glyphicon glyphicon-chevron-down"></span></th>                       
                             <th class="hover_blue" ng-click="sortType = 'city'; sortReverse = !sortReverse; vm.invertArrow(id)">City<span id="city" class="glyphicon glyphicon-chevron-down"></span></th>
+                            <th class="hover_blue" ng-click="sortType = 'lastInteraction'; sortReverse = !sortReverse; vm.invertArrow(id)">Last Interaction<span id="lastInteraction" class="glyphicon glyphicon-chevron-down"></span></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="contact in vm.contactsView.contacts | filter: {name: searchText} | orderBy: sortType: sortReverse">
                             <td>{{contact.name}}</td>
-                            <td>{{contact.email}}</td>
-                            <td>{{contact.phoneNumber}}</td>
                             <td>{{contact.company.companyName}}</td>
                             <td>{{contact.jobTitle}}</td>
+                            <td>{{contact.email}}</td>
+                            <td>{{contact.phoneNumber}}</td>
                             <td>{{contact.country}}</td>
                             <td>{{contact.city}}</td>
+                            <td>{{contact.lastInteraction | date: 'short'}}</td>
                             <td id="manageRow"><a href="/contactDetails/{{contact.id}}" class="btn btn-primary">Manage</a></td>
                         </tr>
                     </tbody>

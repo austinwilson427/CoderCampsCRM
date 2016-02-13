@@ -10,7 +10,6 @@ var MyApp;
                 this.$state = $state;
                 this.contact = {};
                 this.contactView = this.contactService.getOneContact($stateParams['id']);
-                debugger;
             }
             ContactDetailsController.prototype.deleteContact = function () {
                 return this.contactService.deleteContact(this.contactView.contact.id).then(this.$location.path("/contacts"));
@@ -22,6 +21,7 @@ var MyApp;
                 $(".tdEdit").removeAttr("contenteditable").removeAttr("style");
                 this.contact.id = this.contactView.contact.id;
                 this.contact.companyId = this.contactView.contact.companyId;
+                this.contact.lastInteraction = $("#lastInteraction").text();
                 this.contact.name = $("#name").text();
                 this.contact.email = $("#email").text();
                 this.contact.phoneNumber = $("#phoneNumber").text();
@@ -33,9 +33,10 @@ var MyApp;
                 this.contact.streetAddress = $("#streetAddress").text();
                 return this.contactService.editContact(this.contact);
             };
-            ContactDetailsController.prototype.chooseCompany = function (companyId) {
+            ContactDetailsController.prototype.chooseCompany = function () {
                 this.contact.id = this.contactView.contact.id;
-                this.contact.companyId = companyId;
+                this.contact.companyId = this.companyChoice;
+                this.contact.lastInteraction = $("#lastInteraction").text();
                 this.contact.name = $("#name").text();
                 this.contact.email = $("#email").text();
                 this.contact.phoneNumber = $("#phoneNumber").text();
@@ -44,7 +45,7 @@ var MyApp;
                 this.contact.state = $("#state").text();
                 this.contact.zip = $("#zip").text();
                 this.contact.streetAddress = $("#streetAddress").text();
-                return this.contactService.editContact(this.contact);
+                return this.contactService.editContact(this.contact).then(this.$state.reload());
             };
             ContactDetailsController.prototype.addInteraction = function () {
                 this.interaction.contactId = this.contactView.contact.id;
@@ -58,4 +59,3 @@ var MyApp;
         Controllers.ContactDetailsController = ContactDetailsController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=contactDetailsController.js.map

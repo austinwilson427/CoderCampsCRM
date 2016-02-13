@@ -8,7 +8,7 @@ var MyApp;
                 this.$location = $location;
                 this.$uibModal = $uibModal;
                 this.$state = $state;
-                this.contactsView = contactService.getAllContacts();
+                this.showAllContacts();
             }
             ContactListController.prototype.openNewContactModal = function () {
                 this.$uibModal.open({
@@ -36,6 +36,9 @@ var MyApp;
                     _this.contactsView = result;
                 });
             };
+            ContactListController.prototype.showAllContacts = function () {
+                this.contactsView = this.contactService.getAllContacts();
+            };
             ContactListController.prototype.invertArrow = function (id) {
                 if ($(id).attr("glyphicon glyphicon-chevron-down")) {
                     $(id).removeAttr("glyphicon glyphicon-chevron-down");
@@ -54,4 +57,3 @@ var MyApp;
         Controllers.ContactListController = ContactListController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=contactListController.js.map

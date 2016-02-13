@@ -12,7 +12,6 @@ namespace CoderCampsCRM.Repositories
     public class ContactListViewRepository : IContactListViewRepository
     {
         private IGenericRepository _repo;
-        private ApplicationDbContext _db = new ApplicationDbContext();
 
         public ContactListViewRepository(IGenericRepository repo)
         {
@@ -69,8 +68,8 @@ namespace CoderCampsCRM.Repositories
             var companies = _repo.Query<Company>().ToList();
             var tasks = _repo.Query<UserTask>().ToList();
             var interactions = _repo.Query<ContactInteraction>().ToList();
-            var contacts = _db.DealContacts.Where(d => d.DealId == id).Select(c => c.Contact).ToList();
-            var pb = _db.Contacts.ToList();
+            //var contacts = _db.DealContacts.Where(d => d.DealId == id).Select(c => c.Contact).ToList();
+            var contacts = _repo.Query<DealContact>().Where(d => d.DealId == id).Select(c => c.Contact).ToList();
             var contactDealsViewModel = new ContactListViewModel
             {
                 Companies = companies,
@@ -90,7 +89,7 @@ namespace CoderCampsCRM.Repositories
             var deals = _repo.Query<Deal>().ToList();
             var companies = _repo.Query<Company>().ToList();
             var tasks = _repo.Query<UserTask>().ToList();
-            var contacts = db.TaskContacts.Where(t => t.TaskId == id).Select(c => c.Contact).ToList();
+            var contacts = _repo.Query<TaskContact>().Where(d => d.TaskId == id).Select(c => c.Contact).ToList();
             var interactions = _repo.Query<ContactInteraction>().ToList();
 
             var contactTasksViewModel = new ContactListViewModel

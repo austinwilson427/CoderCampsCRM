@@ -37,16 +37,30 @@ var MyApp;
                 return this.contactFilterResource.filterByTasks({ id: id }).$promise;
             };
             ContactService.prototype.getAllContacts = function () {
-                return this.contactListResource.get();
+                var data = this.contactListResource.get();
+                data.$promise.then(function () {
+                    for (var _i = 0, _a = data.interactions; _i < _a.length; _i++) {
+                        var interaction = _a[_i];
+                        interaction.date = new Date(Date.parse(interaction.date));
+                    }
+                });
+                return data;
             };
             ContactService.prototype.getOneContact = function (id) {
-                return this.contactDetailResource.get({ id: id });
+                var data = this.contactDetailResource.get({ id: id });
+                data.$promise.then(function () {
+                    for (var _i = 0, _a = data.interactions; _i < _a.length; _i++) {
+                        var interaction = _a[_i];
+                        interaction.date = new Date(Date.parse(interaction.date));
+                    }
+                });
+                return data;
             };
             ContactService.prototype.addContact = function (contact) {
                 return this.contactResource.save(contact).$promise;
             };
             ContactService.prototype.editContact = function (contact) {
-                return this.contactResource.save(contact);
+                return this.contactResource.save(contact).$promise;
             };
             ContactService.prototype.deleteContact = function (id) {
                 return this.contactResource.remove({ id: id }).$promise;
@@ -63,4 +77,3 @@ var MyApp;
         angular.module("MyApp").service("contactService", ContactService);
     })(Services = MyApp.Services || (MyApp.Services = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=contactService.js.map

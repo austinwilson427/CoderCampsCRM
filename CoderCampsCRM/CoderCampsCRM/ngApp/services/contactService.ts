@@ -45,11 +45,24 @@
         }
 
         public getAllContacts() {
-            return this.contactListResource.get();
+            let data = this.contactListResource.get();
+            data.$promise.then(() => {
+                for (let interaction of data.interactions) {
+                    interaction.date = new Date(Date.parse(interaction.date));
+                }
+            });
+            return data;
         }
 
         public getOneContact(id: number) {
-            return this.contactDetailResource.get({ id: id });
+            let data = this.contactDetailResource.get({ id: id });
+            data.$promise.then(() => {
+                for (let interaction of data.interactions) {
+                    interaction.date = new Date(Date.parse(interaction.date));
+                }
+            });
+
+            return data;
         }
 
         public addContact(contact) {
@@ -57,7 +70,7 @@
         }
 
         public editContact(contact) {
-            return this.contactResource.save(contact);
+            return this.contactResource.save(contact).$promise;
         }
 
         public deleteContact(id: number) {
