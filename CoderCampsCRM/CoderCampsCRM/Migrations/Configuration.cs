@@ -32,8 +32,8 @@ namespace CoderCampsCRM.Migrations
                     FirstName = "deneme",
                     LastName = "deneme",
                     Companies = new Company[]
-                    {
-                        new Company {
+            {
+                new Company {
                                 CompanyName = "The Verge",
                                 CompanyDomainName ="www.theverge.com",
                                 CompanyPhoneNumber ="833-322-4422",
@@ -100,7 +100,7 @@ namespace CoderCampsCRM.Migrations
                     LastName = "deneme",
                     Companies = new Company[]
                     {
-                         new Company {
+                 new Company {
                                 CompanyName = "scotch-soda",
                                 CompanyDomainName ="www.scotch-soda.com",
                                 CompanyPhoneNumber ="1- (866) 544-1557",
@@ -146,13 +146,13 @@ namespace CoderCampsCRM.Migrations
                                     CloseDate = DateTime.Today,
                                     isArchived = false}
                     },
-                };
+            };
 
 
 
 
 
-                UserTask[] tasks = new UserTask[] {
+            UserTask[] tasks = new UserTask[] {
 
 
                 new UserTask {Id = 1, Status = "In Progress", Description = "Submit ", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="Email"},
@@ -163,10 +163,11 @@ namespace CoderCampsCRM.Migrations
 
 
         };
-                context.Tasks.AddOrUpdate(t => t.Id, tasks);
+            context.Tasks.AddOrUpdate(t => t.Id, tasks);
 
-            }
+
         }
     }
+}
 }
 

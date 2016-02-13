@@ -3,13 +3,18 @@ var MyApp;
     var Controllers;
     (function (Controllers) {
         var DealInfoController = (function () {
-            function DealInfoController(dealService, $stateParams, dealLogItemService) {
+            function DealInfoController(dealService, $stateParams, dealLogItemService, dealContactService, contactService, $route, $location) {
                 this.dealService = dealService;
                 this.$stateParams = $stateParams;
                 this.dealLogItemService = dealLogItemService;
+                this.dealContactService = dealContactService;
+                this.contactService = contactService;
+                this.$route = $route;
+                this.$location = $location;
                 this.routeId = $stateParams["id"];
                 this.getDeal();
                 this.getDealLogItemsByRouteId();
+                this.getContactsByDealId();
             }
             DealInfoController.prototype.getDeal = function () {
                 var _this = this;
@@ -21,9 +26,41 @@ var MyApp;
             DealInfoController.prototype.getDealLogItemsByRouteId = function () {
                 var _this = this;
                 this.dealLogItemService.listDealLogItemsByDealId(this.routeId).$promise.then(function (result) {
-                    console.log(result);
                     _this.dealLogItems = result;
-                    //console.log(this.dealLogItems);
+                });
+            };
+            DealInfoController.prototype.getContactsByDealId = function () {
+                var _this = this;
+                this.dealContactService.getAllDealContactsByDealId(this.routeId).$promise.then(function (result) {
+                    _this.dealContacts = result;
+                    _this.contactService.getAllContacts().$promise.then(function (result) {
+                        _this.allContacts = result;
+                        for (var i = 0; i < _this.dealContacts.length; i++) {
+                            for (var j = 0; j < _this.allContacts.contacts.length; j++) {
+                                if (_this.allContacts.contacts[j].id == _this.dealContacts[i].contactId) {
+                                    _this.allContacts.contacts.splice(j, 1);
+                                }
+                            }
+                        }
+                    });
+                });
+            };
+            DealInfoController.prototype.addDealContact = function () {
+                var _this = this;
+                var dealContactToAdd = {
+                    dealId: null,
+                    contactId: null
+                };
+                dealContactToAdd.dealId = this.routeId;
+                dealContactToAdd.contactId = this.contactIdToAdd;
+                this.dealContactService.saveDealContact(dealContactToAdd).then(function (result) {
+                    _this.getContactsByDealId();
+                });
+            };
+            DealInfoController.prototype.deleteDealContact = function (id) {
+                var _this = this;
+                this.dealContactService.deleteDealContact(id).then(function (result) {
+                    _this.getContactsByDealId();
                 });
             };
             return DealInfoController;
@@ -60,9 +97,10 @@ var MyApp;
                 noteToSubmit.content = this.noteContent;
                 noteToSubmit.dealId = this.dealInfo.id;
                 /*Temporary ContactId*/
-                noteToSubmit.contactId = 1;
+                //noteToSubmit.contactId = 1;
                 /*Temporary SubmittedBy*/
                 noteToSubmit.submittedBy = "Austin Wilson";
+                console.log(noteToSubmit);
                 this.dealLogItemService.saveDealLogItem(noteToSubmit).then(function () {
                     location.reload(false);
                 }).catch(function (error) {

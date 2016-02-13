@@ -15,6 +15,42 @@ namespace CoderCampsCRM.Repositories
             this._repo = repo;
         }
 
+        ///////////////Deal-Contacts//////////////
+        //////////////////////////////////////////
+
+        public DealViewModel getAllDealContacts()
+        {
+            var dealContacts = _repo.Query<DealContact>().ToList();
+
+            var deals = _repo.Query<Deal>().ToList();
+
+            var contacts = _repo.Query<Contact>().ToList();
+
+            var dealViewModel = new DealViewModel
+            {
+                DealContactsList = dealContacts
+            };
+
+            return dealViewModel;
+
+        }
+
+        public DealViewModel getAllDealContactsByDealId(int id)
+        {
+            var dealContacts = _repo.Query<DealContact>().Where(dc => dc.DealId == id).ToList();
+
+            var deals = _repo.Query<Deal>().ToList();
+
+            var contacts = _repo.Query<Contact>().ToList();
+
+            var dealViewModel = new DealViewModel
+            {
+                DealContactsList = dealContacts
+            };
+
+            return dealViewModel;
+        }
+
         ///////////////DealLogItems///////////////
         //////////////////////////////////////////
 

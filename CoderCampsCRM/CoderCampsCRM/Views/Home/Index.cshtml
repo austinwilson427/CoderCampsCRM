@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/dark-hive/jquery-ui.css">
     <link href="~/Content/ui-bootstrap-csp.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/DragAndDrop.css" rel="stylesheet" />
     <link href="~/Content/simple-sidebar.css" rel="stylesheet" />
 
     
@@ -51,7 +52,7 @@
                         <li><a ui-sref="home">Dashboard <span class="sr-only">(current)</span></a></li>
                         <li><a ui-sref="contacts">Contacts</a></li>
                         <li><a ui-sref="companies">Companies</a></li>
-                        <li><a ui-sref="deals">Deals</a></li>
+                        <li><a ui-sref="deals.list-view">Deals</a></li>
                         <li><a ui-sref="tasks">Tasks</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -97,6 +98,7 @@
     <script src="~/Scripts/angular-ui-router.min.js"></script>
     <script type="text/javascript" src="//api.filestackapi.com/filestack.js"></script>
     <script src="~/Scripts/angular_filepicker.min.js"></script>
+    <script src="~/ngApp/scripts/ngDraggable.js"></script>
 
     <!--App and Services-->
     <script src="~/ngApp/app.js"></script>    
@@ -108,6 +110,7 @@
     <script src="~/ngApp/services/companyService.js"></script>
     <script src="~/ngApp/services/profileServices.js"></script>
     <script src="~/ngApp/services/taskService.js"></script>
+    <script src="~/ngApp/services/dealContactService.js"></script>
 
     <!--Controllers-->
     <script src="~/ngApp/controllers/controllers.js"></script>

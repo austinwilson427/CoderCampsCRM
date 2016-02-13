@@ -193,13 +193,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\ContactFilterViewController.cs" />
     <Compile Include="API\ContactListController.cs" />
     <Compile Include="API\CompaniesController.cs" />
     <Compile Include="API\ContactDetailViewController.cs" />
     <Compile Include="API\ContactListViewController.cs" />
     <Compile Include="API\DealLogItemsController.cs" />
+    <Compile Include="API\DealContactsController.cs" />
     <Compile Include="API\DealsController.cs" />
-    <Compile Include="API\DealsViewController.cs" />
     <Compile Include="API\InteractionsController.cs" />
     <Compile Include="API\MoviesController.cs" />
     <Compile Include="API\TasksController.cs" />
@@ -244,14 +245,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602121856009_initial_fixed.cs" />
-    <Compile Include="Migrations\201602121856009_initial_fixed.Designer.cs">
-      <DependentUpon>201602121856009_initial_fixed.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\ContactLookupModels.cs" />
     <Compile Include="Models\ContactInteraction.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\ProfileUser.cs" />
@@ -276,11 +274,16 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-CoderCampsCRM-20151020080840.mdf" />
+    <Content Include="App_Data\aspnet-CoderCampsCRM-20151020080840_log.ldf">
+      <DependentUpon>aspnet-CoderCampsCRM-20151020080840.mdf</DependentUpon>
+    </Content>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\DragAndDrop.css" />
     <Content Include="Content\simple-sidebar.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="favicon.ico" />
@@ -288,13 +291,13 @@
     <Content Include="GitIgnore\.gitignore" />
     <Content Include="Global.asax" />
     <Content Include="ngApp\scripts\angular_filepicker.min.js" />
+    <Content Include="ngApp\scripts\drag.js" />
+    <Content Include="ngApp\scripts\ngDraggable.js" />
     <Content Include="ngApp\views\about.html" />
     <Content Include="ngApp\views\companies.html" />
     <Content Include="ngApp\views\confirmEmail.html" />
     <Content Include="ngApp\views\contactDetailsView.html" />
     <Content Include="ngApp\views\contactListView.html" />
-    <Content Include="ngApp\views\deletetask.html" />
-    <Content Include="ngApp\views\modals\createcompanyModal.html" />
     <Content Include="ngApp\views\deals-info.html" />
     <Content Include="ngApp\views\deals.html" />
     <Content Include="ngApp\views\externalLogin.html" />
@@ -304,6 +307,7 @@
     <Content Include="ngApp\views\modals\add-deal.html" />
     <Content Include="ngApp\views\modals\archive-deal.html" />
     <Content Include="ngApp\views\modals\companyDetails.html" />
+    <Content Include="ngApp\views\modals\createcompanyModal.html" />
     <Content Include="ngApp\views\modals\delete-deal.html" />
     <Content Include="ngApp\views\modals\edit-deal.html" />
     <Content Include="ngApp\views\modals\contactAddModal.html" />
@@ -311,11 +315,12 @@
     <Content Include="ngApp\views\notFound.html" />
     <Content Include="ngApp\views\profile.html" />
     <Content Include="ngApp\views\register.html" />
-    <Content Include="ngApp\views\addtask.html" />
     <Content Include="ngApp\views\routes\deal-info-task.html" />
     <Content Include="ngApp\views\routes\deal-info-event.html" />
     <Content Include="ngApp\views\routes\deal-info-activity.html" />
     <Content Include="ngApp\views\routes\deal-info-note.html" />
+    <Content Include="ngApp\views\routes\deal-list-view.html" />
+    <Content Include="ngApp\views\routes\deal-table-view.html" />
     <Content Include="ngApp\views\tasks.html" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
@@ -390,7 +395,6 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Scripts\angular-route.min.js.map" />
-    <Content Include="ngApp\scripts\angular_filepicker.min.js" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
@@ -1166,9 +1170,6 @@
     <Content Include="Scripts\version.json" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
@@ -1187,6 +1188,7 @@
     <TypeScriptCompile Include="ngApp\services\accountService.ts" />
     <TypeScriptCompile Include="ngApp\services\contactService.ts" />
     <TypeScriptCompile Include="ngApp\services\companyService.ts" />
+    <TypeScriptCompile Include="ngApp\services\dealContactService.ts" />
     <TypeScriptCompile Include="ngApp\services\dealLogItemService.ts" />
     <TypeScriptCompile Include="ngApp\services\dealService.ts" />
     <TypeScriptCompile Include="ngApp\services\profileServices.ts" />
@@ -1208,11 +1210,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602121856009_initial_fixed.resx">
-      <DependentUpon>201602121856009_initial_fixed.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

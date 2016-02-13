@@ -1,6 +1,6 @@
 ﻿namespace MyApp {
 
-    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router', 'angular-filepicker']).config(($locationProvider: ng.ILocationProvider, $stateProvider: ng.ui.IStateProvider, $urlRouterProvider: ng.ui.IUrlRouterProvider, filepickerProvider) => {
+    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router', 'angular-filepicker', 'ngDraggable']).config(($locationProvider: ng.ILocationProvider, $routeProvider: ng.route.IRouteProvider, $stateProvider: ng.ui.IStateProvider, $urlRouterProvider: ng.ui.IUrlRouterProvider, filepickerProvider) => {
         filepickerProvider.setKey('ANnIsnaUARuBQjAtPZGBQz');
         $stateProvider
             .state('home', {
@@ -12,6 +12,18 @@
             .state('deals', {
                 url: '/deals',
                 templateUrl: '/ngApp/views/deals.html',
+                controller: MyApp.Controllers.DealsController,
+                controllerAs: 'vm'
+            })
+            .state('deals.table-view', {
+                url: '/table-view',
+                templateUrl: '/ngApp/views/routes/deal-table-view.html',
+                controller: MyApp.Controllers.DealTableViewController,
+                controllerAs: 'vm'
+            })
+            .state('deals.list-view', {
+                url: '/list-view',
+                templateUrl: '/ngApp/views/routes/deal-list-view.html',
                 controller: MyApp.Controllers.DealsController,
                 controllerAs: 'vm'
             })
@@ -55,6 +67,12 @@
                 url: '/createcompany',
                 templateUrl: '/ngApp/views/createCompany.html',
                 controller: MyApp.Controllers.CompaniesController,
+                controllerAs: 'vm'
+            })
+            .state('editCompanyModal', {
+                url: '/createcompany',
+                templateUrl: '/ngApp/views/modals/editCompanyModal.html',
+                controller: MyApp.Controllers.EditCompanyController,
                 controllerAs: 'vm'
             })
             .state('contacts', {
