@@ -32,8 +32,8 @@ namespace CoderCampsCRM.Migrations
                     FirstName = "deneme",
                     LastName = "deneme",
                     Companies = new Company[]
-                    {
-                        new Company {
+            {
+                new Company {
                                 CompanyName = "The Verge",
                                 CompanyDomainName ="www.theverge.com",
                                 CompanyPhoneNumber ="833-322-4422",
@@ -71,12 +71,12 @@ namespace CoderCampsCRM.Migrations
                     Deals = new Deal[]
                     {
                         new Deal {  DealName = "Deal 3",
-                                    Stage = "Appintment Scheduled",
+                                    Stage = "Appointment Scheduled",
                                     Amount = 7000m,
                                     CloseDate = DateTime.Today,
                                     isArchived = true},
                         new Deal {  DealName = "Deal 4",
-                                    Stage = "COntract Sent",
+                                    Stage = "Contract Sent",
                                     Amount = 150000m,
                                     CloseDate = DateTime.Today,
                                     isArchived = false}
@@ -100,7 +100,7 @@ namespace CoderCampsCRM.Migrations
                     LastName = "deneme",
                     Companies = new Company[]
                     {
-                         new Company {
+                 new Company {
                                 CompanyName = "scotch-soda",
                                 CompanyDomainName ="www.scotch-soda.com",
                                 CompanyPhoneNumber ="1- (866) 544-1557",
@@ -136,23 +136,23 @@ namespace CoderCampsCRM.Migrations
                     Deals = new Deal[]
                     {
                         new Deal {  DealName = "Deal 1",
-                                    Stage = "Appintment Scheduled",
+                                    Stage = "Appointment Scheduled",
                                     Amount = 5000m,
                                     CloseDate = DateTime.Today,
-                                    isArchived = true},
+                                    isArchived = false},
                         new Deal {  DealName = "Deal 2",
-                                    Stage = "COntract Sent",
+                                    Stage = "Contract Sent",
                                     Amount = 50000m,
                                     CloseDate = DateTime.Today,
                                     isArchived = false}
                     },
-                };
+            };
 
 
 
 
 
-                UserTask[] tasks = new UserTask[] {
+            UserTask[] tasks = new UserTask[] {
 
 
                 new UserTask {Id = 1, Status = "In Progress", Description = "Submit ", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="Email"},
@@ -163,10 +163,11 @@ namespace CoderCampsCRM.Migrations
 
 
         };
-                context.Tasks.AddOrUpdate(t => t.Id, tasks);
+            context.Tasks.AddOrUpdate(t => t.Id, tasks);
 
-            }
+
         }
     }
+}
 }
 

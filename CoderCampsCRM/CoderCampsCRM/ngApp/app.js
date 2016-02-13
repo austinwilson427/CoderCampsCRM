@@ -1,6 +1,6 @@
 var MyApp;
 (function (MyApp) {
-    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router', 'angular-filepicker']).config(function ($locationProvider, $stateProvider, $urlRouterProvider, filepickerProvider) {
+    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router', 'angular-filepicker', 'ngDraggable']).config(function ($locationProvider, $routeProvider, $stateProvider, $urlRouterProvider, filepickerProvider) {
         filepickerProvider.setKey('ANnIsnaUARuBQjAtPZGBQz');
         $stateProvider
             .state('home', {
@@ -15,10 +15,34 @@ var MyApp;
             controller: MyApp.Controllers.DealsController,
             controllerAs: 'vm'
         })
+            .state('deals.table-view', {
+            url: '/table-view',
+            templateUrl: '/ngApp/views/routes/deal-table-view.html',
+            controller: MyApp.Controllers.DealTableViewController,
+            controllerAs: 'vm'
+        })
+            .state('deals.list-view', {
+            url: '/list-view',
+            templateUrl: '/ngApp/views/routes/deal-list-view.html',
+            controller: MyApp.Controllers.DealsController,
+            controllerAs: 'vm'
+        })
             .state('tasks', {
             url: '/tasks',
             templateUrl: '/ngApp/views/tasks.html',
-            controller: MyApp.Controllers.HomeController,
+            controller: MyApp.Controllers.TaskListController,
+            controllerAs: 'vm'
+        })
+            .state('addtask', {
+            url: '/addtask',
+            templateUrl: '/ngApp/views/addtask.html',
+            controller: MyApp.Controllers.TaskAddController,
+            controllerAs: 'vm'
+        })
+            .state('deletetask', {
+            url: '/deletetask/:id',
+            templateUrl: '/ngApp/views/deletetask.html',
+            controller: MyApp.Controllers.TaskDeleteController,
             controllerAs: 'vm'
         })
             .state('taskdetails', {
@@ -43,6 +67,12 @@ var MyApp;
             url: '/createcompany',
             templateUrl: '/ngApp/views/createCompany.html',
             controller: MyApp.Controllers.CompaniesController,
+            controllerAs: 'vm'
+        })
+            .state('editCompanyModal', {
+            url: '/createcompany',
+            templateUrl: '/ngApp/views/modals/editCompanyModal.html',
+            controller: MyApp.Controllers.EditCompanyController,
             controllerAs: 'vm'
         })
             .state('contacts', {
