@@ -1,7 +1,7 @@
 var MyApp;
 (function (MyApp) {
     angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router', 'angular-filepicker']).config(function ($locationProvider, $stateProvider, $urlRouterProvider, filepickerProvider) {
-        filepickerProvider.setKey(' ANnIsnaUARuBQjAtPZGBQz');
+        filepickerProvider.setKey('ANnIsnaUARuBQjAtPZGBQz');
         $stateProvider
             .state('home', {
             url: '/',
@@ -19,6 +19,12 @@ var MyApp;
             url: '/tasks',
             templateUrl: '/ngApp/views/tasks.html',
             controller: MyApp.Controllers.HomeController,
+            controllerAs: 'vm'
+        })
+            .state('taskdetails', {
+            url: '/task-details',
+            templateUrl: '/ngApp/views/task-details.html',
+            controller: MyApp.Controllers.TaskListController,
             controllerAs: 'vm'
         })
             .state('about', {

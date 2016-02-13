@@ -3,11 +3,14 @@ var MyApp;
     var Controllers;
     (function (Controllers) {
         var CompaniesController = (function () {
-            function CompaniesController($uibModal, companiesService, $location) {
+            function CompaniesController($uibModal, companiesService, contactService, $location) {
                 this.$uibModal = $uibModal;
                 this.companiesService = companiesService;
+                this.contactService = contactService;
                 this.$location = $location;
                 this.companies = this.companiesService.getCompanies();
+                this.contactsView = contactService.getAllContacts();
+                console.log(this.contactsView);
             }
             CompaniesController.prototype.showDetailsModal = function (id) {
                 this.$uibModal.open({
@@ -31,11 +34,19 @@ var MyApp;
                     size: 'lg'
                 });
             };
+            CompaniesController.prototype.createcompanyModal = function () {
+                this.$uibModal.open({
+                    templateUrl: "/ngApp/views/modals/createcompanyModal.html",
+                    controller: CompaniesController,
+                    controllerAs: 'vm',
+                    size: 'lg'
+                });
+            };
             CompaniesController.prototype.save = function () {
                 var _this = this;
                 this.companiesService.createCompany(this.company).then(function () {
                     _this.company = _this.companiesService.getCompanies();
-                    _this.$location.path("/createcompany");
+                    _this.$location.path("/companies");
                 });
             };
             CompaniesController.prototype.deleteCompany = function (id) {

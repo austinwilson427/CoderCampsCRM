@@ -33,22 +33,40 @@
         }
 
         public filterByCompanies(id: number) {
-            return this.contactFilterResource.filterByCompanies({ id: id }).$promise;
+            let data = this.contactFilterResource.filterByCompanies({ id: id });
+            data.$promise.then(() => {
+                for (let contact of data.contacts) {
+                    contact.lastInteraction = new Date(Date.parse(contact.lastInteraction));
+                }
+            });
+            return data.$promise;
         }
 
         public filterByDeals(id: number) {
-            return this.contactFilterResource.filterByDeals({ id: id }).$promise;
+            let data = this.contactFilterResource.filterByDeals({ id: id });
+            data.$promise.then(() => {
+                for (let contact of data.contacts) {
+                    contact.lastInteraction = new Date(Date.parse(contact.lastInteraction));
+                }
+            });
+            return data.$promise;
         }
 
         public filterByTasks(id: number) {
-            return this.contactFilterResource.filterByTasks({ id: id }).$promise;
+            let data = this.contactFilterResource.filterByTasks({ id: id });
+            data.$promise.then(() => {
+                for (let contact of data.contacts) {
+                    contact.lastInteraction = new Date(Date.parse(contact.lastInteraction));
+                }
+            });
+            return data.$promise;
         }
 
         public getAllContacts() {
             let data = this.contactListResource.get();
             data.$promise.then(() => {
-                for (let interaction of data.interactions) {
-                    interaction.date = new Date(Date.parse(interaction.date));
+                for (let contact of data.contacts) {
+                    contact.lastInteraction = new Date(Date.parse(contact.lastInteraction));
                 }
             });
             return data;
@@ -61,7 +79,6 @@
                     interaction.date = new Date(Date.parse(interaction.date));
                 }
             });
-
             return data;
         }
 

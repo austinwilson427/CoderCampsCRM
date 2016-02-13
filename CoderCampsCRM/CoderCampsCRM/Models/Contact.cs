@@ -24,7 +24,7 @@ namespace CoderCampsCRM.Models
         [ForeignKey("UserId")]        
         public ApplicationUser User { get; set; }
 
-        public int ?CompanyId { get; set; }
+        public int? CompanyId { get; set; }
         [ForeignKey("CompanyId")]
         public Company Company { get; set; }
 

@@ -8,10 +8,12 @@
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/dark-hive/jquery-ui.css">
     <link href="~/Content/ui-bootstrap-csp.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
     <link href="~/Content/simple-sidebar.css" rel="stylesheet" />
+
+    
     
 </head>
 <body ng-controller="AccountController as account">
@@ -64,8 +66,8 @@
                                 <li role="separator" class="divider"></li>
                                 <li><a href="#">Settings</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a ui-sref="/login" ng-show="!account.isLoggedIn()">Log In</a></li>
-                                <li><a ui-sref="/" ng-click="account.logout()" ng-show="account.isLoggedIn()">Log Out</a></li>
+                                <li><a href="#" ng-click="account.showModal()" ng-show="!account.isLoggedIn()">Log In</a></li>
+                                <li><a href="#" ng-click="account.logout()" ng-show="account.isLoggedIn()">Log Out</a></li>
                             </ul>
                         </li>
                         <li class="divider-vertical"></li>
@@ -84,6 +86,7 @@
 
     <!--Jquery and Bootstrap Files-->
     <script src="~/Scripts/jquery-2.2.0.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
     <!--Angular-->
@@ -92,18 +95,19 @@
     <script src="~/Scripts/angular-resource.min.js"></script>
     <script src="~/Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
     <script src="~/Scripts/angular-ui-router.min.js"></script>
-    <script src="~/ngApp/scripts/angular_filepicker.min.js"></script>
     <script type="text/javascript" src="//api.filestackapi.com/filestack.js"></script>
-    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/angular_filepicker.min.js"></script>
 
     <!--App and Services-->
-    <script src="~/ngApp/app.js"></script>
+    <script src="~/ngApp/app.js"></script>    
     <script src="~/ngApp/services/services.js"></script>
     <script src="~/ngApp/services/accountService.js"></script>
     <script src="~/ngApp/services/dealService.js"></script>
+    <script src="~/ngApp/services/dealLogItemService.js"></script>
     <script src="~/ngApp/services/contactService.js"></script>
     <script src="~/ngApp/services/companyService.js"></script>
     <script src="~/ngApp/services/profileServices.js"></script>
+    <script src="~/ngApp/services/taskService.js"></script>
 
     <!--Controllers-->
     <script src="~/ngApp/controllers/controllers.js"></script>

@@ -156,11 +156,19 @@ input.amount_input{
     margin-bottom: 40px;
 }
 
+.first_main_row{
+    margin-bottom: 40px;
+}
+
 .text_wrap{
     width: 80%;
     margin: auto;
 }
 
+.log_item_wrap{
+    width: 90%;
+    margin: auto;
+}
 .activity_button_wrap{
     width: 80%;
     margin: auto;
@@ -171,6 +179,36 @@ textarea.deal_notes{
     max-width: 100%;
     width: 100%;
 }
+
+table.log_items td{
+    
+}
+
+td.submitted_cell, td.start_time_cell{
+    font-weight: 600;
+}
+
+td.submitted_cell{
+    border-right: none !important;
+}
+
+td.start_time_cell{
+    border-left: none !important;
+    text-align: right;
+}
+
+td.content_cell{
+    padding: 20px 5px !important;
+}
+
+table.activity{
+    width: 100%;
+}
+
+table.activity td{
+    padding: 5px;
+}
+
 /*-------------------Contacts Section--------------------------*/
 
 .error {

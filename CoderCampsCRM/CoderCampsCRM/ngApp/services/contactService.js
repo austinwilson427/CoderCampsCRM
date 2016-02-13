@@ -28,20 +28,41 @@ var MyApp;
                 });
             }
             ContactService.prototype.filterByCompanies = function (id) {
-                return this.contactFilterResource.filterByCompanies({ id: id }).$promise;
+                var data = this.contactFilterResource.filterByCompanies({ id: id });
+                data.$promise.then(function () {
+                    for (var _i = 0, _a = data.contacts; _i < _a.length; _i++) {
+                        var contact = _a[_i];
+                        contact.lastInteraction = new Date(Date.parse(contact.lastInteraction));
+                    }
+                });
+                return data.$promise;
             };
             ContactService.prototype.filterByDeals = function (id) {
-                return this.contactFilterResource.filterByDeals({ id: id }).$promise;
+                var data = this.contactFilterResource.filterByDeals({ id: id });
+                data.$promise.then(function () {
+                    for (var _i = 0, _a = data.contacts; _i < _a.length; _i++) {
+                        var contact = _a[_i];
+                        contact.lastInteraction = new Date(Date.parse(contact.lastInteraction));
+                    }
+                });
+                return data.$promise;
             };
             ContactService.prototype.filterByTasks = function (id) {
-                return this.contactFilterResource.filterByTasks({ id: id }).$promise;
+                var data = this.contactFilterResource.filterByTasks({ id: id });
+                data.$promise.then(function () {
+                    for (var _i = 0, _a = data.contacts; _i < _a.length; _i++) {
+                        var contact = _a[_i];
+                        contact.lastInteraction = new Date(Date.parse(contact.lastInteraction));
+                    }
+                });
+                return data.$promise;
             };
             ContactService.prototype.getAllContacts = function () {
                 var data = this.contactListResource.get();
                 data.$promise.then(function () {
-                    for (var _i = 0, _a = data.interactions; _i < _a.length; _i++) {
-                        var interaction = _a[_i];
-                        interaction.date = new Date(Date.parse(interaction.date));
+                    for (var _i = 0, _a = data.contacts; _i < _a.length; _i++) {
+                        var contact = _a[_i];
+                        contact.lastInteraction = new Date(Date.parse(contact.lastInteraction));
                     }
                 });
                 return data;
