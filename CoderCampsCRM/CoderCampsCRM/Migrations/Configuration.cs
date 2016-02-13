@@ -71,12 +71,12 @@ namespace CoderCampsCRM.Migrations
                     Deals = new Deal[]
                     {
                         new Deal {  DealName = "Deal 3",
-                                    Stage = "Appintment Scheduled",
+                                    Stage = "Appointment Scheduled",
                                     Amount = 7000m,
                                     CloseDate = DateTime.Today,
                                     isArchived = true},
                         new Deal {  DealName = "Deal 4",
-                                    Stage = "COntract Sent",
+                                    Stage = "Contract Sent",
                                     Amount = 150000m,
                                     CloseDate = DateTime.Today,
                                     isArchived = false}
