@@ -31,18 +31,18 @@
                 <table class="table table-bordered table-hover deals_table">
                     <thead>
                         <tr>
-                            <th class="hover_blue" ng-click="sortType = 'name'; sortReverse = !sortReverse; vm.invertArrow(id)">Name<span id="name" class="glyphicon glyphicon-chevron-down"></span></th>                                          
-                            <th class="hover_blue" ng-click="sortType = 'companyName'; sortReverse = !sortReverse; vm.invertArrow(id)">Company<span id="company" class="glyphicon glyphicon-chevron-down"></span></th>
-                            <th class="hover_blue" ng-click="sortType = 'jobTitle'; sortReverse = !sortReverse; vm.invertArrow(id)">Job Title<span id="jobTitle" class="glyphicon glyphicon-chevron-down"></span></th>
+                            <th class="hover_blue" ng-click="sortType = 'name'; sortReverse = !sortReverse">Name<span ng-show="sortType == 'name' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'name' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>                                          
+                            <th class="hover_blue" ng-click="sortType = 'companyName'; sortReverse = !sortReverse">Company<span ng-show="sortType == 'companyName' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'companyName' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>
+                            <th class="hover_blue" ng-click="sortType = 'jobTitle'; sortReverse = !sortReverse">Job Title<span ng-show="sortType == 'jobTitle' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'jobTitle' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>
                             <th class="hover_blue" style="cursor: default">Email</th>
                             <th class="hover_blue" style="cursor: default">Phone Number</th>
-                            <th class="hover_blue" ng-click="sortType = 'country'; sortReverse = !sortReverse; vm.invertArrow(id)">Country<span id="country" class="glyphicon glyphicon-chevron-down"></span></th>                       
-                            <th class="hover_blue" ng-click="sortType = 'city'; sortReverse = !sortReverse; vm.invertArrow(id)">City<span id="city" class="glyphicon glyphicon-chevron-down"></span></th>
-                            <th class="hover_blue" ng-click="sortType = 'lastInteraction'; sortReverse = !sortReverse; vm.invertArrow(id)">Last Interaction<span id="lastInteraction" class="glyphicon glyphicon-chevron-down"></span></th>
+                            <th class="hover_blue" ng-click="sortType = 'country'; sortReverse = !sortReverse">Country<span ng-show="sortType == 'country' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'country' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>                       
+                            <th class="hover_blue" ng-click="sortType = 'city'; sortReverse = !sortReverse">City<span ng-show="sortType == 'city' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'city' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>
+                            <th class="hover_blue" ng-click="sortType = 'lastInteraction'; sortReverse = !sortReverse">Last Interaction<span ng-show="sortType == 'lastInteraction' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'lastInteraction' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="contact in vm.contactsView.contacts | filter: {name: searchText} | orderBy: sortType: sortReverse">
+                        <tr ng-repeat="contact in vm.contactsView.contacts | filter: {name: searchText} | orderBy:sortType:sortReverse">
                             <td>{{contact.name}}</td>
                             <td>{{contact.company.companyName}}</td>
                             <td>{{contact.jobTitle}}</td>

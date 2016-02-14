@@ -8,6 +8,8 @@ var MyApp;
                 this.$location = $location;
                 this.$uibModal = $uibModal;
                 this.$state = $state;
+                this.sortType = name;
+                this.sortReverse = false;
                 this.showAllContacts();
             }
             ContactListController.prototype.openNewContactModal = function () {
@@ -38,16 +40,6 @@ var MyApp;
             };
             ContactListController.prototype.showAllContacts = function () {
                 this.contactsView = this.contactService.getAllContacts();
-            };
-            ContactListController.prototype.invertArrow = function (id) {
-                if ($(id).attr("glyphicon glyphicon-chevron-down")) {
-                    $(id).removeAttr("glyphicon glyphicon-chevron-down");
-                    $(id).attr("glyphicon glyphicon-chevron-up");
-                }
-                else {
-                    $(id).removeAttr("glyphicon glyphicon-chevron-up");
-                    $(id).attr("glyphicon glyphicon-chevron-down");
-                }
             };
             ContactListController.prototype.openContactDetailsPage = function (id) {
                 this.$location.path('/contactDetails/' + id);

@@ -4,6 +4,8 @@
 
         public contactsView;
         public filterChoice;
+        public sortType = name;
+        public sortReverse = false;
 
         constructor(private contactService: MyApp.Services.ContactService, private $location: ng.ILocationService, private $uibModal: angular.ui.bootstrap.IModalService, private $state: ng.ui.IStateService) {         
             this.showAllContacts();
@@ -39,18 +41,6 @@
 
         public showAllContacts() {
             this.contactsView = this.contactService.getAllContacts();
-        }
-
-        public invertArrow(id) {
-
-            if ($(id).attr("glyphicon glyphicon-chevron-down")) {
-                $(id).removeAttr("glyphicon glyphicon-chevron-down");
-                $(id).attr("glyphicon glyphicon-chevron-up");
-            }
-            else {
-                $(id).removeAttr("glyphicon glyphicon-chevron-up");
-                $(id).attr("glyphicon glyphicon-chevron-down");
-            }
         }
 
         public openContactDetailsPage(id: number) {
