@@ -31,21 +31,12 @@ namespace CoderCampsCRM.API
         public IHttpActionResult GetADealViewModel(int id)
         {
             var data = _dealRepo.getDealViewModel(id);
-            return Ok(data.Deal);
-        }
+            if(data == null)
+            {
+                return NotFound();
+            }
 
-        [Route("api/deals/company/{id}")]
-        public IHttpActionResult GetAViewModel(int id)
-        {
-            var data = _dealRepo.getDealViewModel(id);
             return Ok(data.Deal);
-        }
-
-        [Route("api/deals/deal-owner/{id}")]
-        public IHttpActionResult GetDealsByOwnerId(int id)
-        {
-            var dealData = _genRepo.Query<Deal>().Where(d => d.ContactId == id);
-            return Ok(dealData);
         }
 
         public IHttpActionResult PostDeal(Deal dealToAdd)
@@ -57,7 +48,7 @@ namespace CoderCampsCRM.API
                 {
                     _genRepo.Add<Deal>(dealToAdd);
                     _genRepo.SaveChanges();
-                    return Ok();
+                    return Ok(dealToAdd);
                 }
                 else
                 {
@@ -70,7 +61,7 @@ namespace CoderCampsCRM.API
                     dealBeingEditted.CompanyId = dealToAdd.CompanyId;
                     dealBeingEditted.isArchived = dealToAdd.isArchived;
                     _genRepo.SaveChanges();
-                    return Ok();
+                    return Ok(dealToAdd);
                 }
             }
             return BadRequest(ModelState);
@@ -82,6 +73,14 @@ namespace CoderCampsCRM.API
             _genRepo.SaveChanges();
             return Ok();
         }
+
+        [Route("api/deals/deal-owner/{id}")]
+        public IHttpActionResult GetDealsByOwnerId(int id)
+        {
+            var dealData = _genRepo.Query<Deal>().Where(d => d.ContactId == id);
+            return Ok(dealData);
+        }
+
     }
 
    
