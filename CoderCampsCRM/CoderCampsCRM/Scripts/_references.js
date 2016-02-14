@@ -1,6 +1,5 @@
 ﻿/// <autosync enabled="true" />
 /// <reference path="../ngapp/scripts/angular_filepicker.min.js" />
-/// <reference path="../ngapp/scripts/drag.js" />
 /// <reference path="../ngapp/scripts/ngdraggable.js" />
 /// <reference path="angular.min.js" />
 /// <reference path="angular-animate.min.js" />
