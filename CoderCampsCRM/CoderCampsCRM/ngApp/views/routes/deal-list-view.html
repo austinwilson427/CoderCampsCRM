@@ -34,16 +34,16 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="row">
+                    <div class="row view_search">
                         <div class="col-md-4">
-                            <a href="#" ng-show="vm.showTrash" ng-click="vm.deleteDealModal()"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-                            <a href="#" ng-show="vm.showTrash" ng-click="vm.archiveDealModal()"><span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span></a>
                             <btn id="menu-toggle" class="btn btn-primary filter_button">Filter</btn>
-                            <a ui-sref="deals.list-view"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a>
-                            <a ui-sref="deals.table-view"><span class="glyphicon glyphicon-th" aria-hidden="true"></span></a>
+                            <div class="btn-group" role="group" aria-label="...">
+                                <a ui-sref="deals.list-view" class="btn btn-default active">List</a>
+                                <a ui-sref="deals.table-view" class="btn btn-default">Table</a>
+                            </div>
                         </div>
                         <div class="col-md-6 form-group no-margin">
-                            <input class="form-control" placeholder="Search all deals in this view..." ng-model="vm.searchPhrase" />
+                            <input class="form-control full" placeholder="Search all deals in this view..." ng-model="vm.searchPhrase" />
                         </div>
                         <div class="col-md-2">
                             <button class="btn btn-primary" ng-click="vm.addDealModal()">+ Add Deal</button>
@@ -53,6 +53,12 @@
                         <div class="col-md-12">
                             <div class="table_wrap">
                                 <table class="table table-hover table-bordered deals_table">
+                                    <tr>
+                                        <td class="trash_cell" ng-show="vm.showTrash">
+                                            <a href="#" ng-click="vm.deleteDealModal()"><span class="glyphicon glyphicon-trash trash_icon" aria-hidden="true"></span></a>
+                                            <a href="#" ng-click="vm.archiveDealModal()"><span class="glyphicon glyphicon-folder-close folder_icon" aria-hidden="true"></span></a>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <th></th>
                                         <th class="hover_blue" ng-click="vm.sortBy('dealName')">Deal Name <span ng-class="vm.menuDirectionName"></span></th>

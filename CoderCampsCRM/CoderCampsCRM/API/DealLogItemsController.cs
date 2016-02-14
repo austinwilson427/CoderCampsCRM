@@ -23,23 +23,19 @@ namespace CoderCampsCRM.API
         public IHttpActionResult GetDealLogItems()
         {
             var dealLogData = _dealRepo.getAllDealLogItemsViewModels();
-            //var dealLogData = _genRepo.Query<DealLogItem>();
             return Ok(dealLogData.DealLogItemsList);
         }
 
         public IHttpActionResult GetADealLogItem(int id)
         {
             var dealData = _dealRepo.getDealLogItemViewModel(id);
-            //var dealData = _genRepo.Find<DealLogItem>();
-            return Ok(dealData.DealLogItem);
-        }
 
-        [Route("api/deallogitems/deal/{id}")]
-        public IHttpActionResult GetDealLogItemsByDealId(int id)
-        {
-            var dealData = _dealRepo.getDealLogItemViewModelByDealId(id);
-            //var dealData = _genRepo.Query<DealLogItem>().Where(d => d.DealId == id);
-            return Ok(dealData.DealLogItemsList);
+            if (dealData == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(dealData.DealLogItem);
         }
 
         public IHttpActionResult PostDealLogItem(DealLogItem logItemToAdd)
@@ -50,7 +46,7 @@ namespace CoderCampsCRM.API
                 {
                     _genRepo.Add<DealLogItem>(logItemToAdd);
                     _genRepo.SaveChanges();
-                    return Ok();
+                    return Ok(logItemToAdd);
                 }
                 else
                 {
@@ -64,18 +60,27 @@ namespace CoderCampsCRM.API
                     logItemBeingEditted.DealId = logItemToAdd.DealId;
 
                     _genRepo.SaveChanges();
-                    return Ok();
+                    return Ok(logItemToAdd);
                 }
             }
             return BadRequest(ModelState);
         }
 
-        public IHttpActionResult DeleteDeal(int id)
+        public IHttpActionResult DeleteDealLogItem(int id)
         {
             _genRepo.Delete<DealLogItem>(id);
             _genRepo.SaveChanges();
             return Ok();
         }
+
+        [Route("api/deallogitems/deal/{id}")]
+        public IHttpActionResult GetDealLogItemsByDealId(int id)
+        {
+            var dealData = _dealRepo.getDealLogItemViewModelByDealId(id);
+            //var dealData = _genRepo.Query<DealLogItem>().Where(d => d.DealId == id);
+            return Ok(dealData.DealLogItemsList);
+        }
+
 
 
     }

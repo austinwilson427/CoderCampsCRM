@@ -93,7 +93,7 @@ namespace CoderCampsCRM.Repositories
 
         public DealViewModel getDealLogItemViewModelByDealId(int id)
         {
-            var dealLogItems = _repo.Query<DealLogItem>().ToList();
+            var dealLogItems = _repo.Query<DealLogItem>().Where(dli => dli.DealId == id).ToList();
 
             var deals = _repo.Query<Deal>().ToList();
 
