@@ -35,15 +35,17 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-4 view_search">
                             <a href="#" ng-show="vm.showTrash" ng-click="vm.deleteDealModal()"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                             <a href="#" ng-show="vm.showTrash" ng-click="vm.archiveDealModal()"><span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span></a>
                             <btn id="menu-toggle" class="btn btn-primary filter_button">Filter</btn>
-                            <a ui-sref="deals.list-view"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a>
-                            <a ui-sref="deals.table-view"><span class="glyphicon glyphicon-th" aria-hidden="true"></span></a>
+                            <div class="btn-group" role="group" aria-label="...">
+                                <a ui-sref="deals.list-view" class="btn btn-default">List</a>
+                                <a ui-sref="deals.table-view" class="btn btn-default active">Table</a>
+                            </div>
                         </div>
                         <div class="col-md-6 form-group no-margin">
-                            <input class="form-control" placeholder="Search all deals in this view..." ng-model="vm.searchPhrase" />
+                            <input class="form-control full" placeholder="Search all deals in this view..." ng-model="vm.searchPhrase" />
                         </div>
                         <div class="col-md-2">
                             <button class="btn btn-primary" ng-click="vm.addDealModal()">+ Add Deal</button>
