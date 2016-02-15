@@ -9,6 +9,24 @@
                 controller: MyApp.Controllers.HomeController,
                 controllerAs: 'controller'
             })
+            .state('externalRegister', {
+                url: '/externalRegister',
+                templateUrl: '/ngApp/views/externalRegister.html',
+                controller: MyApp.Controllers.ExternalRegisterController,
+                controllerAs: 'controller'
+            })
+            .state('externalLogin', {
+                url: '/externalLogin',
+                templateUrl: '/ngApp/views/externalLogin.html',
+                controller: MyApp.Controllers.ExternalLoginController,
+                controllerAs: 'controller'
+            })
+            .state('login', {
+                url: '/login',
+                templateUrl: '/ngApp/views/login.html',
+                controller: MyApp.Controllers.LoginController,
+                controllerAs: 'controller'
+            })
             .state('deals', {
                 url: '/deals',
                 templateUrl: '/ngApp/views/deals.html',
