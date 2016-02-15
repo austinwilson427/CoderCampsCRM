@@ -56,8 +56,10 @@ namespace CoderCampsCRM
             //app.UseTwitterAuthentication(
             //    new TwitterAuthenticationOptions
             //    {
-            //        ConsumerKey = ConfigurationManager.AppSettings["twitterConsumerKey"],
-            //        ConsumerSecret = ConfigurationManager.AppSettings["twitterConsumerSecret"],
+            //        ConsumerKey = ConfigurationManager.AppSettings["5unqhzhGG0g59zDwxCV1A1S3C
+//"],
+            //        ConsumerSecret = ConfigurationManager.AppSettings["ccTaJBIMyrvaL7BbU6dKk7si77MJTk75JJLZC1pEktcWGOovKO
+//"],
             //        BackchannelCertificateValidator = new Microsoft.Owin.Security.CertificateSubjectKeyIdentifierValidator(new[]
             //        {
             //            "A5EF0B11CEC04103A34A659048B21CE0572D7D47", // VeriSign Class 3 Secure Server CA - G2

@@ -27,6 +27,14 @@
                 controller: MyApp.Controllers.TaskListController,
                 controllerAs: 'vm'
             })
+            ////
+            .state('myAccount', {
+                url: '/tasks',
+                templateUrl: '/ngApp/views/tasks.html',
+                controller: MyApp.Controllers.TaskListController,
+                controllerAs: 'vm'
+            })
+            /////
             .state('about', {
                 url: '/about',
                 templateUrl: '/ngApp/views/about.html',

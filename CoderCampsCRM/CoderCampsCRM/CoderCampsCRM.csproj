@@ -193,10 +193,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\ContactsController.cs" />
+    <Compile Include="API\ContactDetailViewController.cs" />
+    <Compile Include="API\ContactListController.cs" />
+    <Compile Include="API\ContactListViewController.cs" />
     <Compile Include="API\CompaniesController.cs" />
     <Compile Include="API\DealLogItemsController.cs" />
     <Compile Include="API\DealsController.cs" />
+    <Compile Include="API\DealsViewController.cs" />
     <Compile Include="API\InteractionsController.cs" />
     <Compile Include="API\MoviesController.cs" />
     <Compile Include="API\TasksController.cs" />
@@ -241,6 +244,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602122001454_initial.cs" />
+    <Compile Include="Migrations\201602122001454_initial.Designer.cs">
+      <DependentUpon>201602122001454_initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -252,9 +259,19 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\ProfileUser.cs" />
+    <Compile Include="Models\UserTask.cs" />
+    <Compile Include="Models\ViewModels\ContactDetailViewModel.cs" />
+    <Compile Include="Models\ViewModels\ContactListViewModel.cs" />
+    <Compile Include="Models\ViewModels\DealViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
+    <Compile Include="Repositories\ContactDetailViewRepository.cs" />
+    <Compile Include="Repositories\ContactListViewRepository.cs" />
+    <Compile Include="Repositories\DealRepository.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IContactDetailViewRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IContactListViewRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IDealRepository.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -272,21 +289,31 @@
     <Content Include="Global.asax" />
     <Content Include="ngApp\scripts\angular_filepicker.min.js" />
     <Content Include="ngApp\views\about.html" />
+    <Content Include="ngApp\views\companies.html" />
     <Content Include="ngApp\views\confirmEmail.html" />
     <Content Include="ngApp\views\contactDetailsView.html" />
     <Content Include="ngApp\views\contactListView.html" />
+    <Content Include="ngApp\views\deals-info.html" />
     <Content Include="ngApp\views\deals.html" />
     <Content Include="ngApp\views\externalLogin.html" />
     <Content Include="ngApp\views\externalRegister.html" />
     <Content Include="ngApp\views\home.html" />
     <Content Include="ngApp\views\login.html" />
     <Content Include="ngApp\views\modals\add-deal.html" />
+    <Content Include="ngApp\views\modals\archive-deal.html" />
+    <Content Include="ngApp\views\modals\companyDetails.html" />
     <Content Include="ngApp\views\modals\delete-deal.html" />
     <Content Include="ngApp\views\modals\edit-deal.html" />
     <Content Include="ngApp\views\modals\contactAddModal.html" />
+    <Content Include="ngApp\views\modals\editCompanyModal.html" />
+    <Content Include="ngApp\views\myAccount.html" />
     <Content Include="ngApp\views\notFound.html" />
     <Content Include="ngApp\views\profile.html" />
     <Content Include="ngApp\views\register.html" />
+    <Content Include="ngApp\views\routes\deal-info-activity.html" />
+    <Content Include="ngApp\views\routes\deal-info-event.html" />
+    <Content Include="ngApp\views\routes\deal-info-note.html" />
+    <Content Include="ngApp\views\routes\deal-info-task.html" />
     <Content Include="ngApp\views\tasks.html" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
@@ -311,12 +338,15 @@
     <Content Include="Scripts\angular-scenario.js" />
     <Content Include="Scripts\angular-touch.js" />
     <Content Include="Scripts\angular-touch.min.js" />
+    <Content Include="Scripts\angular-ui-router.js" />
+    <Content Include="Scripts\angular-ui-router.min.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\angular_filepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -1149,7 +1179,9 @@
     <TypeScriptCompile Include="ngApp\controllers\companyContoller.ts" />
     <TypeScriptCompile Include="ngApp\controllers\controllers.ts" />
     <TypeScriptCompile Include="ngApp\controllers\dealController.ts" />
+    <TypeScriptCompile Include="ngApp\controllers\dealInfoController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\ProfileController.ts" />
+    <TypeScriptCompile Include="ngApp\controllers\taskController.ts" />
     <TypeScriptCompile Include="ngApp\services\accountService.ts" />
     <TypeScriptCompile Include="ngApp\services\contactService.ts" />
     <TypeScriptCompile Include="ngApp\services\companyService.ts" />
@@ -1157,6 +1189,7 @@
     <TypeScriptCompile Include="ngApp\services\dealService.ts" />
     <TypeScriptCompile Include="ngApp\services\profileServices.ts" />
     <TypeScriptCompile Include="ngApp\services\services.ts" />
+    <TypeScriptCompile Include="ngApp\services\taskService.ts" />
     <TypeScriptCompile Include="Scripts\typings\angular-ui-bootstrap\angular-ui-bootstrap.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angular-ui\angular-ui-router.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angular-ui\angular-ui-sortable.d.ts" />
@@ -1175,8 +1208,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602121856009_initial_fixed.resx">
-      <DependentUpon>201602121856009_initial_fixed.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602122001454_initial.resx">
+      <DependentUpon>201602122001454_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

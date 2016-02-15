@@ -96,6 +96,15 @@ var MyApp;
                     url: null
                 };
             }
+            RegisterController.prototype.showLoginModal = function () {
+                this.$uibModal.open({
+                    templateUrl: "/ngApp/views/login.html",
+                    controller: MyApp.Controllers.LoginController,
+                    controllerAs: "controller",
+                    resolve: {},
+                    size: "sm"
+                });
+            };
             RegisterController.prototype.pickFile = function () {
                 this.closeModal();
                 this.filepickerService.pick({ mimetype: 'image/*' }, this.fileUploaded.bind(this));
@@ -119,7 +128,8 @@ var MyApp;
             RegisterController.prototype.register = function () {
                 var _this = this;
                 this.accountService.register(this.registerUser).then(function () {
-                    _this.$location.path('/login');
+                    _this.closeModal();
+                    _this.showLoginModal();
                 }).catch(function (results) {
                     _this.validationMessages = results;
                 });
@@ -190,4 +200,3 @@ var MyApp;
         Controllers.ConfirmEmailController = ConfirmEmailController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=accountController.js.map
