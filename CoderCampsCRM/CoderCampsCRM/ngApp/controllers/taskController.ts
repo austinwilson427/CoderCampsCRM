@@ -43,7 +43,7 @@
 
         editTask() {
             this.taskService.saveTask(this.taskToEdit).then(() => {
-                this.$location.path("/task-details")
+                this.$location.path("/tasks")
             });
         }
 

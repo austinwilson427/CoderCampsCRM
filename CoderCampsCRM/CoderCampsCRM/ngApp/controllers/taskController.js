@@ -37,7 +37,7 @@ var MyApp;
             TaskEditController.prototype.editTask = function () {
                 var _this = this;
                 this.taskService.saveTask(this.taskToEdit).then(function () {
-                    _this.$location.path("/task-details");
+                    _this.$location.path("/tasks");
                 });
             };
             TaskEditController.prototype.cancelEdit = function () {
