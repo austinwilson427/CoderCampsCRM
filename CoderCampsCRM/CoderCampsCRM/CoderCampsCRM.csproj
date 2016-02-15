@@ -201,7 +201,9 @@
     <Compile Include="API\ContactListController.cs" />
     <Compile Include="API\CompaniesController.cs" />
     <Compile Include="API\ContactDetailViewController.cs" />
+    <Compile Include="API\ContactListController.cs" />
     <Compile Include="API\ContactListViewController.cs" />
+    <Compile Include="API\CompaniesController.cs" />
     <Compile Include="API\DealLogItemsController.cs" />
     <Compile Include="API\DealContactsController.cs" />
     <Compile Include="API\DealsController.cs" />
@@ -256,13 +258,13 @@
     <Compile Include="Models\ContactLookupModels.cs" />
     <Compile Include="Models\ContactInteraction.cs" />
     <Compile Include="Models\Company.cs" />
-    <Compile Include="Models\ProfileUser.cs" />
-    <Compile Include="Models\UserTask.cs" />
-    <Compile Include="Models\ViewModels\ContactDetailViewModel.cs" />
     <Compile Include="Models\Deal.cs" />
     <Compile Include="Models\DealLogItem.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\ProfileUser.cs" />
+    <Compile Include="Models\UserTask.cs" />
+    <Compile Include="Models\ViewModels\ContactDetailViewModel.cs" />
     <Compile Include="Models\ViewModels\ContactListViewModel.cs" />
     <Compile Include="Models\ViewModels\DealViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -271,9 +273,9 @@
     <Compile Include="Repositories\ContactListViewRepository.cs" />
     <Compile Include="Repositories\DealRepository.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
-    <Compile Include="Repositories\Interfaces\IDealRepository.cs" />
-    <Compile Include="Repositories\Interfaces\IContactListViewRepository.cs" />
     <Compile Include="Repositories\Interfaces\IContactDetailViewRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IContactListViewRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IDealRepository.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -311,15 +313,16 @@
     <Content Include="ngApp\views\modals\edit-deal.html" />
     <Content Include="ngApp\views\modals\contactAddModal.html" />
     <Content Include="ngApp\views\modals\editCompanyModal.html" />
+    <Content Include="ngApp\views\myAccount.html" />
     <Content Include="ngApp\views\notFound.html" />
     <Content Include="ngApp\views\profile.html" />
     <Content Include="ngApp\views\register.html" />
-    <Content Include="ngApp\views\routes\deal-info-task.html" />
-    <Content Include="ngApp\views\routes\deal-info-event.html" />
     <Content Include="ngApp\views\routes\deal-info-activity.html" />
+    <Content Include="ngApp\views\routes\deal-info-event.html" />
     <Content Include="ngApp\views\routes\deal-info-note.html" />
     <Content Include="ngApp\views\routes\deal-list-view.html" />
     <Content Include="ngApp\views\routes\deal-table-view.html" />
+    <Content Include="ngApp\views\routes\deal-info-task.html" />
     <Content Include="ngApp\views\tasks.html" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
@@ -352,6 +355,7 @@
     <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\angular_filepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />

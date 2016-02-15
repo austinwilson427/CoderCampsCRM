@@ -83,6 +83,19 @@
         public picUploaded;
         public file;
 
+        public showLoginModal() {
+            this.$uibModal.open({
+                templateUrl: "/ngApp/views/login.html",
+                controller: MyApp.Controllers.LoginController,
+                controllerAs: "controller",
+                resolve: {
+
+                },
+                size: "sm"
+
+            });
+        }
+
         public pickFile() {
             this.closeModal();
             this.filepickerService.pick(
@@ -116,7 +129,9 @@
          
           
             this.accountService.register(this.registerUser).then(() => {
-                this.$location.path('/login');
+                this.closeModal();
+                this.showLoginModal();
+                
             }).catch((results) => {
                 this.validationMessages = results;
             });
