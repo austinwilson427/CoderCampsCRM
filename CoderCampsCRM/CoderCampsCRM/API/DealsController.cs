@@ -31,34 +31,12 @@ namespace CoderCampsCRM.API
         public IHttpActionResult GetADealViewModel(int id)
         {
             var data = _dealRepo.getDealViewModel(id);
+            if(data == null)
+            {
+                return NotFound();
+            }
+
             return Ok(data.Deal);
-        }
-        //public IHttpActionResult GetDealByDealId(int id)
-        //{
-        //    var dealData = _genRepo.Find<Deal>(id);
-        //    return Ok(dealData);
-
-        //}
-        
-
-
-        [Route("api/deals/company/{id}")]
-        public IHttpActionResult GetAViewModel(int id)
-        {
-            var data = _dealRepo.getDealViewModel(id);
-            return Ok(data.Deal);
-        }
-        //public IHttpActionResult GetDealsByCompanyId(int id)
-        //{
-        //    var dealData = _genRepo.Query<Deal>().Where(d => d.CompanyId == id);
-        //    return Ok(dealData);
-        //}
-
-        [Route("api/deals/deal-owner/{id}")]
-        public IHttpActionResult GetDealsByOwnerId(int id)
-        {
-            var dealData = _genRepo.Query<Deal>().Where(d => d.ContactId == id);
-            return Ok(dealData);
         }
 
         public IHttpActionResult PostDeal(Deal dealToAdd)
@@ -70,7 +48,7 @@ namespace CoderCampsCRM.API
                 {
                     _genRepo.Add<Deal>(dealToAdd);
                     _genRepo.SaveChanges();
-                    return Ok();
+                    return Ok(dealToAdd);
                 }
                 else
                 {
@@ -83,7 +61,7 @@ namespace CoderCampsCRM.API
                     dealBeingEditted.CompanyId = dealToAdd.CompanyId;
                     dealBeingEditted.isArchived = dealToAdd.isArchived;
                     _genRepo.SaveChanges();
-                    return Ok();
+                    return Ok(dealToAdd);
                 }
             }
             return BadRequest(ModelState);
@@ -95,6 +73,14 @@ namespace CoderCampsCRM.API
             _genRepo.SaveChanges();
             return Ok();
         }
+
+        [Route("api/deals/deal-owner/{id}")]
+        public IHttpActionResult GetDealsByOwnerId(int id)
+        {
+            var dealData = _genRepo.Query<Deal>().Where(d => d.ContactId == id);
+            return Ok(dealData);
+        }
+
     }
 
    

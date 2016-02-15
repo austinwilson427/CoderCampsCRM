@@ -3,9 +3,10 @@ var MyApp;
     var Controllers;
     (function (Controllers) {
         var CompaniesController = (function () {
-            function CompaniesController($uibModal, companiesService, contactService, $location) {
+            function CompaniesController($uibModal, companiesService, dealService, contactService, $location) {
                 this.$uibModal = $uibModal;
                 this.companiesService = companiesService;
+                this.dealService = dealService;
                 this.contactService = contactService;
                 this.$location = $location;
                 this.companies = this.companiesService.getCompanies();

@@ -51,6 +51,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
@@ -193,13 +197,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\ContactFilterViewController.cs" />
+    <Compile Include="API\ContactListController.cs" />
+    <Compile Include="API\CompaniesController.cs" />
     <Compile Include="API\ContactDetailViewController.cs" />
     <Compile Include="API\ContactListController.cs" />
     <Compile Include="API\ContactListViewController.cs" />
     <Compile Include="API\CompaniesController.cs" />
     <Compile Include="API\DealLogItemsController.cs" />
+    <Compile Include="API\DealContactsController.cs" />
     <Compile Include="API\DealsController.cs" />
-    <Compile Include="API\DealsViewController.cs" />
     <Compile Include="API\InteractionsController.cs" />
     <Compile Include="API\MoviesController.cs" />
     <Compile Include="API\TasksController.cs" />
@@ -244,14 +251,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602122001454_initial.cs" />
-    <Compile Include="Migrations\201602122001454_initial.Designer.cs">
-      <DependentUpon>201602122001454_initial.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\ContactLookupModels.cs" />
     <Compile Include="Models\ContactInteraction.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Deal.cs" />
@@ -281,6 +285,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\DragAndDrop.css" />
     <Content Include="Content\simple-sidebar.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="favicon.ico" />
@@ -288,6 +293,7 @@
     <Content Include="GitIgnore\.gitignore" />
     <Content Include="Global.asax" />
     <Content Include="ngApp\scripts\angular_filepicker.min.js" />
+    <Content Include="ngApp\scripts\ngDraggable.js" />
     <Content Include="ngApp\views\about.html" />
     <Content Include="ngApp\views\companies.html" />
     <Content Include="ngApp\views\confirmEmail.html" />
@@ -302,6 +308,7 @@
     <Content Include="ngApp\views\modals\add-deal.html" />
     <Content Include="ngApp\views\modals\archive-deal.html" />
     <Content Include="ngApp\views\modals\companyDetails.html" />
+    <Content Include="ngApp\views\modals\createcompanyModal.html" />
     <Content Include="ngApp\views\modals\delete-deal.html" />
     <Content Include="ngApp\views\modals\edit-deal.html" />
     <Content Include="ngApp\views\modals\contactAddModal.html" />
@@ -313,6 +320,8 @@
     <Content Include="ngApp\views\routes\deal-info-activity.html" />
     <Content Include="ngApp\views\routes\deal-info-event.html" />
     <Content Include="ngApp\views\routes\deal-info-note.html" />
+    <Content Include="ngApp\views\routes\deal-list-view.html" />
+    <Content Include="ngApp\views\routes\deal-table-view.html" />
     <Content Include="ngApp\views\routes\deal-info-task.html" />
     <Content Include="ngApp\views\tasks.html" />
     <Content Include="Scripts\angular-animate.js" />
@@ -1164,9 +1173,6 @@
     <Content Include="Scripts\version.json" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
@@ -1185,6 +1191,7 @@
     <TypeScriptCompile Include="ngApp\services\accountService.ts" />
     <TypeScriptCompile Include="ngApp\services\contactService.ts" />
     <TypeScriptCompile Include="ngApp\services\companyService.ts" />
+    <TypeScriptCompile Include="ngApp\services\dealContactService.ts" />
     <TypeScriptCompile Include="ngApp\services\dealLogItemService.ts" />
     <TypeScriptCompile Include="ngApp\services\dealService.ts" />
     <TypeScriptCompile Include="ngApp\services\profileServices.ts" />
@@ -1208,9 +1215,7 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602122001454_initial.resx">
-      <DependentUpon>201602122001454_initial.cs</DependentUpon>
-    </EmbeddedResource>
+    <Folder Include="App_Data\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

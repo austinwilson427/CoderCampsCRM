@@ -65,9 +65,14 @@
                             </tr>
                             <tr  ng-repeat="company in vm.companies | filter: vm.search">
                                 <!--<td><input type="checkbox" ng-model="value.key" ng-click="vm.storeDeal(value)" /> <a ng-show="value.isArchived" href="#" ng-click="vm.unarchiveItem(value)"><span class="glyphicon glyphicon-plus"></span></a></td>-->
-                                <td><a ui-sref="companies({id: companies.id})">{{company.companyName}}</a>&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="value.key"><a href="#" ng-click="vm.editDealModal(value)"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></span></td>
-                                <td ng-model="vm.contactsView.contact " ng-repeat="contact in vm.company.contactsView">{{contact.name}}</td>
-                                <td></td>
+                                <td><a href="/editCompanyModal({id: company.id})">{{company.companyName}}</a>&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="value.key"><a href="#" ng-click="vm.editModal(id)"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></span></td>
+                                <td><ul>
+                                    <li ng-repeat="contact in vm.contactsView.contacts">{{contact.name}}</li>
+                                    </ul>
+                                </td>
+                                <td><ul>
+                                        <li ng-repeat="deal in vm.contactsView.contacts">{{contact.name}}</li>
+                                </ul></td>
                                 <td></td>
                                 <td>{{company.companyCreateDate | date: 'MM/dd/yy'}}</td>
                                 <td>{{company.companyLastActivityeDate | date: 'MM/dd/yy'}}</td>

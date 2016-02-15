@@ -20,10 +20,14 @@
             <input type="number" class="form-control full" ng-model="vm.dealToAdd.amount" />
             <label>Close Date</label>
             <input type="date" class="form-control full" ng-model="vm.dealToAdd.closeDate" />
-            <label>Deal Owner Id</label>
-            <input type="number" class="form-control full" ng-model="vm.dealToAdd.dealOwnerId" />
-            <label>Company Id</label>
-            <input type="number" class="form-control full" ng-model="vm.dealToAdd.companyId" />
+            <label>Deal Owner</label>
+            <select ng-model="vm.dealToAdd.contactId" class="form-control full">
+                <option ng-repeat="contact in vm.myContacts.contacts" value="{{contact.id}}">{{contact.name}}</option>
+            </select>
+            <label>Company</label>
+            <select ng-model="vm.dealToAdd.companyId" class="form-control full">
+                <option ng-repeat="company in vm.myCompanies" value="{{company.id}}">{{company.companyName}}</option>
+            </select>
             <button class="form-control full btn btn-primary">Add Deal</button>
             <a href="#" ng-click="vm.closeModal()"class="form-control full btn btn-danger">Cancel</a>
         </form>

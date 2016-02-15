@@ -13,5 +13,7 @@ namespace CoderCampsCRM.Models
         public List<Deal> DealList { get; set; }
         public DealLogItem DealLogItem { get; set; }
         public List<DealLogItem> DealLogItemsList { get; set; }
+        public DealContact DealContacts { get; set; }
+        public List<DealContact> DealContactsList { get; set; }
     }
 }

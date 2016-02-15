@@ -26,7 +26,6 @@ var MyApp;
                         //result[i].company = company;
                         _this.allDeals.push(result[i]);
                     }
-                    console.log(_this.allDeals);
                 });
             };
             DealsController.prototype.sortBy = function (field) {
@@ -80,7 +79,7 @@ var MyApp;
             DealsController.prototype.archiveDeal = function (dealToArchive) {
                 var _this = this;
                 this.dealService.saveDeal(dealToArchive).then(function () {
-                    _this.$location.path('/deals');
+                    _this.$route.reload();
                 }).catch(function (error) {
                     var validationErrors = [];
                     for (var i in error.data.modelState) {
@@ -229,7 +228,7 @@ var MyApp;
                 var _this = this;
                 dealToUnarchive.isArchived = false;
                 this.dealService.saveDeal(dealToUnarchive).then(function () {
-                    _this.$location.path('/deals');
+                    _this.$route.reload();
                 }).catch(function (error) {
                     var validationErrors = [];
                     for (var i in error.data.modelState) {
@@ -243,19 +242,35 @@ var MyApp;
         })();
         Controllers.DealsController = DealsController;
         var AddDealModal = (function () {
-            function AddDealModal(dealService, $location, $uibModalInstance, $route) {
+            function AddDealModal(dealService, $location, $uibModalInstance, $route, contactService, companiesService) {
                 this.dealService = dealService;
                 this.$location = $location;
                 this.$uibModalInstance = $uibModalInstance;
                 this.$route = $route;
+                this.contactService = contactService;
+                this.companiesService = companiesService;
+                this.getMyContacts();
+                this.getMyCompanies();
             }
+            AddDealModal.prototype.getMyContacts = function () {
+                var _this = this;
+                this.contactService.getAllContacts().$promise.then(function (result) {
+                    _this.myContacts = result;
+                });
+            };
+            AddDealModal.prototype.getMyCompanies = function () {
+                var _this = this;
+                this.companiesService.getCompanies().$promise.then(function (result) {
+                    _this.myCompanies = result;
+                    console.log(_this.myCompanies);
+                });
+            };
             AddDealModal.prototype.addDeal = function (dealToAdd) {
                 var _this = this;
                 console.log(dealToAdd);
                 this.dealService.saveDeal(dealToAdd).then(function () {
                     _this.closeModal();
-                    _this.$location.path('/deals');
-                    _this.$route.reload();
+                    location.reload(false);
                 }).catch(function (error) {
                     var validationErrors = [];
                     for (var i in error.data.modelState) {
@@ -284,8 +299,7 @@ var MyApp;
                 console.log(this.dealDetails);
                 this.dealService.saveDeal(this.dealDetails).then(function () {
                     _this.closeModal();
-                    _this.$location.path('/deals');
-                    _this.$route.reload();
+                    location.reload();
                 }).catch(function (error) {
                     var validationErrors = [];
                     for (var i in error.data.modelState) {
@@ -362,7 +376,7 @@ var MyApp;
                 }
                 this.dealService.saveDeal(finalDeal).then(function () {
                     _this.closeModal();
-                    _this.$location.path('/deals');
+                    _this.$route.reload();
                 }).catch(function (error) {
                     var validationErrors = [];
                     for (var i in error.data.modelState) {
@@ -377,5 +391,129 @@ var MyApp;
             };
             return ArchiveDealModal;
         })();
+        var DealTableViewController = (function () {
+            function DealTableViewController(dealService, $stateParams, $location) {
+                this.dealService = dealService;
+                this.$stateParams = $stateParams;
+                this.$location = $location;
+                this.stages = ["Appointment Scheduled", "Qualified to Buy", "Presentation Scheduled", "Decision Maker Bought In", "Contract Sent"];
+                this.getAllItems();
+            }
+            DealTableViewController.prototype.getAllItems = function () {
+                var _this = this;
+                this.dealService.listAllDeals().$promise.then(function (result) {
+                    _this.allDeals = [];
+                    var company;
+                    for (var i = 0; i < result.length; i++) {
+                        _this.allDeals.push(result[i]);
+                    }
+                    _this.draggableObjects = _this.allDeals;
+                    _this.droppedObjects1 = _this.draggableObjects;
+                    _this.droppedObjects2 = _this.draggableObjects;
+                    _this.droppedObjects3 = _this.draggableObjects;
+                    _this.droppedObjects4 = _this.draggableObjects;
+                    _this.droppedObjects5 = _this.draggableObjects;
+                });
+            };
+            DealTableViewController.prototype.editDeal = function (dealToAdd) {
+                var _this = this;
+                console.log(dealToAdd);
+                this.dealService.saveDeal(dealToAdd).then(function () {
+                    //location.reload(false);
+                }).catch(function (error) {
+                    var validationErrors = [];
+                    for (var i in error.data.modelState) {
+                        var errorMessage = error.data.modelState[i];
+                        validationErrors = validationErrors.concat(errorMessage);
+                    }
+                    _this.validationErrors = validationErrors;
+                });
+            };
+            DealTableViewController.prototype.onDropComplete1 = function (data, evt) {
+                console.log(data);
+                var index = this.droppedObjects1.indexOf(data);
+                data.stage = "Appointment Scheduled";
+                if (index == -1) {
+                    this.droppedObjects1.push(data);
+                    this.editDeal(data);
+                }
+            };
+            DealTableViewController.prototype.onDragSuccess1 = function (data, evt) {
+                var index = this.droppedObjects1.indexOf(data);
+                if (index != -1) {
+                    this.droppedObjects1.splice(index, 1);
+                }
+            };
+            DealTableViewController.prototype.onDropComplete2 = function (data, evt) {
+                console.log(data);
+                var index = this.droppedObjects2.indexOf(data);
+                data.stage = "Qualified to Buy";
+                if (index == -1) {
+                    this.droppedObjects2.push(data);
+                    this.editDeal(data);
+                }
+            };
+            DealTableViewController.prototype.onDragSuccess2 = function (data, evt) {
+                var index = this.droppedObjects2.indexOf(data);
+                if (index != -1) {
+                    this.droppedObjects2.splice(index, 1);
+                }
+            };
+            DealTableViewController.prototype.onDropComplete3 = function (data, evt) {
+                console.log(data);
+                var index = this.droppedObjects3.indexOf(data);
+                data.stage = "Presentation Scheduled";
+                if (index == -1) {
+                    this.droppedObjects3.push(data);
+                    this.editDeal(data);
+                }
+            };
+            DealTableViewController.prototype.onDragSuccess3 = function (data, evt) {
+                var index = this.droppedObjects3.indexOf(data);
+                if (index != -1) {
+                    this.droppedObjects3.splice(index, 1);
+                }
+            };
+            DealTableViewController.prototype.onDropComplete4 = function (data, evt) {
+                console.log(data);
+                var index = this.droppedObjects4.indexOf(data);
+                data.stage = "Decision Maker Bought In";
+                if (index == -1) {
+                    this.droppedObjects4.push(data);
+                    this.editDeal(data);
+                }
+            };
+            DealTableViewController.prototype.onDragSuccess4 = function (data, evt) {
+                var index = this.droppedObjects4.indexOf(data);
+                if (index != -1) {
+                    this.droppedObjects4.splice(index, 1);
+                }
+            };
+            DealTableViewController.prototype.onDropComplete5 = function (data, evt) {
+                console.log(data);
+                var index = this.droppedObjects5.indexOf(data);
+                data.stage = "Contract Sent";
+                if (index == -1) {
+                    this.droppedObjects5.push(data);
+                    this.editDeal(data);
+                }
+            };
+            DealTableViewController.prototype.onDragSuccess5 = function (data, evt) {
+                var index = this.droppedObjects5.indexOf(data);
+                if (index != -1) {
+                    this.droppedObjects5.splice(index, 1);
+                }
+            };
+            DealTableViewController.prototype.getData = function (data, element) {
+                var showOverlay = angular.element(document.querySelector('.overlay'));
+                showOverlay.addClass('show');
+            };
+            DealTableViewController.prototype.hideOverlay = function (element) {
+                var hideOverlay = angular.element(document.querySelector('.overlay'));
+                hideOverlay.removeClass('show');
+            };
+            return DealTableViewController;
+        })();
+        Controllers.DealTableViewController = DealTableViewController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
