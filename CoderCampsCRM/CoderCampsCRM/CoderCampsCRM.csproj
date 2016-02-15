@@ -197,13 +197,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\ContactFilterViewController.cs" />
-    <Compile Include="API\ContactListController.cs" />
     <Compile Include="API\CompaniesController.cs" />
+    <Compile Include="API\ContactFilterViewController.cs" />
     <Compile Include="API\ContactDetailViewController.cs" />
     <Compile Include="API\ContactListController.cs" />
     <Compile Include="API\ContactListViewController.cs" />
-    <Compile Include="API\CompaniesController.cs" />
     <Compile Include="API\DealLogItemsController.cs" />
     <Compile Include="API\DealContactsController.cs" />
     <Compile Include="API\DealsController.cs" />
