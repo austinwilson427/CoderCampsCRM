@@ -36,6 +36,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -44,6 +45,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -51,6 +53,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
@@ -245,6 +251,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602151825566_initial.cs" />
+    <Compile Include="Migrations\201602151825566_initial.Designer.cs">
+      <DependentUpon>201602151825566_initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -252,13 +262,13 @@
     <Compile Include="Models\ContactLookupModels.cs" />
     <Compile Include="Models\ContactInteraction.cs" />
     <Compile Include="Models\Company.cs" />
-    <Compile Include="Models\ProfileUser.cs" />
-    <Compile Include="Models\UserTask.cs" />
-    <Compile Include="Models\ViewModels\ContactDetailViewModel.cs" />
     <Compile Include="Models\Deal.cs" />
     <Compile Include="Models\DealLogItem.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\ProfileUser.cs" />
+    <Compile Include="Models\UserTask.cs" />
+    <Compile Include="Models\ViewModels\ContactDetailViewModel.cs" />
     <Compile Include="Models\ViewModels\ContactListViewModel.cs" />
     <Compile Include="Models\ViewModels\DealViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -267,17 +277,13 @@
     <Compile Include="Repositories\ContactListViewRepository.cs" />
     <Compile Include="Repositories\DealRepository.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
-    <Compile Include="Repositories\Interfaces\IDealRepository.cs" />
-    <Compile Include="Repositories\Interfaces\IContactListViewRepository.cs" />
     <Compile Include="Repositories\Interfaces\IContactDetailViewRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IContactListViewRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IDealRepository.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\aspnet-CoderCampsCRM-20151020080840.mdf" />
-    <Content Include="App_Data\aspnet-CoderCampsCRM-20151020080840_log.ldf">
-      <DependentUpon>aspnet-CoderCampsCRM-20151020080840.mdf</DependentUpon>
-    </Content>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -291,7 +297,6 @@
     <Content Include="GitIgnore\.gitignore" />
     <Content Include="Global.asax" />
     <Content Include="ngApp\scripts\angular_filepicker.min.js" />
-    <Content Include="ngApp\scripts\drag.js" />
     <Content Include="ngApp\scripts\ngDraggable.js" />
     <Content Include="ngApp\views\about.html" />
     <Content Include="ngApp\views\companies.html" />
@@ -312,15 +317,16 @@
     <Content Include="ngApp\views\modals\edit-deal.html" />
     <Content Include="ngApp\views\modals\contactAddModal.html" />
     <Content Include="ngApp\views\modals\editCompanyModal.html" />
+    <Content Include="ngApp\views\myAccount.html" />
     <Content Include="ngApp\views\notFound.html" />
     <Content Include="ngApp\views\profile.html" />
     <Content Include="ngApp\views\register.html" />
-    <Content Include="ngApp\views\routes\deal-info-task.html" />
-    <Content Include="ngApp\views\routes\deal-info-event.html" />
     <Content Include="ngApp\views\routes\deal-info-activity.html" />
+    <Content Include="ngApp\views\routes\deal-info-event.html" />
     <Content Include="ngApp\views\routes\deal-info-note.html" />
     <Content Include="ngApp\views\routes\deal-list-view.html" />
     <Content Include="ngApp\views\routes\deal-table-view.html" />
+    <Content Include="ngApp\views\routes\deal-info-task.html" />
     <Content Include="ngApp\views\tasks.html" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
@@ -353,6 +359,7 @@
     <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\angular_filepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -376,7 +383,6 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-resource.min.js.map" />
-    <Content Include="GitIgnore\Secret.config" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular-touch.min.js.map" />
     <Content Include="Scripts\angular-sanitize.min.js.map" />
@@ -395,6 +401,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Scripts\angular-route.min.js.map" />
+    <Content Include="GitIgnore\Secret.config" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
@@ -1210,6 +1217,14 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201602151825566_initial.resx">
+      <DependentUpon>201602151825566_initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

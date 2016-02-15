@@ -13,7 +13,17 @@ namespace CoderCampsCRM.Models
 
         public string State { get; set; }
     }
+    //
+    //public class ExternalLoginConfirmationViewModel
+    //{
+    //[Required]
+    //[EmailAdress]
+    //[Display (Name="Email")]
+    //public string Email {get; set;}
 
+        //public string Hometown {getl set;}
+        //public System.DateTime? BirthDate {get; set;}
+//}
     public class ManageInfoViewModel
     {
         public string LocalLoginProvider { get; set; }

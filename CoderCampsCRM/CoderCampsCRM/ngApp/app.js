@@ -9,6 +9,24 @@ var MyApp;
             controller: MyApp.Controllers.HomeController,
             controllerAs: 'controller'
         })
+            .state('externalRegister', {
+            url: '/externalRegister',
+            templateUrl: '/ngApp/views/externalRegister.html',
+            controller: MyApp.Controllers.ExternalRegisterController,
+            controllerAs: 'controller'
+        })
+            .state('externalLogin', {
+            url: '/externalLogin',
+            templateUrl: '/ngApp/views/externalLogin.html',
+            controller: MyApp.Controllers.ExternalLoginController,
+            controllerAs: 'controller'
+        })
+            .state('login', {
+            url: '/login',
+            templateUrl: '/ngApp/views/login.html',
+            controller: MyApp.Controllers.LoginController,
+            controllerAs: 'controller'
+        })
             .state('deals', {
             url: '/deals',
             templateUrl: '/ngApp/views/deals.html',
@@ -48,6 +66,12 @@ var MyApp;
             .state('taskdetails', {
             url: '/task-details',
             templateUrl: '/ngApp/views/task-details.html',
+            controller: MyApp.Controllers.TaskListController,
+            controllerAs: 'vm'
+        })
+            .state('myAccount', {
+            url: '/tasks',
+            templateUrl: '/ngApp/views/tasks.html',
             controller: MyApp.Controllers.TaskListController,
             controllerAs: 'vm'
         })

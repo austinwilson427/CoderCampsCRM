@@ -71,12 +71,12 @@ namespace CoderCampsCRM.Migrations
                     Deals = new Deal[]
                     {
                         new Deal {  DealName = "Deal 3",
-                                    Stage = "Appintment Scheduled",
+                                    Stage = "Appointment Scheduled",
                                     Amount = 7000m,
                                     CloseDate = DateTime.Today,
                                     isArchived = true},
                         new Deal {  DealName = "Deal 4",
-                                    Stage = "COntract Sent",
+                                    Stage = "Contract Sent",
                                     Amount = 150000m,
                                     CloseDate = DateTime.Today,
                                     isArchived = false}
@@ -136,12 +136,12 @@ namespace CoderCampsCRM.Migrations
                     Deals = new Deal[]
                     {
                         new Deal {  DealName = "Deal 1",
-                                    Stage = "Appintment Scheduled",
+                                    Stage = "Appointment Scheduled",
                                     Amount = 5000m,
                                     CloseDate = DateTime.Today,
-                                    isArchived = true},
+                                    isArchived = false},
                         new Deal {  DealName = "Deal 2",
-                                    Stage = "COntract Sent",
+                                    Stage = "Contract Sent",
                                     Amount = 50000m,
                                     CloseDate = DateTime.Today,
                                     isArchived = false}
