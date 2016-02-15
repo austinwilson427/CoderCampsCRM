@@ -27,14 +27,10 @@
             this.accountService.logout();
         }
 
-        public getExternalLogins() {
-            return this.accountService.getExternalLogins();
-        }
+      
 
         constructor(private accountService: MyApp.Services.AccountService, private $location: ng.ILocationService, private $uibModal: angular.ui.bootstrap.IModalService) {
-            this.getExternalLogins().then((results) => {
-                this.externalLogins = results;
-            });
+         
         }
     }
 
@@ -45,6 +41,7 @@
         public loginUser;
         public validationMessages;
         public test;
+        public externalLogins;
 
         public login() {
             this.accountService.login(this.loginUser).then(() => {
@@ -68,12 +65,23 @@
                 size: "lg"
 
             });
+
         }
+      
         public closeModal() {
             this.$uibModalInstance.close();
         }
 
-        constructor(private accountService: MyApp.Services.AccountService, private $location: ng.ILocationService, private $uibModal: angular.ui.bootstrap.IModalService,private $uibModalInstance: angular.ui.bootstrap.IModalServiceInstance) { }
+        public getExternalLogins() {
+            return this.accountService.getExternalLogins();
+        }
+
+
+        constructor(private accountService: MyApp.Services.AccountService, private $location: ng.ILocationService, private $uibModal: angular.ui.bootstrap.IModalService, private $uibModalInstance: angular.ui.bootstrap.IModalServiceInstance) {
+            this.getExternalLogins().then((results) => {
+                this.externalLogins = results;
+            });
+        }
     }
 
 
