@@ -72,15 +72,16 @@ namespace CoderCampsCRM
              );
 
 
-            //app.UseFacebookAuthentication(
-            //    appId: "",
-            //    appSecret: "");
+            app.UseFacebookAuthentication(
+                appId: ConfigurationManager.AppSettings["facebookAppId"],
+                appSecret: ConfigurationManager.AppSettings["facebookAppSecret"]);
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = ConfigurationManager.AppSettings["googleClientId"],
+                ClientSecret = ConfigurationManager.AppSettings["googleClientSecret"]
+            });
         }
     }
 }

@@ -340,30 +340,40 @@ td.trash_cell{
   font-size: 14px;
 }
 
-
-/*FONT AWESOME - ICON COLORS*/
-
-.my-nice-button>i { color: orangered; }
-.my-nice-checkbutton>i { color: green; }
-.my-nice-statusbutton1>i { color: red; }
-.my-nice-statusbutton2>i { color: yellow; }
-.my-nice-statusbutton3>i { color: green; }
-
-/*DatePicker*/
-label{margin-left: 20px;}
-#datepicker, #datepicker2{width:280px; margin: 0px 20px 20px 0px;}
-#datepicker, #datepicker2 > span:hover{cursor: pointer;}
-
-/*CALENDAR*/
-
-  
-
-
-#calendar {
-  margin: 40px 10px;
-  padding: 0;
-  font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-  font-size: 14px;
-  max-width: 400px;
-  margin: 0 auto;
+/*Login*/
+ul.socialMedia {
+    list-style:none;
+    padding: 0
 }
+li.Twitter, li.Facebook, li.Google {
+     padding: 0;
+    color: white;
+    width: 100%;
+    border-radius:  5px;
+    margin: 5px auto;
+}
+
+li.Twitter {
+    background-color: #00aced;
+}
+li.Facebook {
+    background-color: #3b5998;
+}
+li.Google {
+    background-color:  #dd4b39;
+}
+.bird, .book, .plus {
+    position: relative;
+    top: 2px;
+    padding-left: 7px;
+    font-size: 16px;
+    float: right;
+}
+
+li.Twitter a, li.Facebook a, li.Google a {
+    width: 80%;
+    text-align: left;
+    margin: auto;
+    color: white;
+}
+

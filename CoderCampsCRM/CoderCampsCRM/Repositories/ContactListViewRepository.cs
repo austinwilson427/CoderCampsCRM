@@ -12,7 +12,6 @@ namespace CoderCampsCRM.Repositories
     public class ContactListViewRepository : IContactListViewRepository
     {
         private IGenericRepository _repo;
-        private ApplicationDbContext _db = new ApplicationDbContext();
 
         public ContactListViewRepository(IGenericRepository repo)
         {
@@ -30,6 +29,7 @@ namespace CoderCampsCRM.Repositories
             var companies = _repo.Query<Company>().ToList();
             //var companies = _repo.Query<Company>().Where(co => co.userId == User.Id).ToList();
             var interactions = _repo.Query<ContactInteraction>().ToList();
+            var locations = _repo.Query<Location>().ToList();
 
             var contactListViewModel = new ContactListViewModel
             {
@@ -37,7 +37,8 @@ namespace CoderCampsCRM.Repositories
                 Contacts = contacts,
                 Deals = deals, 
                 Interactions = interactions,               
-                Tasks = tasks
+                Tasks = tasks,
+                Locations = locations
             };
 
             return contactListViewModel;
@@ -50,6 +51,7 @@ namespace CoderCampsCRM.Repositories
             var tasks = _repo.Query<UserTask>().ToList();
             var interactions = _repo.Query<ContactInteraction>().ToList();
             var contacts = _repo.Query<Contact>().Where(c => c.CompanyId == id).ToList();
+            var locations = _repo.Query<Location>().ToList();
 
             var contactCompaniesViewModel = new ContactListViewModel
             {
@@ -57,7 +59,8 @@ namespace CoderCampsCRM.Repositories
                 Contacts = contacts,
                 Deals = deals,
                 Interactions = interactions,
-                Tasks = tasks
+                Tasks = tasks,
+                Locations = locations
             };
 
             return contactCompaniesViewModel;
@@ -69,15 +72,17 @@ namespace CoderCampsCRM.Repositories
             var companies = _repo.Query<Company>().ToList();
             var tasks = _repo.Query<UserTask>().ToList();
             var interactions = _repo.Query<ContactInteraction>().ToList();
-            var contacts = _db.DealContacts.Where(d => d.DealId == id).Select(c => c.Contact).ToList();
-            var pb = _db.Contacts.ToList();
+            //var contacts = _db.DealContacts.Where(d => d.DealId == id).Select(c => c.Contact).ToList();
+            var contacts = _repo.Query<DealContact>().Where(d => d.DealId == id).Select(c => c.Contact).ToList();
+            var locations = _repo.Query<Location>().ToList();
             var contactDealsViewModel = new ContactListViewModel
             {
                 Companies = companies,
                 Contacts = contacts,
                 Deals = deals,
                 Interactions = interactions,
-                Tasks = tasks
+                Tasks = tasks,
+                Locations = locations
             };
 
             return contactDealsViewModel;
@@ -85,13 +90,12 @@ namespace CoderCampsCRM.Repositories
 
         public ContactListViewModel GetContactTasksViewModel(int id)
         {
-            var db = new ApplicationDbContext();
-
             var deals = _repo.Query<Deal>().ToList();
             var companies = _repo.Query<Company>().ToList();
             var tasks = _repo.Query<UserTask>().ToList();
-            var contacts = db.TaskContacts.Where(t => t.TaskId == id).Select(c => c.Contact).ToList();
+            var contacts = _repo.Query<TaskContact>().Where(d => d.TaskId == id).Select(c => c.Contact).ToList();
             var interactions = _repo.Query<ContactInteraction>().ToList();
+            var locations = _repo.Query<Location>().ToList();
 
             var contactTasksViewModel = new ContactListViewModel
             {
@@ -99,7 +103,8 @@ namespace CoderCampsCRM.Repositories
                 Contacts = contacts,
                 Deals = deals,
                 Interactions = interactions,
-                Tasks = tasks
+                Tasks = tasks,
+                Locations = locations
             };
 
             return contactTasksViewModel;
