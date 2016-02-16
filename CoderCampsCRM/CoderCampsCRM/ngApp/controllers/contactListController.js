@@ -10,8 +10,31 @@ var MyApp;
                 this.$state = $state;
                 this.sortType = name;
                 this.sortReverse = false;
+                this.showMap = false;
+                this.markers = [];
                 this.showAllContacts();
             }
+            ContactListController.prototype.setLocations = function () {
+                this.zoom = 4;
+                this.center = { latitude: 40.09024, longitude: -97.712891 };
+                for (var _i = 0, _a = this.contactsView.locations; _i < _a.length; _i++) {
+                    var location_1 = _a[_i];
+                    this.markers.push({
+                        id: location_1.id,
+                        options: {
+                            title: location_1.title,
+                        },
+                        latitude: location_1.latitude,
+                        longitude: location_1.longitude,
+                    });
+                }
+                if (this.showMap == false) {
+                    this.showMap = true;
+                }
+                else {
+                    this.showMap = false;
+                }
+            };
             ContactListController.prototype.openNewContactModal = function () {
                 this.$uibModal.open({
                     templateUrl: "/ngApp/views/modals/contactAddModal.html",

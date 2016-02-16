@@ -7,12 +7,14 @@
         public contactDetailResource;
         public contactListResource;
         public contactFilterResource;
+        public locationResource;
 
         constructor(private $resource: angular.resource.IResourceService) {
             this.contactResource = $resource("/api/contactList");
             this.interactionResource = $resource("/api/interactions");
             this.contactDetailResource = $resource("/api/contactDetailView/:id");
             this.contactListResource = $resource("/api/contactListView");
+            this.locationResource = $resource("/api/locations");
             this.contactFilterResource = $resource("/api/contactFilterView/:id", null, {
                 filterByCompanies: {
                     method: 'GET',
@@ -82,6 +84,10 @@
             return data;
         }
 
+        public addLocation(location) {
+            return this.locationResource.save(location).$promise;
+        }
+
         public addContact(contact) {
             return this.contactResource.save(contact).$promise;
         }
@@ -91,7 +97,9 @@
         }
 
         public deleteContact(id: number) {
-            return this.contactResource.remove({ id: id }).$promise;
+            let data = this.contactResource.remove({ id: id }).$promise;
+            debugger;
+            return data;
         }
 
         public addInteraction(interaction) {

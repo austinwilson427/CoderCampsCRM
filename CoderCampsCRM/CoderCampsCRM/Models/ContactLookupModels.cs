@@ -10,6 +10,8 @@ namespace CoderCampsCRM.Models
     {
         public int Id { get; set; }
         public int DealId { get; set; }
+        [ForeignKey("DealId")]
+        public Deal Deal { get; set; }
         public int ContactId { get; set; }
         [ForeignKey("ContactId")]
         public Contact Contact { get; set; }
@@ -19,6 +21,8 @@ namespace CoderCampsCRM.Models
     {
         public int Id { get; set; }
         public int TaskId { get; set; }
+        [ForeignKey("TaskId")]
+        public UserTask UserTask { get; set; }
         public int ContactId { get; set; }
         [ForeignKey("ContactId")]
         public Contact Contact { get; set; }

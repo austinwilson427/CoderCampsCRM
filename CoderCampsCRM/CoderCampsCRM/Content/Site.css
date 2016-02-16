@@ -249,6 +249,7 @@ td.trash_cell{
 }
 
 .contactPanel {
+    text-overflow: ellipsis;
     width: 100%;
     height: 25%;
     margin-top: 20px;

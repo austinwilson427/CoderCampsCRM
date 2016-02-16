@@ -8,11 +8,42 @@ var MyApp;
                 this.$location = $location;
                 this.$uibModal = $uibModal;
                 this.$state = $state;
+                this.showMap = false;
                 this.contact = {};
+                this.location = {};
                 this.contactView = this.contactService.getOneContact($stateParams['id']);
             }
-            ContactDetailsController.prototype.deleteContact = function () {
-                return this.contactService.deleteContact(this.contactView.contact.id).then(this.$location.path("/contacts"));
+            ContactDetailsController.prototype.deleteModal = function () {
+                var _this = this;
+                this.$uibModal.open({
+                    templateUrl: "/ngApp/views/modals/contactDeleteModal.html",
+                    controller: MyApp.Controllers.ContactDeleteController,
+                    controllerAs: 'modal',
+                    size: 'sm',
+                    resolve: {
+                        contact: function () { return _this.contactView.contact; }
+                    }
+                });
+            };
+            ContactDetailsController.prototype.setLocation = function () {
+                this.zoom = this.contactView.location.zoom;
+                this.center = { latitude: this.contactView.location.latitude, longitude: this.contactView.location.longitude };
+                this.marker = [
+                    {
+                        id: this.contactView.location.id,
+                        options: {
+                            title: this.contactView.location.title,
+                        },
+                        latitude: this.contactView.location.latitude,
+                        longitude: this.contactView.location.longitude,
+                    },
+                ];
+                if (this.showMap == false) {
+                    this.showMap = true;
+                }
+                else {
+                    this.showMap = false;
+                }
             };
             ContactDetailsController.prototype.editContact = function () {
                 $(".tdEdit").attr("contenteditable", "true").attr("style", "background-color: rgb(255, 255, 194)");
@@ -46,6 +77,27 @@ var MyApp;
                 this.contact.zip = $("#zip").text();
                 this.contact.streetAddress = $("#streetAddress").text();
                 return this.contactService.editContact(this.contact).then(this.$state.reload());
+            };
+            ContactDetailsController.prototype.checkCoordsId = function () {
+                if (this.contactView.location) {
+                    this.location.id = this.contactView.location.id;
+                }
+                else {
+                    this.location.id = 0;
+                }
+            };
+            ContactDetailsController.prototype.editCoords = function () {
+                debugger;
+                $(".tdEdit").removeAttr("contenteditable").removeAttr("style");
+                this.location.zoom = 6;
+                this.location.contactId = this.contactView.contact.id;
+                this.checkCoordsId();
+                this.location.latitude = $("#lat").text();
+                this.location.longitude = $("#long").text();
+                this.location.title = this.contactView.contact.name;
+                this.location.latitude = $("#lat").text();
+                this.location.longitude = $("#long").text();
+                return this.contactService.addLocation(this.location);
             };
             ContactDetailsController.prototype.addInteraction = function () {
                 this.interaction.contactId = this.contactView.contact.id;

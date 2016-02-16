@@ -9,6 +9,7 @@ var MyApp;
                 this.interactionResource = $resource("/api/interactions");
                 this.contactDetailResource = $resource("/api/contactDetailView/:id");
                 this.contactListResource = $resource("/api/contactListView");
+                this.locationResource = $resource("/api/locations");
                 this.contactFilterResource = $resource("/api/contactFilterView/:id", null, {
                     filterByCompanies: {
                         method: 'GET',
@@ -77,6 +78,9 @@ var MyApp;
                 });
                 return data;
             };
+            ContactService.prototype.addLocation = function (location) {
+                return this.locationResource.save(location).$promise;
+            };
             ContactService.prototype.addContact = function (contact) {
                 return this.contactResource.save(contact).$promise;
             };
@@ -84,7 +88,9 @@ var MyApp;
                 return this.contactResource.save(contact).$promise;
             };
             ContactService.prototype.deleteContact = function (id) {
-                return this.contactResource.remove({ id: id }).$promise;
+                var data = this.contactResource.remove({ id: id }).$promise;
+                debugger;
+                return data;
             };
             ContactService.prototype.addInteraction = function (interaction) {
                 return this.interactionResource.save(interaction).$promise;

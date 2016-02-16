@@ -10,7 +10,7 @@
         </select>
         <label>Filter by associated tasks</label>
         <select class="form-control filterSideBarContent" ng-change="vm.filterByTasks()" ng-model="vm.filterChoice">
-            <option ng-repeat="task in vm.contactsView.tasks" value="{{task.id}}">{{task.taskDescription}}</option>
+            <option ng-repeat="task in vm.contactsView.tasks" value="{{task.id}}">{{task.description}}</option>
         </select>
         <button class="btn btn-primary" id="filterBtn" ng-click="vm.showAllContacts()">Show all contacts</button>
     </div>
@@ -19,6 +19,7 @@
             <div class="row details_wrap">
                 <div class="col-md-2">
                     <btn id="menu-toggle" class="btn btn-primary">Filter</btn>
+                    <button class="btn btn-primary" ng-click="vm.setLocations()">Show Map</button>
                 </div>
                 <div class="col-md-8 form-group">
                     <input type="text" class="form-control full" ng-model="searchText" ng-model-options="{debounce: 1000}" placeholder="Search contacts by name" />
@@ -27,16 +28,28 @@
                     <button class="btn btn-primary" ng-click="vm.openNewContactModal()">+ Add Contact</button>
                 </div>
             </div>
+            <div class="row" ng-show="vm.showMap">
+                <div class="col-md-12">
+                    <h2 class="text-center">Contact Locations</h2>
+                    <ui-gmap-google-map center='vm.center' zoom='vm.zoom' draggable="true">
+                        <ui-gmap-markers models="vm.markers"
+                                         coords="'self'"
+                                         icon="'icon'"
+                                         options="'options'">
+                        </ui-gmap-markers>
+                    </ui-gmap-google-map>
+                </div>
+            </div>
             <div class="table_wrap">
                 <table class="table table-bordered table-hover deals_table">
                     <thead>
                         <tr>
-                            <th class="hover_blue" ng-click="sortType = 'name'; sortReverse = !sortReverse">Name<span ng-show="sortType == 'name' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'name' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>                                          
+                            <th class="hover_blue" ng-click="sortType = 'name'; sortReverse = !sortReverse">Name<span ng-show="sortType == 'name' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'name' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>
                             <th class="hover_blue" ng-click="sortType = 'companyName'; sortReverse = !sortReverse">Company<span ng-show="sortType == 'companyName' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'companyName' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>
                             <th class="hover_blue" ng-click="sortType = 'jobTitle'; sortReverse = !sortReverse">Job Title<span ng-show="sortType == 'jobTitle' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'jobTitle' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>
                             <th class="hover_blue" style="cursor: default">Email</th>
                             <th class="hover_blue" style="cursor: default">Phone Number</th>
-                            <th class="hover_blue" ng-click="sortType = 'country'; sortReverse = !sortReverse">Country<span ng-show="sortType == 'country' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'country' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>                       
+                            <th class="hover_blue" ng-click="sortType = 'country'; sortReverse = !sortReverse">Country<span ng-show="sortType == 'country' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'country' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>
                             <th class="hover_blue" ng-click="sortType = 'city'; sortReverse = !sortReverse">City<span ng-show="sortType == 'city' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'city' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>
                             <th class="hover_blue" ng-click="sortType = 'lastInteraction'; sortReverse = !sortReverse">Last Interaction<span ng-show="sortType == 'lastInteraction' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'lastInteraction' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>
                         </tr>
@@ -60,6 +73,17 @@
     </div>
 </div>
 
+<style>
+    .angular-google-map-container {
+        height: 400px;
+        width: 700px;
+        border: 1px solid black;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+        margin-bottom: 35px;
+    }
+</style>
 
 <script>
     $("#menu-toggle").click(function (e) {

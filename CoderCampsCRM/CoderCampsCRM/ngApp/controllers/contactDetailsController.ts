@@ -5,16 +5,50 @@
         public contactView;  
         public interaction;  
         public contact;
+        public location;
         public companyChoice;
+        public zoom;
+        public center;
+        public marker;
+        public showMap = false;
 
         constructor(private contactService: MyApp.Services.ContactService, private $location: ng.ILocationService, private $uibModal: ng.ui.bootstrap.IModalService, $stateParams: ng.ui.IStateParamsService, private $state: ng.ui.IStateService) {
             this.contact = {};
-            this.contactView = this.contactService.getOneContact($stateParams['id']);
+            this.location = {};
+            this.contactView = this.contactService.getOneContact($stateParams['id']);             
         }
 
-        public deleteContact() {
-            return this.contactService.deleteContact(this.contactView.contact.id).then(
-                this.$location.path("/contacts"));
+        public deleteModal() {
+            this.$uibModal.open({
+                templateUrl: "/ngApp/views/modals/contactDeleteModal.html",
+                controller: MyApp.Controllers.ContactDeleteController,
+                controllerAs: 'modal',
+                size: 'sm',
+                resolve: {
+                    contact: () => this.contactView.contact
+                }
+            });
+        }
+
+        public setLocation() {
+            this.zoom = this.contactView.location.zoom;
+            this.center = { latitude: this.contactView.location.latitude, longitude: this.contactView.location.longitude}; 
+            this.marker = [
+                {
+                    id: this.contactView.location.id,
+                    options: {
+                        title: this.contactView.location.title,
+                    },
+                    latitude: this.contactView.location.latitude,
+                    longitude: this.contactView.location.longitude,
+                }, 
+            ]
+            if (this.showMap == false) {
+                this.showMap = true;
+            }
+            else {
+                this.showMap = false;
+            }
         }
 
         public editContact() {
@@ -52,6 +86,29 @@
             this.contact.zip = $("#zip").text();
             this.contact.streetAddress = $("#streetAddress").text(); 
             return this.contactService.editContact(this.contact).then(this.$state.reload());            
+        }
+
+        public checkCoordsId() {
+            if (this.contactView.location) {
+                this.location.id = this.contactView.location.id;
+            }
+            else {
+                this.location.id = 0;
+            }
+        }
+
+        public editCoords() {
+            debugger;
+            $(".tdEdit").removeAttr("contenteditable").removeAttr("style");
+            this.location.zoom = 6;
+            this.location.contactId = this.contactView.contact.id;
+            this.checkCoordsId();
+            this.location.latitude = $("#lat").text();
+            this.location.longitude = $("#long").text();
+            this.location.title = this.contactView.contact.name;
+            this.location.latitude = $("#lat").text();
+            this.location.longitude = $("#long").text();
+            return this.contactService.addLocation(this.location);
         }
         
         public addInteraction() {

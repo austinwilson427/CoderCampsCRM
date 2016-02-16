@@ -43,9 +43,29 @@
                 <td>Zip</td>
                 <td class="tableDetailRow tdEdit" id="zip" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.zip}}</td>
             </tr>
+            <tr>
+                <td>Latitude</td>
+                <td class="tableDetailRow tdEdit" id="lat" ng-blur="vm.editCoords()">{{vm.contactView.location.latitude}}</td>
+            </tr>
+            <tr>
+                <td>Longitude</td>
+                <td class="tableDetailRow tdEdit" id="long" ng-blur="vm.editCoords()">{{vm.contactView.location.longitude}}</td>
+            </tr>
         </table>
         <button class="btn btn-primary" ng-click="vm.editContact()">Edit</button>
-        <button class="btn btn-primary" ng-click="vm.deleteContact()">Delete</button>
+        <button class="btn btn-danger" ng-click="vm.deleteModal()">Delete</button>
+        <button class="btn btn-primary" ng-click="vm.setLocation()">Show map</button>
+        <div class="row" ng-show="vm.showMap">
+            <div class="col-md-12">
+                <ui-gmap-google-map center='vm.center' zoom='vm.zoom' draggable="true">
+                    <ui-gmap-markers models="vm.marker"
+                                     coords="'self'"
+                                     icon="'icon'"
+                                     options="'options'">
+                    </ui-gmap-markers>
+                </ui-gmap-google-map>
+            </div>
+        </div>
         <div class="col-md-3 col-md-offset-1 contactPanel">
             <h3 class="text-center">Company</h3>
             <div class="form-group" ng-show="!vm.contactView.company">
@@ -111,7 +131,7 @@
         <div class="col-md-3 col-md-offset-1 contactPanel">
             <h3 class="text-center">Deals</h3>
             <button class="btn btn-primary">Add Deal</button>
-            <table class="table table-hover" ng-hide="!vm.contactView.company">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -120,12 +140,36 @@
                         <th>Close Date</th>
                     </tr>
                 </thead>
-                <tbody ng-repeat="deal in vm.contactView.deals">
-                    <tr>
+                <tbody>
+                    <tr ng-repeat="deal in vm.contactView.deals">
                         <td><a ui-sref="deal-info({id: deal.id})">{{deal.dealName}}</a></td>
                         <td>{{deal.stage}}</td>
                         <td>{{deal.amount}}</td>
                         <td>{{deal.closeDate | date: 'short'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-3 col-md-offset-1 contactPanel">
+            <h3 class="text-center">Tasks</h3>
+            <button class="btn btn-primary">Add Task</button>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Start Date</th>
+                        <th>Due Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="task in vm.contactView.tasks">
+                        <td>{{task.type}}</td>
+                        <td>{{task.description}}</td>
+                        <td>{{task.status}}</td>
+                        <td>{{task.startDate | date: 'short'}}</td>
+                        <td>{{task.dueDate | date: 'short'}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -168,4 +212,15 @@
         </div>
     </div>
 </div>
+
+<style>
+    .angular-google-map-container {
+        height: 400px;
+        width: 445px;
+        border: 1px solid black;
+        margin-top: 20px;
+    }
+</style>
+
+
 

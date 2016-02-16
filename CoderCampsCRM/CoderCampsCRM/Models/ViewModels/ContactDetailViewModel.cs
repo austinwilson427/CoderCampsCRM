@@ -10,6 +10,7 @@ namespace CoderCampsCRM.Models
     {
         public Company Company { get; set; }
         public Contact Contact { get; set; }
+        public Location Location { get; set; }
         public List<Deal> Deals { get; set; }
         public List<Company> Companies { get; set; }
         public List<ContactInteraction> Interactions { get; set; }
