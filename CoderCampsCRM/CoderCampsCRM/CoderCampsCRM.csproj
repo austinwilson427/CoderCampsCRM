@@ -304,6 +304,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="GitIgnore\.gitignore" />
     <Content Include="Global.asax" />
+    <Content Include="Images\Black-Background-Collapsar-1080x1920.jpg" />
     <Content Include="ngApp\scripts\angular_filepicker.min.js" />
     <Content Include="ngApp\scripts\ngDraggable.js" />
     <Content Include="ngApp\views\about.html" />

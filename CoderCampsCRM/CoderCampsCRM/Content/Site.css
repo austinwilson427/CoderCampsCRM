@@ -338,3 +338,12 @@ td.trash_cell{
   left: initial;
   font-size: 14px;
 }
+
+
+/*FONT AWESOME - ICON COLORS*/
+
+.my-nice-button>i { color: orangered; }
+.my-nice-checkbutton>i { color: green; }
+.my-nice-statusbutton1>i { color: red; }
+.my-nice-statusbutton2>i { color: yellow; }
+.my-nice-statusbutton3>i { color: green; }
