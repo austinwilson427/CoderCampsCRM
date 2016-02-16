@@ -347,3 +347,9 @@ td.trash_cell{
 .my-nice-statusbutton1>i { color: red; }
 .my-nice-statusbutton2>i { color: yellow; }
 .my-nice-statusbutton3>i { color: green; }
+
+/*DatePicker*/
+label{margin-left: 20px;}
+#datepicker{width:180px; margin: 0 20px 20px 20px;}
+#datepicker > span:hover{cursor: pointer;}
+
