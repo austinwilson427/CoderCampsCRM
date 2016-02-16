@@ -1,7 +1,8 @@
 var MyApp;
 (function (MyApp) {
-    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router', 'angular-filepicker', 'ngDraggable']).config(function ($locationProvider, $routeProvider, $stateProvider, $urlRouterProvider, filepickerProvider) {
+    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router', 'angular-filepicker', 'ngDraggable', 'uiGmapgoogle-maps']).config(function ($locationProvider, $routeProvider, $stateProvider, $urlRouterProvider, filepickerProvider, uiGmapGoogleMapApiProvider) {
         filepickerProvider.setKey('ANnIsnaUARuBQjAtPZGBQz');
+        uiGmapGoogleMapApiProvider.configure({});
         $stateProvider
             .state('home', {
             url: '/',

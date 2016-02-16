@@ -24,9 +24,10 @@ namespace CoderCampsCRM.API
             {
                 if (interaction.Id == 0)
                 {
-                    var dto = new DateTimeOffset(interaction.Date).ToOffset(TimeSpan.FromHours(-8));
-                    Console.WriteLine("Utc = {0}, Original = {1}", dto.UtcDateTime, dto.DateTime);
+                    var dto = new DateTimeOffset(interaction.Date);
                     interaction.Date = dto.DateTime;
+                    var contact = _repo.Find<Contact>(interaction.ContactId);
+                    contact.LastInteraction = interaction.Date;
                     _repo.Add(interaction);
                     _repo.SaveChanges();
                     return Ok();
