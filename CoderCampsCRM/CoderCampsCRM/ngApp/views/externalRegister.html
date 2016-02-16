@@ -8,11 +8,56 @@
     </ul>
 
     <form ng-submit="controller.register()">
-        <div>
-            <label>Email:</label>
-            <input ng-model="controller.registerUser.email" />
+        <div class="form-group">
+            <label class="col-lg-3 control-label">First name:</label>
+            <div class="col-lg-8">
+                <input ng-model="controller.registerUser.firstName" class="form-control" value="" type="text" placeholder="FirstName">
+            </div>
         </div>
-        <input type="submit" value="Register" />
+        <div class="form-group">
+            <label class="col-lg-3 control-label">Last name:</label>
+            <div class="col-lg-8">
+                <input ng-model="controller.registerUser.lastName" class="form-control" value="" type="text" placeholder="LastName">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">Company:</label>
+            <div class="col-lg-8">
+                <input ng-model="controller.registerUser.company" class="form-control" value="" type="text" placeholder="Your company name here">
+            </div>
+        </div>
+        <!----->
+        <div class="form-group">
+            <label class="col-lg-3 control-label">Phone Number:</label>
+            <div class="col-lg-8">
+                <input ng-model="controller.registerUser.phoneNumber" class="form-control" value="" type="text" placeholder="Your phone number here">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">Email:</label>
+            <div class="col-lg-8">
+                <input class="form-control" ng-model="controller.registerUser.email" value="" type="text" placeholder="your email address here">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-3 control-label">Time Zone:</label>
+            <div class="col-lg-8">
+                <div class="ui-select">
+                    <select ng-model="controller.registerUser.timeZone" id="user_time_zone" class="form-control">
+                        <option value="Hawaii">(GMT-10:00) Hawaii</option>
+                        <option value="Alaska">(GMT-09:00) Alaska</option>
+                        <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
+                        <option value="Arizona">(GMT-07:00) Arizona</option>
+                        <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
+                        <option value="Central Time (US &amp; Canada)" selected="selected">(GMT-06:00) Central Time (US &amp; Canada)</option>
+                        <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
+                        <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
+                    </select>
+                </div>
+            </div>
+            <input class="form-control btn btn-success" type="submit" value="Register" />
+        </div>
+        
     </form>
 
 </fieldset>

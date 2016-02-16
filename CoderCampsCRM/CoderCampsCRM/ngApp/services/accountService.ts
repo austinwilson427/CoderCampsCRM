@@ -73,9 +73,10 @@
         }
 
         // associate external login (e.g., Twitter) with local user account 
-        registerExternal(email, token) {
+        registerExternal(user, token) {
             return this.$q((resolve, reject) => {
-                this.$http.post('/api/account/registerExternal', { email: email }, { headers: { Authorization: 'Bearer ' + token } })
+                
+                this.$http.post('/api/account/registerExternal', { email: user.email, firstName: user.firstName, lastName: user.lastName, company: user.company, timeZone: user.timeZone, picUrl: user.picUrl, phoneNumber: user.phoneNumber }, { headers: { Authorization: 'Bearer ' + token } })
                     .then((result) => {
                         resolve(result);
                     })

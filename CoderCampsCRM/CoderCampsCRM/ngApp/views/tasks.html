@@ -43,7 +43,7 @@
                         <btn id="menu-toggle" class="btn btn-default">Add Filter</btn>
                         <div class="form-group has-feedback">
                             <label for="search" class="sr-only">Search...</label>
-                            <input type="text" class="form-control" name="search" id="search" placeholder="Search...">
+                            <input type="text" class="form-control" name="search" ng-model="vm.search" id="search" placeholder="Search by Type...">
                             <span class="glyphicon glyphicon-search form-control-feedback"></span>
                         </div>
                     </form>
@@ -63,7 +63,7 @@
                                                 <th>Due Date</th>
                                                 <th>Edit/Delete</th>
                                             </tr>
-                                            <tr ng-repeat="task in vm.tasks">
+                                            <tr ng-repeat="task in vm.tasks |filter: {type: vm.search}">
                                                 <td>{{task.startDate}}</td>
                                                 <td>{{task.status}}</td>
                                                 <td>{{task.description}}</td>

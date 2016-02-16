@@ -10,7 +10,7 @@
                 controllerAs: "controller",
                 resolve: {
 
-                }, 
+                },
                 size: "sm"
 
             });
@@ -27,10 +27,14 @@
             this.accountService.logout();
         }
 
-      
+        public getExternalLogins() {
+            return this.accountService.getExternalLogins();
+        }
 
         constructor(private accountService: MyApp.Services.AccountService, private $location: ng.ILocationService, private $uibModal: angular.ui.bootstrap.IModalService) {
-         
+            this.getExternalLogins().then((results) => {
+                this.externalLogins = results;
+            });
         }
     }
 
@@ -40,7 +44,6 @@
     export class LoginController {
         public loginUser;
         public validationMessages;
-        public test;
         public externalLogins;
 
         public login() {
@@ -67,7 +70,7 @@
             });
 
         }
-      
+
         public closeModal() {
             this.$uibModalInstance.close();
         }
@@ -120,7 +123,7 @@
             if (this.file.url) {
                 this.registerUser.picUrl = this.file.url;
             }
-          
+
             this.$uibModal.open({
                 templateUrl: "/ngApp/views/register.html",
                 controller: MyApp.Controllers.RegisterController,
@@ -134,12 +137,12 @@
         }
 
         public register() {
-         
-          
+
+
             this.accountService.register(this.registerUser).then(() => {
                 this.closeModal();
                 this.showLoginModal();
-                
+
             }).catch((results) => {
                 this.validationMessages = results;
             });
@@ -150,12 +153,12 @@
         }
 
         constructor(private accountService: MyApp.Services.AccountService, private filepickerService, private $scope: ng.IScope, private $location: ng.ILocationService, private $uibModalInstance: angular.ui.bootstrap.IModalServiceInstance, private $uibModal: angular.ui.bootstrap.IModalService, public userInfo) {
-            
+
             if (this.userInfo) {
                 this.registerUser = this.userInfo;
                 this.picUploaded = true;
             } else {
-            this.picUploaded = false;
+                this.picUploaded = false;
                 this.registerUser = {
                     picUrl: ""
                 };
@@ -181,6 +184,7 @@
                 if (userInfo.hasRegistered) {
                     accountService.storeUserInfo(response);
                     $location.path('/');
+
                 } else {
                     $location.path('/externalRegister');
                 }
@@ -193,17 +197,32 @@
         private externalAccessToken;
         public registerUser;
         public validationMessages;
+        public firstName;
+        public lastName;
+        public company;
+        public timeZone;
+        public picUrl;
 
         public register() {
-            this.accountService.registerExternal(this.registerUser.email, this.externalAccessToken)
+            this.accountService.registerExternal(this.registerUser, this.externalAccessToken)
                 .then((result) => {
-                    this.$location.path('/login');
+                    this.$location.path('/');
+                    this.$uibModal.open({
+                        templateUrl: "/ngApp/views/login.html",
+                        controller: MyApp.Controllers.LoginController,
+                        controllerAs: "controller",
+                        resolve: {
+
+                        },
+                        size: "sm"
+
+                    });
                 }).catch((result) => {
                     this.validationMessages = result;
                 });
         }
 
-        constructor(private accountService: MyApp.Services.AccountService, private $location: ng.ILocationService) {
+        constructor(private accountService: MyApp.Services.AccountService, private $location: ng.ILocationService, private $uibModal: angular.ui.bootstrap.IModalService) {
             let response = accountService.parseOAuthResponse($location.hash());
             this.externalAccessToken = response['access_token'];
         }

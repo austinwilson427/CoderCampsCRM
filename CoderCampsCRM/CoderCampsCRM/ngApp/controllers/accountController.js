@@ -4,9 +4,13 @@ var MyApp;
     (function (Controllers) {
         var AccountController = (function () {
             function AccountController(accountService, $location, $uibModal) {
+                var _this = this;
                 this.accountService = accountService;
                 this.$location = $location;
                 this.$uibModal = $uibModal;
+                this.getExternalLogins().then(function (results) {
+                    _this.externalLogins = results;
+                });
             }
             AccountController.prototype.showModal = function () {
                 this.$uibModal.open({
@@ -25,6 +29,9 @@ var MyApp;
             };
             AccountController.prototype.logout = function () {
                 this.accountService.logout();
+            };
+            AccountController.prototype.getExternalLogins = function () {
+                return this.accountService.getExternalLogins();
             };
             return AccountController;
         })();
@@ -161,17 +168,25 @@ var MyApp;
         })();
         Controllers.ExternalLoginController = ExternalLoginController;
         var ExternalRegisterController = (function () {
-            function ExternalRegisterController(accountService, $location) {
+            function ExternalRegisterController(accountService, $location, $uibModal) {
                 this.accountService = accountService;
                 this.$location = $location;
+                this.$uibModal = $uibModal;
                 var response = accountService.parseOAuthResponse($location.hash());
                 this.externalAccessToken = response['access_token'];
             }
             ExternalRegisterController.prototype.register = function () {
                 var _this = this;
-                this.accountService.registerExternal(this.registerUser.email, this.externalAccessToken)
+                this.accountService.registerExternal(this.registerUser, this.externalAccessToken)
                     .then(function (result) {
-                    _this.$location.path('/login');
+                    _this.$location.path('/');
+                    _this.$uibModal.open({
+                        templateUrl: "/ngApp/views/login.html",
+                        controller: MyApp.Controllers.LoginController,
+                        controllerAs: "controller",
+                        resolve: {},
+                        size: "sm"
+                    });
                 }).catch(function (result) {
                     _this.validationMessages = result;
                 });
@@ -200,4 +215,3 @@ var MyApp;
         Controllers.ConfirmEmailController = ConfirmEmailController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=accountController.js.map
