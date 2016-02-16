@@ -3,7 +3,7 @@ namespace CoderCampsCRM.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initial2 : DbMigration
+    public partial class third : DbMigration
     {
         public override void Up()
         {

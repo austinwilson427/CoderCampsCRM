@@ -11,7 +11,7 @@
                 resolve: {
 
                 },
-                size: "sm"
+                size: "md"
 
             });
         }

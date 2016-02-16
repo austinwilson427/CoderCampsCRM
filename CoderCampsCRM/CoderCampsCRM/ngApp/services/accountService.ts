@@ -119,7 +119,7 @@
                 });
             });
         }
-
+          
 
         confirmEmail(userId, code): ng.IPromise<{}> {
             return this.$q((resolve, reject) => {

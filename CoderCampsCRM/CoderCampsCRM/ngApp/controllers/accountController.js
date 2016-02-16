@@ -18,7 +18,7 @@ var MyApp;
                     controller: MyApp.Controllers.LoginController,
                     controllerAs: "controller",
                     resolve: {},
-                    size: "sm"
+                    size: "md"
                 });
             };
             AccountController.prototype.getClaim = function (type) {
@@ -215,4 +215,3 @@ var MyApp;
         Controllers.ConfirmEmailController = ConfirmEmailController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=accountController.js.map

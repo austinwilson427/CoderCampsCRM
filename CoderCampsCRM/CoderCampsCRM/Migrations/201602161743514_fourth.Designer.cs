@@ -7,13 +7,13 @@ namespace CoderCampsCRM.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class initial2 : IMigrationMetadata
+    public sealed partial class fourth : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initial2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(fourth));
         
         string IMigrationMetadata.Id
         {
-            get { return "201602152220533_initial2"; }
+            get { return "201602161743514_fourth"; }
         }
         
         string IMigrationMetadata.Source
