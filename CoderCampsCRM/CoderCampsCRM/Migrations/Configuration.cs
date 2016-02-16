@@ -32,8 +32,8 @@ namespace CoderCampsCRM.Migrations
                     FirstName = "deneme",
                     LastName = "deneme",
                     Companies = new Company[]
-            {
-                new Company {
+                    {
+                        new Company {
                                 CompanyName = "The Verge",
                                 CompanyDomainName ="www.theverge.com",
                                 CompanyPhoneNumber ="833-322-4422",
@@ -100,7 +100,7 @@ namespace CoderCampsCRM.Migrations
                     LastName = "deneme",
                     Companies = new Company[]
                     {
-                 new Company {
+                         new Company {
                                 CompanyName = "scotch-soda",
                                 CompanyDomainName ="www.scotch-soda.com",
                                 CompanyPhoneNumber ="1- (866) 544-1557",
@@ -110,7 +110,7 @@ namespace CoderCampsCRM.Migrations
                                 CompanyZip ="11111",
                                 ComapanyAddress ="somewhere in Nederland",
                                 CompanyDescription ="At Scotch & Soda we want people to love their clothes...",
-                                CompanyIndustry ="Web",
+                                CompanyIndustry ="Textile",
                                 CompanyIsPublic = true,
                                 CompanyFacebook ="https://www.facebook.com/ScotchOfficial",
                                 CompanyLinkedin ="https://www.linkedin.com/company/1014429",
@@ -145,14 +145,15 @@ namespace CoderCampsCRM.Migrations
                                     Amount = 50000m,
                                     CloseDate = DateTime.Today,
                                     isArchived = false}
-                    },
-            };
+                    }
+                };
+                userManager.Create(user2, "Deneme@123");
+                userManager.AddClaim(user2.Id, new System.Security.Claims.Claim("User", "true"));
+
+            }
 
 
-
-
-
-            UserTask[] tasks = new UserTask[] {
+                UserTask[] tasks = new UserTask[] {
 
 
                 new UserTask {Id = 1, Status = "In Progress", Description = "Submit ", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="Email"},
@@ -163,11 +164,11 @@ namespace CoderCampsCRM.Migrations
 
 
         };
-            context.Tasks.AddOrUpdate(t => t.Id, tasks);
+                context.Tasks.AddOrUpdate(t => t.Id, tasks);
 
 
+            }
         }
     }
-}
-}
+
 
