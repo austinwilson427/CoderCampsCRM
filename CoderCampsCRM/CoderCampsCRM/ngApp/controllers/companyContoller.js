@@ -3,19 +3,33 @@ var MyApp;
     var Controllers;
     (function (Controllers) {
         var CompaniesController = (function () {
-            function CompaniesController($uibModal, companiesService, dealService, contactService, $location) {
+            function CompaniesController($uibModal, companiesService, dealService, contactService, $location, $state) {
                 this.$uibModal = $uibModal;
                 this.companiesService = companiesService;
                 this.dealService = dealService;
                 this.contactService = contactService;
                 this.$location = $location;
-                this.companies = this.companiesService.getCompanies();
+                this.$state = $state;
+                // this.companies = this.companiesService.getCompanies();
                 this.contactsView = contactService.getAllContacts();
-                console.log(this.contactsView);
+                this.getAllItems();
             }
+            CompaniesController.prototype.getAllItems = function () {
+                var _this = this;
+                this.companiesService.getCompanies().$promise.then(function (result) {
+                    _this.companies = [];
+                    var company;
+                    for (var i = 0; i < result.length; i++) {
+                        //company = this.companiesService.getCompany(result[i].companyId);
+                        //result[i].company = company;
+                        _this.companies.push(result[i]);
+                    }
+                    console.log(_this.companies);
+                });
+            };
             CompaniesController.prototype.showDetailsModal = function (id) {
                 this.$uibModal.open({
-                    templateUrl: "/ngApp/views/modals/companyDetails.html",
+                    templateUrl: "/ngApp/views/company-info.html",
                     controller: CompanyDetailsController,
                     controllerAs: 'vm',
                     resolve: {
@@ -57,18 +71,96 @@ var MyApp;
                     _this.$location.path("/companies");
                 });
             };
+            CompaniesController.prototype.filterByCountry = function () {
+                var _this = this;
+                this.companiesService.getCompanies().$promise.then(function (result) {
+                    _this.companies = [];
+                    var filteredCountry = [];
+                    for (var i = 0; i < result.length; i++) {
+                        var selectedCountry = _this.selCountry;
+                        if (result[i].companyCountry == selectedCountry) {
+                            filteredCountry.push(result[i]);
+                        }
+                    }
+                    _this.companies = filteredCountry;
+                    //    let filteredCity = [];
+                    //    for (let i = 0; i < result.length; i++) {
+                    //    let selectedCity = this.selCity;
+                    //    if (result[i].companyCity == selectedCity) {
+                    //        filteredCity.push(result[i]);
+                    //    }
+                    //}
+                    //    this.companies = filteredCity;
+                    //let filteredIndustry = [];
+                    //for (let i = 0; i < result.length; i++) {
+                    //    let selectedIndustry = this.selIndustry;
+                    //    if (result[i].companyIndustry == selectedIndustry) {
+                    //        filteredIndustry.push(result[i]);
+                    //    }
+                    //}
+                    //this.companies = filteredIndustry;
+                });
+            };
+            CompaniesController.prototype.filterByCity = function () {
+                var _this = this;
+                this.companiesService.getCompanies().$promise.then(function (result) {
+                    _this.companies = [];
+                    var filteredCity = [];
+                    for (var i = 0; i < result.length; i++) {
+                        var selectedCity = _this.selCity;
+                        if (result[i].companyCity == selectedCity) {
+                            filteredCity.push(result[i]);
+                        }
+                    }
+                    _this.companies = filteredCity;
+                });
+            };
+            CompaniesController.prototype.filterByState = function () {
+                var _this = this;
+                this.companiesService.getCompanies().$promise.then(function (result) {
+                    _this.companies = [];
+                    var filteredState = [];
+                    for (var i = 0; i < result.length; i++) {
+                        var selectedState = _this.selState;
+                        if (result[i].companyState == selectedState) {
+                            filteredState.push(result[i]);
+                        }
+                    }
+                    _this.companies = filteredState;
+                });
+            };
+            CompaniesController.prototype.filterByIntustry = function () {
+                var _this = this;
+                this.companiesService.getCompanies().$promise.then(function (result) {
+                    _this.companies = [];
+                    var filteredIndustry = [];
+                    for (var i = 0; i < result.length; i++) {
+                        var selectedIndustry = _this.selIndustry;
+                        if (result[i].companyIndustry == selectedIndustry) {
+                            filteredIndustry.push(result[i]);
+                        }
+                    }
+                    _this.companies = filteredIndustry;
+                });
+            };
             return CompaniesController;
         })();
         Controllers.CompaniesController = CompaniesController;
         var CompanyDetailsController = (function () {
-            function CompanyDetailsController(companyId, companiesService) {
+            function CompanyDetailsController(companyId, companiesService, $stateParams, $state, contactService) {
                 this.companyId = companyId;
                 this.companiesService = companiesService;
+                this.$stateParams = $stateParams;
+                this.$state = $state;
+                this.contactService = contactService;
                 this.companies = this.companiesService.getCompanies();
                 this.company = companiesService.getCompany(companyId);
+                this.contactsView = contactService.getAllContacts();
+                this.routeId = $stateParams["id"];
             }
             return CompanyDetailsController;
         })();
+        Controllers.CompanyDetailsController = CompanyDetailsController;
         var EditCompanyController = (function () {
             function EditCompanyController(companyId, $uibModalInstance, companiesService, $location, $routeParams, $route) {
                 this.companyId = companyId;
@@ -91,4 +183,3 @@ var MyApp;
         Controllers.EditCompanyController = EditCompanyController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=companyContoller.js.map

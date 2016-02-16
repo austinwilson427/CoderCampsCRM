@@ -193,6 +193,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\CompanyLogItemsController.cs" />
     <Compile Include="API\ContactFilterViewController.cs" />
     <Compile Include="API\ContactListController.cs" />
     <Compile Include="API\CompaniesController.cs" />
@@ -245,15 +246,29 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602122057268_Changing_Company2.cs" />
+    <Compile Include="Migrations\201602122057268_Changing_Company2.Designer.cs">
+      <DependentUpon>201602122057268_Changing_Company2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602150221527_Initial2.cs" />
+    <Compile Include="Migrations\201602150221527_Initial2.Designer.cs">
+      <DependentUpon>201602150221527_Initial2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602150504066_Initial3.cs" />
+    <Compile Include="Migrations\201602150504066_Initial3.Designer.cs">
+      <DependentUpon>201602150504066_Initial3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CompanyLogItem.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\ContactLookupModels.cs" />
     <Compile Include="Models\ContactInteraction.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\ProfileUser.cs" />
     <Compile Include="Models\UserTask.cs" />
+    <Compile Include="Models\ViewModels\CompanyViewModel.cs" />
     <Compile Include="Models\ViewModels\ContactDetailViewModel.cs" />
     <Compile Include="Models\Deal.cs" />
     <Compile Include="Models\DealLogItem.cs" />
@@ -263,10 +278,12 @@
     <Compile Include="Models\ViewModels\DealViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
+    <Compile Include="Repositories\CompanyRepository.cs" />
     <Compile Include="Repositories\ContactDetailViewRepository.cs" />
     <Compile Include="Repositories\ContactListViewRepository.cs" />
     <Compile Include="Repositories\DealRepository.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ICompanyRepository.cs" />
     <Compile Include="Repositories\Interfaces\IContactListViewRepository.cs" />
     <Compile Include="Repositories\Interfaces\IDealRepository.cs" />
     <Compile Include="Repositories\Interfaces\IContactDetailViewRepository.cs" />
@@ -274,10 +291,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\aspnet-CoderCampsCRM-20151020080840.mdf" />
-    <Content Include="App_Data\aspnet-CoderCampsCRM-20151020080840_log.ldf">
-      <DependentUpon>aspnet-CoderCampsCRM-20151020080840.mdf</DependentUpon>
-    </Content>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -292,6 +305,7 @@
     <Content Include="ngApp\scripts\angular_filepicker.min.js" />
     <Content Include="ngApp\views\about.html" />
     <Content Include="ngApp\views\companies.html" />
+    <Content Include="ngApp\views\company-info.html" />
     <Content Include="ngApp\views\confirmEmail.html" />
     <Content Include="ngApp\views\contactDetailsView.html" />
     <Content Include="ngApp\views\contactListView.html" />
@@ -1164,7 +1178,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\version.json" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
@@ -1172,6 +1185,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="ngApp\app.ts" />
     <TypeScriptCompile Include="ngApp\controllers\accountController.ts" />
+    <TypeScriptCompile Include="ngApp\controllers\companyInfoController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\contactAddController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\contactDetailsController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\contactListController.ts" />
@@ -1205,6 +1219,20 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201602122057268_Changing_Company2.resx">
+      <DependentUpon>201602122057268_Changing_Company2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602150221527_Initial2.resx">
+      <DependentUpon>201602150221527_Initial2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602150504066_Initial3.resx">
+      <DependentUpon>201602150504066_Initial3.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

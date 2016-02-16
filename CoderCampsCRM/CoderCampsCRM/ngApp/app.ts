@@ -44,13 +44,14 @@
                 templateUrl: '/ngApp/views/createCompany.html',
                 controller: MyApp.Controllers.CompaniesController,
                 controllerAs: 'vm'
+            //})
+            //.state('company-info', {
+            //    url: '/companies/:id',
+            //    templateUrl: '/ngApp/views/company-info.html',
+            //    controller: MyApp.Controllers.CompanyDetailsController,
+            //    controllerAs: 'vm'
             })
-            .state('editCompanyModal', {
-                url: '/createcompany',
-                templateUrl: '/ngApp/views/modals/editCompanyModal.html',
-                controller: MyApp.Controllers.EditCompanyController,
-                controllerAs: 'vm'
-            })
+           
             .state('contacts', {
                 url: '/contacts',
                 templateUrl: '/ngApp/views/contactListView.html',

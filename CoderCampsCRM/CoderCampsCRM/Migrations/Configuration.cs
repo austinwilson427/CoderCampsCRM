@@ -60,12 +60,14 @@ namespace CoderCampsCRM.Migrations
                         new Contact { Name = " Cliff Barnes" ,
                                       Email = "cliff.barnes@gmail.com",
                                       PhoneNumber = "222-333-1111",
-                                      JobTitle = "Merchant Manager"
+                                      JobTitle = "Merchant Manager",
+                                      CompanyId = 1
                                     },
                         new Contact { Name = "Sue Ellen Ewing" ,
                                       Email = "sue@gmail.com",
                                       PhoneNumber = "666-111-9999",
-                                      JobTitle = "Merchant Officer"
+                                      JobTitle = "Merchant Officer",
+                                      CompanyId = 1
                         }
                     },
                     Deals = new Deal[]
@@ -89,6 +91,7 @@ namespace CoderCampsCRM.Migrations
                 userManager.AddClaim(user.Id, new System.Security.Claims.Claim("Admin", "true"));
 
             }
+
             var user2 = userManager.FindByName("deneme2@gmail.com");
             if (user2 == null)
             {
@@ -106,11 +109,11 @@ namespace CoderCampsCRM.Migrations
                                 CompanyPhoneNumber ="1- (866) 544-1557",
                                 CompanyCountry ="Nederland",
                                 CompanyCity ="Amsterdam",
-                                CompanyState =null,
+                                CompanyState ="North Holland",
                                 CompanyZip ="11111",
                                 ComapanyAddress ="somewhere in Nederland",
                                 CompanyDescription ="At Scotch & Soda we want people to love their clothes...",
-                                CompanyIndustry ="Web",
+                                CompanyIndustry ="Textile",
                                 CompanyIsPublic = true,
                                 CompanyFacebook ="https://www.facebook.com/ScotchOfficial",
                                 CompanyLinkedin ="https://www.linkedin.com/company/1014429",
@@ -125,12 +128,14 @@ namespace CoderCampsCRM.Migrations
                         new Contact { Name = "Bobby Ewing" ,
                                       Email = "bobby.ewing@gmail.com",
                                       PhoneNumber = "333-222-5555",
-                                      JobTitle = "Merchant Manager"
+                                      JobTitle = "Merchant Manager",
+                                      CompanyId = 2
                                     },
                         new Contact { Name = "Clayton Farlow" ,
                                       Email = "clayton@gmail.com",
                                       PhoneNumber = "333-222-5555",
-                                      JobTitle = "Merchant Officer"
+                                      JobTitle = "Merchant Officer",
+                                      CompanyId = 2
                         }
                     },
                     Deals = new Deal[]
@@ -145,14 +150,15 @@ namespace CoderCampsCRM.Migrations
                                     Amount = 50000m,
                                     CloseDate = DateTime.Today,
                                     isArchived = false}
-                    },
+                    }
                 };
+                userManager.Create(user2, "Deneme@123");
+                userManager.AddClaim(user2.Id, new System.Security.Claims.Claim("User", "true"));
+
+            }
 
 
-
-
-
-                UserTask[] tasks = new UserTask[] {
+            UserTask[] tasks = new UserTask[] {
 
 
                 new UserTask {Id = 1, Status = "In Progress", Description = "Submit ", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="Email"},
@@ -163,10 +169,10 @@ namespace CoderCampsCRM.Migrations
 
 
         };
-                context.Tasks.AddOrUpdate(t => t.Id, tasks);
+            context.Tasks.AddOrUpdate(t => t.Id, tasks);
 
-            }
         }
     }
 }
+
 
