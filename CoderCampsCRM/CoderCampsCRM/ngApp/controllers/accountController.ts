@@ -184,6 +184,7 @@
                 if (userInfo.hasRegistered) {
                     accountService.storeUserInfo(response);
                     $location.path('/');
+
                 } else {
                     $location.path('/externalRegister');
                 }
@@ -196,17 +197,32 @@
         private externalAccessToken;
         public registerUser;
         public validationMessages;
+        public firstName;
+        public lastName;
+        public company;
+        public timeZone;
+        public picUrl;
 
         public register() {
-            this.accountService.registerExternal(this.registerUser.email, this.externalAccessToken)
+            this.accountService.registerExternal(this.registerUser, this.externalAccessToken)
                 .then((result) => {
-                    this.$location.path('/login');
+                    this.$location.path('/');
+                    this.$uibModal.open({
+                        templateUrl: "/ngApp/views/login.html",
+                        controller: MyApp.Controllers.LoginController,
+                        controllerAs: "controller",
+                        resolve: {
+
+                        },
+                        size: "sm"
+
+                    });
                 }).catch((result) => {
                     this.validationMessages = result;
                 });
         }
 
-        constructor(private accountService: MyApp.Services.AccountService, private $location: ng.ILocationService) {
+        constructor(private accountService: MyApp.Services.AccountService, private $location: ng.ILocationService, private $uibModal: angular.ui.bootstrap.IModalService) {
             let response = accountService.parseOAuthResponse($location.hash());
             this.externalAccessToken = response['access_token'];
         }

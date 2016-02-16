@@ -21,12 +21,6 @@ var MyApp;
             controller: MyApp.Controllers.ExternalLoginController,
             controllerAs: 'controller'
         })
-            .state('login', {
-            url: '/login',
-            templateUrl: '/ngApp/views/login.html',
-            controller: MyApp.Controllers.LoginController,
-            controllerAs: 'controller'
-        })
             .state('deals', {
             url: '/deals',
             templateUrl: '/ngApp/views/deals.html',
@@ -141,7 +135,7 @@ var MyApp;
             controller: MyApp.Controllers.DealInfoEventController,
             controllerAs: "vm"
         });
-        $urlRouterProvider.otherwise('home');
+        $urlRouterProvider.otherwise('/');
         $locationProvider.html5Mode(true);
     });
     angular.module('MyApp').factory('authInterceptor', function ($q, $window, $location) {
@@ -166,4 +160,3 @@ var MyApp;
         $httpProvider.interceptors.push('authInterceptor');
     });
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=app.js.map

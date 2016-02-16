@@ -390,7 +390,16 @@ namespace CoderCampsCRM.Controllers
                 return InternalServerError();
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser() {
+                UserName = model.Email,
+                Email = model.Email,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Company = model.Company,
+                TimeZone = model.TimeZone,
+                PicUrl = model.PicUrl,
+                PhoneNumber = model.PhoneNumber
+            };
 
             IdentityResult result = await UserManager.CreateAsync(user);
             if (!result.Succeeded)

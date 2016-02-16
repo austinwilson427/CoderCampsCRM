@@ -202,6 +202,7 @@
     <Compile Include="API\CompaniesController.cs" />
     <Compile Include="API\ContactFilterViewController.cs" />
     <Compile Include="API\ContactDetailViewController.cs" />
+    <Compile Include="API\ContactListController.cs" />
     <Compile Include="API\ContactListViewController.cs" />
     <Compile Include="API\DealLogItemsController.cs" />
     <Compile Include="API\DealContactsController.cs" />
@@ -253,6 +254,14 @@
     <Compile Include="Migrations\201602152033308_initial.cs" />
     <Compile Include="Migrations\201602152033308_initial.Designer.cs">
       <DependentUpon>201602152033308_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602152209331_initial1.cs" />
+    <Compile Include="Migrations\201602152209331_initial1.Designer.cs">
+      <DependentUpon>201602152209331_initial1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602152220533_initial2.cs" />
+    <Compile Include="Migrations\201602152220533_initial2.Designer.cs">
+      <DependentUpon>201602152220533_initial2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -400,7 +409,9 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Scripts\angular-route.min.js.map" />
-    <Content Include="GitIgnore\Secret.config" />
+    <Content Include="GitIgnore\Secret.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
@@ -1223,6 +1234,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201602152033308_initial.resx">
       <DependentUpon>201602152033308_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602152209331_initial1.resx">
+      <DependentUpon>201602152209331_initial1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602152220533_initial2.resx">
+      <DependentUpon>201602152220533_initial2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -38,7 +38,7 @@ namespace CoderCampsCRM.Models
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
-        [Required]
+        
         public string Company { get; set; }
         public string PhoneNumber { get; set; }
         public string TimeZone { get; set; }
@@ -67,6 +67,15 @@ namespace CoderCampsCRM.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+        [Required]
+        public string FirstName { get; set; }
+        [Required]
+        public string LastName { get; set; }
+
+        public string Company { get; set; }
+        public string PhoneNumber { get; set; }
+        public string TimeZone { get; set; }
+        public string PicUrl { get; set; }
     }
 
     public class RemoveLoginBindingModel
