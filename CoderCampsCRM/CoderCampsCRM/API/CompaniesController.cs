@@ -13,14 +13,16 @@ namespace CoderCampsCRM.API
     public class CompaniesController : ApiController
     {
         private IGenericRepository _repo;
+        private ICompanyRepository _companyRepo;
 
-        public CompaniesController() : this(new GenericRepository())
-        {
-        }
+        //public CompaniesController() : this(new GenericRepository())
+        //{
+        //}
 
-        public CompaniesController(IGenericRepository repo)
+        public CompaniesController(IGenericRepository repo, ICompanyRepository companyRepo)
         {
             _repo = repo;
+            _companyRepo = companyRepo;
         }
         public IHttpActionResult Get()
         {
@@ -29,19 +31,20 @@ namespace CoderCampsCRM.API
             //var company = _repo.Find<Company>();
             //if (user.Company = userId)
 
-            var companies = from c in _repo.Query<Company>()
-                            select c;
+            //var companies = from c in _repo.Query<Company>()
+            //                select c;
 
-            //var compList = from c in _repo.Query<Company>()
-            //               where c.ApplicationUser_Id == userId
-            //               select c;
+            var compList = from c in _repo.Query<Company>()
+                           where c.ApplicationUser_Id == userId
+                           select c;
 
-            //return Ok(compList.ToList());
-            return Ok(companies.ToList());
+            return Ok(compList.ToList());
+            //return Ok(companies.ToList());
         }
+
         public IHttpActionResult Get(int id)
         {
-            var company = _repo.Find<Company>(id);
+            var company = _repo.Query<Company>().Where(c => c.Id == id).Include(c => c.Contacts).FirstOrDefault();
             return Ok(company);
         }
 
@@ -50,17 +53,19 @@ namespace CoderCampsCRM.API
         {
             if (company.Id == 0)
             {
-                //var userId = User.Identity.GetUserId();
-                //var user = _repo.Query<ApplicationUser>().Where(u => u.Id == userId).Include(u => u.Companies).FirstOrDefault();
+                var userId = User.Identity.GetUserId();
+                var user = _repo.Query<ApplicationUser>().Where(u => u.Id == userId).Include(u => u.Companies).FirstOrDefault();
 
-                //company.CompanyCreateDate = DateTime.Now;
+                company.CompanyCreateDate = DateTime.Now;
+                _repo.Add<Company>(company);
+                _repo.SaveChanges();
+                user.Companies.Add(company);
+                company.ApplicationUser_Id = userId;
+                _repo.SaveChanges();
+                return Ok(company);
                 //_repo.Add<Company>(company);
                 //_repo.SaveChanges();
-                //user.Companies.Add(company);
-                //company.ApplicationUser_Id = userId;
-                //_repo.SaveChanges();
-                //return Ok(company);
-                return Ok();
+                //return Ok();
             }
             else {
                 var original = _repo.Find<Company>(company.Id);

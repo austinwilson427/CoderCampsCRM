@@ -70,10 +70,10 @@ var MyApp;
                 return this.$window.sessionStorage.getItem('token');
             };
             // associate external login (e.g., Twitter) with local user account 
-            AccountService.prototype.registerExternal = function (email, token) {
+            AccountService.prototype.registerExternal = function (user, token) {
                 var _this = this;
                 return this.$q(function (resolve, reject) {
-                    _this.$http.post('/api/account/registerExternal', { email: email }, { headers: { Authorization: 'Bearer ' + token } })
+                    _this.$http.post('/api/account/registerExternal', { email: user.email, firstName: user.firstName, lastName: user.lastName, company: user.company, timeZone: user.timeZone, picUrl: user.picUrl, phoneNumber: user.phoneNumber }, { headers: { Authorization: 'Bearer ' + token } })
                         .then(function (result) {
                         resolve(result);
                     })

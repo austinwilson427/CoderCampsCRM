@@ -29,10 +29,10 @@ var MyApp;
         })();
         Controllers.TaskAddController = TaskAddController;
         var TaskEditController = (function () {
-            function TaskEditController(taskService, $location, $routeParams) {
+            function TaskEditController(taskService, $location, $stateParams) {
                 this.taskService = taskService;
                 this.$location = $location;
-                this.taskToEdit = this.taskService.getTask($routeParams["id"]);
+                this.taskToEdit = this.taskService.getTask($stateParams["id"]);
             }
             TaskEditController.prototype.editTask = function () {
                 var _this = this;

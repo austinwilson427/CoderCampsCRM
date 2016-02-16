@@ -10,6 +10,18 @@ var MyApp;
             controller: MyApp.Controllers.HomeController,
             controllerAs: 'controller'
         })
+            .state('externalRegister', {
+            url: '/externalRegister',
+            templateUrl: '/ngApp/views/externalRegister.html',
+            controller: MyApp.Controllers.ExternalRegisterController,
+            controllerAs: 'controller'
+        })
+            .state('externalLogin', {
+            url: '/externalLogin',
+            templateUrl: '/ngApp/views/externalLogin.html',
+            controller: MyApp.Controllers.ExternalLoginController,
+            controllerAs: 'controller'
+        })
             .state('deals', {
             url: '/deals',
             templateUrl: '/ngApp/views/deals.html',
@@ -47,9 +59,9 @@ var MyApp;
             controllerAs: 'vm'
         })
             .state('taskdetails', {
-            url: '/task-details',
+            url: '/task-details/:id',
             templateUrl: '/ngApp/views/task-details.html',
-            controller: MyApp.Controllers.TaskListController,
+            controller: MyApp.Controllers.TaskEditController,
             controllerAs: 'vm'
         })
             .state('myAccount', {
@@ -74,12 +86,6 @@ var MyApp;
             url: '/createcompany',
             templateUrl: '/ngApp/views/createCompany.html',
             controller: MyApp.Controllers.CompaniesController,
-            controllerAs: 'vm'
-        })
-            .state('editCompanyModal', {
-            url: '/createcompany',
-            templateUrl: '/ngApp/views/modals/editCompanyModal.html',
-            controller: MyApp.Controllers.EditCompanyController,
             controllerAs: 'vm'
         })
             .state('contacts', {
@@ -124,7 +130,7 @@ var MyApp;
             controller: MyApp.Controllers.DealInfoEventController,
             controllerAs: "vm"
         });
-        $urlRouterProvider.otherwise('home');
+        $urlRouterProvider.otherwise('/');
         $locationProvider.html5Mode(true);
     });
     angular.module('MyApp').factory('authInterceptor', function ($q, $window, $location) {

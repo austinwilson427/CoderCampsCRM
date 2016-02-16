@@ -36,6 +36,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -44,6 +45,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -197,8 +199,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\ContactFilterViewController.cs" />
     <Compile Include="API\CompaniesController.cs" />
+    <Compile Include="API\ContactFilterViewController.cs" />
     <Compile Include="API\ContactDetailViewController.cs" />
     <Compile Include="API\ContactListController.cs" />
     <Compile Include="API\ContactListViewController.cs" />
@@ -206,7 +208,6 @@
     <Compile Include="API\DealContactsController.cs" />
     <Compile Include="API\DealsController.cs" />
     <Compile Include="API\InteractionsController.cs" />
-    <Compile Include="API\LocationsController.cs" />
     <Compile Include="API\MoviesController.cs" />
     <Compile Include="API\TasksController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -250,47 +251,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602130247144_initial.cs" />
-    <Compile Include="Migrations\201602130247144_initial.Designer.cs">
-      <DependentUpon>201602130247144_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201602152033308_initial.cs" />
+    <Compile Include="Migrations\201602152033308_initial.Designer.cs">
+      <DependentUpon>201602152033308_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602152143194_2.cs" />
-    <Compile Include="Migrations\201602152143194_2.Designer.cs">
-      <DependentUpon>201602152143194_2.cs</DependentUpon>
+    <Compile Include="Migrations\201602152209331_initial1.cs" />
+    <Compile Include="Migrations\201602152209331_initial1.Designer.cs">
+      <DependentUpon>201602152209331_initial1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602152158150_3.cs" />
-    <Compile Include="Migrations\201602152158150_3.Designer.cs">
-      <DependentUpon>201602152158150_3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602152233182_4.cs" />
-    <Compile Include="Migrations\201602152233182_4.Designer.cs">
-      <DependentUpon>201602152233182_4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602160407050_5.cs" />
-    <Compile Include="Migrations\201602160407050_5.Designer.cs">
-      <DependentUpon>201602160407050_5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602160413195_6.cs" />
-    <Compile Include="Migrations\201602160413195_6.Designer.cs">
-      <DependentUpon>201602160413195_6.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602160514558_7.cs" />
-    <Compile Include="Migrations\201602160514558_7.Designer.cs">
-      <DependentUpon>201602160514558_7.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602160538461_8.cs" />
-    <Compile Include="Migrations\201602160538461_8.Designer.cs">
-      <DependentUpon>201602160538461_8.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602161754057_9.cs" />
-    <Compile Include="Migrations\201602161754057_9.Designer.cs">
-      <DependentUpon>201602161754057_9.cs</DependentUpon>
+    <Compile Include="Migrations\201602152220533_initial2.cs" />
+    <Compile Include="Migrations\201602152220533_initial2.Designer.cs">
+      <DependentUpon>201602152220533_initial2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Contact.cs" />
-    <Compile Include="Models\Location.cs" />
     <Compile Include="Models\ContactLookupModels.cs" />
     <Compile Include="Models\ContactInteraction.cs" />
     <Compile Include="Models\Company.cs" />
@@ -316,11 +292,15 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\aspnet-CoderCampsCRM-20151020080840.mdf" />
-    <Content Include="App_Data\aspnet-CoderCampsCRM-20151020080840_log.ldf">
-      <DependentUpon>aspnet-CoderCampsCRM-20151020080840.mdf</DependentUpon>
-    </Content>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\bootstrap-datepicker.css" />
+    <Content Include="Content\bootstrap-datepicker.min.css" />
+    <Content Include="Content\bootstrap-datepicker.standalone.css" />
+    <Content Include="Content\bootstrap-datepicker.standalone.min.css" />
+    <Content Include="Content\bootstrap-datepicker3.css" />
+    <Content Include="Content\bootstrap-datepicker3.min.css" />
+    <Content Include="Content\bootstrap-datepicker3.standalone.css" />
+    <Content Include="Content\bootstrap-datepicker3.standalone.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -332,15 +312,18 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="GitIgnore\.gitignore" />
     <Content Include="Global.asax" />
+    <Content Include="Images\Black-Background-Collapsar-1080x1920.jpg" />
     <Content Include="ngApp\scripts\angular_filepicker.min.js" />
     <Content Include="ngApp\scripts\ngDraggable.js" />
     <Content Include="ngApp\views\about.html" />
+    <Content Include="ngApp\views\addtask.html" />
     <Content Include="ngApp\views\companies.html" />
     <Content Include="ngApp\views\confirmEmail.html" />
     <Content Include="ngApp\views\contactDetailsView.html" />
     <Content Include="ngApp\views\contactListView.html" />
     <Content Include="ngApp\views\deals-info.html" />
     <Content Include="ngApp\views\deals.html" />
+    <Content Include="ngApp\views\deletetask.html" />
     <Content Include="ngApp\views\externalLogin.html" />
     <Content Include="ngApp\views\externalRegister.html" />
     <Content Include="ngApp\views\home.html" />
@@ -348,7 +331,6 @@
     <Content Include="ngApp\views\modals\add-deal.html" />
     <Content Include="ngApp\views\modals\archive-deal.html" />
     <Content Include="ngApp\views\modals\companyDetails.html" />
-    <Content Include="ngApp\views\modals\contactDeleteModal.html" />
     <Content Include="ngApp\views\modals\createcompanyModal.html" />
     <Content Include="ngApp\views\modals\delete-deal.html" />
     <Content Include="ngApp\views\modals\edit-deal.html" />
@@ -364,6 +346,7 @@
     <Content Include="ngApp\views\routes\deal-list-view.html" />
     <Content Include="ngApp\views\routes\deal-table-view.html" />
     <Content Include="ngApp\views\routes\deal-info-task.html" />
+    <Content Include="ngApp\views\task-details.html" />
     <Content Include="ngApp\views\tasks.html" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
@@ -372,10 +355,6 @@
     <Content Include="Scripts\angular-cookies.js" />
     <Content Include="Scripts\angular-cookies.min.js" />
     <Content Include="Scripts\angular-csp.css" />
-    <Content Include="Scripts\angular-google-maps-street-view.js" />
-    <Content Include="Scripts\angular-google-maps-street-view.min.js" />
-    <Content Include="Scripts\angular-google-maps.js" />
-    <Content Include="Scripts\angular-google-maps.min.js" />
     <Content Include="Scripts\angular-loader.js" />
     <Content Include="Scripts\angular-loader.min.js" />
     <Content Include="Scripts\angular-message-format.js" />
@@ -390,25 +369,6 @@
     <Content Include="Scripts\angular-sanitize.js" />
     <Content Include="Scripts\angular-sanitize.min.js" />
     <Content Include="Scripts\angular-scenario.js" />
-    <Content Include="Scripts\angular-simple-logger-master\.gitignore" />
-    <Content Include="Scripts\angular-simple-logger-master\dist\angular-simple-logger.js" />
-    <Content Include="Scripts\angular-simple-logger-master\dist\angular-simple-logger.light.js" />
-    <Content Include="Scripts\angular-simple-logger-master\dist\angular-simple-logger.light.min.js" />
-    <Content Include="Scripts\angular-simple-logger-master\dist\angular-simple-logger.min.js" />
-    <Content Include="Scripts\angular-simple-logger-master\dist\browser.js" />
-    <Content Include="Scripts\angular-simple-logger-master\dist\index.js" />
-    <Content Include="Scripts\angular-simple-logger-master\dist\index.light.js" />
-    <Content Include="Scripts\angular-simple-logger-master\example\index.html" />
-    <Content Include="Scripts\angular-simple-logger-master\index.html" />
-    <Content Include="Scripts\angular-simple-logger-master\package.js" />
-    <Content Include="Scripts\angular-simple-logger-master\spec\bootstrap.browserify.js" />
-    <Content Include="Scripts\angular-simple-logger-master\src\wrap\contents\debugCommonJS.js" />
-    <Content Include="Scripts\angular-simple-logger-master\src\wrap\contents\debugLight.js" />
-    <Content Include="Scripts\angular-simple-logger-master\src\wrap\debug.js" />
-    <Content Include="Scripts\angular-simple-logger-master\src\wrap\dist.js" />
-    <Content Include="Scripts\angular-simple-logger-master\stylesheets\github-light.css" />
-    <Content Include="Scripts\angular-simple-logger-master\stylesheets\normalize.css" />
-    <Content Include="Scripts\angular-simple-logger-master\stylesheets\stylesheet.css" />
     <Content Include="Scripts\angular-touch.js" />
     <Content Include="Scripts\angular-touch.min.js" />
     <Content Include="Scripts\angular-ui-router.js" />
@@ -420,6 +380,8 @@
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\angular_filepicker.min.js" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -443,7 +405,6 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-resource.min.js.map" />
-    <Content Include="GitIgnore\Secret.config" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular-touch.min.js.map" />
     <Content Include="Scripts\angular-sanitize.min.js.map" />
@@ -462,37 +423,9 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Scripts\angular-route.min.js.map" />
-    <Content Include="Scripts\angular-simple-logger-master\.bowerrc" />
-    <Content Include="Scripts\angular-simple-logger-master\.npmignore" />
-    <Content Include="Scripts\angular-simple-logger-master\.travis.yml" />
-    <Content Include="Scripts\angular-simple-logger-master\bower.json" />
-    <Content Include="Scripts\angular-simple-logger-master\coffeelint.json" />
-    <Content Include="Scripts\angular-simple-logger-master\gulpfile.coffee" />
-    <Content Include="Scripts\angular-simple-logger-master\gulp\coffeeOptions.coffee" />
-    <Content Include="Scripts\angular-simple-logger-master\gulp\common\save.coffee" />
-    <Content Include="Scripts\angular-simple-logger-master\gulp\index.coffee" />
-    <Content Include="Scripts\angular-simple-logger-master\gulp\tasks\browserify.coffee" />
-    <Content Include="Scripts\angular-simple-logger-master\gulp\tasks\build.coffee" />
-    <Content Include="Scripts\angular-simple-logger-master\gulp\tasks\bump.coffee" />
-    <Content Include="Scripts\angular-simple-logger-master\gulp\tasks\clean.coffee" />
-    <Content Include="Scripts\angular-simple-logger-master\gulp\tasks\dist.coffee" />
-    <Content Include="Scripts\angular-simple-logger-master\gulp\tasks\index.coffee" />
-    <Content Include="Scripts\angular-simple-logger-master\gulp\tasks\spec.coffee" />
-    <Content Include="Scripts\angular-simple-logger-master\gulp\tasks\tag.coffee" />
-    <Content Include="Scripts\angular-simple-logger-master\gulp\tasks\wrap.coffee" />
-    <Content Include="Scripts\angular-simple-logger-master\karma.browserify.conf.coffee" />
-    <Content Include="Scripts\angular-simple-logger-master\karma.conf.coffee" />
-    <Content Include="Scripts\angular-simple-logger-master\karma.light.conf.coffee" />
-    <Content Include="Scripts\angular-simple-logger-master\package.json" />
-    <Content Include="Scripts\angular-simple-logger-master\params.json" />
-    <Content Include="Scripts\angular-simple-logger-master\README.md" />
-    <Content Include="Scripts\angular-simple-logger-master\scripts\clean" />
-    <Content Include="Scripts\angular-simple-logger-master\scripts\publish" />
-    <Content Include="Scripts\angular-simple-logger-master\spec\debug.spec.coffee" />
-    <Content Include="Scripts\angular-simple-logger-master\spec\logger.arrayExt.spec.coffee" />
-    <Content Include="Scripts\angular-simple-logger-master\spec\logger.spec.coffee" />
-    <Content Include="Scripts\angular-simple-logger-master\src\logger.coffee" />
-    <Content Include="Scripts\angular-simple-logger-master\src\module.coffee" />
+    <Content Include="GitIgnore\Secret.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
@@ -1247,8 +1180,71 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\lodash.js" />
-    <Content Include="Scripts\lodash.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ar.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.az.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.bg.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.bs.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ca.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.cs.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.cy.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.da.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.de.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.el.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.en-GB.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.eo.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.es.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.et.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.eu.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fa.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fi.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fo.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fr-CH.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fr.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.gl.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.he.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.hr.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.hu.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.hy.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.id.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.is.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.it-CH.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.it.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ja.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ka.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.kh.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.kk.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ko.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.kr.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.lt.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.lv.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.me.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.mk.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.mn.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ms.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nb.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nl-BE.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nl.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.no.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pl.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pt-BR.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pt.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ro.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.rs-latin.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.rs.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ru.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sk.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sl.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sq.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sr-latin.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sr.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sv.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sw.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.th.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.tr.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.uk.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.vi.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.zh-CN.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.zh-TW.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -1305,40 +1301,25 @@
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-route.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-sanitize.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\bootstrap.datepicker\bootstrap.datepicker.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\es6-promise\es6-promise.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602130247144_initial.resx">
-      <DependentUpon>201602130247144_initial.cs</DependentUpon>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201602152033308_initial.resx">
+      <DependentUpon>201602152033308_initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602152143194_2.resx">
-      <DependentUpon>201602152143194_2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602152209331_initial1.resx">
+      <DependentUpon>201602152209331_initial1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602152158150_3.resx">
-      <DependentUpon>201602152158150_3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602152233182_4.resx">
-      <DependentUpon>201602152233182_4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602160407050_5.resx">
-      <DependentUpon>201602160407050_5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602160413195_6.resx">
-      <DependentUpon>201602160413195_6.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602160514558_7.resx">
-      <DependentUpon>201602160514558_7.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602160538461_8.resx">
-      <DependentUpon>201602160538461_8.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602161754057_9.resx">
-      <DependentUpon>201602161754057_9.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602152220533_initial2.resx">
+      <DependentUpon>201602152220533_initial2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
