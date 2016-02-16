@@ -18,7 +18,7 @@ var MyApp;
                     controller: MyApp.Controllers.LoginController,
                     controllerAs: "controller",
                     resolve: {},
-                    size: "sm"
+                    size: "md"
                 });
             };
             AccountController.prototype.getClaim = function (type) {
