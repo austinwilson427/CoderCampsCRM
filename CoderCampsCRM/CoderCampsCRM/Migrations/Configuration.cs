@@ -32,8 +32,8 @@ namespace CoderCampsCRM.Migrations
                     FirstName = "deneme",
                     LastName = "deneme",
                     Companies = new Company[]
-                    {
-                        new Company {
+            {
+                new Company {
                                 CompanyName = "The Verge",
                                 CompanyDomainName ="www.theverge.com",
                                 CompanyPhoneNumber ="833-322-4422",
@@ -60,25 +60,23 @@ namespace CoderCampsCRM.Migrations
                         new Contact { Name = " Cliff Barnes" ,
                                       Email = "cliff.barnes@gmail.com",
                                       PhoneNumber = "222-333-1111",
-                                      JobTitle = "Merchant Manager",
-                                      CompanyId = 1
+                                      JobTitle = "Merchant Manager"
                                     },
                         new Contact { Name = "Sue Ellen Ewing" ,
                                       Email = "sue@gmail.com",
                                       PhoneNumber = "666-111-9999",
-                                      JobTitle = "Merchant Officer",
-                                      CompanyId = 1
+                                      JobTitle = "Merchant Officer"
                         }
                     },
                     Deals = new Deal[]
                     {
                         new Deal {  DealName = "Deal 3",
-                                    Stage = "Appintment Scheduled",
+                                    Stage = "Appointment Scheduled",
                                     Amount = 7000m,
                                     CloseDate = DateTime.Today,
                                     isArchived = true},
                         new Deal {  DealName = "Deal 4",
-                                    Stage = "COntract Sent",
+                                    Stage = "Contract Sent",
                                     Amount = 150000m,
                                     CloseDate = DateTime.Today,
                                     isArchived = false}
@@ -91,7 +89,6 @@ namespace CoderCampsCRM.Migrations
                 userManager.AddClaim(user.Id, new System.Security.Claims.Claim("Admin", "true"));
 
             }
-
             var user2 = userManager.FindByName("deneme2@gmail.com");
             if (user2 == null)
             {
@@ -103,17 +100,17 @@ namespace CoderCampsCRM.Migrations
                     LastName = "deneme",
                     Companies = new Company[]
                     {
-                         new Company {
+                 new Company {
                                 CompanyName = "scotch-soda",
                                 CompanyDomainName ="www.scotch-soda.com",
                                 CompanyPhoneNumber ="1- (866) 544-1557",
                                 CompanyCountry ="Nederland",
                                 CompanyCity ="Amsterdam",
-                                CompanyState ="North Holland",
+                                CompanyState =null,
                                 CompanyZip ="11111",
                                 ComapanyAddress ="somewhere in Nederland",
                                 CompanyDescription ="At Scotch & Soda we want people to love their clothes...",
-                                CompanyIndustry ="Textile",
+                                CompanyIndustry ="Web",
                                 CompanyIsPublic = true,
                                 CompanyFacebook ="https://www.facebook.com/ScotchOfficial",
                                 CompanyLinkedin ="https://www.linkedin.com/company/1014429",
@@ -128,34 +125,31 @@ namespace CoderCampsCRM.Migrations
                         new Contact { Name = "Bobby Ewing" ,
                                       Email = "bobby.ewing@gmail.com",
                                       PhoneNumber = "333-222-5555",
-                                      JobTitle = "Merchant Manager",
-                                      CompanyId = 2
+                                      JobTitle = "Merchant Manager"
                                     },
                         new Contact { Name = "Clayton Farlow" ,
                                       Email = "clayton@gmail.com",
                                       PhoneNumber = "333-222-5555",
-                                      JobTitle = "Merchant Officer",
-                                      CompanyId = 2
+                                      JobTitle = "Merchant Officer"
                         }
                     },
                     Deals = new Deal[]
                     {
                         new Deal {  DealName = "Deal 1",
-                                    Stage = "Appintment Scheduled",
+                                    Stage = "Appointment Scheduled",
                                     Amount = 5000m,
                                     CloseDate = DateTime.Today,
-                                    isArchived = true},
+                                    isArchived = false},
                         new Deal {  DealName = "Deal 2",
-                                    Stage = "COntract Sent",
+                                    Stage = "Contract Sent",
                                     Amount = 50000m,
                                     CloseDate = DateTime.Today,
                                     isArchived = false}
-                    }
-                };
-                userManager.Create(user2, "Deneme@123");
-                userManager.AddClaim(user2.Id, new System.Security.Claims.Claim("User", "true"));
+                    },
+            };
 
-            }
+
+
 
 
             UserTask[] tasks = new UserTask[] {
@@ -171,8 +165,9 @@ namespace CoderCampsCRM.Migrations
         };
             context.Tasks.AddOrUpdate(t => t.Id, tasks);
 
+
         }
     }
 }
-
+}
 

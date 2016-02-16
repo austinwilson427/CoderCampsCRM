@@ -1,34 +1,85 @@
-﻿{{controller.test}}
-<fieldset>
-    <legend>Login with a Social Provider</legend>
-
-    <ul>
-        <li ng-repeat="externalLogin in account.externalLogins">
-            <a target="_self" href="{{externalLogin.url}}">{{externalLogin.name}}</a>
-        </li>
-    </ul>
-
-</fieldset>
-
-<fieldset>
-    <legend>Login Locally</legend>
-    <ul>
-        <li ng-repeat="error in controller.validationMessages">
-            {{error}}
-        </li>
-    </ul>
-
-    <form ng-submit="controller.login()">
-        <div>
-            <label>Username:</label>
-            <input ng-model="controller.loginUser.userName" />
+﻿<container>
+    <!--<link href="../../Content/ui-bootstrap-csp.css" rel="stylesheet" />-->
+    <form name="login">
+        <div class="modal-header">
+            <div class="text-center">
+                <h3 class="modal-title">Login with a Social Provider</h3>
+                <ul>
+                    <li ng-repeat="externalLogin in controller.externalLogins">
+                        <a target="_self" href="{{externalLogin.url}}">{{externalLogin.name}}</a>
+                    </li>
+                </ul>
+            </div>
         </div>
         <div>
-            <label>Password:</label>
-            <input ng-model="controller.loginUser.password" />
+            <div class="text-center">
+                <h3>Login Locally</h3>
+                <ul>
+                    <li ng-repeat="error in controller.validationMessages">
+                        {{error}}
+                    </li>
+                </ul>
+            </div>
         </div>
-        <input type="submit" value="Login" />
-        <a href="#" ng-click="controller.showRegisterModal()">Register</a>
-        <a class="btn btn-danger" ng-click="controller.closeModal()">Cancel</a>
+
+        <!--<div class="col-md-10 col-md-offset-1">-->
+        <div ng-submit="controller.login()" class="form-horizontal" role="form">
+            <div class="modal-body">
+                <div class="text-center">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+
+                            <div>
+                                <label>Username:</label>
+                                <input ng-model="controller.loginUser.userName"
+                                       class="form-control" username="username" required /><span ng-show="contactAdd.name.$touched && contactAdd.name.$error.required" class="error">Please enter a username</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-10 col-lg-offset-1">
+                            <div>
+                                <label>Password:</label>
+                                <input ng-model="controller.loginUser.password" class="form-control" type="password" username="username" /><!--<span ng-show="contactAdd.name.$touched && contactAdd.name.$error.required" class="error">Please enter a password</span>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <div class="form-group row">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <!--<label class="control-label"></label>-->
+
+                        <button type="submit" class="btn btn-block" ng-click="controller.login()">Login</button>
+
+                        <!--<span></span>-->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <label class="control-label"></label>
+                        <button class="form-control full btn btn-success" ng-click="controller.showRegisterModal()">Register</button>
+                        <!--<span></span>-->
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <label class="control-label"></label>
+                        <button class="form-control full btn btn-danger" ng-click="controller.closeModal()">Cancel</button>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
     </form>
-</fieldset>
+</container>
+

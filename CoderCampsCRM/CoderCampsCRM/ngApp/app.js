@@ -1,6 +1,6 @@
 var MyApp;
 (function (MyApp) {
-    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router', 'angular-filepicker']).config(function ($locationProvider, $stateProvider, $urlRouterProvider, filepickerProvider) {
+    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router', 'angular-filepicker', 'ngDraggable']).config(function ($locationProvider, $routeProvider, $stateProvider, $urlRouterProvider, filepickerProvider) {
         filepickerProvider.setKey('ANnIsnaUARuBQjAtPZGBQz');
         $stateProvider
             .state('home', {
@@ -9,9 +9,33 @@ var MyApp;
             controller: MyApp.Controllers.HomeController,
             controllerAs: 'controller'
         })
+            .state('externalRegister', {
+            url: '/externalRegister',
+            templateUrl: '/ngApp/views/externalRegister.html',
+            controller: MyApp.Controllers.ExternalRegisterController,
+            controllerAs: 'controller'
+        })
+            .state('externalLogin', {
+            url: '/externalLogin',
+            templateUrl: '/ngApp/views/externalLogin.html',
+            controller: MyApp.Controllers.ExternalLoginController,
+            controllerAs: 'controller'
+        })
             .state('deals', {
             url: '/deals',
             templateUrl: '/ngApp/views/deals.html',
+            controller: MyApp.Controllers.DealsController,
+            controllerAs: 'vm'
+        })
+            .state('deals.table-view', {
+            url: '/table-view',
+            templateUrl: '/ngApp/views/routes/deal-table-view.html',
+            controller: MyApp.Controllers.DealTableViewController,
+            controllerAs: 'vm'
+        })
+            .state('deals.list-view', {
+            url: '/list-view',
+            templateUrl: '/ngApp/views/routes/deal-list-view.html',
             controller: MyApp.Controllers.DealsController,
             controllerAs: 'vm'
         })
@@ -21,9 +45,27 @@ var MyApp;
             controller: MyApp.Controllers.TaskListController,
             controllerAs: 'vm'
         })
+            .state('addtask', {
+            url: '/addtask',
+            templateUrl: '/ngApp/views/addtask.html',
+            controller: MyApp.Controllers.TaskAddController,
+            controllerAs: 'vm'
+        })
+            .state('deletetask', {
+            url: '/deletetask/:id',
+            templateUrl: '/ngApp/views/deletetask.html',
+            controller: MyApp.Controllers.TaskDeleteController,
+            controllerAs: 'vm'
+        })
             .state('taskdetails', {
-            url: '/task-details',
+            url: '/task-details/:id',
             templateUrl: '/ngApp/views/task-details.html',
+            controller: MyApp.Controllers.TaskEditController,
+            controllerAs: 'vm'
+        })
+            .state('myAccount', {
+            url: '/tasks',
+            templateUrl: '/ngApp/views/tasks.html',
             controller: MyApp.Controllers.TaskListController,
             controllerAs: 'vm'
         })
@@ -87,7 +129,7 @@ var MyApp;
             controller: MyApp.Controllers.DealInfoEventController,
             controllerAs: "vm"
         });
-        $urlRouterProvider.otherwise('home');
+        $urlRouterProvider.otherwise('/');
         $locationProvider.html5Mode(true);
     });
     angular.module('MyApp').factory('authInterceptor', function ($q, $window, $location) {

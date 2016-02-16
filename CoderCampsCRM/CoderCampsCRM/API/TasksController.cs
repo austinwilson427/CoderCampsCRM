@@ -11,73 +11,74 @@ namespace CoderCampsCRM.API
 {
     public class TasksController : ApiController
     {
-            private IGenericRepository _repo; 
+        private IGenericRepository _repo;
 
-            //}
-            public TasksController(IGenericRepository repo)
+        //}
+        public TasksController(IGenericRepository repo)
+        {
+            _repo = repo;
+        }
+
+
+
+
+        public IHttpActionResult GetAllTasks()
+        {
+            var data = _repo.Query<UserTask>();
+
+            return Ok(data);
+        }
+
+        [Route("api/tasks/{id}")]
+        public IHttpActionResult GetIndTask(int id)
+        {
+            var data = _repo.Find<UserTask>(id);
+
+            return Ok(data);
+        }
+
+        public IHttpActionResult PostTask(UserTask taskToAdd)
+        {
+            if (ModelState.IsValid)
             {
-                _repo = repo;
-            }
 
-
-
-
-            public IHttpActionResult GetAllTasks()
-            {
-                var data = _repo.Query<UserTask>();
-
-                return Ok(data);
-            }
-
-            [Route("api/tasks/{id}")]
-            public IHttpActionResult GetIndTask(int id)
-            {
-                var data = _repo.Find<UserTask>(id);
-
-                return Ok(data);
-            }
-
-            public IHttpActionResult PostTask(UserTask taskToAdd)
-            {
-                if (ModelState.IsValid)
+                //Creating a new task
+                if (taskToAdd.Id == 0)
                 {
+                    _repo.Add<UserTask>(taskToAdd);
+                    _repo.SaveChanges();
+                    return Ok();
 
-                    //Creating a new task
-                    if (taskToAdd.Id == 0)
-                    {
-                        _repo.Add<UserTask>(taskToAdd);
-                        _repo.SaveChanges();
-                        return Ok();
-
-                    }
-                    else
-                    {
-                        //Updating if task already exists
-                        var originalTask = _repo.Find<UserTask>(taskToAdd.Id);
-
-                        originalTask.Status = taskToAdd.Status;
-                        originalTask.Type = taskToAdd.Type;
-                        originalTask.DueDate = taskToAdd.DueDate;
-                        originalTask.Description = taskToAdd.Description;
-
-
-                        _repo.SaveChanges();
-                        return Ok(taskToAdd);
-                    }
                 }
+                else
+                {
+                    //Updating if task already exists
+                    var originalTask = _repo.Find<UserTask>(taskToAdd.Id);
 
-                return BadRequest();
+                    originalTask.Status = taskToAdd.Status;
+                    originalTask.StartDate = taskToAdd.StartDate;
+                    originalTask.Type = taskToAdd.Type;
+                    originalTask.DueDate = taskToAdd.DueDate;
+                    originalTask.Description = taskToAdd.Description;
 
 
+                    _repo.SaveChanges();
+                    return Ok(taskToAdd);
+                }
             }
 
-            public IHttpActionResult DeleteTask(int id)
+            return BadRequest();
 
-            {
-                _repo.Delete<UserTask>(id);
-                _repo.SaveChanges();
-                return Ok();
-            }
+
+        }
+
+        public IHttpActionResult DeleteTask(int id)
+
+        {
+            _repo.Delete<UserTask>(id);
+            _repo.SaveChanges();
+            return Ok();
         }
     }
+}
 

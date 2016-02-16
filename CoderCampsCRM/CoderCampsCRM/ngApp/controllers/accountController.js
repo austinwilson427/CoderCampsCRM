@@ -39,10 +39,14 @@ var MyApp;
         angular.module('MyApp').controller('AccountController', AccountController);
         var LoginController = (function () {
             function LoginController(accountService, $location, $uibModal, $uibModalInstance) {
+                var _this = this;
                 this.accountService = accountService;
                 this.$location = $location;
                 this.$uibModal = $uibModal;
                 this.$uibModalInstance = $uibModalInstance;
+                this.getExternalLogins().then(function (results) {
+                    _this.externalLogins = results;
+                });
             }
             LoginController.prototype.login = function () {
                 var _this = this;
@@ -70,6 +74,9 @@ var MyApp;
             LoginController.prototype.closeModal = function () {
                 this.$uibModalInstance.close();
             };
+            LoginController.prototype.getExternalLogins = function () {
+                return this.accountService.getExternalLogins();
+            };
             return LoginController;
         })();
         Controllers.LoginController = LoginController;
@@ -96,6 +103,15 @@ var MyApp;
                     url: null
                 };
             }
+            RegisterController.prototype.showLoginModal = function () {
+                this.$uibModal.open({
+                    templateUrl: "/ngApp/views/login.html",
+                    controller: MyApp.Controllers.LoginController,
+                    controllerAs: "controller",
+                    resolve: {},
+                    size: "sm"
+                });
+            };
             RegisterController.prototype.pickFile = function () {
                 this.closeModal();
                 this.filepickerService.pick({ mimetype: 'image/*' }, this.fileUploaded.bind(this));
@@ -119,7 +135,8 @@ var MyApp;
             RegisterController.prototype.register = function () {
                 var _this = this;
                 this.accountService.register(this.registerUser).then(function () {
-                    _this.$location.path('/login');
+                    _this.closeModal();
+                    _this.showLoginModal();
                 }).catch(function (results) {
                     _this.validationMessages = results;
                 });
@@ -151,17 +168,25 @@ var MyApp;
         })();
         Controllers.ExternalLoginController = ExternalLoginController;
         var ExternalRegisterController = (function () {
-            function ExternalRegisterController(accountService, $location) {
+            function ExternalRegisterController(accountService, $location, $uibModal) {
                 this.accountService = accountService;
                 this.$location = $location;
+                this.$uibModal = $uibModal;
                 var response = accountService.parseOAuthResponse($location.hash());
                 this.externalAccessToken = response['access_token'];
             }
             ExternalRegisterController.prototype.register = function () {
                 var _this = this;
-                this.accountService.registerExternal(this.registerUser.email, this.externalAccessToken)
+                this.accountService.registerExternal(this.registerUser, this.externalAccessToken)
                     .then(function (result) {
-                    _this.$location.path('/login');
+                    _this.$location.path('/');
+                    _this.$uibModal.open({
+                        templateUrl: "/ngApp/views/login.html",
+                        controller: MyApp.Controllers.LoginController,
+                        controllerAs: "controller",
+                        resolve: {},
+                        size: "sm"
+                    });
                 }).catch(function (result) {
                     _this.validationMessages = result;
                 });

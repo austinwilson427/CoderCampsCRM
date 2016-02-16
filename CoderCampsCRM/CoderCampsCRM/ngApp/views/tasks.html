@@ -9,25 +9,19 @@
                 </a>
             </li>
             <li>
-                <a href="#">Dashboard</a>
+                <a class="my-nice-button" href="#"><i class="fa fa-exclamation"></i>&nbsp;<font color="red"><u>Past Due Tasks</u></font></a>
             </li>
             <li>
-                <a href="#">Shortcuts</a>
+                <a class="my-nice-checkbutton" href="#"><i class="fa fa-check"></i>&nbsp;<font>Due Today</font></a>
             </li>
             <li>
-                <a href="#">Overview</a>
+                <a class="my-nice-statusbutton1" href="#"><i class="fa fa-battery-0"></i>&nbsp;<font>Not Started</font></a>
             </li>
             <li>
-                <a href="#">Events</a>
+                <a class="my-nice-statusbutton2" href="#"><i class="fa fa-battery-half"></i>&nbsp;<font>In Progress</font></a>
             </li>
             <li>
-                <a href="#">About</a>
-            </li>
-            <li>
-                <a href="#">Services</a>
-            </li>
-            <li>
-                <a href="#">Contact</a>
+                <a class="my-nice-statusbutton3" href="#"><i class="fa fa-battery-full"></i>&nbsp;<font>Completed</font></a>
             </li>
         </ul>
     </div>
@@ -38,7 +32,16 @@
             <div class="row">
                 <div class="col-lg-6">
                     <h1>Tasks / To-Do's</h1>
-                    <btn id="menu-toggle" class="btn btn-default">Add Filter</btn>
+                    
+                    <form action="" class="search-form" style="width: 100%;">
+                        <btn id="menu-toggle" class="btn btn-default">Add Filter</btn>
+                        <div class="form-group has-feedback">
+                            <label for="search" class="sr-only">Search...</label>
+                            <input type="text" class="form-control" name="search" ng-model="vm.search" id="search" placeholder="Search by Type...">
+                            <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                        </div>
+                    </form>
+                    
                     <br />
                     <br />
                         <div class="row">
@@ -54,20 +57,20 @@
                                                 <th>Due Date</th>
                                                 <th>Edit/Delete</th>
                                             </tr>
-                                            <tr ng-repeat="task in vm.tasks">
+                                            <tr ng-repeat="task in vm.tasks | filter: {type: vm.search} | orderBy:'dueDate'"{{task.dueDate}}>
                                                 <td>{{task.startDate}}</td>
                                                 <td>{{task.status}}</td>
                                                 <td>{{task.description}}</td>
                                                 <td>{{task.type}}</td>
                                                 <td>{{task.dueDate}}</td>
-                                                <td>
-                                                    <a href="/edit/{{task.id}}"><span style="color: orangered" class="glyphicon glyphicon-edit"></span></a>
-                                                    <a href="/delete/{{task.id}}"><span style="color: red" class="glyphicon glyphicon-trash"></span></a>
+                                                <td align="center">
+                                                    <a href="/task-details/{{task.id}}"><span style="color: blue" class="glyphicon glyphicon-list"></span></a>&nbsp;
+                                                    <a href="/deletetask/{{task.id}}"><span style="color: red" class="glyphicon glyphicon-remove"></span></a>
                                                 </td>
                                             </tr>
                                         </table>
                                         <br />
-                                        <div align="center"><a href="/add" class="btn btn-default">Add Task</a></div>
+                                        <div align="center"><a ui-sref="addtask" class="btn btn-default">Add Task</a></div>
                                     </form>
                                 </div>
                             </div>
@@ -96,4 +99,5 @@
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
+        $('.datepicker').datepicker();
 </script>

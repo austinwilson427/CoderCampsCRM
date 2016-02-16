@@ -40,7 +40,6 @@
                     //result[i].company = company;
                     this.allDeals.push(result[i]);
                 }
-                console.log(this.allDeals);
             });
         }
 
@@ -95,7 +94,7 @@
         public archiveDeal(dealToArchive) {
 
             this.dealService.saveDeal(dealToArchive).then(() => {
-                this.$location.path('/deals');
+                this.$route.reload();
             }).catch((error) => {
 
                 let validationErrors = [];
@@ -245,7 +244,7 @@
         public unarchiveItem(dealToUnarchive) {
             dealToUnarchive.isArchived = false;
             this.dealService.saveDeal(dealToUnarchive).then(() => {
-                this.$location.path('/deals');
+                this.$route.reload();
             }).catch((error) => {
                 let validationErrors = [];
                 for (let i in error.data.modelState) {
@@ -260,15 +259,32 @@
     class AddDealModal {
 
         public validationErrors;
+        public myContacts;
+        public myCompanies;
 
-        constructor(private dealService: MyApp.Services.DealService, private $location: ng.ILocationService, private $uibModalInstance: ng.ui.bootstrap.IModalServiceInstance, private $route: ng.route.IRouteService) { }
+        constructor(private dealService: MyApp.Services.DealService, private $location: ng.ILocationService, private $uibModalInstance: ng.ui.bootstrap.IModalServiceInstance, private $route: ng.route.IRouteService, private contactService: MyApp.Services.ContactService, private companiesService: MyApp.Services.CompaniesService) {
+            this.getMyContacts();
+            this.getMyCompanies();
+        }
+
+        public getMyContacts() {
+            this.contactService.getAllContacts().$promise.then((result) => {
+                this.myContacts = result;
+            });
+        }
+
+        public getMyCompanies() {
+            this.companiesService.getCompanies().$promise.then((result) => {
+                this.myCompanies = result;
+                console.log(this.myCompanies);
+            });
+        }
 
         public addDeal(dealToAdd) {
             console.log(dealToAdd);
             this.dealService.saveDeal(dealToAdd).then(() => {
                 this.closeModal();
-                this.$location.path('/deals');
-                this.$route.reload();
+                location.reload(false);
             }).catch((error) => {
 
                 let validationErrors = [];
@@ -297,8 +313,7 @@
             console.log(this.dealDetails);
             this.dealService.saveDeal(this.dealDetails).then(() => {
                 this.closeModal();
-                this.$location.path('/deals');
-                this.$route.reload();
+                location.reload();
             }).catch((error) => {
 
                 let validationErrors = [];
@@ -378,7 +393,7 @@
 
             this.dealService.saveDeal(finalDeal).then(() => {
                 this.closeModal();
-                this.$location.path('/deals');
+                this.$route.reload();
             }).catch((error) => {
                 let validationErrors = [];
                 for (let i in error.data.modelState) {
@@ -394,5 +409,150 @@
         }
     }
 
+    export class DealTableViewController {
+
+        public stages;
+        public draggableObjects;
+        public droppedObjects1;
+        public droppedObjects2;
+        public droppedObjects3;
+        public droppedObjects4;
+        public droppedObjects5;
+        public allDeals;
+        public validationErrors;
+
+        constructor(private dealService: MyApp.Services.DealService, private $stateParams: angular.ui.IStateParamsService, private $location: ng.ILocationService) {
+
+            this.stages = ["Appointment Scheduled", "Qualified to Buy", "Presentation Scheduled", "Decision Maker Bought In", "Contract Sent"];
+
+            this.getAllItems();
+        }
+
+        public getAllItems() {
+
+            this.dealService.listAllDeals().$promise.then((result) => {
+                this.allDeals = [];
+                let company;
+                for (var i = 0; i < result.length; i++) {
+                    this.allDeals.push(result[i]);
+                }
+                this.draggableObjects = this.allDeals;
+                this.droppedObjects1 = this.draggableObjects;
+                this.droppedObjects2 = this.draggableObjects;
+                this.droppedObjects3 = this.draggableObjects;
+                this.droppedObjects4 = this.draggableObjects;
+                this.droppedObjects5 = this.draggableObjects;
+            });
+        }
+
+        public editDeal(dealToAdd) {
+            console.log(dealToAdd);
+            this.dealService.saveDeal(dealToAdd).then(() => {
+                //location.reload(false);
+            }).catch((error) => {
+
+                let validationErrors = [];
+                for (let i in error.data.modelState) {
+                    let errorMessage = error.data.modelState[i];
+                    validationErrors = validationErrors.concat(errorMessage);
+                }
+                this.validationErrors = validationErrors;
+            });
+        }
+
+        public onDropComplete1(data, evt) {
+            console.log(data);
+            let index = this.droppedObjects1.indexOf(data);
+            data.stage = "Appointment Scheduled";
+            if(index == -1) {
+                this.droppedObjects1.push(data);
+                this.editDeal(data);
+            }
+        }
+
+        public onDragSuccess1(data, evt) {
+            var index = this.droppedObjects1.indexOf(data);
+            if (index != -1) {
+                this.droppedObjects1.splice(index, 1);
+            }
+        }
+        public onDropComplete2(data, evt) {
+            console.log(data);
+            let index = this.droppedObjects2.indexOf(data);
+            data.stage = "Qualified to Buy";
+            if (index == -1) {
+                this.droppedObjects2.push(data);
+                this.editDeal(data);
+            }
+        }
+
+        public onDragSuccess2(data, evt) {
+            var index = this.droppedObjects2.indexOf(data);
+            if (index != -1) {
+                this.droppedObjects2.splice(index, 1);
+            }
+        }
+
+        public onDropComplete3(data, evt) {
+            console.log(data);
+            let index = this.droppedObjects3.indexOf(data);
+            data.stage = "Presentation Scheduled";
+            if (index == -1) {
+                this.droppedObjects3.push(data);
+                this.editDeal(data);
+            }
+        }
+
+        public onDragSuccess3(data, evt) {
+            var index = this.droppedObjects3.indexOf(data);
+            if (index != -1) {
+                this.droppedObjects3.splice(index, 1);
+            }
+        }
+
+        public onDropComplete4(data, evt) {
+            console.log(data);
+            let index = this.droppedObjects4.indexOf(data);
+            data.stage = "Decision Maker Bought In";
+            if (index == -1) {
+                this.droppedObjects4.push(data);
+                this.editDeal(data);
+            }
+        }
+
+        public onDragSuccess4(data, evt) {
+            var index = this.droppedObjects4.indexOf(data);
+            if (index != -1) {
+                this.droppedObjects4.splice(index, 1);
+            }
+        }
+
+        public onDropComplete5(data, evt) {
+            console.log(data);
+            let index = this.droppedObjects5.indexOf(data);
+            data.stage = "Contract Sent";
+            if (index == -1) {
+                this.droppedObjects5.push(data);
+                this.editDeal(data);
+            }
+        }
+
+        public onDragSuccess5(data, evt) {
+            var index = this.droppedObjects5.indexOf(data);
+            if (index != -1) {
+                this.droppedObjects5.splice(index, 1);
+            }
+        }
+
+        public getData(data, element) {
+            let showOverlay = angular.element(document.querySelector('.overlay'));
+            showOverlay.addClass('show');
+        }
+
+        public hideOverlay(element) {
+            var hideOverlay = angular.element(document.querySelector('.overlay'));
+            hideOverlay.removeClass('show');
+        }
+    }
 
 }

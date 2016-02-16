@@ -88,8 +88,30 @@ namespace CoderCampsCRM.Providers
 
         public static AuthenticationProperties CreateProperties(ApplicationUser user)
         {
+            if (user.FirstName == null)
+            {
+                user.FirstName = "";
+            }
+            if (user.LastName == null)
+            {
+                user.LastName = "";
+            }
+            if (user.TimeZone == null)
+            {
+                user.TimeZone = "";
+            }
+            if (user.PicUrl == null)
+            {
+                user.PicUrl = "";
+            }
+            if (user.PhoneNumber == null)
+            {
+                user.PhoneNumber = "";
+            }
+
             IDictionary<string, string> data = new Dictionary<string, string>
             {
+                
                 { "userName", user.UserName },
                 { "firstName", user.FirstName },
                 { "lastName", user.LastName },
@@ -98,9 +120,9 @@ namespace CoderCampsCRM.Providers
                 { "picUrl", user.PicUrl },
                 { "email", user.Email },
                 { "phoneNumber", user.PhoneNumber }
-
-
             };
+
+            
 
             // add claims (modified by Stephen)
             foreach (var claim in user.Claims)

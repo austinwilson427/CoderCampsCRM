@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AC6D73FC-B465-4080-AA67-AAD05817A88A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CoderCampsCRM.Tests</RootNamespace>
+    <AssemblyName>CoderCampsCRM.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <Compile Include="DealLogItemsControllerTest.cs" />
+    <Compile Include="DealsControllerTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CoderCampsCRM\CoderCampsCRM.csproj">
+      <Project>{25644207-211a-4ef0-b11c-e998e544b833}</Project>
+      <Name>CoderCampsCRM</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-datepicker.css" />
+    <Content Include="Content\bootstrap-datepicker.min.css" />
+    <Content Include="Content\bootstrap-datepicker.standalone.css" />
+    <Content Include="Content\bootstrap-datepicker.standalone.min.css" />
+    <Content Include="Content\bootstrap-datepicker3.css" />
+    <Content Include="Content\bootstrap-datepicker3.min.css" />
+    <Content Include="Content\bootstrap-datepicker3.standalone.css" />
+    <Content Include="Content\bootstrap-datepicker3.standalone.min.css" />
+    <Content Include="Content\bootstrap-responsive.css" />
+    <Content Include="Content\bootstrap-responsive.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="img\glyphicons-halflings-white.png" />
+    <Content Include="img\glyphicons-halflings.png" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap-datepicker.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ar.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.az.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.bg.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.bs.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ca.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.cs.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.cy.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.da.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.de.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.el.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.en-GB.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.eo.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.es.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.et.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.eu.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fa.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fi.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fo.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fr-CH.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.fr.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.gl.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.he.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.hr.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.hu.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.hy.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.id.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.is.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.it-CH.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.it.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ja.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ka.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.kh.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.kk.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ko.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.kr.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.lt.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.lv.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.me.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.mk.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.mn.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ms.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nb.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nl-BE.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.nl.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.no.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pl.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pt-BR.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.pt.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ro.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.rs-latin.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.rs.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.ru.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sk.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sl.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sq.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sr-latin.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sr.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sv.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.sw.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.th.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.tr.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.uk.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.vi.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.zh-CN.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.zh-TW.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\typings\bootstrap.datepicker\bootstrap.datepicker.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

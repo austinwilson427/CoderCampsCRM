@@ -122,8 +122,7 @@ table.deals_table th:hover{
 }
 
 .filter_button{
-    position: relative;
-    bottom: 10px;
+
 }
 
 .min_amount{
@@ -209,6 +208,32 @@ table.activity td{
     padding: 5px;
 }
 
+.list_custom_wrap{
+    margin: 40px auto;
+}
+
+.contact_to_add{
+    width: 60%;
+    margin: 10px auto 80px;
+    text-align: center;
+}
+
+.view_search{
+    margin-bottom: 20px;
+}
+
+td.trash_cell{
+    text-align: center;
+    width: 60px;
+}
+
+.trash_icon{
+    padding-right: 5px;
+}
+
+.folder_icon{
+    padding-left: 5px
+}
 /*-------------------Contacts Section--------------------------*/
 
 .error {
@@ -261,3 +286,70 @@ table.activity td{
     border-right: hidden;
     background-color: white;
 }
+
+/*SEARCHBAR CSS*/
+.search-form .form-group {
+  float: right !important;
+  transition: all 0.35s, border-radius 0s;
+  width: 32px;
+  height: 32px;
+  background-color: #fff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+}
+.search-form .form-group input.form-control {
+  padding-right: 20px;
+  border: 0 none;
+  background: transparent;
+  box-shadow: none;
+  display:block;
+}
+.search-form .form-group input.form-control::-webkit-input-placeholder {
+  display: none;
+}
+.search-form .form-group input.form-control:-moz-placeholder {
+  /* Firefox 18- */
+  display: none;
+}
+.search-form .form-group input.form-control::-moz-placeholder {
+  /* Firefox 19+ */
+  display: none;
+}
+.search-form .form-group input.form-control:-ms-input-placeholder {
+  display: none;
+}
+.search-form .form-group:hover,
+.search-form .form-group.hover {
+  width: 25%;
+  border-radius: 4px 25px 25px 4px;
+}
+.search-form .form-group span.form-control-feedback {
+  position: absolute;
+  top: -1px;
+  right: -2px;
+  z-index: 2;
+  display: block;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  color: #3596e0;
+  left: initial;
+  font-size: 14px;
+}
+
+
+/*FONT AWESOME - ICON COLORS*/
+
+.my-nice-button>i { color: orangered; }
+.my-nice-checkbutton>i { color: green; }
+.my-nice-statusbutton1>i { color: red; }
+.my-nice-statusbutton2>i { color: yellow; }
+.my-nice-statusbutton3>i { color: green; }
+
+/*DatePicker*/
+label{margin-left: 20px;}
+#datepicker, #datepicker2{width:280px; margin: 0px 20px 20px 0px;}
+#datepicker, #datepicker2 > span:hover{cursor: pointer;}
+
