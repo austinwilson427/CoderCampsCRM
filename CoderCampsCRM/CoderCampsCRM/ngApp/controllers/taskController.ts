@@ -36,9 +36,9 @@
     export class TaskEditController {
         public taskToEdit;
 
-        constructor(private taskService: MyApp.Services.TaskService, private $location: ng.ILocationService, $routeParams: ng.route.IRouteParamsService) {
+        constructor(private taskService: MyApp.Services.TaskService, private $location: ng.ILocationService, $stateParams: ng.route.IRouteParamsService) {
 
-            this.taskToEdit = this.taskService.getTask($routeParams["id"]);
+            this.taskToEdit = this.taskService.getTask($stateParams["id"]);
         }
 
         editTask() {

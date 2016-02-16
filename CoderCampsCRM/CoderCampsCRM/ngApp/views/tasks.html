@@ -38,7 +38,16 @@
             <div class="row">
                 <div class="col-lg-6">
                     <h1>Tasks / To-Do's</h1>
-                    <btn id="menu-toggle" class="btn btn-default">Add Filter</btn>
+                    
+                    <form action="" class="search-form" style="width: 100%;">
+                        <btn id="menu-toggle" class="btn btn-default">Add Filter</btn>
+                        <div class="form-group has-feedback">
+                            <label for="search" class="sr-only">Search...</label>
+                            <input type="text" class="form-control" name="search" id="search" placeholder="Search...">
+                            <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                        </div>
+                    </form>
+                    
                     <br />
                     <br />
                         <div class="row">
@@ -61,8 +70,8 @@
                                                 <td>{{task.type}}</td>
                                                 <td>{{task.dueDate}}</td>
                                                 <td>
-                                                    <a href="/edit/{{task.id}}"><span style="color: orangered" class="glyphicon glyphicon-edit"></span></a>
-                                                    <a href="/deletetask/{{task.id}}"><span style="color: red" class="glyphicon glyphicon-trash"></span></a>
+                                                    <a href="/task-details/{{task.id}}"><span style="color: blue" class="glyphicon glyphicon-list"></span></a>
+                                                    <a href="/deletetask/{{task.id}}"><span style="color: red" class="glyphicon glyphicon-remove"></span></a>
                                                 </td>
                                             </tr>
                                         </table>

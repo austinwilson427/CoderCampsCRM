@@ -58,9 +58,9 @@ var MyApp;
             controllerAs: 'vm'
         })
             .state('taskdetails', {
-            url: '/task-details',
+            url: '/task-details/:id',
             templateUrl: '/ngApp/views/task-details.html',
-            controller: MyApp.Controllers.TaskListController,
+            controller: MyApp.Controllers.TaskEditController,
             controllerAs: 'vm'
         })
             .state('myAccount', {
@@ -160,3 +160,4 @@ var MyApp;
         $httpProvider.interceptors.push('authInterceptor');
     });
 })(MyApp || (MyApp = {}));
+//# sourceMappingURL=app.js.map
