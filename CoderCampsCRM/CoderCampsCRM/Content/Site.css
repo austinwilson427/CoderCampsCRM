@@ -350,6 +350,6 @@ td.trash_cell{
 
 /*DatePicker*/
 label{margin-left: 20px;}
-#datepicker{width:180px; margin: 0 20px 20px 20px;}
-#datepicker > span:hover{cursor: pointer;}
+#datepicker, #datepicker2{width:280px; margin: 0px 20px 20px 0px;}
+#datepicker, #datepicker2 > span:hover{cursor: pointer;}
 
