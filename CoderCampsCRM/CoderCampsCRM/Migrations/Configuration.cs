@@ -155,11 +155,14 @@ namespace CoderCampsCRM.Migrations
             UserTask[] tasks = new UserTask[] {
 
 
-                new UserTask {Id = 1, Status = "In Progress", Description = "Submit ", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="Email"},
-                new UserTask {Id = 2, Status = "Not Started", Description = "Call Brian to discuss contract", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="Call"},
-                new UserTask {Id = 3, Status = "In Progress", Description = "Lunch with Stacey", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="Meeting"},
-                new UserTask {Id = 4, Status = "Completed", Description = "Schedule Meeting for Lunch", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="Email"},
-                new UserTask {Id = 5, Status = "Completed", Description = "Call Brian to discuss contract", DueDate = "3/1/2016", StartDate = "2/10/2016", Type ="Call"},
+                new UserTask {Id = 1, Status = "In Progress", Description = "Submit ", DueDate = "03/1/2016", StartDate = "02/10/2016", Type ="Email"},
+                new UserTask {Id = 2, Status = "Not Started", Description = "Call Brian to discuss contract", DueDate = "04/14/2016", StartDate = "02/10/2016", Type ="Call"},
+                new UserTask {Id = 3, Status = "In Progress", Description = "Lunch with Stacey", DueDate = "03/12/2016", StartDate = "02/10/2016", Type ="Meeting"},
+                new UserTask {Id = 4, Status = "Completed", Description = "Schedule Meeting for Lunch", DueDate = "05/19/2016", StartDate = "02/10/2016", Type ="Email"},
+                new UserTask {Id = 5, Status = "Completed", Description = "Meet with Coder Camps group at 9AM", DueDate = "02/18/2016", StartDate = "02/17/2016", Type ="Call"},
+                new UserTask {Id = 3, Status = "In Progress", Description = "Complete Individual Project for Coder Camps", DueDate = "02/26/2016", StartDate = "02/17/2016", Type ="Project"},
+                new UserTask {Id = 4, Status = "Completed", Description = "Complete Group Project", DueDate = "02/26/2016", StartDate = "02/10/2016", Type ="Project"},
+                new UserTask {Id = 5, Status = "Completed", Description = "Submit Resume for Hire", DueDate = "03/1/2016", StartDate = "02/17/2016", Type ="Call"}
 
 
         };
