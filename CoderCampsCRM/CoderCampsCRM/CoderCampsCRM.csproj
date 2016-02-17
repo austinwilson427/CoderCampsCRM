@@ -253,9 +253,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602162008198_initial.cs" />
-    <Compile Include="Migrations\201602162008198_initial.Designer.cs">
-      <DependentUpon>201602162008198_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201602171835548_initial.cs" />
+    <Compile Include="Migrations\201602171835548_initial.Designer.cs">
+      <DependentUpon>201602171835548_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602171847003_initial1.cs" />
+    <Compile Include="Migrations\201602171847003_initial1.Designer.cs">
+      <DependentUpon>201602171847003_initial1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -309,6 +313,39 @@
     <Content Include="Content\fullcalendar.css" />
     <Content Include="Content\fullcalendar.print.css" />
     <Content Include="Content\simple-sidebar.css" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -317,6 +354,7 @@
     <Content Include="Images\Black-Background-Collapsar-1080x1920.jpg" />
     <Content Include="ngApp\scripts\angular_filepicker.min.js" />
     <Content Include="ngApp\scripts\Chart.js" />
+    <Content Include="ngApp\scripts\highcharts-ng.js" />
     <Content Include="ngApp\scripts\ngDraggable.js" />
     <Content Include="ngApp\scripts\tc-angular-chartjs.js" />
     <Content Include="ngApp\views\about.html" />
@@ -1188,6 +1226,8 @@
     <Content Include="Scripts\jquery-2.2.0.min.js" />
     <Content Include="Scripts\jquery-2.2.0.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
     <Content Include="Scripts\Jquery-ui.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -1329,6 +1369,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201602171835548_initial.resx">
+      <DependentUpon>201602171835548_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602171847003_initial1.resx">
+      <DependentUpon>201602171847003_initial1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

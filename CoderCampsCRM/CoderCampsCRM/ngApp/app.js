@@ -1,7 +1,6 @@
 var MyApp;
 (function (MyApp) {
-    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router', 'angular-filepicker', 'ngDraggable', 'uiGmapgoogle-maps',
-        'zingchart-angularjs']).config(function ($locationProvider, $routeProvider, $stateProvider, $urlRouterProvider, filepickerProvider, uiGmapGoogleMapApiProvider) {
+    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router', 'angular-filepicker', 'ngDraggable', 'uiGmapgoogle-maps', "highcharts-ng"]).config(function ($locationProvider, $routeProvider, $stateProvider, $urlRouterProvider, filepickerProvider, uiGmapGoogleMapApiProvider) {
         filepickerProvider.setKey('ANnIsnaUARuBQjAtPZGBQz');
         uiGmapGoogleMapApiProvider.configure({});
         $stateProvider
@@ -38,7 +37,7 @@ var MyApp;
             .state('deals.list-view', {
             url: '/list-view',
             templateUrl: '/ngApp/views/routes/deal-list-view.html',
-            controller: MyApp.Controllers.DealsController,
+            controller: MyApp.Controllers.DealsListViewController,
             controllerAs: 'vm'
         })
             .state('deals.chart-view', {
@@ -162,4 +161,3 @@ var MyApp;
         $httpProvider.interceptors.push('authInterceptor');
     });
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=app.js.map

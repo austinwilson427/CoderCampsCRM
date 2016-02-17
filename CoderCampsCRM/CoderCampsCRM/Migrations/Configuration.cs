@@ -324,7 +324,7 @@ namespace CoderCampsCRM.Migrations
                                     }
                 };
 
-                context.Deals.AddOrUpdate(d => d.Id, deals);
+                context.Deals.AddOrUpdate(d => d.DealName, deals);
 
                 UserTask[] tasks = new UserTask[] {
 

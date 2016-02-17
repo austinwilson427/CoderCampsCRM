@@ -209,6 +209,9 @@ table.activity td{
     padding: 5px;
 }
 
+.task_wrap{
+    margin-top: 10px;
+}
 .list_custom_wrap{
     margin: 40px auto;
 }
@@ -249,6 +252,7 @@ td.trash_cell{
 .my_pag{
     margin: 0 !important;
 }
+
 /*-------------------Contacts Section--------------------------*/
 
 .error {

@@ -3,7 +3,13 @@ var MyApp;
     var Controllers;
     (function (Controllers) {
         var DealsController = (function () {
-            function DealsController(dealService, $uibModal, $location, $route, companiesService) {
+            function DealsController() {
+            }
+            return DealsController;
+        })();
+        Controllers.DealsController = DealsController;
+        var DealsListViewController = (function () {
+            function DealsListViewController(dealService, $uibModal, $location, $route, companiesService) {
                 this.dealService = dealService;
                 this.$uibModal = $uibModal;
                 this.$location = $location;
@@ -17,13 +23,11 @@ var MyApp;
                 this.stageFilter = 0;
                 this.dealsSelected = [];
                 this.showArchived = false;
-                this.reverse = false;
                 this.sortName = 'dealName';
                 this.filterBySelection();
             }
-            DealsController.prototype.filterBySelection = function () {
+            DealsListViewController.prototype.filterBySelection = function () {
                 var _this = this;
-                var result = this.allDeals;
                 this.dealService.listAllDeals().$promise.then(function (result) {
                     _this.allDeals = [];
                     var today = new Date();
@@ -47,8 +51,6 @@ var MyApp;
                             }
                         }
                         else if (_this.dateFilter == "week") {
-                            console.log(result[i_1].closeDate + " " + inner_full_num);
-                            console.log(today + " " + today_num);
                             if (inner_set < week_from_today && inner_full_num >= today_num) {
                                 filteredDates.push(result[i_1]);
                             }
@@ -89,7 +91,7 @@ var MyApp;
                         if (_this.stageFilter == 1 && _this.allDeals[i].stage == "Appointment Scheduled") {
                             filteredStages.push(_this.allDeals[i]);
                         }
-                        else if (_this.stageFilter == 2 && _this.allDeals[i].stage == "Qualified To Buy") {
+                        else if (_this.stageFilter == 2 && _this.allDeals[i].stage == "Qualified to Buy") {
                             filteredStages.push(_this.allDeals[i]);
                         }
                         else if (_this.stageFilter == 3 && _this.allDeals[i].stage == "Presentation Scheduled") {
@@ -112,6 +114,16 @@ var MyApp;
                         }
                     }
                     _this.allDeals = filteredStages;
+                    var filterArchived = [];
+                    for (var i in _this.allDeals) {
+                        if (_this.allDeals[i].isArchived == false) {
+                            filterArchived.push(_this.allDeals[i]);
+                        }
+                        else if (_this.allDeals[i].isArchived == true && _this.showArchived == true) {
+                            filterArchived.push(_this.allDeals[i]);
+                        }
+                    }
+                    _this.allDeals = filterArchived;
                     var itemsFiltered = _this.allDeals;
                     itemsFiltered.sort(function (a, b) {
                         if (_this.sortName == "amount" || _this.sortName == "-amount") {
@@ -261,8 +273,6 @@ var MyApp;
                     var itemPagFilter = [];
                     var start = (_this.currentPage - 1) * _this.itemsPerPage;
                     var end = start + _this.itemsPerPage;
-                    console.log(start);
-                    console.log(end);
                     for (var k = start; k < end; k++) {
                         if (!itemsFiltered[k]) {
                             break;
@@ -272,19 +282,21 @@ var MyApp;
                     _this.allDeals = itemPagFilter;
                 });
             };
-            DealsController.prototype.paginate = function (page) {
+            DealsListViewController.prototype.paginate = function (page) {
                 this.currentPage = page;
                 this.filterBySelection();
             };
-            DealsController.prototype.assignClass = function (page) {
+            DealsListViewController.prototype.assignClass = function (page) {
                 if (page == this.currentPage) {
                     return "active";
                 }
-                if (page == this.itemsPerPage) {
+            };
+            DealsListViewController.prototype.assignClassItem = function (items) {
+                if (items == this.itemsPerPage) {
                     return "active";
                 }
             };
-            DealsController.prototype.selectItems = function (items) {
+            DealsListViewController.prototype.selectItems = function (items) {
                 this.currentPage = 1;
                 if (items != 'all') {
                     this.itemsPerPage = items;
@@ -294,31 +306,31 @@ var MyApp;
                 }
                 this.filterBySelection();
             };
-            DealsController.prototype.assignDisabledPrev = function () {
+            DealsListViewController.prototype.assignDisabledPrev = function () {
                 if (this.currentPage == 1) {
                     return "disabled";
                 }
             };
-            DealsController.prototype.assignDisabledNext = function () {
+            DealsListViewController.prototype.assignDisabledNext = function () {
                 if (this.currentPage == this.totalPages) {
                     return "disabled";
                 }
             };
-            DealsController.prototype.prevPage = function () {
+            DealsListViewController.prototype.prevPage = function () {
                 if (this.currentPage == 1) {
                     return false;
                 }
                 this.currentPage--;
                 this.filterBySelection();
             };
-            DealsController.prototype.nextPage = function () {
+            DealsListViewController.prototype.nextPage = function () {
                 if (this.currentPage == this.totalPages) {
                     return false;
                 }
                 this.currentPage++;
                 this.filterBySelection();
             };
-            DealsController.prototype.getAllItems = function () {
+            DealsListViewController.prototype.getAllItems = function () {
                 var _this = this;
                 this.dealService.listAllDeals().$promise.then(function (result) {
                     _this.allDeals = [];
@@ -330,7 +342,7 @@ var MyApp;
                     }
                 });
             };
-            DealsController.prototype.sortBy = function (field) {
+            DealsListViewController.prototype.sortBy = function (field) {
                 this.currentPage = 1;
                 this.sortName = field;
                 this.menuDirectionName = this.toggleMenu(this.menuDirectionName, field, "dealName");
@@ -341,7 +353,7 @@ var MyApp;
                 this.menuDirectionCompany = this.toggleMenu(this.menuDirectionCompany, field, "company");
                 this.filterBySelection();
             };
-            DealsController.prototype.toggleMenu = function (menuDirection, field, wantedField) {
+            DealsListViewController.prototype.toggleMenu = function (menuDirection, field, wantedField) {
                 var returnDirection;
                 if (menuDirection == "glyphicon glyphicon-menu-down" && field == wantedField) {
                     returnDirection = "glyphicon glyphicon-menu-up";
@@ -358,7 +370,7 @@ var MyApp;
                 }
                 return returnDirection;
             };
-            DealsController.prototype.storeDeal = function (value) {
+            DealsListViewController.prototype.storeDeal = function (value) {
                 if (value.key == true) {
                     this.dealsSelected.push(value);
                 }
@@ -378,7 +390,7 @@ var MyApp;
                     this.showTrash = false;
                 }
             };
-            DealsController.prototype.archiveDeal = function (dealToArchive) {
+            DealsListViewController.prototype.archiveDeal = function (dealToArchive) {
                 var _this = this;
                 this.dealService.saveDeal(dealToArchive).then(function () {
                     _this.$route.reload();
@@ -391,7 +403,7 @@ var MyApp;
                     _this.validationErrors = validationErrors;
                 });
             };
-            DealsController.prototype.addDealModal = function () {
+            DealsListViewController.prototype.addDealModal = function () {
                 this.$uibModal.open({
                     templateUrl: '/ngApp/views/modals/add-deal.html',
                     controller: AddDealModal,
@@ -399,7 +411,7 @@ var MyApp;
                     size: "deal"
                 });
             };
-            DealsController.prototype.editDealModal = function (dealToAdd) {
+            DealsListViewController.prototype.editDealModal = function (dealToAdd) {
                 this.$uibModal.open({
                     templateUrl: '/ngApp/views/modals/edit-deal.html',
                     controller: EditDealModal,
@@ -410,7 +422,7 @@ var MyApp;
                     size: "deal"
                 });
             };
-            DealsController.prototype.deleteDealModal = function () {
+            DealsListViewController.prototype.deleteDealModal = function () {
                 var _this = this;
                 this.$uibModal.open({
                     templateUrl: '/ngApp/views/modals/delete-deal.html',
@@ -422,7 +434,7 @@ var MyApp;
                     size: "deal"
                 });
             };
-            DealsController.prototype.archiveDealModal = function () {
+            DealsListViewController.prototype.archiveDealModal = function () {
                 var _this = this;
                 this.$uibModal.open({
                     templateUrl: '/ngApp/views/modals/archive-deal.html',
@@ -434,7 +446,7 @@ var MyApp;
                     size: "deal"
                 });
             };
-            DealsController.prototype.unarchiveItem = function (dealToUnarchive) {
+            DealsListViewController.prototype.unarchiveItem = function (dealToUnarchive) {
                 var _this = this;
                 dealToUnarchive.isArchived = false;
                 this.dealService.saveDeal(dealToUnarchive).then(function () {
@@ -448,9 +460,9 @@ var MyApp;
                     _this.validationErrors = validationErrors;
                 });
             };
-            return DealsController;
+            return DealsListViewController;
         })();
-        Controllers.DealsController = DealsController;
+        Controllers.DealsListViewController = DealsListViewController;
         var AddDealModal = (function () {
             function AddDealModal(dealService, $location, $uibModalInstance, $route, contactService, companiesService) {
                 this.dealService = dealService;
@@ -495,16 +507,25 @@ var MyApp;
             return AddDealModal;
         })();
         var EditDealModal = (function () {
-            function EditDealModal(dealService, $location, $uibModalInstance, dealDetails, $route, companiesService) {
+            function EditDealModal(dealService, $location, $uibModalInstance, dealDetails, $route, companiesService, contactService) {
                 this.dealService = dealService;
                 this.$location = $location;
                 this.$uibModalInstance = $uibModalInstance;
                 this.dealDetails = dealDetails;
                 this.$route = $route;
                 this.companiesService = companiesService;
+                this.contactService = contactService;
+                this.getMyContacts();
                 this.getMyCompanies();
+                console.log(this.dealDetails.contactId);
                 this.dealDetails.closeDate = new Date(this.dealDetails.closeDate);
             }
+            EditDealModal.prototype.getMyContacts = function () {
+                var _this = this;
+                this.contactService.getAllContacts().$promise.then(function (result) {
+                    _this.myContacts = result;
+                });
+            };
             EditDealModal.prototype.getMyCompanies = function () {
                 var _this = this;
                 this.companiesService.getCompanies().$promise.then(function (result) {
@@ -513,7 +534,6 @@ var MyApp;
             };
             EditDealModal.prototype.editDeal = function () {
                 var _this = this;
-                console.log(this.dealDetails);
                 this.dealService.saveDeal(this.dealDetails).then(function () {
                     _this.closeModal();
                     location.reload();
@@ -609,12 +629,14 @@ var MyApp;
             return ArchiveDealModal;
         })();
         var DealTableViewController = (function () {
-            function DealTableViewController(dealService, $stateParams, $location) {
+            function DealTableViewController(dealService, $stateParams, $location, $uibModal) {
                 this.dealService = dealService;
                 this.$stateParams = $stateParams;
                 this.$location = $location;
+                this.$uibModal = $uibModal;
+                this.showArchived = false;
                 this.stages = ["Appointment Scheduled", "Qualified to Buy", "Presentation Scheduled", "Decision Maker Bought In", "Contract Sent"];
-                this.getAllItems();
+                this.filterBySelection();
             }
             DealTableViewController.prototype.getAllItems = function () {
                 var _this = this;
@@ -630,6 +652,86 @@ var MyApp;
                     _this.droppedObjects3 = _this.draggableObjects;
                     _this.droppedObjects4 = _this.draggableObjects;
                     _this.droppedObjects5 = _this.draggableObjects;
+                });
+            };
+            DealTableViewController.prototype.filterBySelection = function () {
+                var _this = this;
+                this.dealService.listAllDeals().$promise.then(function (result) {
+                    _this.allDeals = [];
+                    var today = new Date();
+                    var today_num = today.setDate(today.getDate());
+                    var today_month = new Date().getMonth();
+                    var today_date = new Date().getDate();
+                    var today_year = new Date().getFullYear();
+                    var week_from_today = today.setDate(today.getDate() + 7);
+                    var month_from_today = today.setDate(today.getDate() + 24); //Adding 24 + 7 for 31 days
+                    var filteredDates = [];
+                    for (var i_2 = 0; i_2 < result.length; i_2++) {
+                        var inner_full = new Date(result[i_2].closeDate);
+                        var inner_full_num = inner_full.setDate(inner_full.getDate());
+                        var inner_set = inner_full.setDate(inner_full.getDate());
+                        var inner_month = new Date(result[i_2].closeDate).getMonth();
+                        var inner_date = new Date(result[i_2].closeDate).getDate();
+                        var inner_year = new Date(result[i_2].closeDate).getFullYear();
+                        if (_this.dateFilter == "today") {
+                            if (today_month == inner_month && today_date == inner_date && today_year == inner_year) {
+                                filteredDates.push(result[i_2]);
+                            }
+                        }
+                        else if (_this.dateFilter == "week") {
+                            if (inner_set < week_from_today && inner_full_num >= today_num) {
+                                filteredDates.push(result[i_2]);
+                            }
+                            else if (today_month == inner_month && today_date == inner_date && today_year == inner_year) {
+                                filteredDates.push(result[i_2]);
+                            }
+                        }
+                        else if (_this.dateFilter == "month") {
+                            if (inner_set < month_from_today && inner_full_num >= today_num) {
+                                filteredDates.push(result[i_2]);
+                            }
+                            else if (today_month == inner_month && today_date == inner_date && today_year == inner_year) {
+                                filteredDates.push(result[i_2]);
+                            }
+                        }
+                        else {
+                            filteredDates.push(result[i_2]);
+                        }
+                    }
+                    _this.allDeals = filteredDates;
+                    var filteredAmounts = [];
+                    for (var i in _this.allDeals) {
+                        var minimumAmount = _this.minAmount;
+                        var maximumAmount = _this.maxAmount;
+                        if (minimumAmount == undefined) {
+                            minimumAmount = 0;
+                        }
+                        if (maximumAmount == undefined || maximumAmount == 0) {
+                            maximumAmount = 100000000000;
+                        }
+                        if (_this.allDeals[i].amount > minimumAmount && _this.allDeals[i].amount < maximumAmount) {
+                            filteredAmounts.push(_this.allDeals[i]);
+                        }
+                    }
+                    _this.allDeals = filteredAmounts;
+                    var filterArchived = [];
+                    for (var i in _this.allDeals) {
+                        if (_this.allDeals[i].isArchived == false) {
+                            filterArchived.push(_this.allDeals[i]);
+                        }
+                        else if (_this.allDeals[i].isArchived == true && _this.showArchived == true) {
+                            filterArchived.push(_this.allDeals[i]);
+                        }
+                    }
+                    _this.allDeals = filterArchived;
+                });
+            };
+            DealTableViewController.prototype.addDealModal = function () {
+                this.$uibModal.open({
+                    templateUrl: '/ngApp/views/modals/add-deal.html',
+                    controller: AddDealModal,
+                    controllerAs: 'vm',
+                    size: "deal"
                 });
             };
             DealTableViewController.prototype.editDeal = function (dealToAdd) {
@@ -765,62 +867,82 @@ var MyApp;
                     _this.psCount = presentationScheduled.length;
                     _this.dmbiCount = decisionMakerBoughtIn.length;
                     _this.csCount = contractSent.length;
-                    _this.myJson = {
-                        globals: {
-                            shadow: false,
-                            fontFamily: "Verdana",
-                            fontWeight: "100"
-                        },
-                        type: "pie",
-                        backgroundColor: "#fff",
-                        //legend: {
-                        //    "item": {
-                        //        "font-size": "16px"
-                        //    },
-                        //    "background-color": "#0A64A4"
-                        //},
-                        tooltip: {
-                            text: "%v requests"
-                        },
-                        plot: {
-                            refAngle: "-90",
-                            borderWidth: "2px",
-                            valueBox: {
-                                placement: "in",
-                                text: "%npv %",
-                                fontSize: "15px",
-                                textAlpha: 1,
+                    _this.highchartsNG = {
+                        options: {
+                            chart: {
+                                type: 'pie',
+                                options3d: {
+                                    enabled: true,
+                                    alpha: 45,
+                                    beta: 0
+                                }
+                            },
+                            plotOptions: {
+                                pie: {
+                                    allowPointSelect: true,
+                                    cursor: 'pointer',
+                                    depth: 35,
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                    }
+                                },
+                                bar: {
+                                    allowPointSelect: true,
+                                    cursor: 'pointer',
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '<b>{point.name}</b>',
+                                    }
+                                }
                             }
                         },
-                        series: [
-                            {
-                                text: "Qualified to Buy",
-                                values: [_this.qtbCount],
-                                backgroundColor: "red",
-                            },
-                            {
-                                text: "Appointment Scheduled",
-                                values: [_this.asCount],
-                                backgroundColor: "blue"
-                            }, {
-                                text: "Presentation Scheduled",
-                                values: [_this.psCount],
-                                backgroundColor: "green"
-                            }, {
-                                text: "Decision Maker Bought In",
-                                values: [_this.dmbiCount],
-                                backgroundColor: "#28C2D1"
-                            }, {
-                                text: "Contract Sent",
-                                values: [_this.csCount],
-                                backgroundColor: "#D2D6DE",
-                            }]
+                        series: [{
+                                data: [
+                                    {
+                                        name: 'Qualified to Buy',
+                                        y: _this.qtbCount
+                                    },
+                                    {
+                                        name: 'Appointment Scheduled',
+                                        y: _this.asCount,
+                                        sliced: true,
+                                        selected: true
+                                    },
+                                    {
+                                        name: 'Presentation Scheduled',
+                                        y: _this.psCount,
+                                        sliced: true,
+                                    },
+                                    {
+                                        name: 'Decision Maker Bought In',
+                                        y: _this.dmbiCount,
+                                        sliced: true,
+                                    },
+                                    {
+                                        name: 'Contract Sent',
+                                        y: _this.csCount,
+                                        sliced: true,
+                                    }
+                                ]
+                            }],
+                        title: {
+                            text: 'Deal Stages - Pie Chart'
+                        },
+                        loading: false
                     };
                 });
+                this.swapChartType = function () {
+                    if (this.highchartsNG.options.chart.type === 'pie') {
+                        this.highchartsNG.options.chart.type = 'bar';
+                    }
+                    else {
+                        this.highchartsNG.options.chart.type = 'pie';
+                    }
+                };
             }
             return DealChartsController;
         })();
         Controllers.DealChartsController = DealChartsController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=dealController.js.map

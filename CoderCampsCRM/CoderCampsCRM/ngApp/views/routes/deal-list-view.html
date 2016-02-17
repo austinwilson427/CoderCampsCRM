@@ -1,7 +1,7 @@
 ﻿<div id="wrapper" class="details_wrap toggled">
     <div id="sidebar-wrapper">
         <label>Show Archived Deals</label>
-        <input type="checkbox" ng-model="vm.showArchived" /><br />
+        <input type="checkbox" ng-model="vm.showArchived" ng-change="vm.filterBySelection()" /><br />
         <label>Filter By Date</label>
         <select class="form-control" ng-model="vm.dateFilter" ng-change="vm.filterBySelection()">
             <option value="all">All Deals</option>
@@ -75,11 +75,11 @@
                                     <label>Items Per Page:</label>
                                     <nav>
                                         <ul class="pagination my_pag">
-                                            <li ng-class="vm.assignClass(5)"><a ng-click="vm.selectItems(5)" href="#">5</a></li>
-                                            <li ng-class="vm.assignClass(10)"><a ng-click="vm.selectItems(10)" href="#">10</a></li>
-                                            <li ng-class="vm.assignClass(20)"><a ng-click="vm.selectItems(20)" href="#">20</a></li>
-                                            <li ng-class="vm.assignClass(50)"><a ng-click="vm.selectItems(50)" href="#">50</a></li>
-                                            <li ng-class="vm.assignClass(1000000)"><a ng-click="vm.selectItems('all')" href="#">All</a></li>
+                                            <li ng-class="vm.assignClassItem(5)"><a ng-click="vm.selectItems(5)" href="#">5</a></li>
+                                            <li ng-class="vm.assignClassItem(10)"><a ng-click="vm.selectItems(10)" href="#">10</a></li>
+                                            <li ng-class="vm.assignClassItem(20)"><a ng-click="vm.selectItems(20)" href="#">20</a></li>
+                                            <li ng-class="vm.assignClassItem(50)"><a ng-click="vm.selectItems(50)" href="#">50</a></li>
+                                            <li ng-class="vm.assignClassItem(1000000)"><a ng-click="vm.selectItems('all')" href="#">All</a></li>
                                         </ul>
                                     </nav>
                                 </div>
