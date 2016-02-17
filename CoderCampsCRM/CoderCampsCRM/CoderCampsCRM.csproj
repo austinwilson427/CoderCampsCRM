@@ -253,21 +253,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602161944141_initial.cs" />
-    <Compile Include="Migrations\201602161944141_initial.Designer.cs">
-      <DependentUpon>201602161944141_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602162005486_initial1.cs" />
-    <Compile Include="Migrations\201602162005486_initial1.Designer.cs">
-      <DependentUpon>201602162005486_initial1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602162022316_initial2.cs" />
-    <Compile Include="Migrations\201602162022316_initial2.Designer.cs">
-      <DependentUpon>201602162022316_initial2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602162026117_initial3.cs" />
-    <Compile Include="Migrations\201602162026117_initial3.Designer.cs">
-      <DependentUpon>201602162026117_initial3.cs</DependentUpon>
+    <Compile Include="Migrations\201602162008198_initial.cs" />
+    <Compile Include="Migrations\201602162008198_initial.Designer.cs">
+      <DependentUpon>201602162008198_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -1341,20 +1329,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602161944141_initial.resx">
-      <DependentUpon>201602161944141_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602162005486_initial1.resx">
-      <DependentUpon>201602162005486_initial1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602162022316_initial2.resx">
-      <DependentUpon>201602162022316_initial2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602162026117_initial3.resx">
-      <DependentUpon>201602162026117_initial3.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
