@@ -88,28 +88,28 @@
                         <h3>
                             Not Started
                         </h3>
-                        <div class="panel-group" id="panel-609138">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-609138" href="#panel-element-891277">Collapsible Group Item #1</a>
-                                </div>
-                                <div id="panel-element-891277" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        Anim pariatur cliche...
+                        <table class="table">
+                            <tr ng-repeat="task in vm.tasks | filter: {status: 'Not Started'} | orderBy:'dueDate'" {{task.dueDate}}>
+                                
+                                <td>
+                                    <div class="panel-group" id="panel-609138">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-609138" href="#panel-element-891277">{{task.type}} due on {{task.dueDate}}</a>
+                                            </div>
+                                            <div id="panel-element-891277" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    {{task.description}} <a aligh="right" href="/task-details/{{task.id}}"><span style="color: blue" class="glyphicon glyphicon-list"></span></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Column 1 END -->
                                     </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-609138" href="#panel-element-475594">Collapsible Group Item #2</a>
-                                </div>
-                                <div id="panel-element-475594" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        Anim pariatur cliche...
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- table end -->
+
                     </div>
                     <div class="col-md-4">
                         <h3>
