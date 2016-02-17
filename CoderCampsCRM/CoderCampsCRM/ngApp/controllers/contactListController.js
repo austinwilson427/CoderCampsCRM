@@ -14,9 +14,13 @@ var MyApp;
                 this.markers = [];
                 this.currentPage = 1;
                 this.maxSize = 5;
-                this.itemsPerPage = 20;
+                this.itemsPerPage = 5;
                 this.showAllContacts();
             }
+            ContactListController.prototype.updateSearchList = function () {
+                this.currentPage = 1;
+                this.itemsPerPage += 5;
+            };
             ContactListController.prototype.totalItemsGet = function () {
                 this.totalItems = this.contactsView.contacts.length;
             };

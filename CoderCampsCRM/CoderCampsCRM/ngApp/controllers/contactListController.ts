@@ -13,10 +13,16 @@
         public totalItems;
         public currentPage = 1;
         public maxSize = 5;
-        public itemsPerPage = 20;
+        public itemsPerPage = 5;
+        public contactsSearch;
 
         constructor(private contactService: MyApp.Services.ContactService, private $location: ng.ILocationService, private $uibModal: angular.ui.bootstrap.IModalService, private $state: ng.ui.IStateService) {
             this.showAllContacts();
+        }
+
+        public updateSearchList() {
+            this.currentPage = 1;
+            this.itemsPerPage += 5;
         }
 
         public totalItemsGet() {

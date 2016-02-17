@@ -23,7 +23,7 @@
                     <button class="btn btn-primary" ng-show="!vm.showMap" ng-click="vm.toggleMap()">Show Map</button>
                 </div>
                 <div class="col-md-8 form-group">
-                    <input type="text" class="form-control full" ng-model="searchText" ng-model-options="{debounce: 1000}" placeholder="Search contacts by name" />
+                    <input type="text" class="form-control full" ng-change="vm.updateSearchList()" ng-model="searchText" ng-model-options="{debounce: 1000}" placeholder="Search contacts by name" />
                 </div>
                 <div class="col-md-2">
                     <button class="btn btn-primary" ng-click="vm.openNewContactModal()">+ Add Contact</button>
