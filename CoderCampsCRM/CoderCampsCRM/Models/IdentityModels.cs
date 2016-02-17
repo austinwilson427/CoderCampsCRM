@@ -39,7 +39,7 @@ namespace CoderCampsCRM.Models
         public IDbSet<UserTask> Tasks { get; set; }
         public IDbSet<Deal> Deals { get; set; }
         public IDbSet<DealLogItem> DealLogItems { get; set; }
-        //public IDbSet<CompanyLogItem> CompanyLogItems { get; set; }
+        public IDbSet<CompanyLogItem> CompanyLogItems { get; set; }
         public IDbSet<Company> Companies { get; set; }
         public IDbSet<Contact> Contacts { get; set; }
         public IDbSet<DealContact> DealContacts { get; set; }
