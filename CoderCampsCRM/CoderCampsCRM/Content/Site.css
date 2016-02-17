@@ -384,19 +384,20 @@ li.Twitter a, li.Facebook a, li.Google a {
 
 /*TABLE CSS*/
 
-/*#tasktable {
- color:#0076BF;
- margin: -10px 0px -10px 0px;
+#tasktable {
  border-spacing: 10px;
  empty-cells:show;
- width:100%;
+ width:90%;
  text-align:left;
 }
 #tasktable tr td{
   white-space:nowrap;
   text-align:left;
- }*/
+ }
 
 #accordian {
     margin: -10px;
+    
 }
+
+

@@ -9,7 +9,7 @@
                 </a>
             </li>
             <li>
-                <a class="my-nice-button" href="#"><i class="fa fa-exclamation"></i>&nbsp;<font color="red"><u>Past Due Tasks</u></font></a>
+                <a class="my-nice-button" href="#"><i class="fa fa-exclamation" style="color:red;"></i>&nbsp;<font color="red"><u>Past Due Tasks</u></font></a>
             </li>
             <li>
                 <a class="my-nice-checkbutton" href="#"><i class="fa fa-check"></i>&nbsp;<font>Due Today</font></a>
@@ -84,13 +84,14 @@
             <!-- COLUMNS -->
             <div class="container-fluid">
                 <div class="row">
+                    <!-- NOT STARTED COLUMN START -->
                     <div class="col-md-4">
                         <h3>
-                            Not Started
+                            Not Started <i class="fa fa-exclamation" style="color:red;"></i>
                         </h3>
                         <table class="table" id="tasktable">
                             <tr ng-repeat="task in vm.tasks | filter: {status: 'Not Started'} | orderBy:'dueDate'" {{task.dueDate}}>
-                                
+
                                 <td>
                                     <div class="panel-group" id="accordian">
                                         <div class="panel panel-default">
@@ -108,12 +109,12 @@
                                 </td>
                             </tr>
                         </table>
-                        <!-- table end -->
-
                     </div>
+                    <!-- NOT STARTED COLUMN END -->
+                    <!-- IN PROGRESS COLUMN START -->
                     <div class="col-md-4">
                         <h3>
-                            In Progress
+                            In Progress <i class="fa fa-clock-o"></i>
                         </h3>
                         <table class="table" id="tasktable">
                             <tr ng-repeat="task in vm.tasks | filter: {status: 'In Progress'} | orderBy:'dueDate'" {{task.dueDate}}>
@@ -130,15 +131,16 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Column 1 END -->
                                     </div>
                                 </td>
                             </tr>
                         </table>
                     </div>
+                    <!-- IN PROGRESS COLUMN END -->
+                    <!-- COMPLETED COLUMN START -->
                     <div class="col-md-4">
                         <h3>
-                            Completed
+                            Completed <i class="fa fa-check-circle" style="color:green;"></i>
                         </h3>
                         <table class="table" id="tasktable">
                             <tr ng-repeat="task in vm.tasks | filter: {status: 'Completed'} | orderBy:'dueDate'" {{task.dueDate}}>
@@ -161,6 +163,7 @@
                             </tr>
                         </table>
                     </div>
+                    <!-- COMPLETED COLUMN END -->
                 </div>
             </div>
             <!-- END COLUMNS -->
