@@ -253,6 +253,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602161944141_initial.cs" />
+    <Compile Include="Migrations\201602161944141_initial.Designer.cs">
+      <DependentUpon>201602161944141_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602162005486_initial1.cs" />
+    <Compile Include="Migrations\201602162005486_initial1.Designer.cs">
+      <DependentUpon>201602162005486_initial1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602162022316_initial2.cs" />
+    <Compile Include="Migrations\201602162022316_initial2.Designer.cs">
+      <DependentUpon>201602162022316_initial2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602162026117_initial3.cs" />
+    <Compile Include="Migrations\201602162026117_initial3.Designer.cs">
+      <DependentUpon>201602162026117_initial3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -279,15 +295,16 @@
     <Compile Include="Repositories\ContactListViewRepository.cs" />
     <Compile Include="Repositories\DealRepository.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IDealRepository.cs" />
     <Compile Include="Repositories\Interfaces\ICompanyRepository.cs" />
     <Compile Include="Repositories\Interfaces\IContactDetailViewRepository.cs" />
     <Compile Include="Repositories\Interfaces\IContactListViewRepository.cs" />
-    <Compile Include="Repositories\Interfaces\IDealRepository.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\tc-charts.css" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
     <Content Include="Content\bootstrap-datepicker.standalone.css" />
@@ -311,7 +328,9 @@
     <Content Include="Global.asax" />
     <Content Include="Images\Black-Background-Collapsar-1080x1920.jpg" />
     <Content Include="ngApp\scripts\angular_filepicker.min.js" />
+    <Content Include="ngApp\scripts\Chart.js" />
     <Content Include="ngApp\scripts\ngDraggable.js" />
+    <Content Include="ngApp\scripts\tc-angular-chartjs.js" />
     <Content Include="ngApp\views\about.html" />
     <Content Include="ngApp\views\addtask.html" />
     <Content Include="ngApp\views\companies.html" />
@@ -338,6 +357,7 @@
     <Content Include="ngApp\views\notFound.html" />
     <Content Include="ngApp\views\profile.html" />
     <Content Include="ngApp\views\register.html" />
+    <Content Include="ngApp\views\routes\deal-chart-view.html" />
     <Content Include="ngApp\views\routes\deal-info-activity.html" />
     <Content Include="ngApp\views\routes\deal-info-event.html" />
     <Content Include="ngApp\views\routes\deal-info-note.html" />
@@ -1321,6 +1341,20 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201602161944141_initial.resx">
+      <DependentUpon>201602161944141_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602162005486_initial1.resx">
+      <DependentUpon>201602162005486_initial1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602162022316_initial2.resx">
+      <DependentUpon>201602162022316_initial2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602162026117_initial3.resx">
+      <DependentUpon>201602162026117_initial3.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

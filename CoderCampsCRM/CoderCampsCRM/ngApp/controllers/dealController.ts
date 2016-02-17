@@ -18,16 +18,319 @@
         public dealsSelected;
         public isSelected;
         public showTrash;
+        public sortOrder;
+        public currentPage;
+        public totalPages;
+        public itemsPerPage;
+        public pagesArray;
+        public currentOrder;
+        public showDeals;
 
         constructor(private dealService: MyApp.Services.DealService, private $uibModal: ng.ui.bootstrap.IModalService, private $location: ng.ILocationService, private $route: ng.route.IRouteService, private companiesService: MyApp.Services.CompaniesService) {
+            this.searchPhrase = "";
+            this.currentOrder = "name";
+            this.currentPage = 1;
+            this.itemsPerPage = 5;
+            this.sortOrder = "ascending";
             this.stageFilter = 0;
             this.dealsSelected = [];
             this.showArchived = false;
             this.reverse = false;
             this.sortName = 'dealName';
 
-            this.getAllItems();
-            
+            this.filterBySelection();
+        }
+
+        public filterBySelection() {
+
+            let result = this.allDeals;
+
+            this.dealService.listAllDeals().$promise.then((result) => {
+                this.allDeals = [];
+                let today = new Date();
+                let today_num = today.setDate(today.getDate());
+                let today_month = new Date().getMonth();
+                let today_date = new Date().getDate();
+                let today_year = new Date().getFullYear();
+                let week_from_today = today.setDate(today.getDate() + 7);
+                let month_from_today = today.setDate(today.getDate() + 24); //Adding 24 + 7 for 31 days
+                let filteredDates = [];
+                for (let i = 0; i < result.length; i++) {
+                    let inner_full = new Date(result[i].closeDate);
+                    let inner_full_num = inner_full.setDate(inner_full.getDate());
+                    let inner_set = inner_full.setDate(inner_full.getDate());
+                    let inner_month = new Date(result[i].closeDate).getMonth();
+                    let inner_date = new Date(result[i].closeDate).getDate();
+                    let inner_year = new Date(result[i].closeDate).getFullYear();
+
+                    if (this.dateFilter == "today") {
+                        if (today_month == inner_month && today_date == inner_date && today_year == inner_year) {
+                            filteredDates.push(result[i]);
+                        }
+                    } else if (this.dateFilter == "week") {
+                        console.log(result[i].closeDate + " " + inner_full_num);
+                        console.log(today + " " + today_num);
+                        if (inner_set < week_from_today && inner_full_num >= today_num) {
+                            filteredDates.push(result[i]);
+                        } else if (today_month == inner_month && today_date == inner_date && today_year == inner_year) {
+                            filteredDates.push(result[i]);
+                        }
+                    } else if (this.dateFilter == "month") {
+                        if (inner_set < month_from_today && inner_full_num >= today_num) {
+                            filteredDates.push(result[i]);
+                        } else if (today_month == inner_month && today_date == inner_date && today_year == inner_year) {
+                            filteredDates.push(result[i]);
+                        }
+                    } else {
+                        filteredDates.push(result[i]);
+                    }
+
+                }
+                this.allDeals = filteredDates;
+
+                let filteredAmounts = [];
+                for (var i in this.allDeals) {
+
+                    let minimumAmount = this.minAmount;
+                    let maximumAmount = this.maxAmount;
+
+                    if (minimumAmount == undefined) {
+                        minimumAmount = 0;
+                    }
+                    if (maximumAmount == undefined || maximumAmount == 0) {
+                        maximumAmount = 100000000000;
+                    }
+
+                    if (this.allDeals[i].amount > minimumAmount && this.allDeals[i].amount < maximumAmount) {
+                        filteredAmounts.push(this.allDeals[i]);
+                    }
+                }
+
+                this.allDeals = filteredAmounts;
+
+                let filteredStages = [];
+                for (var i in this.allDeals) {
+                    if (this.stageFilter == 1 && this.allDeals[i].stage == "Appointment Scheduled") {
+                        filteredStages.push(this.allDeals[i]);
+                    } else if (this.stageFilter == 2 && this.allDeals[i].stage == "Qualified To Buy") {
+                        filteredStages.push(this.allDeals[i]);
+                    } else if (this.stageFilter == 3 && this.allDeals[i].stage == "Presentation Scheduled") {
+                        filteredStages.push(this.allDeals[i]);
+                    } else if (this.stageFilter == 4 && this.allDeals[i].stage == "Decision Maker Bought In") {
+                        filteredStages.push(this.allDeals[i]);
+                    } else if (this.stageFilter == 5 && this.allDeals[i].stage == "Contract Sent") {
+                        filteredStages.push(this.allDeals[i]);
+                    } else if (this.stageFilter == 6 && this.allDeals[i].stage == "Closed Won") {
+                        filteredStages.push(this.allDeals[i]);
+                    } else if (this.stageFilter == 7 && this.allDeals[i].stage == "Closed Lost") {
+                        filteredStages.push(this.allDeals[i]);
+                    } else if (this.stageFilter == 0) {
+                        filteredStages.push(this.allDeals[i]);
+                    }
+                }
+                this.allDeals = filteredStages;
+
+                let itemsFiltered = this.allDeals;
+
+                itemsFiltered.sort((a, b) => {
+                    if (this.sortName == "amount" || this.sortName == "-amount") {
+                        if (a.amount == b.amount) {
+                            return 0;
+                        }
+                        else {
+                            if (a.amount > b.amount) {
+                                if (this.sortName == "amount") {
+                                    return 1;
+                                } else {
+                                    return -1;
+                                }
+
+                            } else if (a.amount < b.amount) {
+                                if (this.sortName == "amount") {
+                                    return -1;
+                                } else {
+                                    return 1;
+                                }
+                            }
+                        }
+                    } else if (this.sortName == "dealName" || this.sortName == "-dealName") {
+                        if (a.dealName == b.dealName) {
+                            return 0;
+                        }
+                        else {
+                            if (a.dealName > b.dealName) {
+                                if (this.sortName == "dealName") {
+                                    return 1;
+                                } else {
+                                    return -1;
+                                }
+
+                            } else if (a.dealName < b.dealName) {
+                                if (this.sortName == "dealName") {
+                                    return -1;
+                                } else {
+                                    return 1;
+                                }
+                            }
+                        }
+                    } else if (this.sortName == "stage" || this.sortName == "-stage") {
+                        if (a.stage == b.stage) {
+                            return 0;
+                        }
+                        else {
+                            if (a.stage > b.stage) {
+                                if (this.sortName == "stage") {
+                                    return 1;
+                                } else {
+                                    return -1;
+                                }
+
+                            } else if (a.stage < b.stage) {
+                                if (this.sortName == "stage") {
+                                    return -1;
+                                } else {
+                                    return 1;
+                                }
+                            }
+                        }
+                    } else if (this.sortName == "closeDate" || this.sortName == "-closeDate") {
+                        if (a.closeDate == b.closeDate) {
+                            return 0;
+                        }
+                        else {
+                            if (a.closeDate > b.closeDate) {
+                                if (this.sortName == "closeDate") {
+                                    return 1;
+                                } else {
+                                    return -1;
+                                }
+
+                            } else if (a.closeDate < b.closeDate) {
+                                if (this.sortName == "closeDate") {
+                                    return -1;
+                                } else {
+                                    return 1;
+                                }
+                            }
+                        }
+                    } else if (this.sortName == "dealOwner" || this.sortName == "-dealOwner") {
+                        if (a.contact.name == b.contact.name) {
+                            return 0;
+                        }
+                        else {
+                            if (a.contact.name > b.contact.name) {
+                                if (this.sortName == "dealOwner") {
+                                    return 1;
+                                } else {
+                                    return -1;
+                                }
+
+                            } else if (a.contact.name < b.contact.name) {
+                                if (this.sortName == "dealOwner") {
+                                    return -1;
+                                } else {
+                                    return 1;
+                                }
+                            }
+                        }
+                    } else if (this.sortName == "company" || this.sortName == "-company") {
+                        if (a.company.companyName == b.company.companyName) {
+                            return 0;
+                        }
+                        else {
+                            if (a.company.companyName > b.company.companyName) {
+                                if (this.sortName == "dealOwner") {
+                                    return 1;
+                                } else {
+                                    return -1;
+                                }
+
+                            } else if (a.company.companyName < b.company.companyName) {
+                                if (this.sortName == "dealOwner") {
+                                    return -1;
+                                } else {
+                                    return 1;
+                                }
+                            }
+                        }
+                    }
+
+                });
+
+                this.totalPages = Math.ceil(itemsFiltered.length / this.itemsPerPage);
+                this.pagesArray = [];
+                for (var j = 1; j <= this.totalPages; j++) {
+                    this.pagesArray.push(j);
+                }
+
+                let itemPagFilter = [];
+                let start = (this.currentPage - 1) * this.itemsPerPage;
+                let end = start + this.itemsPerPage;
+                console.log(start); console.log(end);
+                for (let k = start; k < end; k++) {
+                    if (!itemsFiltered[k]) {
+                        break;
+                    }
+                    itemPagFilter[k] = itemsFiltered[k];
+                }
+
+                this.allDeals = itemPagFilter;
+
+            });
+
+        }
+
+        public paginate(page) {
+            this.currentPage = page;
+            this.filterBySelection();
+        }
+
+        public assignClass(page) {
+            if (page == this.currentPage) {
+                return "active";
+            }
+
+            if (page == this.itemsPerPage) {
+                return "active";
+            }
+        }
+
+        public selectItems(items) {
+            this.currentPage = 1;
+            if (items != 'all') {
+                this.itemsPerPage = items;
+            } else {
+                this.itemsPerPage = 1000000;
+            }
+            this.filterBySelection();
+        }
+
+        public assignDisabledPrev() {
+            if (this.currentPage == 1) {
+                return "disabled";
+            }
+        }
+
+        public assignDisabledNext() {
+            if (this.currentPage == this.totalPages) {
+                return "disabled";
+            }
+        }
+
+        public prevPage() {
+            if (this.currentPage == 1) {
+                return false;
+            }
+            this.currentPage--;
+            this.filterBySelection();
+        }
+
+        public nextPage() {
+            if (this.currentPage == this.totalPages) {
+                return false;
+            }
+            this.currentPage++;
+            this.filterBySelection();
         }
 
         public getAllItems() {
@@ -40,31 +343,32 @@
                     //result[i].company = company;
                     this.allDeals.push(result[i]);
                 }
+
             });
+            
         }
 
         public sortBy(field) {
+            this.currentPage = 1;
             this.sortName = field;
             this.menuDirectionName = this.toggleMenu(this.menuDirectionName, field, "dealName");
             this.menuDirectionStage = this.toggleMenu(this.menuDirectionStage, field, "stage");
             this.menuDirectionDate = this.toggleMenu(this.menuDirectionDate, field, "closeDate");
             this.menuDirectionAmount = this.toggleMenu(this.menuDirectionAmount, field, "amount");
-            this.menuDirectionOwner = this.toggleMenu(this.menuDirectionOwner, field, "dealOwnerId");
-            this.menuDirectionCompany = this.toggleMenu(this.menuDirectionCompany, field, "companyId");
+            this.menuDirectionOwner = this.toggleMenu(this.menuDirectionOwner, field, "dealOwner");
+            this.menuDirectionCompany = this.toggleMenu(this.menuDirectionCompany, field, "company");
+            this.filterBySelection();
         }
 
         private toggleMenu(menuDirection, field, wantedField) {
             let returnDirection;
-
-            if (menuDirection == "glyphicon glyphicon-menu-up" && field == wantedField) {
-                returnDirection = "glyphicon glyphicon-menu-down";
-                this.reverse = !this.reverse;
-            } else if (menuDirection == "glyphicon glyphicon-menu-down" && field == wantedField) {
+            if (menuDirection == "glyphicon glyphicon-menu-down" && field == wantedField) {
                 returnDirection = "glyphicon glyphicon-menu-up";
-                this.reverse = !this.reverse;
+                this.sortName = "-" + this.sortName;
+            } else if (menuDirection == "glyphicon glyphicon-menu-up" && field == wantedField) {
+                returnDirection = "glyphicon glyphicon-menu-down";
             } else if (menuDirection != "glyphicon glyphicon-menu-up" && menuDirection != "glyphicon glyphicon-menu-down" && field == wantedField) {
                 returnDirection = "glyphicon glyphicon-menu-down";
-                this.reverse = false
             } else {
                 returnDirection = "default_span";
             }
@@ -152,95 +456,6 @@
             });
         }
 
-        public filterBySelection() {
-            this.dealService.listAllDeals().$promise.then((result) => {
-                this.allDeals = [];
-                let today = new Date();
-                let today_num = today.setDate(today.getDate());
-                let today_month = new Date().getMonth();
-                let today_date = new Date().getDate();
-                let today_year = new Date().getFullYear();
-                let week_from_today = today.setDate(today.getDate() + 7);
-                let month_from_today = today.setDate(today.getDate() + 24); //Adding 24 + 7 for 31 days
-                let filteredDates = [];
-                for (let i = 0; i < result.length; i++) {
-                    let inner_full = new Date(result[i].closeDate);
-                    let inner_full_num = inner_full.setDate(inner_full.getDate());
-                    let inner_set = inner_full.setDate(inner_full.getDate());
-                    let inner_month = new Date(result[i].closeDate).getMonth();
-                    let inner_date = new Date(result[i].closeDate).getDate();
-                    let inner_year = new Date(result[i].closeDate).getFullYear();
-
-                    if (this.dateFilter == "today") {
-                        if (today_month == inner_month && today_date == inner_date && today_year == inner_year) {
-                            filteredDates.push(result[i]);
-                        }
-                    } else if (this.dateFilter == "week") {
-                        console.log(result[i].closeDate + " " + inner_full_num);
-                        console.log(today + " " + today_num);
-                        if (inner_set < week_from_today && inner_full_num >= today_num) {
-                            filteredDates.push(result[i]);
-                        } else if (today_month == inner_month && today_date == inner_date && today_year == inner_year) {
-                            filteredDates.push(result[i]);
-                        }
-                    } else if (this.dateFilter == "month") {
-                        if (inner_set < month_from_today && inner_full_num >= today_num) {
-                            filteredDates.push(result[i]);
-                        } else if (today_month == inner_month && today_date == inner_date && today_year == inner_year) {
-                            filteredDates.push(result[i]);
-                        }
-                    } else {
-                        filteredDates.push(result[i]);
-                    }
-
-                }
-                this.allDeals = filteredDates;
-
-                let filteredAmounts = [];
-                for (var i in this.allDeals) {
-
-                    let minimumAmount = this.minAmount;
-                    let maximumAmount = this.maxAmount;
-
-                    if (minimumAmount == undefined) {
-                        minimumAmount = 0;
-                    }
-                    if (maximumAmount == undefined || maximumAmount == 0) {
-                        maximumAmount = 100000000000;
-                    }
-
-                    if (this.allDeals[i].amount > minimumAmount && this.allDeals[i].amount < maximumAmount) {
-                        filteredAmounts.push(this.allDeals[i]);
-                    }
-                }
-
-                this.allDeals = filteredAmounts;
-
-                let filteredStages = [];
-                for (var i in this.allDeals) {
-                    if (this.stageFilter == 1 && this.allDeals[i].stage == "Appointment Scheduled") {
-                        filteredStages.push(this.allDeals[i]);
-                    } else if (this.stageFilter == 2 && this.allDeals[i].stage == "Qualified To Buy") {
-                        filteredStages.push(this.allDeals[i]);
-                    } else if (this.stageFilter == 3 && this.allDeals[i].stage == "Presentation Scheduled") {
-                        filteredStages.push(this.allDeals[i]);
-                    } else if (this.stageFilter == 4 && this.allDeals[i].stage == "Decision Maker Bought In") {
-                        filteredStages.push(this.allDeals[i]);
-                    } else if (this.stageFilter == 5 && this.allDeals[i].stage == "Contract Sent") {
-                        filteredStages.push(this.allDeals[i]);
-                    } else if (this.stageFilter == 6 && this.allDeals[i].stage == "Closed Won") {
-                        filteredStages.push(this.allDeals[i]);
-                    } else if (this.stageFilter == 7 && this.allDeals[i].stage == "Closed Lost") {
-                        filteredStages.push(this.allDeals[i]);
-                    } else if (this.stageFilter == 0) {
-                        filteredStages.push(this.allDeals[i]);
-                    }
-                }
-                this.allDeals = filteredStages;
-            });
-
-        }
-
         public unarchiveItem(dealToUnarchive) {
             dealToUnarchive.isArchived = false;
             this.dealService.saveDeal(dealToUnarchive).then(() => {
@@ -276,7 +491,6 @@
         public getMyCompanies() {
             this.companiesService.getCompanies().$promise.then((result) => {
                 this.myCompanies = result;
-                console.log(this.myCompanies);
             });
         }
 
@@ -304,9 +518,17 @@
     class EditDealModal {
 
         public validationErrors;
+        public myCompanies;
 
-        constructor(private dealService: MyApp.Services.DealService, private $location: ng.ILocationService, private $uibModalInstance: ng.ui.bootstrap.IModalServiceInstance, public dealDetails, private $route: ng.route.IRouteService) {
+        constructor(private dealService: MyApp.Services.DealService, private $location: ng.ILocationService, private $uibModalInstance: ng.ui.bootstrap.IModalServiceInstance, public dealDetails, private $route: ng.route.IRouteService, private companiesService: MyApp.Services.CompaniesService) {
+            this.getMyCompanies();
             this.dealDetails.closeDate = new Date(this.dealDetails.closeDate);
+        }
+
+        public getMyCompanies() {
+            this.companiesService.getCompanies().$promise.then((result) => {
+                this.myCompanies = result;
+            });
         }
 
         public editDeal() {
@@ -464,7 +686,7 @@
             console.log(data);
             let index = this.droppedObjects1.indexOf(data);
             data.stage = "Appointment Scheduled";
-            if(index == -1) {
+            if (index == -1) {
                 this.droppedObjects1.push(data);
                 this.editDeal(data);
             }
@@ -555,4 +777,104 @@
         }
     }
 
+    export class DealChartsController {
+
+        public data;
+        public options;
+        public allDeals;
+        public qtbCount;
+        public asCount;
+        public psCount;
+        public dmbiCount;
+        public csCount;
+        public myJson;
+
+        constructor(private dealService: MyApp.Services.DealService) {
+
+            this.dealService.listAllDeals().$promise.then((result) => {
+                console.log(result);
+                let qualifiedToBuy = [];
+                let appointmentScheduled = [];
+                let presentationScheduled = [];
+                let decisionMakerBoughtIn = [];
+                let contractSent = [];
+                for (var i = 0; i < result.length; i++) {
+                    if (result[i].stage == "Qualified to Buy") {
+                        qualifiedToBuy.push(result[i]);
+                    } else if (result[i].stage == "Appointment Scheduled") {
+                        appointmentScheduled.push(result[i]);
+                    } else if (result[i].stage == "Presentation Scheduled") {
+                        presentationScheduled.push(result[i]);
+                    } else if (result[i].stage == "Decision Maker Bought In") {
+                        decisionMakerBoughtIn.push(result[i]);
+                    } else if (result[i].stage == "Contract Sent") {
+                        contractSent.push(result[i]);
+                    }
+                }
+                this.qtbCount = qualifiedToBuy.length;
+                this.asCount = appointmentScheduled.length;
+                this.psCount = presentationScheduled.length;
+                this.dmbiCount = decisionMakerBoughtIn.length;
+                this.csCount = contractSent.length;
+
+                this.myJson = {
+                    globals: {
+                        shadow: false,
+                        fontFamily: "Verdana",
+                        fontWeight: "100"
+                    },
+                    type: "pie",
+                    backgroundColor: "#fff",
+                    //legend: {
+                    //    "item": {
+                    //        "font-size": "16px"
+                    //    },
+                        
+                    //    "background-color": "#0A64A4"
+                        
+                    //},
+                    tooltip: {
+                        text: "%v requests"
+                    },
+                    plot: {
+                        refAngle: "-90",
+                        borderWidth: "2px",
+                        valueBox: {
+                            placement: "in",
+                            text: "%npv %",
+                            fontSize: "15px",
+                            textAlpha: 1,
+                        }
+                    },
+                    series: [
+                        {
+                            text: "Qualified to Buy",
+                            values: [this.qtbCount],
+                            backgroundColor: "red",
+                        },
+                        {
+                            text: "Appointment Scheduled",
+                            values: [this.asCount],
+                            backgroundColor: "blue"
+                        }, {
+                            text: "Presentation Scheduled",
+                            values: [this.psCount],
+                            backgroundColor: "green"
+                        }, {
+                            text: "Decision Maker Bought In",
+                            values: [this.dmbiCount],
+                            backgroundColor: "#28C2D1"
+                        }, {
+                            text: "Contract Sent",
+                            values: [this.csCount],
+                            backgroundColor: "#D2D6DE",
+                        }]
+                };
+            });
+
+        }
+
+
+
+    }
 }

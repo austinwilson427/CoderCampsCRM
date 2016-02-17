@@ -1,6 +1,7 @@
 ﻿namespace MyApp {
 
-    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router', 'angular-filepicker', 'ngDraggable', 'uiGmapgoogle-maps']).config(($locationProvider: ng.ILocationProvider, $routeProvider: ng.route.IRouteProvider, $stateProvider: ng.ui.IStateProvider, $urlRouterProvider: ng.ui.IUrlRouterProvider, filepickerProvider, uiGmapGoogleMapApiProvider: any) => {
+    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router', 'angular-filepicker', 'ngDraggable', 'uiGmapgoogle-maps',
+    'zingchart-angularjs']).config(($locationProvider: ng.ILocationProvider, $routeProvider: ng.route.IRouteProvider, $stateProvider: ng.ui.IStateProvider, $urlRouterProvider: ng.ui.IUrlRouterProvider, filepickerProvider, uiGmapGoogleMapApiProvider: any) => {
         filepickerProvider.setKey('ANnIsnaUARuBQjAtPZGBQz');
         uiGmapGoogleMapApiProvider.configure({
             //    key: 'your api key',
@@ -40,6 +41,12 @@
                 url: '/list-view',
                 templateUrl: '/ngApp/views/routes/deal-list-view.html',
                 controller: MyApp.Controllers.DealsController,
+                controllerAs: 'vm'
+            })
+            .state('deals.chart-view', {
+                url: '/chart-view',
+                templateUrl: '/ngApp/views/routes/deal-chart-view.html',
+                controller: MyApp.Controllers.DealChartsController,
                 controllerAs: 'vm'
             })
             .state('tasks', {

@@ -22,8 +22,10 @@
             <input type="date" class="form-control full" ng-model="vm.dealDetails.closeDate" />
             <label>Deal Owner Id</label>
             <input type="number" class="form-control full" ng-model="vm.dealDetails.dealOwnerId" />
-            <label>Company Id</label>
-            <input type="number" class="form-control full" ng-model="vm.dealDetails.companyId" />
+            <label>Company</label>
+            <select ng-model="vm.dealToAdd.companyId" class="form-control full">
+                <option ng-repeat="company in vm.myCompanies" value="{{company.id}}">{{company.companyName}}</option>
+            </select>
             <button class="form-control full btn btn-primary">Edit Deal</button>
             <a href="#" ng-click="vm.closeModal()" class="form-control full btn btn-danger">Cancel</a>
         </form>
