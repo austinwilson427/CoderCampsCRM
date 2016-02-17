@@ -12,7 +12,6 @@ namespace CoderCampsCRM.Models
         public string Latitude { get; set; }
         public string Longitude { get; set; }
         public int Zoom { get; set; }
-        public string CoordsFormat { get; set; }
         public string Title { get; set; }
         public int? ContactId { get; set; }
         [ForeignKey("ContactId")]

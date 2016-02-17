@@ -97,8 +97,7 @@
             //    templateUrl: '/ngApp/views/company-info.html',
             //    controller: MyApp.Controllers.CompanyDetailsController,
             //    controllerAs: 'vm'
-            })
-           
+            })          
             .state('contacts', {
                 url: '/contacts',
                 templateUrl: '/ngApp/views/contactListView.html',
@@ -108,6 +107,18 @@
             .state('contactDetails', {
                 url: '/contactDetails/:id',
                 templateUrl: '/ngApp/views/contactDetailsView.html',
+                controller: MyApp.Controllers.ContactDetailsController,
+                controllerAs: 'vm'
+            })
+            .state('contactDetails.interaction', {
+                url: '/contactInteraction',
+                templateUrl: '/ngApp/views/routes/contactInteraction.html',
+                controller: MyApp.Controllers.ContactDetailsController,
+                controllerAs: 'vm'
+            })
+            .state('contactDetails.note', {
+                url: '/contactNote',
+                templateUrl: '/ngApp/views/routes/contactNote.html',
                 controller: MyApp.Controllers.ContactDetailsController,
                 controllerAs: 'vm'
             })
@@ -121,8 +132,7 @@
                 url: '/note',
                 templateUrl: 'ngApp/views/routes/deal-info-note.html',
                 controller: MyApp.Controllers.DealInfoNoteController,
-                controllerAs: "vm"
-              
+                controllerAs: "vm"             
             })
             .state('deal-info.activity', {
                 url: '/activity',

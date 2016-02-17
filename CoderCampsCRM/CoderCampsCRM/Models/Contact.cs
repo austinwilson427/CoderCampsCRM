@@ -18,6 +18,7 @@ namespace CoderCampsCRM.Models
         public string Zip { get; set; }
         public string StreetAddress { get; set; }
         public string JobTitle { get; set; }
+        public string Notes { get; set; }
         public DateTime ?LastInteraction { get; set; }
 
         public string UserId { get; set; }

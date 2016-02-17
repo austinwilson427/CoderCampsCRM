@@ -93,12 +93,13 @@
         }
 
         public editContact(contact) {
-            return this.contactResource.save(contact).$promise;
+            debugger;
+            let data = this.contactResource.save(contact).$promise;
+            return data;
         }
 
         public deleteContact(id: number) {
             let data = this.contactResource.remove({ id: id }).$promise;
-            debugger;
             return data;
         }
 

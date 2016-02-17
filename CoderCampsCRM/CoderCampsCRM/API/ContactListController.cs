@@ -53,6 +53,7 @@ namespace CoderCampsCRM.API
                     original.State = contact.State;
                     original.StreetAddress = contact.StreetAddress;
                     original.Zip = contact.Zip;
+                    original.Notes = contact.Notes;
                     _repo.SaveChanges();
                     return Ok();
                 }

@@ -253,6 +253,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602161917472_initial.cs" />
+    <Compile Include="Migrations\201602161917472_initial.Designer.cs">
+      <DependentUpon>201602161917472_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602162232100_2.cs" />
+    <Compile Include="Migrations\201602162232100_2.Designer.cs">
+      <DependentUpon>201602162232100_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602162349123_3.cs" />
+    <Compile Include="Migrations\201602162349123_3.Designer.cs">
+      <DependentUpon>201602162349123_3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -287,6 +299,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-CoderCampsCRM-20151020080840.mdf" />
+    <Content Include="App_Data\aspnet-CoderCampsCRM-20151020080840_log.ldf">
+      <DependentUpon>aspnet-CoderCampsCRM-20151020080840.mdf</DependentUpon>
+    </Content>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
@@ -328,16 +344,18 @@
     <Content Include="ngApp\views\modals\add-deal.html" />
     <Content Include="ngApp\views\modals\archive-deal.html" />
     <Content Include="ngApp\views\modals\companyDetails.html" />
+    <Content Include="ngApp\views\modals\contactAddModal.html" />
     <Content Include="ngApp\views\modals\contactDeleteModal.html" />
     <Content Include="ngApp\views\modals\createcompanyModal.html" />
     <Content Include="ngApp\views\modals\delete-deal.html" />
     <Content Include="ngApp\views\modals\edit-deal.html" />
-    <Content Include="ngApp\views\modals\contactAddModal.html" />
     <Content Include="ngApp\views\modals\editCompanyModal.html" />
     <Content Include="ngApp\views\myAccount.html" />
     <Content Include="ngApp\views\notFound.html" />
     <Content Include="ngApp\views\profile.html" />
     <Content Include="ngApp\views\register.html" />
+    <Content Include="ngApp\views\routes\contactInteraction.html" />
+    <Content Include="ngApp\views\routes\contactNote.html" />
     <Content Include="ngApp\views\routes\deal-info-activity.html" />
     <Content Include="ngApp\views\routes\deal-info-event.html" />
     <Content Include="ngApp\views\routes\deal-info-note.html" />
@@ -372,6 +390,25 @@
     <Content Include="Scripts\angular-sanitize.js" />
     <Content Include="Scripts\angular-sanitize.min.js" />
     <Content Include="Scripts\angular-scenario.js" />
+    <Content Include="Scripts\angular-simple-logger-master\.gitignore" />
+    <Content Include="Scripts\angular-simple-logger-master\dist\angular-simple-logger.js" />
+    <Content Include="Scripts\angular-simple-logger-master\dist\angular-simple-logger.light.js" />
+    <Content Include="Scripts\angular-simple-logger-master\dist\angular-simple-logger.light.min.js" />
+    <Content Include="Scripts\angular-simple-logger-master\dist\angular-simple-logger.min.js" />
+    <Content Include="Scripts\angular-simple-logger-master\dist\browser.js" />
+    <Content Include="Scripts\angular-simple-logger-master\dist\index.js" />
+    <Content Include="Scripts\angular-simple-logger-master\dist\index.light.js" />
+    <Content Include="Scripts\angular-simple-logger-master\example\index.html" />
+    <Content Include="Scripts\angular-simple-logger-master\index.html" />
+    <Content Include="Scripts\angular-simple-logger-master\package.js" />
+    <Content Include="Scripts\angular-simple-logger-master\spec\bootstrap.browserify.js" />
+    <Content Include="Scripts\angular-simple-logger-master\src\wrap\contents\debugCommonJS.js" />
+    <Content Include="Scripts\angular-simple-logger-master\src\wrap\contents\debugLight.js" />
+    <Content Include="Scripts\angular-simple-logger-master\src\wrap\debug.js" />
+    <Content Include="Scripts\angular-simple-logger-master\src\wrap\dist.js" />
+    <Content Include="Scripts\angular-simple-logger-master\stylesheets\github-light.css" />
+    <Content Include="Scripts\angular-simple-logger-master\stylesheets\normalize.css" />
+    <Content Include="Scripts\angular-simple-logger-master\stylesheets\stylesheet.css" />
     <Content Include="Scripts\angular-touch.js" />
     <Content Include="Scripts\angular-touch.min.js" />
     <Content Include="Scripts\angular-ui-router.js" />
@@ -429,6 +466,37 @@
     <Content Include="GitIgnore\Secret.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Scripts\angular-simple-logger-master\.bowerrc" />
+    <Content Include="Scripts\angular-simple-logger-master\.npmignore" />
+    <Content Include="Scripts\angular-simple-logger-master\.travis.yml" />
+    <Content Include="Scripts\angular-simple-logger-master\bower.json" />
+    <Content Include="Scripts\angular-simple-logger-master\coffeelint.json" />
+    <Content Include="Scripts\angular-simple-logger-master\gulpfile.coffee" />
+    <Content Include="Scripts\angular-simple-logger-master\gulp\coffeeOptions.coffee" />
+    <Content Include="Scripts\angular-simple-logger-master\gulp\common\save.coffee" />
+    <Content Include="Scripts\angular-simple-logger-master\gulp\index.coffee" />
+    <Content Include="Scripts\angular-simple-logger-master\gulp\tasks\browserify.coffee" />
+    <Content Include="Scripts\angular-simple-logger-master\gulp\tasks\build.coffee" />
+    <Content Include="Scripts\angular-simple-logger-master\gulp\tasks\bump.coffee" />
+    <Content Include="Scripts\angular-simple-logger-master\gulp\tasks\clean.coffee" />
+    <Content Include="Scripts\angular-simple-logger-master\gulp\tasks\dist.coffee" />
+    <Content Include="Scripts\angular-simple-logger-master\gulp\tasks\index.coffee" />
+    <Content Include="Scripts\angular-simple-logger-master\gulp\tasks\spec.coffee" />
+    <Content Include="Scripts\angular-simple-logger-master\gulp\tasks\tag.coffee" />
+    <Content Include="Scripts\angular-simple-logger-master\gulp\tasks\wrap.coffee" />
+    <Content Include="Scripts\angular-simple-logger-master\karma.browserify.conf.coffee" />
+    <Content Include="Scripts\angular-simple-logger-master\karma.conf.coffee" />
+    <Content Include="Scripts\angular-simple-logger-master\karma.light.conf.coffee" />
+    <Content Include="Scripts\angular-simple-logger-master\package.json" />
+    <Content Include="Scripts\angular-simple-logger-master\params.json" />
+    <Content Include="Scripts\angular-simple-logger-master\README.md" />
+    <Content Include="Scripts\angular-simple-logger-master\scripts\clean" />
+    <Content Include="Scripts\angular-simple-logger-master\scripts\publish" />
+    <Content Include="Scripts\angular-simple-logger-master\spec\debug.spec.coffee" />
+    <Content Include="Scripts\angular-simple-logger-master\spec\logger.arrayExt.spec.coffee" />
+    <Content Include="Scripts\angular-simple-logger-master\spec\logger.spec.coffee" />
+    <Content Include="Scripts\angular-simple-logger-master\src\logger.coffee" />
+    <Content Include="Scripts\angular-simple-logger-master\src\module.coffee" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\fullcalendar.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
@@ -1319,8 +1387,17 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <EmbeddedResource Include="Migrations\201602161917472_initial.resx">
+      <DependentUpon>201602161917472_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602162232100_2.resx">
+      <DependentUpon>201602162232100_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602162349123_3.resx">
+      <DependentUpon>201602162349123_3.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

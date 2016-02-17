@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity.Owin;
 using System.Data.Entity;
 using System.Collections;
 using System.Collections.Generic;
+using CoderCampsCRM.Models.ViewModels;
 
 namespace CoderCampsCRM.Models
 {
