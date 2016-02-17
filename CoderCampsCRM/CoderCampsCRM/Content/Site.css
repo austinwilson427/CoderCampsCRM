@@ -398,3 +398,27 @@ li.Twitter a, li.Facebook a, li.Google a {
     color: white;
 }
 
+
+
+
+
+
+/*TABLE CSS*/
+
+#tasktable {
+ border-spacing: 10px;
+ empty-cells:show;
+ width:90%;
+ text-align:left;
+}
+#tasktable tr td{
+  white-space:nowrap;
+  text-align:left;
+ }
+
+#accordian {
+    margin: -10px;
+    
+}
+
+
