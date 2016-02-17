@@ -88,16 +88,16 @@
                         <h3>
                             Not Started
                         </h3>
-                        <table class="table">
+                        <table class="table" id="tasktable">
                             <tr ng-repeat="task in vm.tasks | filter: {status: 'Not Started'} | orderBy:'dueDate'" {{task.dueDate}}>
                                 
                                 <td>
-                                    <div class="panel-group" id="panel-609138">
+                                    <div class="panel-group" id="accordian">
                                         <div class="panel panel-default">
                                             <div class="panel-heading">
-                                                <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-609138" href="#panel-element-891277">{{task.type}} due on {{task.dueDate}}</a>
+                                                <a class="panel-title collapsed" data-toggle="collapse" data-parent="#accordian" href="#panel-element-{{task.id}}">{{task.type}} due on {{task.dueDate}}</a>
                                             </div>
-                                            <div id="panel-element-891277" class="panel-collapse collapse">
+                                            <div id="panel-element-{{task.id}}" class="panel-collapse collapse">
                                                 <div class="panel-body">
                                                     {{task.description}} <a aligh="right" href="/task-details/{{task.id}}"><span style="color: blue" class="glyphicon glyphicon-list"></span></a>
                                                 </div>
@@ -115,61 +115,51 @@
                         <h3>
                             In Progress
                         </h3>
-                        <div class="panel-group" id="panel-307723">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-307723" href="#panel-element-739999">Collapsible Group Item #1</a>
-                                </div>
-                                <div id="panel-element-739999" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        Anim pariatur cliche...
+                        <table class="table" id="tasktable">
+                            <tr ng-repeat="task in vm.tasks | filter: {status: 'In Progress'} | orderBy:'dueDate'" {{task.dueDate}}>
+
+                                <td>
+                                    <div class="panel-group" id="accordian">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <a class="panel-title collapsed" data-toggle="collapse" data-parent="#accordian" href="#panel-element-{{task.id}}">{{task.type}} due on {{task.dueDate}}</a>
+                                            </div>
+                                            <div id="panel-element-{{task.id}}" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    {{task.description}} <a aligh="right" href="/task-details/{{task.id}}"><span style="color: blue" class="glyphicon glyphicon-list"></span></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Column 1 END -->
                                     </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-307723" href="#panel-element-552364">Collapsible Group Item #2</a>
-                                </div>
-                                <div id="panel-element-552364" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        Anim pariatur cliche...
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                     <div class="col-md-4">
                         <h3>
                             Completed
                         </h3>
-                        <div class="panel-group" id="panel-82520">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-82520" href="#panel-element-955309">Collapsible Group Item #1</a>
-                                </div>
-                                <div id="panel-element-955309" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        Anim pariatur cliche...
-                                    </div>
-                                    <div>
-                                        <div class="gr-textarea-btn ">
-                                            <div class="gr-textarea-btn_status">
+                        <table class="table" id="tasktable">
+                            <tr ng-repeat="task in vm.tasks | filter: {status: 'Completed'} | orderBy:'dueDate'" {{task.dueDate}}>
+
+                                <td>
+                                    <div class="panel-group" id="accordian">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <a class="panel-title collapsed" data-toggle="collapse" data-parent="#accordian" href="#panel-element-{{task.id}}">{{task.type}} due on {{task.dueDate}}</a>
+                                            </div>
+                                            <div id="panel-element-{{task.id}}" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    {{task.description}} <a aligh="right" href="/task-details/{{task.id}}"><span style="color: blue" class="glyphicon glyphicon-list"></span></a>
+                                                </div>
                                             </div>
                                         </div>
+                                        <!-- Column 1 END -->
                                     </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-82520" href="#panel-element-83036">Collapsible Group Item #2</a>
-                                </div>
-                                <div id="panel-element-83036" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        Anim pariatur cliche...
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
