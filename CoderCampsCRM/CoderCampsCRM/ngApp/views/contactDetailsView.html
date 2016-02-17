@@ -45,11 +45,11 @@
             </tr>
             <tr>
                 <td>Latitude</td>
-                <td class="tableDetailRow tdEdit" id="lat" ng-blur="vm.editCoords()">{{vm.contactView.location.latitude}}</td>
+                <td class="tableDetailRow tdEdit" id="lat" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.latitude}}</td>
             </tr>
             <tr>
                 <td>Longitude</td>
-                <td class="tableDetailRow tdEdit" id="long" ng-blur="vm.editCoords()">{{vm.contactView.location.longitude}}</td>
+                <td class="tableDetailRow tdEdit" id="long" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.longitude}}</td>
             </tr>
         </table>
         <button class="btn btn-primary" ng-click="vm.editContact()">Edit</button>

@@ -303,6 +303,12 @@ td.trash_cell{
     margin-left: 40px;
 }
 
+#itemsPerPage{
+    position: relative;
+    left: 10px;
+    bottom: 30px;
+}
+
 /*SEARCHBAR CSS*/
 .search-form .form-group {
   float: right !important;

@@ -66,7 +66,7 @@ var MyApp;
                         contact.lastInteraction = new Date(Date.parse(contact.lastInteraction));
                     }
                 });
-                return data;
+                return data.$promise;
             };
             ContactService.prototype.getOneContact = function (id) {
                 var data = this.contactDetailResource.get({ id: id });
@@ -105,4 +105,3 @@ var MyApp;
         angular.module("MyApp").service("contactService", ContactService);
     })(Services = MyApp.Services || (MyApp.Services = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=contactService.js.map

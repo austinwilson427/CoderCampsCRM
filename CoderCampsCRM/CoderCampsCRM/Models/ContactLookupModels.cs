@@ -27,4 +27,22 @@ namespace CoderCampsCRM.Models
         [ForeignKey("ContactId")]
         public Contact Contact { get; set; }
     }
+
+    //public class LocationContact
+    //{
+    //    public int Id { get; set; }
+    //    public int LocationId { get; set; }
+    //    [ForeignKey("LocationId")]
+    //    public Location Location { get; set; }
+    //    public int ContactId { get; set; }
+    //    [ForeignKey("ContactId")]
+    //    public Contact Contact { get; set; }
+    //    public int TaskId { get; set; }
+    //    [ForeignKey("TaskId")]
+    //    public UserTask UserTask { get; set; }
+    //    public int DealId { get; set; }
+    //    [ForeignKey("DealId")]
+    //    public Deal Deal { get; set; }
+
+    //}
 }

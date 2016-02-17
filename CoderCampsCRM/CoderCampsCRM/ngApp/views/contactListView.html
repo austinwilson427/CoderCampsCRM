@@ -19,7 +19,8 @@
             <div class="row details_wrap">
                 <div class="col-md-2">
                     <btn id="menu-toggle" class="btn btn-primary">Filter</btn>
-                    <button class="btn btn-primary" ng-click="vm.setLocations()">Show Map</button>
+                    <button class="btn btn-primary" ng-show="vm.showMap" ng-click="vm.toggleMap()">Hide Map</button>
+                    <button class="btn btn-primary" ng-show="!vm.showMap" ng-click="vm.toggleMap()">Show Map</button>
                 </div>
                 <div class="col-md-8 form-group">
                     <input type="text" class="form-control full" ng-model="searchText" ng-model-options="{debounce: 1000}" placeholder="Search contacts by name" />
@@ -32,15 +33,23 @@
                 <div class="col-md-12">
                     <h2 class="text-center">Contact Locations</h2>
                     <ui-gmap-google-map center='vm.center' zoom='vm.zoom' draggable="true">
-                        <ui-gmap-markers models="vm.markers"
-                                         coords="'self'"
-                                         icon="'icon'"
-                                         options="'options'">
-                        </ui-gmap-markers>
+                        <ui-gmap-marker ng-repeat="marker in vm.markers"
+                                        idKey="marker.id"
+                                        coords="marker.coords"
+                                        options="marker.options">
+                        </ui-gmap-marker>
                     </ui-gmap-google-map>
                 </div>
             </div>
             <div class="table_wrap">
+                <uib-pagination total-items="vm.totalItems" ng-model="vm.currentPage" max-size="vm.maxSize" class="pagination-sm" items-per-page="{{vm.itemsPerPage}}"></uib-pagination>
+                    <select id="itemsPerPage" ng-model="vm.itemsPerPage">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
                 <table class="table table-bordered table-hover deals_table">
                     <thead>
                         <tr>
@@ -55,7 +64,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="contact in vm.contactsView.contacts | filter: {name: searchText} | orderBy:sortType:sortReverse">
+                        <tr ng-repeat="contact in vm.contactsView.contacts.slice(((vm.currentPage-1)*vm.itemsPerPage), ((vm.currentPage)*vm.itemsPerPage)) | filter: {name: searchText} | orderBy:sortType:sortReverse">
                             <td>{{contact.name}}</td>
                             <td>{{contact.company.companyName}}</td>
                             <td>{{contact.jobTitle}}</td>

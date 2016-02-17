@@ -253,17 +253,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602161917472_initial.cs" />
-    <Compile Include="Migrations\201602161917472_initial.Designer.cs">
-      <DependentUpon>201602161917472_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201602171745039_initial.cs" />
+    <Compile Include="Migrations\201602171745039_initial.Designer.cs">
+      <DependentUpon>201602171745039_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602162232100_2.cs" />
-    <Compile Include="Migrations\201602162232100_2.Designer.cs">
-      <DependentUpon>201602162232100_2.cs</DependentUpon>
+    <Compile Include="Migrations\201602171747523_2.cs" />
+    <Compile Include="Migrations\201602171747523_2.Designer.cs">
+      <DependentUpon>201602171747523_2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602162349123_3.cs" />
-    <Compile Include="Migrations\201602162349123_3.Designer.cs">
-      <DependentUpon>201602162349123_3.cs</DependentUpon>
+    <Compile Include="Migrations\201602171823438_3.cs" />
+    <Compile Include="Migrations\201602171823438_3.Designer.cs">
+      <DependentUpon>201602171823438_3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -299,10 +299,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\aspnet-CoderCampsCRM-20151020080840.mdf" />
-    <Content Include="App_Data\aspnet-CoderCampsCRM-20151020080840_log.ldf">
-      <DependentUpon>aspnet-CoderCampsCRM-20151020080840.mdf</DependentUpon>
-    </Content>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
@@ -1387,16 +1383,18 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602161917472_initial.resx">
-      <DependentUpon>201602161917472_initial.cs</DependentUpon>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201602171745039_initial.resx">
+      <DependentUpon>201602171745039_initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602162232100_2.resx">
-      <DependentUpon>201602162232100_2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602171747523_2.resx">
+      <DependentUpon>201602171747523_2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602162349123_3.resx">
-      <DependentUpon>201602162349123_3.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602171823438_3.resx">
+      <DependentUpon>201602171823438_3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

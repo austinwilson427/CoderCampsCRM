@@ -71,7 +71,7 @@
                     contact.lastInteraction = new Date(Date.parse(contact.lastInteraction));
                 }
             });
-            return data;
+            return data.$promise;
         }
 
         public getOneContact(id: number) {

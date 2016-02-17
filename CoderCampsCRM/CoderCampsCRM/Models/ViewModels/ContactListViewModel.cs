@@ -14,6 +14,5 @@ namespace CoderCampsCRM.Models.ViewModels
         public List<Deal> Deals { get; set; }
         public List<ContactInteraction> Interactions { get; set; }
         public List<UserTask> Tasks { get; set; }
-        public List<Location> Locations { get; set; }
     }
 }
