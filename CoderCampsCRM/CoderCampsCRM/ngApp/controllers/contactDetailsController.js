@@ -111,3 +111,4 @@ var MyApp;
         Controllers.ContactDetailsController = ContactDetailsController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
+//# sourceMappingURL=contactDetailsController.js.map
