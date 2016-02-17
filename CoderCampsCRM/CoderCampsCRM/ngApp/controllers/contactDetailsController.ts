@@ -6,6 +6,7 @@
         public interaction;  
         public contact;
         public location;
+        public note;
         public companyChoice;
         public zoom;
         public center;
@@ -31,16 +32,16 @@
         }
 
         public setLocation() {
-            this.zoom = this.contactView.location.zoom;
-            this.center = { latitude: this.contactView.location.latitude, longitude: this.contactView.location.longitude}; 
+            this.zoom = 10;
+            this.center = { latitude: this.contactView.contact.latitude, longitude: this.contactView.contact.longitude}; 
             this.marker = [
                 {
-                    id: this.contactView.location.id,
+                    id: this.contactView.contact.id,
                     options: {
-                        title: this.contactView.location.title,
+                        title: this.contactView.contact.name,
                     },
-                    latitude: this.contactView.location.latitude,
-                    longitude: this.contactView.location.longitude,
+                    latitude: this.contactView.contact.latitude,
+                    longitude: this.contactView.contact.longitude,
                 }, 
             ]
             if (this.showMap == false) {
@@ -53,6 +54,25 @@
 
         public editContact() {
             $(".tdEdit").attr("contenteditable", "true").attr("style", "background-color: rgb(255, 255, 194)");  
+        }
+
+        public editNotes() {
+            this.contact.id = this.contactView.contact.id;
+            this.contact.companyId = this.contactView.contact.companyId;
+            this.contact.lastInteraction = $("#lastInteraction").text();
+            this.contact.name = $("#name").text();
+            this.contact.email = $("#email").text();
+            this.contact.phoneNumber = $("#phoneNumber").text();
+            this.contact.jobTitle = $("#jobTitle").text();
+            this.contact.country = $("#country").text();
+            this.contact.city = $("#city").text();
+            this.contact.state = $("#state").text();
+            this.contact.zip = $("#zip").text();
+            this.contact.notes = $("#notes").text();
+            this.contact.streetAddress = $("#streetAddress").text();
+            this.contact.longitude = $("#long").text();
+            this.contact.latitude = $("#lat").text();  
+            return this.contactService.editContact(this.contact);
         }
 
         public confirmEdit() {
@@ -68,7 +88,10 @@
             this.contact.city = $("#city").text();  
             this.contact.state = $("#state").text();  
             this.contact.zip = $("#zip").text();  
-            this.contact.streetAddress = $("#streetAddress").text();           
+            this.contact.notes = $("#notes").text();
+            this.contact.streetAddress = $("#streetAddress").text();  
+            this.contact.longitude = $("#long").text();
+            this.contact.latitude = $("#lat").text();         
             return this.contactService.editContact(this.contact);
         }
 
@@ -85,6 +108,8 @@
             this.contact.state = $("#state").text();
             this.contact.zip = $("#zip").text();
             this.contact.streetAddress = $("#streetAddress").text(); 
+            this.contact.longitude = $("#long").text();
+            this.contact.latitude = $("#lat").text();  
             return this.contactService.editContact(this.contact).then(this.$state.reload());            
         }
 
@@ -95,20 +120,6 @@
             else {
                 this.location.id = 0;
             }
-        }
-
-        public editCoords() {
-            debugger;
-            $(".tdEdit").removeAttr("contenteditable").removeAttr("style");
-            this.location.zoom = 6;
-            this.location.contactId = this.contactView.contact.id;
-            this.checkCoordsId();
-            this.location.latitude = $("#lat").text();
-            this.location.longitude = $("#long").text();
-            this.location.title = this.contactView.contact.name;
-            this.location.latitude = $("#lat").text();
-            this.location.longitude = $("#long").text();
-            return this.contactService.addLocation(this.location);
         }
         
         public addInteraction() {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ namespace CoderCampsCRM.Models
 {
     public class Contact
     {
+        //[Key, ForeignKey("Location")]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
@@ -18,7 +20,10 @@ namespace CoderCampsCRM.Models
         public string Zip { get; set; }
         public string StreetAddress { get; set; }
         public string JobTitle { get; set; }
+        public string Notes { get; set; }
         public DateTime ?LastInteraction { get; set; }
+        public string Longitude { get; set; }
+        public string Latitude { get; set; }
 
         public string UserId { get; set; }
         [ForeignKey("UserId")]        
@@ -28,5 +33,8 @@ namespace CoderCampsCRM.Models
         [ForeignKey("CompanyId")]
         public Company Company { get; set; }
 
-    }   
+        //public int LocationId { get; set; }
+        //[ForeignKey("LocationId")] //don't always need this
+        //public Location Location { get; set; }
+    }
 }
