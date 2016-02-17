@@ -66,7 +66,7 @@ var MyApp;
                         contact.lastInteraction = new Date(Date.parse(contact.lastInteraction));
                     }
                 });
-                return data;
+                return data.$promise;
             };
             ContactService.prototype.getOneContact = function (id) {
                 var data = this.contactDetailResource.get({ id: id });
@@ -85,11 +85,12 @@ var MyApp;
                 return this.contactResource.save(contact).$promise;
             };
             ContactService.prototype.editContact = function (contact) {
-                return this.contactResource.save(contact).$promise;
+                debugger;
+                var data = this.contactResource.save(contact).$promise;
+                return data;
             };
             ContactService.prototype.deleteContact = function (id) {
                 var data = this.contactResource.remove({ id: id }).$promise;
-                debugger;
                 return data;
             };
             ContactService.prototype.addInteraction = function (interaction) {
@@ -104,4 +105,3 @@ var MyApp;
         angular.module("MyApp").service("contactService", ContactService);
     })(Services = MyApp.Services || (MyApp.Services = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=contactService.js.map

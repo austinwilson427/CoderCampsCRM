@@ -26,16 +26,16 @@ var MyApp;
                 });
             };
             ContactDetailsController.prototype.setLocation = function () {
-                this.zoom = this.contactView.location.zoom;
-                this.center = { latitude: this.contactView.location.latitude, longitude: this.contactView.location.longitude };
+                this.zoom = 10;
+                this.center = { latitude: this.contactView.contact.latitude, longitude: this.contactView.contact.longitude };
                 this.marker = [
                     {
-                        id: this.contactView.location.id,
+                        id: this.contactView.contact.id,
                         options: {
-                            title: this.contactView.location.title,
+                            title: this.contactView.contact.name,
                         },
-                        latitude: this.contactView.location.latitude,
-                        longitude: this.contactView.location.longitude,
+                        latitude: this.contactView.contact.latitude,
+                        longitude: this.contactView.contact.longitude,
                     },
                 ];
                 if (this.showMap == false) {
@@ -47,6 +47,24 @@ var MyApp;
             };
             ContactDetailsController.prototype.editContact = function () {
                 $(".tdEdit").attr("contenteditable", "true").attr("style", "background-color: rgb(255, 255, 194)");
+            };
+            ContactDetailsController.prototype.editNotes = function () {
+                this.contact.id = this.contactView.contact.id;
+                this.contact.companyId = this.contactView.contact.companyId;
+                this.contact.lastInteraction = $("#lastInteraction").text();
+                this.contact.name = $("#name").text();
+                this.contact.email = $("#email").text();
+                this.contact.phoneNumber = $("#phoneNumber").text();
+                this.contact.jobTitle = $("#jobTitle").text();
+                this.contact.country = $("#country").text();
+                this.contact.city = $("#city").text();
+                this.contact.state = $("#state").text();
+                this.contact.zip = $("#zip").text();
+                this.contact.notes = $("#notes").text();
+                this.contact.streetAddress = $("#streetAddress").text();
+                this.contact.longitude = $("#long").text();
+                this.contact.latitude = $("#lat").text();
+                return this.contactService.editContact(this.contact);
             };
             ContactDetailsController.prototype.confirmEdit = function () {
                 $(".tdEdit").removeAttr("contenteditable").removeAttr("style");
@@ -61,7 +79,10 @@ var MyApp;
                 this.contact.city = $("#city").text();
                 this.contact.state = $("#state").text();
                 this.contact.zip = $("#zip").text();
+                this.contact.notes = $("#notes").text();
                 this.contact.streetAddress = $("#streetAddress").text();
+                this.contact.longitude = $("#long").text();
+                this.contact.latitude = $("#lat").text();
                 return this.contactService.editContact(this.contact);
             };
             ContactDetailsController.prototype.chooseCompany = function () {
@@ -76,6 +97,8 @@ var MyApp;
                 this.contact.state = $("#state").text();
                 this.contact.zip = $("#zip").text();
                 this.contact.streetAddress = $("#streetAddress").text();
+                this.contact.longitude = $("#long").text();
+                this.contact.latitude = $("#lat").text();
                 return this.contactService.editContact(this.contact).then(this.$state.reload());
             };
             ContactDetailsController.prototype.checkCoordsId = function () {
@@ -85,19 +108,6 @@ var MyApp;
                 else {
                     this.location.id = 0;
                 }
-            };
-            ContactDetailsController.prototype.editCoords = function () {
-                debugger;
-                $(".tdEdit").removeAttr("contenteditable").removeAttr("style");
-                this.location.zoom = 6;
-                this.location.contactId = this.contactView.contact.id;
-                this.checkCoordsId();
-                this.location.latitude = $("#lat").text();
-                this.location.longitude = $("#long").text();
-                this.location.title = this.contactView.contact.name;
-                this.location.latitude = $("#lat").text();
-                this.location.longitude = $("#long").text();
-                return this.contactService.addLocation(this.location);
             };
             ContactDetailsController.prototype.addInteraction = function () {
                 this.interaction.contactId = this.contactView.contact.id;
@@ -111,4 +121,3 @@ var MyApp;
         Controllers.ContactDetailsController = ContactDetailsController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=contactDetailsController.js.map

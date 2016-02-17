@@ -53,6 +53,9 @@ namespace CoderCampsCRM.API
                     original.State = contact.State;
                     original.StreetAddress = contact.StreetAddress;
                     original.Zip = contact.Zip;
+                    original.Notes = contact.Notes;
+                    original.Longitude = contact.Longitude;
+                    original.Latitude = contact.Latitude;
                     _repo.SaveChanges();
                     return Ok();
                 }

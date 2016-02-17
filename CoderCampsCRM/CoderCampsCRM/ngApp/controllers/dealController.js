@@ -517,4 +517,3 @@ var MyApp;
         Controllers.DealTableViewController = DealTableViewController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=dealController.js.map

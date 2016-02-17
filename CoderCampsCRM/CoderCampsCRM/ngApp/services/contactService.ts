@@ -71,7 +71,7 @@
                     contact.lastInteraction = new Date(Date.parse(contact.lastInteraction));
                 }
             });
-            return data;
+            return data.$promise;
         }
 
         public getOneContact(id: number) {
@@ -93,12 +93,13 @@
         }
 
         public editContact(contact) {
-            return this.contactResource.save(contact).$promise;
+            debugger;
+            let data = this.contactResource.save(contact).$promise;
+            return data;
         }
 
         public deleteContact(id: number) {
             let data = this.contactResource.remove({ id: id }).$promise;
-            debugger;
             return data;
         }
 

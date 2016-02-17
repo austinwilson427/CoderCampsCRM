@@ -100,6 +100,18 @@ var MyApp;
             controller: MyApp.Controllers.ContactDetailsController,
             controllerAs: 'vm'
         })
+            .state('contactDetails.interaction', {
+            url: '/contactInteraction',
+            templateUrl: '/ngApp/views/routes/contactInteraction.html',
+            controller: MyApp.Controllers.ContactDetailsController,
+            controllerAs: 'vm'
+        })
+            .state('contactDetails.note', {
+            url: '/contactNote',
+            templateUrl: '/ngApp/views/routes/contactNote.html',
+            controller: MyApp.Controllers.ContactDetailsController,
+            controllerAs: 'vm'
+        })
             .state('deal-info', {
             url: '/deals/:id',
             templateUrl: '/ngApp/views/deals-info.html',
@@ -155,4 +167,3 @@ var MyApp;
         $httpProvider.interceptors.push('authInterceptor');
     });
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=app.js.map

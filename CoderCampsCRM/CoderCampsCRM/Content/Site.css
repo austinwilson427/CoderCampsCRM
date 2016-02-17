@@ -288,6 +288,27 @@ td.trash_cell{
     background-color: white;
 }
 
+#contactBtnGroup {
+    margin-left: 80px;
+    margin-top: 20px;
+}
+
+#contactUiRouteWrap{
+    margin-top: 10px;
+    margin-left: 55px;
+}
+
+#noteWrap {
+    margin-top: 10px;
+    margin-left: 40px;
+}
+
+#itemsPerPage{
+    position: relative;
+    left: 10px;
+    bottom: 30px;
+}
+
 /*SEARCHBAR CSS*/
 .search-form .form-group {
   float: right !important;
