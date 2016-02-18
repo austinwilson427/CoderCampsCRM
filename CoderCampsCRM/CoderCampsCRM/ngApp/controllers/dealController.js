@@ -488,7 +488,6 @@ var MyApp;
             };
             AddDealModal.prototype.addDeal = function (dealToAdd) {
                 var _this = this;
-                console.log(dealToAdd);
                 this.dealService.saveDeal(dealToAdd).then(function () {
                     _this.closeModal();
                     location.reload(false);
@@ -517,7 +516,6 @@ var MyApp;
                 this.contactService = contactService;
                 this.getMyContacts();
                 this.getMyCompanies();
-                console.log(this.dealDetails.contactId);
                 this.dealDetails.closeDate = new Date(this.dealDetails.closeDate);
             }
             EditDealModal.prototype.getMyContacts = function () {
@@ -559,7 +557,6 @@ var MyApp;
                 this.dealsToDelete = dealsToDelete;
                 this.$route = $route;
                 this.dealsToDeleteLength = dealsToDelete.length;
-                console.log(this.dealsToDelete);
             }
             DeleteDealModal.prototype.deleteDeal = function () {
                 var _this = this;
@@ -597,7 +594,6 @@ var MyApp;
                 this.dealsToArchive = dealsToArchive;
                 this.$route = $route;
                 this.dealsToArchiveLength = dealsToArchive.length;
-                console.log(this.dealsToArchive);
             }
             ArchiveDealModal.prototype.archiveDeal = function () {
                 var _this = this;
@@ -736,7 +732,6 @@ var MyApp;
             };
             DealTableViewController.prototype.editDeal = function (dealToAdd) {
                 var _this = this;
-                console.log(dealToAdd);
                 this.dealService.saveDeal(dealToAdd).then(function () {
                     //location.reload(false);
                 }).catch(function (error) {
@@ -749,7 +744,6 @@ var MyApp;
                 });
             };
             DealTableViewController.prototype.onDropComplete1 = function (data, evt) {
-                console.log(data);
                 var index = this.droppedObjects1.indexOf(data);
                 data.stage = "Appointment Scheduled";
                 if (index == -1) {
@@ -764,7 +758,6 @@ var MyApp;
                 }
             };
             DealTableViewController.prototype.onDropComplete2 = function (data, evt) {
-                console.log(data);
                 var index = this.droppedObjects2.indexOf(data);
                 data.stage = "Qualified to Buy";
                 if (index == -1) {
@@ -779,7 +772,6 @@ var MyApp;
                 }
             };
             DealTableViewController.prototype.onDropComplete3 = function (data, evt) {
-                console.log(data);
                 var index = this.droppedObjects3.indexOf(data);
                 data.stage = "Presentation Scheduled";
                 if (index == -1) {
@@ -794,7 +786,6 @@ var MyApp;
                 }
             };
             DealTableViewController.prototype.onDropComplete4 = function (data, evt) {
-                console.log(data);
                 var index = this.droppedObjects4.indexOf(data);
                 data.stage = "Decision Maker Bought In";
                 if (index == -1) {
@@ -809,7 +800,6 @@ var MyApp;
                 }
             };
             DealTableViewController.prototype.onDropComplete5 = function (data, evt) {
-                console.log(data);
                 var index = this.droppedObjects5.indexOf(data);
                 data.stage = "Contract Sent";
                 if (index == -1) {
@@ -839,7 +829,6 @@ var MyApp;
                 var _this = this;
                 this.dealService = dealService;
                 this.dealService.listAllDeals().$promise.then(function (result) {
-                    console.log(result);
                     var qualifiedToBuy = [];
                     var appointmentScheduled = [];
                     var presentationScheduled = [];

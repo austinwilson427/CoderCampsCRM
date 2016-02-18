@@ -506,7 +506,6 @@
         }
 
         public addDeal(dealToAdd) {
-            console.log(dealToAdd);
             this.dealService.saveDeal(dealToAdd).then(() => {
                 this.closeModal();
                 location.reload(false);
@@ -535,7 +534,6 @@
         constructor(private dealService: MyApp.Services.DealService, private $location: ng.ILocationService, private $uibModalInstance: ng.ui.bootstrap.IModalServiceInstance, public dealDetails, private $route: ng.route.IRouteService, private companiesService: MyApp.Services.CompaniesService, private contactService: MyApp.Services.ContactService) {
             this.getMyContacts();
             this.getMyCompanies();
-            console.log(this.dealDetails.contactId);
             this.dealDetails.closeDate = new Date(this.dealDetails.closeDate);
         }
 
@@ -577,7 +575,6 @@
 
         constructor(private dealService: MyApp.Services.DealService, private $location: ng.ILocationService, private $uibModalInstance: ng.ui.bootstrap.IModalServiceInstance, public dealsToDelete, private $route: ng.route.IRouteService) {
             this.dealsToDeleteLength = dealsToDelete.length;
-            console.log(this.dealsToDelete);
 
         }
 
@@ -616,7 +613,6 @@
 
         constructor(private dealService: MyApp.Services.DealService, private $location: ng.ILocationService, private $uibModalInstance: ng.ui.bootstrap.IModalServiceInstance, public dealsToArchive, private $route: ng.route.IRouteService) {
             this.dealsToArchiveLength = dealsToArchive.length;
-            console.log(this.dealsToArchive);
 
         }
 
@@ -779,7 +775,6 @@
         }
 
         public editDeal(dealToAdd) {
-            console.log(dealToAdd);
             this.dealService.saveDeal(dealToAdd).then(() => {
                 //location.reload(false);
             }).catch((error) => {
@@ -794,7 +789,6 @@
         }
 
         public onDropComplete1(data, evt) {
-            console.log(data);
             let index = this.droppedObjects1.indexOf(data);
             data.stage = "Appointment Scheduled";
             if (index == -1) {
@@ -810,7 +804,6 @@
             }
         }
         public onDropComplete2(data, evt) {
-            console.log(data);
             let index = this.droppedObjects2.indexOf(data);
             data.stage = "Qualified to Buy";
             if (index == -1) {
@@ -827,7 +820,6 @@
         }
 
         public onDropComplete3(data, evt) {
-            console.log(data);
             let index = this.droppedObjects3.indexOf(data);
             data.stage = "Presentation Scheduled";
             if (index == -1) {
@@ -844,7 +836,6 @@
         }
 
         public onDropComplete4(data, evt) {
-            console.log(data);
             let index = this.droppedObjects4.indexOf(data);
             data.stage = "Decision Maker Bought In";
             if (index == -1) {
@@ -861,7 +852,6 @@
         }
 
         public onDropComplete5(data, evt) {
-            console.log(data);
             let index = this.droppedObjects5.indexOf(data);
             data.stage = "Contract Sent";
             if (index == -1) {
@@ -905,7 +895,6 @@
         constructor(private dealService: MyApp.Services.DealService) {
 
             this.dealService.listAllDeals().$promise.then((result) => {
-                console.log(result);
                 let qualifiedToBuy = [];
                 let appointmentScheduled = [];
                 let presentationScheduled = [];

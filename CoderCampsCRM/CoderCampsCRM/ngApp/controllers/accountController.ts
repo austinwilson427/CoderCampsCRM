@@ -102,7 +102,7 @@
                 resolve: {
 
                 },
-                size: "sm"
+                size: "md"
 
             });
         }
@@ -214,7 +214,7 @@
                         resolve: {
 
                         },
-                        size: "sm"
+                        size: "md"
 
                     });
                 }).catch((result) => {
