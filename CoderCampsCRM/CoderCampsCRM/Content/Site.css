@@ -272,6 +272,10 @@ td.trash_cell{
     margin-top: 30px;
 }
 
+#filterBtn {
+    margin-top: 20px;
+}
+
 #interactionBtn {
     margin-top: 20px;
 }

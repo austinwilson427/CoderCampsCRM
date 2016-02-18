@@ -15,47 +15,15 @@
             this.contactDetailResource = $resource("/api/contactDetailView/:id");
             this.contactListResource = $resource("/api/contactListView");
             this.locationResource = $resource("/api/locations");
-            this.contactFilterResource = $resource("/api/contactFilterView/:id", null, {
-                filterByCompanies: {
-                    method: 'GET',
-                    url: '/api/contactFilterView/filterByCompanies/:id',
-                    isArray: false
-                },
-                filterByDeals: {
-                    method: 'GET',
-                    url: '/api/contactFilterView/filterByDeals/:id',
-                    isArray: false
-                },
-                filterByTasks: {
-                    method: 'GET',
-                    url: '/api/contactFilterView/filterByTasks/:id',
-                    isArray: false
-                }
-            });
+            this.contactFilterResource = $resource("/api/contactFilterView/:id");
         }
 
-        public filterByCompanies(id: number) {
-            let data = this.contactFilterResource.filterByCompanies({ id: id });
-            data.$promise.then(() => {
-                for (let contact of data.contacts) {
-                    contact.lastInteraction = new Date(Date.parse(contact.lastInteraction));
-                }
-            });
-            return data.$promise;
-        }
-
-        public filterByDeals(id: number) {
-            let data = this.contactFilterResource.filterByDeals({ id: id });
-            data.$promise.then(() => {
-                for (let contact of data.contacts) {
-                    contact.lastInteraction = new Date(Date.parse(contact.lastInteraction));
-                }
-            });
-            return data.$promise;
-        }
-
-        public filterByTasks(id: number) {
-            let data = this.contactFilterResource.filterByTasks({ id: id });
+        public filterContacts(companyId: number, dealId: number, taskId: number) {
+            let vm: any = {};
+            vm.companyId = companyId;
+            vm.dealId = dealId;
+            vm.taskId = taskId;
+            let data = this.contactFilterResource.save(vm);
             data.$promise.then(() => {
                 for (let contact of data.contacts) {
                     contact.lastInteraction = new Date(Date.parse(contact.lastInteraction));
@@ -93,7 +61,6 @@
         }
 
         public editContact(contact) {
-            debugger;
             let data = this.contactResource.save(contact).$promise;
             return data;
         }

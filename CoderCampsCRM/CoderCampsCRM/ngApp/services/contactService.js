@@ -10,46 +10,14 @@ var MyApp;
                 this.contactDetailResource = $resource("/api/contactDetailView/:id");
                 this.contactListResource = $resource("/api/contactListView");
                 this.locationResource = $resource("/api/locations");
-                this.contactFilterResource = $resource("/api/contactFilterView/:id", null, {
-                    filterByCompanies: {
-                        method: 'GET',
-                        url: '/api/contactFilterView/filterByCompanies/:id',
-                        isArray: false
-                    },
-                    filterByDeals: {
-                        method: 'GET',
-                        url: '/api/contactFilterView/filterByDeals/:id',
-                        isArray: false
-                    },
-                    filterByTasks: {
-                        method: 'GET',
-                        url: '/api/contactFilterView/filterByTasks/:id',
-                        isArray: false
-                    }
-                });
+                this.contactFilterResource = $resource("/api/contactFilterView/:id");
             }
-            ContactService.prototype.filterByCompanies = function (id) {
-                var data = this.contactFilterResource.filterByCompanies({ id: id });
-                data.$promise.then(function () {
-                    for (var _i = 0, _a = data.contacts; _i < _a.length; _i++) {
-                        var contact = _a[_i];
-                        contact.lastInteraction = new Date(Date.parse(contact.lastInteraction));
-                    }
-                });
-                return data.$promise;
-            };
-            ContactService.prototype.filterByDeals = function (id) {
-                var data = this.contactFilterResource.filterByDeals({ id: id });
-                data.$promise.then(function () {
-                    for (var _i = 0, _a = data.contacts; _i < _a.length; _i++) {
-                        var contact = _a[_i];
-                        contact.lastInteraction = new Date(Date.parse(contact.lastInteraction));
-                    }
-                });
-                return data.$promise;
-            };
-            ContactService.prototype.filterByTasks = function (id) {
-                var data = this.contactFilterResource.filterByTasks({ id: id });
+            ContactService.prototype.filterContacts = function (companyId, dealId, taskId) {
+                var vm = {};
+                vm.companyId = companyId;
+                vm.dealId = dealId;
+                vm.taskId = taskId;
+                var data = this.contactFilterResource.save(vm);
                 data.$promise.then(function () {
                     for (var _i = 0, _a = data.contacts; _i < _a.length; _i++) {
                         var contact = _a[_i];
@@ -85,7 +53,6 @@ var MyApp;
                 return this.contactResource.save(contact).$promise;
             };
             ContactService.prototype.editContact = function (contact) {
-                debugger;
                 var data = this.contactResource.save(contact).$promise;
                 return data;
             };
@@ -105,3 +72,4 @@ var MyApp;
         angular.module("MyApp").service("contactService", ContactService);
     })(Services = MyApp.Services || (MyApp.Services = {}));
 })(MyApp || (MyApp = {}));
+//# sourceMappingURL=contactService.js.map

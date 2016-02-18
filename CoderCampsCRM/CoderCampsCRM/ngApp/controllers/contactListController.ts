@@ -14,7 +14,9 @@
         public currentPage = 1;
         public maxSize = 5;
         public itemsPerPage = 5;
-        public contactsSearch;
+        public companyFilter;
+        public dealFilter;
+        public taskFilter;
 
         constructor(private contactService: MyApp.Services.ContactService, private $location: ng.ILocationService, private $uibModal: angular.ui.bootstrap.IModalService, private $state: ng.ui.IStateService) {
             this.showAllContacts();
@@ -22,7 +24,7 @@
 
         public updateSearchList() {
             this.currentPage = 1;
-            this.itemsPerPage += 5;
+            this.itemsPerPage += this.currentPage + 5;
         }
 
         public totalItemsGet() {
@@ -73,22 +75,8 @@
             })
         }
 
-        public filterByCompanies() {
-            return this.contactService.filterByCompanies(this.filterChoice).then((result) => {
-                this.contactsView = result;
-                this.setLocations();
-            });
-        }
-
-        public filterByDeals() {
-            return this.contactService.filterByDeals(this.filterChoice).then((result) => {
-                this.contactsView = result;
-                this.setLocations();
-            });
-        }
-
-        public filterByTasks() {
-            return this.contactService.filterByTasks(this.filterChoice).then((result) => {
+        public filterContacts() {
+            return this.contactService.filterContacts(this.companyFilter, this.dealFilter, this.taskFilter).then((result) => {
                 this.contactsView = result;
                 this.setLocations();
             });
