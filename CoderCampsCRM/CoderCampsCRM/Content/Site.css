@@ -59,15 +59,14 @@ textarea {
 }
 /*----------------------------Landing page--------------------------------------------*/
 
-
-.jumbotron {
-    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,1)), url("http://pre01.deviantart.net/6693/th/pre/f/2014/322/6/6/seattle_skyline_with_mount_rainier_2014_by_larrygorlin-d86vi3u.jpg") no-repeat center;
+section.jumbotron {
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,.75)), url("http://pre01.deviantart.net/6693/th/pre/f/2014/322/6/6/seattle_skyline_with_mount_rainier_2014_by_larrygorlin-d86vi3u.jpg") no-repeat center;
     background-size: cover;
     min-height: 100vh;
     color: white;
     background-attachment: fixed;
-    margin: 0px;
-    padding: 20px !important;
+    margin: 0;
+    padding: 50px !important;
 }
 
 .heading-wrap {
@@ -75,7 +74,7 @@ textarea {
 }
 
 .heading-wrap h1{
-
+    margin-bottom: 50px;
 }
     .heading-wrap h1, .heading-wrap h2, .heading-wrap h3 {
         font-weight: 300;
@@ -84,7 +83,7 @@ textarea {
 .home_button_wrap {
     width: 60%;
     text-align: center;
-    margin: 50px auto 20px;
+    margin: 100px auto 20px;
 }
 
 
