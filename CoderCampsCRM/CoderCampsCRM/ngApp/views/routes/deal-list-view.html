@@ -88,8 +88,8 @@
                                 <table class="table table-hover table-bordered deals_table">
                                     <tr>
                                         <td class="trash_cell" ng-show="vm.showTrash">
-                                            <a href="#" ng-click="vm.deleteDealModal()"><span class="glyphicon glyphicon-trash trash_icon" aria-hidden="true"></span></a>
-                                            <a href="#" ng-click="vm.archiveDealModal()"><span class="glyphicon glyphicon-folder-close folder_icon" aria-hidden="true"></span></a>
+                                            <a href="#" ng-click="vm.deleteDealModal()"><span class="glyphicon glyphicon-trash trash_icon" aria-hidden="true" title="Delete Selected Deals"></span></a>
+                                            <a href="#" ng-click="vm.archiveDealModal()"><span class="glyphicon glyphicon-folder-close folder_icon" aria-hidden="true" title="Archive Selected Deals"></span></a>
                                         </td>
                                     </tr>
                                     <tr>
@@ -103,7 +103,7 @@
                                     </tr>
                                     <tr ng-class="{archived: value.isArchived}" ng-repeat="(key, value) in vm.allDeals | filter: vm.searchPhrase" ng-if="!value.isArchived || vm.showArchived">
                                         <td><input type="checkbox" ng-model="value.key" ng-click="vm.storeDeal(value)" /> <a ng-show="value.isArchived" href="#" ng-click="vm.unarchiveItem(value)"><span class="glyphicon glyphicon-plus"></span></a></td>
-                                        <td><a ui-sref="deal-info({id: value.id})">{{value.dealName}}</a>&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="value.key"><a href="#" ng-click="vm.editDealModal(value)"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></span></td>
+                                        <td><a ui-sref="deal-info({id: value.id})">{{value.dealName}}</a>&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="value.key"><a href="#" ng-click="vm.editDealModal(value)" title="Edit This Deal"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></span></td>
                                         <td>{{value.stage}}</td>
                                         <td>{{value.closeDate | date: 'MM/dd/yy'}}</td>
                                         <td>{{value.amount | currency}}</td>
@@ -123,5 +123,9 @@
     $("#menu-toggle").click(function (e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
+    });
+
+    $(function () {
+        $("#wrapper").tooltip();
     });
 </script>
