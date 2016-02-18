@@ -423,13 +423,12 @@ li.Twitter a, li.Facebook a, li.Google a {
 
 /*BannerImageTasks*/
 #bannertaskstop{
-    background-image: url(http://www.amasango.com/assets/orange-banner.png);
+    background-image: url(http://i.imgur.com/TGsr7UL.png);
     float: left;
     height:100%;
-    width: 105%;
+    width: 110%;
     margin:-20px;
     margin-left: -35px;
-    z-index:-10;
 }
 
 
