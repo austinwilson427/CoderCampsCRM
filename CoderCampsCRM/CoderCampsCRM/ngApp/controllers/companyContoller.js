@@ -297,3 +297,4 @@ var MyApp;
         Controllers.EditCompanyController = EditCompanyController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
+//# sourceMappingURL=companyContoller.js.map
