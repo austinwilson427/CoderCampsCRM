@@ -11,5 +11,6 @@ namespace CoderCampsCRM.Repositories
         DealViewModel getDealLogItemViewModel(int id);
         DealViewModel getDealLogItemViewModelByDealId(int id);
         DealViewModel getDealViewModel(int id);
+        DealViewModel getDealViewModelsPag(int takeCount, int skipCount, string order, string orderDirection);
     }
 }

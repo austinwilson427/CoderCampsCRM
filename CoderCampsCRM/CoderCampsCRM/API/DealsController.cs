@@ -28,6 +28,14 @@ namespace CoderCampsCRM.API
 
         }
 
+        [Route("api/deals/pag/{takeCount}/{skipCount}/{order}/{orderDirection}")]
+        public IHttpActionResult GetDealsByPagNumber(int takeCount, int skipCount, string order, string orderDirection)
+        {
+            var dealData = _dealRepo.getDealViewModelsPag(takeCount, skipCount, order, orderDirection);
+            return Ok(dealData.DealList);
+
+        }
+
         public IHttpActionResult GetADealViewModel(int id)
         {
             var data = _dealRepo.getDealViewModel(id);

@@ -2,7 +2,7 @@
     <table class="activity">
         <tr>
             <td>
-                Date: <input type="text" ng-model="vm.dateSelected" ng-change="vm.selectDate()" class="datepicker form-control">
+                Date: <input type="text" ng-model="vm.dateSelected" ng-change="vm.selectDate()" class="customDates form-control">
             </td>
             <td>
                 Time: <select class="form-control" ng-change="vm.selectTime()" ng-model="vm.timeSelected">
@@ -16,6 +16,6 @@
 </div>
 <script>
   $(function() {
-    $( ".datepicker" ).datepicker();
+    $( ".customDates" ).datepicker();
   });
 </script>
