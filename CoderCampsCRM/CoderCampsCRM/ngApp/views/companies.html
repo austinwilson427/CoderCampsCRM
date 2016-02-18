@@ -52,7 +52,7 @@
                             </tr>
                             <tr  ng-repeat="company in vm.companies | filter: vm.search">
                                 <!--<td><input type="checkbox" ng-model="value.key" ng-click="vm.storeDeal(value)" /> <a ng-show="value.isArchived" href="#" ng-click="vm.unarchiveItem(value)"><span class="glyphicon glyphicon-plus"></span></a></td>-->
-                                <td><a href="#" ng-click="vm.showDetailsModal(company.id)">{{company.companyName}}</a></td>
+                                <td><a ui-sref="company-info({id: company.id})">{{company.companyName}}</a></td>
                                 <td>{{company.companyCreateDate | date: 'MM/dd/yy'}}</td>
                                 <td>{{company.companyLastActivityeDate | date: 'MM/dd/yy'}}</td>
                                 <td>{{company.companyNextActivityDate  | date: 'MM/dd/yy'}}</td>

@@ -29,6 +29,7 @@ var MyApp;
             };
             AccountController.prototype.logout = function () {
                 this.accountService.logout();
+                this.$location.path('/');
             };
             AccountController.prototype.getExternalLogins = function () {
                 return this.accountService.getExternalLogins();
@@ -52,7 +53,7 @@ var MyApp;
                 var _this = this;
                 this.accountService.login(this.loginUser).then(function () {
                     _this.closeModal();
-                    _this.$location.path('/');
+                    _this.$location.path('/dashboard');
                 }).catch(function (results) {
                     console.log("Error");
                     console.log(results);
@@ -215,4 +216,3 @@ var MyApp;
         Controllers.ConfirmEmailController = ConfirmEmailController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=accountController.js.map

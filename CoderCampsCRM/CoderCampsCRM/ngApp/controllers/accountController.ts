@@ -25,6 +25,7 @@
 
         public logout() {
             this.accountService.logout();
+            this.$location.path('/');
         }
 
         public getExternalLogins() {
@@ -49,7 +50,7 @@
         public login() {
             this.accountService.login(this.loginUser).then(() => {
                 this.closeModal();
-                this.$location.path('/');
+                this.$location.path('/dashboard');
             }).catch((results) => {
                 console.log("Error");
                 console.log(results);

@@ -65,7 +65,7 @@ namespace CoderCampsCRM.App_Start
             kernel.Bind<IContactDetailViewRepository>().To<ContactDetailViewRepository>();
             kernel.Bind<IContactListViewRepository>().To<ContactListViewRepository>();
             kernel.Bind<IDealRepository>().To<DealRepository>();
-            //kernel.Bind<ICompanyRepository>().To<CompanyRepository>();
+            kernel.Bind<ICompanyRepository>().To<CompanyRepository>();
         }        
     }
 }

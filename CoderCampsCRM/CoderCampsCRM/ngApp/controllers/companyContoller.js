@@ -3,7 +3,7 @@ var MyApp;
     var Controllers;
     (function (Controllers) {
         var CompaniesController = (function () {
-            function CompaniesController($uibModal, companiesService, dealService, contactService, $location, $state) {
+            function CompaniesController($uibModal, companiesService, dealService, contactService, $location, $state, $stateParams) {
                 this.$uibModal = $uibModal;
                 this.companiesService = companiesService;
                 this.dealService = dealService;
@@ -11,7 +11,7 @@ var MyApp;
                 this.$location = $location;
                 this.$state = $state;
                 // this.companies = this.companiesService.getCompanies();
-                this.contactsView = contactService.getAllContacts();
+                this.contactView = contactService.getAllContacts();
                 this.getAllItems();
             }
             CompaniesController.prototype.getAllItems = function () {
@@ -27,17 +27,17 @@ var MyApp;
                     console.log(_this.companies);
                 });
             };
-            CompaniesController.prototype.showDetailsModal = function (id) {
-                this.$uibModal.open({
-                    templateUrl: "/ngApp/views/company-info.html",
-                    controller: CompanyDetailsController,
-                    controllerAs: 'vm',
-                    resolve: {
-                        companyId: function () { return id; }
-                    },
-                    size: 'lg'
-                });
-            };
+            //public showDetailsModal(id) {
+            //    this.$uibModal.open({
+            //        templateUrl: "/ngApp/views/company-info.html",
+            //        controller: CompanyDetailsController,
+            //        controllerAs: 'vm',
+            //        resolve: {
+            //            companyId: () => id
+            //        },
+            //        size: 'lg'
+            //    });
+            //}
             CompaniesController.prototype.editModal = function (id) {
                 this.$uibModal.open({
                     templateUrl: "/ngApp/views/modals/editCompanyModal.html",
@@ -147,17 +147,131 @@ var MyApp;
         })();
         Controllers.CompaniesController = CompaniesController;
         var CompanyDetailsController = (function () {
-            function CompanyDetailsController(companyId, companiesService, $stateParams, $state, contactService) {
-                this.companyId = companyId;
+            function CompanyDetailsController(companyLogItemService, companiesService, dealService, taskService, $stateParams, $state, $location, contactService, $routeParams, $route) {
+                this.companyLogItemService = companyLogItemService;
                 this.companiesService = companiesService;
+                this.dealService = dealService;
+                this.taskService = taskService;
                 this.$stateParams = $stateParams;
                 this.$state = $state;
+                this.$location = $location;
                 this.contactService = contactService;
-                this.companies = this.companiesService.getCompanies();
-                this.company = companiesService.getCompany(companyId);
-                this.contactsView = contactService.getAllContacts();
+                this.$route = $route;
+                this.company = {};
                 this.routeId = $stateParams["id"];
+                this.getCompany();
+                this.getAllContact();
+                this.getAllDeals();
+                // this.submitActivity()
+                // this.getAllTasks();
+                // this.companies = this.companiesService.getCompanies();
+                // this.company = companiesService.getCompany(companyId);
+                // this.company = companiesService.getCompany($routeParams['id'])
+                //this.contactView = contactService.getAllContacts();
+                //this.contactView = this.contactService.getOneContact($stateParams['id']);  
+                // this.deals = this.dealService.getDealByDealId($stateParams['id']);      
+                //this.routeId = $stateParams["id"];
+                //console.log(this.deals);
             }
+            CompanyDetailsController.prototype.getCompany = function () {
+                var _this = this;
+                this.companiesService.getCompany(this.routeId).$promise.then(function (result) {
+                    _this.companyInfo = result;
+                });
+            };
+            CompanyDetailsController.prototype.getAllContact = function () {
+                var _this = this;
+                this.contactService.getAllContacts().then(function (result) {
+                    _this.contactView = [];
+                    var contact;
+                    // console.log(result.contacts);
+                    for (var i = 0; i < result.contacts.length; i++) {
+                        // console.log(result.contacts[i].companyId);
+                        contact = _this.contactService.getOneContact(result.contacts[i].companyId);
+                        //  console.log(contact);
+                        if (_this.routeId == result.contacts[i].companyId) {
+                            //result[i].contact = contact;
+                            _this.contactView.push(result.contacts[i]);
+                        }
+                    }
+                });
+            };
+            CompanyDetailsController.prototype.getAllDeals = function () {
+                var _this = this;
+                this.dealService.listAllDeals().$promise.then(function (result) {
+                    _this.deals = [];
+                    var deal;
+                    //console.log(result[1].companyId);
+                    for (var i = 0; i < result.length; i++) {
+                        deal = _this.dealService.getDealByDealId(result[i].companyId);
+                        // result[i].deal = deal;
+                        if (_this.routeId == result[i].companyId) {
+                            _this.deals.push(result[i]);
+                        }
+                    }
+                });
+            };
+            //public getAllTasks() {
+            //    this.taskService.listTasks().$promise.then((result) => {
+            //        this.tasks = [];
+            //        let task;
+            //        console.log(result);
+            //        for (var i = 0; i < result.length; i++) {
+            //            task = this.taskService.getTask(result[i].company_Id);
+            //            // result[i].deal = deal;
+            //            if (this.routeId == result[i].company_Id) {
+            //                this.tasks.push(result[i]);
+            //            }
+            //        }
+            //    });
+            //}
+            CompanyDetailsController.prototype.editCompany = function () {
+                $(".tdEdit").attr("contenteditable", "true").attr("style", "background-color: rgb(255, 255, 194)");
+            };
+            CompanyDetailsController.prototype.editNotes = function () {
+                $(".tdEdit").removeAttr("contenteditable").removeAttr("style");
+                this.company.id = this.companyInfo.id;
+                this.company.companyName = $("#companyName").text();
+                this.company.companyDomainName = $("#companyDomainName").text();
+                this.company.companyPhoneNumber = $("#companyPhoneNumber").text();
+                this.company.companyCountry = $("#companyCountry").text();
+                this.company.country = $("#country").text();
+                this.company.companyCity = $("#companyCity").text();
+                this.company.companyState = $("#companyState").text();
+                this.company.companyZip = $("#companyZip").text();
+                this.company.comapanyAddress = $("#comapanyAddress").text();
+                this.company.companyDescription = $("#companyDescription").text();
+                this.company.companyIndustry = $("#companyIndustry").text();
+                this.company.companyIsPublic = $("#companyIsPublic").text();
+                this.company.companyFacebook = $("#companyFacebook").text();
+                this.company.companyLinkedin = $("#companyLinkedin").text();
+                this.company.companyLinkedin = $("#companyTwitter").text();
+                this.company.longitude = $("#long").text();
+                this.company.latitude = $("#lat").text();
+                return this.companiesService.editCompany(this.company);
+            };
+            CompanyDetailsController.prototype.confirmEdit = function () {
+                $(".tdEdit").removeAttr("contenteditable").removeAttr("style");
+                this.company.id = this.companyInfo.id;
+                this.company.companyName = $("#companyName").text();
+                this.company.companyDomainName = $("#companyDomainName").text();
+                this.company.companyPhoneNumber = $("#companyPhoneNumber").text();
+                this.company.companyCountry = $("#companyCountry").text();
+                this.company.country = $("#country").text();
+                this.company.companyCity = $("#companyCity").text();
+                this.company.companyState = $("#companyState").text();
+                this.company.companyZip = $("#companyZip").text();
+                this.company.comapanyAddress = $("#comapanyAddress").text();
+                this.company.companyDescription = $("#companyDescription").text();
+                this.company.companyIndustry = $("#companyIndustry").text();
+                this.company.companyIsPublic = $("#companyIsPublic").text();
+                this.company.companyFacebook = $("#companyFacebook").text();
+                this.company.companyLinkedin = $("#companyLinkedin").text();
+                this.company.companyLinkedin = $("#companyTwitter").text();
+                this.company.longitude = $("#long").text();
+                this.company.latitude = $("#lat").text();
+                return this.companiesService.editCompany(this.company);
+            };
             return CompanyDetailsController;
         })();
         Controllers.CompanyDetailsController = CompanyDetailsController;
@@ -183,4 +297,3 @@ var MyApp;
         Controllers.EditCompanyController = EditCompanyController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=companyContoller.js.map

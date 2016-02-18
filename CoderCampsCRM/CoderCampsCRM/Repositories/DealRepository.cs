@@ -112,13 +112,13 @@ namespace CoderCampsCRM.Repositories
         ///////////////Deal Items///////////////
         ////////////////////////////////////////
 
-        public DealViewModel getAllDealViewModels()
+        public DealViewModel getAllDealViewModels(string id)
         {
-            var deals = _repo.Query<Deal>().ToList();
+            var deals = _repo.Query<Deal>().Where(c => c.UserId == id).ToList();
 
-            var companies = _repo.Query<Company>().ToList();
+            var companies = _repo.Query<Company>().Where(c => c.UserId == id).ToList();
 
-            var contacts = _repo.Query<Contact>().ToList();
+            var contacts = _repo.Query<Contact>().Where(c => c.UserId == id).ToList();
 
             var dealViewModel = new DealViewModel
             {

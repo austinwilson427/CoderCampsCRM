@@ -52,7 +52,7 @@
                 <td class="tableDetailRow tdEdit" id="long" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.longitude}}</td>
             </tr>
         </table>
-        <button class="btn btn-primary" ng-click="vm.editContact()">Edit</button>
+        <button class="btn btn-primary" ng-click="vm.editContact()" >Edit</button>
         <button class="btn btn-danger" ng-click="vm.deleteModal()">Delete</button>
         <button class="btn btn-primary" ng-click="vm.setLocation()">Show map</button>
         <a href="http://www.latlong.net/convert-address-to-lat-long.html" target="_blank" ng-show="!vm.contactView.location.longitude || !vm.contactView.location.latitude">Need coordinates?</a>
