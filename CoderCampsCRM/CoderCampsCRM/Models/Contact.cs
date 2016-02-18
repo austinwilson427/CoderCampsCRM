@@ -32,9 +32,5 @@ namespace CoderCampsCRM.Models
         public int? CompanyId { get; set; }
         [ForeignKey("CompanyId")]
         public Company Company { get; set; }
-
-        //public int LocationId { get; set; }
-        //[ForeignKey("LocationId")] //don't always need this
-        //public Location Location { get; set; }
     }
 }

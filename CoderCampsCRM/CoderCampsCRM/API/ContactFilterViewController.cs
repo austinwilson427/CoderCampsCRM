@@ -1,5 +1,6 @@
 ﻿using CoderCampsCRM.Models.ViewModels;
 using CoderCampsCRM.Repositories;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,8 @@ namespace CoderCampsCRM.API
         [HttpPost]
         public IHttpActionResult PostFilteredContacts(ContactFilterViewModel vm)
         {
-            return Ok(_repo.GetFilteredContacts(vm));
+            var userId = this.User.Identity.GetUserId();
+            return Ok(_repo.GetFilteredContacts(vm, userId));
         }
     }
 }
