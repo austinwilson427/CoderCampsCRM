@@ -60,9 +60,8 @@ namespace CoderCampsCRM.API
                     logItemBeingEditted.EndTime = logItemToAdd.EndTime;
                     logItemBeingEditted.Content = logItemToAdd.Content;
                     logItemBeingEditted.TaskId = logItemToAdd.TaskId;
-                    logItemBeingEditted.ContactId = logItemToAdd.ContactId;
-                    logItemBeingEditted.CompanyId = logItemToAdd.CompanyId;
-                    logItemBeingEditted.DealId = logItemToAdd.CompanyId;
+                    //logItemBeingEditted.CompanyId = logItemToAdd.CompanyId;
+                   
 
                     _repo.SaveChanges();
                     return Ok();
@@ -70,13 +69,5 @@ namespace CoderCampsCRM.API
             }
             return BadRequest(ModelState);
         }
-
-        //public IHttpActionResult DeleteDeal(int id)
-        //{
-        //    _genRepo.Delete<DealLogItem>(id);
-        //    _genRepo.SaveChanges();
-        //    return Ok();
-        //}
-
     }
 }

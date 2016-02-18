@@ -33,7 +33,7 @@ var MyApp;
                 var _this = this;
                 this.dealContactService.getAllDealContactsByDealId(this.routeId).$promise.then(function (result) {
                     _this.dealContacts = result;
-                    _this.contactService.getAllContacts().$promise.then(function (result) {
+                    _this.contactService.getAllContacts().then(function (result) {
                         _this.allContacts = result;
                         for (var i = 0; i < _this.dealContacts.length; i++) {
                             for (var j = 0; j < _this.allContacts.contacts.length; j++) {
@@ -349,4 +349,3 @@ var MyApp;
         Controllers.DealInfoEventController = DealInfoEventController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=dealInfoController.js.map

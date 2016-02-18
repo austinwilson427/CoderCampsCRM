@@ -1,15 +1,15 @@
 ﻿<div id="wrapper" class="details_wrap toggled">
     <div id="sidebar-wrapper">
         <label>Filter by Company</label>
-        <select class="form-control filterSideBarContent" ng-change="vm.filterByCompanies()" ng-model="vm.filterChoice">
+        <select class="form-control filterSideBarContent" ng-change="vm.filterContacts()" ng-model="vm.companyFilter">
             <option ng-repeat="company in vm.contactsView.companies" value="{{company.id}}">{{company.companyName}}</option>
         </select>
         <label>Filter by associated deals</label>
-        <select class="form-control filterSideBarContent" ng-change="vm.filterByDeals()" ng-model="vm.filterChoice">
+        <select class="form-control filterSideBarContent" ng-change="vm.filterContacts()" ng-model="vm.dealFilter">
             <option ng-repeat="deal in vm.contactsView.deals" value="{{deal.id}}">{{deal.dealName}}</option>
         </select>
         <label>Filter by associated tasks</label>
-        <select class="form-control filterSideBarContent" ng-change="vm.filterByTasks()" ng-model="vm.filterChoice">
+        <select class="form-control filterSideBarContent" ng-change="vm.filterContacts()" ng-model="vm.taskFilter">
             <option ng-repeat="task in vm.contactsView.tasks" value="{{task.id}}">{{task.description}}</option>
         </select>
         <button class="btn btn-primary" id="filterBtn" ng-click="vm.showAllContacts()">Show all contacts</button>
@@ -42,14 +42,6 @@
                 </div>
             </div>
             <div class="table_wrap">
-                <uib-pagination total-items="vm.totalItems" ng-model="vm.currentPage" max-size="vm.maxSize" class="pagination-sm" items-per-page="{{vm.itemsPerPage}}"></uib-pagination>
-                    <select id="itemsPerPage" ng-model="vm.itemsPerPage">
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="20">20</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                    </select>
                 <table class="table table-bordered table-hover deals_table">
                     <thead>
                         <tr>
@@ -77,6 +69,14 @@
                         </tr>
                     </tbody>
                 </table>
+                <uib-pagination total-items="vm.totalItems" ng-model="vm.currentPage" max-size="vm.maxSize" class="pagination-sm" items-per-page="{{vm.itemsPerPage}}"></uib-pagination>
+                <select id="itemsPerPage" ng-model="vm.itemsPerPage">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
             </div>
         </div>
     </div>

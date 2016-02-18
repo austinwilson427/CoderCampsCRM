@@ -19,7 +19,7 @@ var MyApp;
             }
             ContactListController.prototype.updateSearchList = function () {
                 this.currentPage = 1;
-                this.itemsPerPage += 5;
+                this.itemsPerPage += this.currentPage + 5;
             };
             ContactListController.prototype.totalItemsGet = function () {
                 this.totalItems = this.contactsView.contacts.length;
@@ -66,23 +66,9 @@ var MyApp;
                     size: "sm"
                 });
             };
-            ContactListController.prototype.filterByCompanies = function () {
+            ContactListController.prototype.filterContacts = function () {
                 var _this = this;
-                return this.contactService.filterByCompanies(this.filterChoice).then(function (result) {
-                    _this.contactsView = result;
-                    _this.setLocations();
-                });
-            };
-            ContactListController.prototype.filterByDeals = function () {
-                var _this = this;
-                return this.contactService.filterByDeals(this.filterChoice).then(function (result) {
-                    _this.contactsView = result;
-                    _this.setLocations();
-                });
-            };
-            ContactListController.prototype.filterByTasks = function () {
-                var _this = this;
-                return this.contactService.filterByTasks(this.filterChoice).then(function (result) {
+                return this.contactService.filterContacts(this.companyFilter, this.dealFilter, this.taskFilter).then(function (result) {
                     _this.contactsView = result;
                     _this.setLocations();
                 });
@@ -103,4 +89,3 @@ var MyApp;
         Controllers.ContactListController = ContactListController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=contactListController.js.map

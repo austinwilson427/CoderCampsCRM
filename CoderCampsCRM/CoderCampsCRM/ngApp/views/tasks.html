@@ -28,19 +28,20 @@
     <!-- /#sidebar-wrapper -->
     <!-- Page Content -->
     <div id="page-content-wrapper">
+        <div id="bannertaskstop">
+            <center><h1>Tasks</h1></center>
+            <form action="" class="search-form" style="width: 100%;">
+                <btn id="menu-toggle" class="btn btn-default" style="margin-left:30px;">Add Filter</btn>
+                <div class="form-group has-feedback" style="margin-right:150px;">
+                    <label for="search" class="sr-only">Search...</label>
+                    <input type="text" class="form-control" name="search" ng-model="vm.search" id="search" placeholder="Search by Type...">
+                    <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                </div>
+            </form>
+        </div>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Tasks / To-Do's</h1>
-
-                    <form action="" class="search-form" style="width: 100%;">
-                        <btn id="menu-toggle" class="btn btn-default">Add Filter</btn>
-                        <div class="form-group has-feedback">
-                            <label for="search" class="sr-only">Search...</label>
-                            <input type="text" class="form-control" name="search" ng-model="vm.search" id="search" placeholder="Search by Type...">
-                            <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                        </div>
-                    </form>
 
                     <br />
                     <br />
@@ -53,6 +54,7 @@
                                             <th>Start Date</th>
                                             <th>Status</th>
                                             <th>Description</th>
+                                            <th>Primary Contact</th>
                                             <th>Type</th>
                                             <th>Due Date</th>
                                             <th>Details/Delete</th>
@@ -61,10 +63,11 @@
                                             <td>{{task.startDate}}</td>
                                             <td>{{task.status}}</td>
                                             <td>{{task.description}}</td>
+                                            <td></td>
                                             <td>{{task.type}}</td>
                                             <td>{{task.dueDate}}</td>
                                             <td align="center">
-                                                <a href="/task-details/{{task.id}}"><span style="color: blue" class="glyphicon glyphicon-list"></span></a>&nbsp;
+                                                <a href="/task-details/{{task.id}}"><span style="color: grey" class="glyphicon glyphicon-list"></span></a>&nbsp;
                                                 <a href="/deletetask/{{task.id}}"><span style="color: red" class="glyphicon glyphicon-remove"></span></a>
                                             </td>
                                         </tr>

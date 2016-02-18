@@ -168,7 +168,7 @@ namespace CoderCampsCRM.Migrations
                                     },
                 };
 
-                context.Contacts.AddOrUpdate(con => con.Id, contacts);
+                context.Contacts.AddOrUpdate(con => con.Email, contacts);
 
                 Deal[] deals = new Deal[]
                 {
