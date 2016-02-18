@@ -34,7 +34,7 @@
 
             this.dealContactService.getAllDealContactsByDealId(this.routeId).$promise.then((result) => {
                 this.dealContacts = result;
-                this.contactService.getAllContacts().$promise.then((result) => {
+                this.contactService.getAllContacts().then((result) => {
                     this.allContacts = result;
                     for (var i = 0; i < this.dealContacts.length; i++) {
                         for (var j = 0; j < this.allContacts.contacts.length; j++) {
