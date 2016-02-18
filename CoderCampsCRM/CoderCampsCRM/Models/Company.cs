@@ -32,6 +32,8 @@ namespace CoderCampsCRM.Models
         public string CompanyAttachments { get; set; }
 
         public ICollection<Contact> Contacts { get; set; }
+        public ICollection<Deal> Deals { get; set; }
+        public ICollection<UserTask> UserTasks { get; set; }
 
     }
 }

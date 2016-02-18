@@ -15,8 +15,8 @@ namespace CoderCampsCRM.Repositories
         {
             this._repo = repo;
         }
-
-        ///////////////DealLogItems///////////////
+  
+        ///////////////CompanyLogItems///////////////
         //////////////////////////////////////////
 
         public CompanyViewModel getAllDealLogItemsViewModels()
@@ -74,7 +74,7 @@ namespace CoderCampsCRM.Repositories
             return companyViewModel;
         }
 
-        ///////////////Deal Items///////////////
+        ///////////////Company Items///////////////
         ////////////////////////////////////////
         public CompanyViewModel getAllCompanyViewModels()
         {
@@ -96,9 +96,11 @@ namespace CoderCampsCRM.Repositories
         {
             var companies = _repo.Query<Company>().Where(c => c.Id == id).FirstOrDefault();
 
-            var deals = _repo.Query<Deal>().ToList();
+            var deals = _repo.Query<Deal>().Where(d => d.CompanyId == id).ToList();
 
-            var contacts = _repo.Query<Contact>().ToList();
+            var contacts = _repo.Query<Contact>().Where(c => c.CompanyId == id).ToList();
+
+            //var usertasks = _repo.Query<UserTask>().Where(u => u.DealId.)
 
             var companyViewModel = new CompanyViewModel
             {

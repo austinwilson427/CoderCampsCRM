@@ -32,7 +32,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <h1>Tasks / To-Do's</h1>
-                    
+
                     <form action="" class="search-form" style="width: 100%;">
                         <btn id="menu-toggle" class="btn btn-default">Add Filter</btn>
                         <div class="form-group has-feedback">
@@ -41,63 +41,55 @@
                             <span class="glyphicon glyphicon-search form-control-feedback"></span>
                         </div>
                     </form>
-                    
+
                     <br />
                     <br />
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="wrap_table">
-                                    <form>
-                                        <table class="mine table table-hover">
-                                            <tr>
-                                                <th>Start Date</th>
-                                                <th>Status</th>
-                                                <th>Description</th>
-                                                <th>Type</th>
-                                                <th>Due Date</th>
-                                                <th>Edit/Delete</th>
-                                            </tr>
-                                            <tr ng-repeat="task in vm.tasks | filter: {type: vm.search} | orderBy:'dueDate'"{{task.dueDate}}>
-                                                <td>{{task.startDate}}</td>
-                                                <td>{{task.status}}</td>
-                                                <td>{{task.description}}</td>
-                                                <td>{{task.type}}</td>
-                                                <td>{{task.dueDate}}</td>
-                                                <td align="center">
-                                                    <a href="/task-details/{{task.id}}"><span style="color: blue" class="glyphicon glyphicon-list"></span></a>&nbsp;
-                                                    <a href="/deletetask/{{task.id}}"><span style="color: red" class="glyphicon glyphicon-remove"></span></a>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                        <br />
-                                        <div align="center"><a ui-sref="addtask" class="btn btn-default">Add Task</a></div>
-                                    </form>
-                                </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="wrap_table">
+                                <form>
+                                    <table class="mine table table-hover">
+                                        <tr>
+                                            <th>Start Date</th>
+                                            <th>Status</th>
+                                            <th>Description</th>
+                                            <th>Type</th>
+                                            <th>Due Date</th>
+                                            <th>Details/Delete</th>
+                                        </tr>
+                                        <tr ng-repeat="task in vm.tasks | filter: {type: vm.search} | orderBy:'dueDate'" {{task.dueDate}}>
+                                            <td>{{task.startDate}}</td>
+                                            <td>{{task.status}}</td>
+                                            <td>{{task.description}}</td>
+                                            <td>{{task.type}}</td>
+                                            <td>{{task.dueDate}}</td>
+                                            <td align="center">
+                                                <a href="/task-details/{{task.id}}"><span style="color: blue" class="glyphicon glyphicon-list"></span></a>&nbsp;
+                                                <a href="/deletetask/{{task.id}}"><span style="color: red" class="glyphicon glyphicon-remove"></span></a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <br />
+                                    <div align="center"><a ui-sref="addtask" class="btn btn-default">Add Task</a></div>
+                                </form>
                             </div>
                         </div>
                     </div>
-
-                    
                 </div>
-                <div class="container-fluid">
-                    <div class="col-md-6">
-                    </div>
+                <div class="col-md-6">
+                    <div id='calendar'></div>
+                    <script></script>
                 </div>
             </div>
         </div>
     </div>
-    <!-- /#page-content-wrapper -->
-
-
-<!-- /#wrapper -->
-
-
+</div>
 
 <!-- Menu Toggle Script -->
 <script>
-        $("#menu-toggle").click(function (e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-        $('.datepicker').datepicker();
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    $('.datepicker').datepicker();
 </script>

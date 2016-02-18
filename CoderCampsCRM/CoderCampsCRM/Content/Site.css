@@ -57,6 +57,7 @@ textarea {
 }
 
 
+
 /*-------------------------------Deals Section-------------------------------*/
 /*Input class to make input 100% wide*/
 .full {
@@ -353,3 +354,16 @@ label{margin-left: 20px;}
 #datepicker, #datepicker2{width:280px; margin: 0px 20px 20px 0px;}
 #datepicker, #datepicker2 > span:hover{cursor: pointer;}
 
+/*CALENDAR*/
+
+  
+
+
+#calendar {
+  margin: 40px 10px;
+  padding: 0;
+  font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+  font-size: 14px;
+  max-width: 400px;
+  margin: 0 auto;
+}

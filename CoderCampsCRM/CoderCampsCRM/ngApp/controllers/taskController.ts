@@ -31,6 +31,7 @@
         cancelAdd() {
             this.$location.path("/tasks");
         }
+
     }
 
     export class TaskEditController {
