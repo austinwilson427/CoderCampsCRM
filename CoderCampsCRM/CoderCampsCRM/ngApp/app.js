@@ -1,7 +1,8 @@
 var MyApp;
 (function (MyApp) {
-    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router', 'angular-filepicker', 'ngDraggable']).config(function ($locationProvider, $routeProvider, $stateProvider, $urlRouterProvider, filepickerProvider) {
+    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router', 'angular-filepicker', 'ngDraggable', 'uiGmapgoogle-maps', "highcharts-ng"]).config(function ($locationProvider, $routeProvider, $stateProvider, $urlRouterProvider, filepickerProvider, uiGmapGoogleMapApiProvider) {
         filepickerProvider.setKey('ANnIsnaUARuBQjAtPZGBQz');
+        uiGmapGoogleMapApiProvider.configure({});
         $stateProvider
             .state('home', {
             url: '/',
@@ -36,7 +37,13 @@ var MyApp;
             .state('deals.list-view', {
             url: '/list-view',
             templateUrl: '/ngApp/views/routes/deal-list-view.html',
-            controller: MyApp.Controllers.DealsController,
+            controller: MyApp.Controllers.DealsListViewController,
+            controllerAs: 'vm'
+        })
+            .state('deals.chart-view', {
+            url: '/chart-view',
+            templateUrl: '/ngApp/views/routes/deal-chart-view.html',
+            controller: MyApp.Controllers.DealChartsController,
             controllerAs: 'vm'
         })
             .state('tasks', {
@@ -96,6 +103,18 @@ var MyApp;
             .state('contactDetails', {
             url: '/contactDetails/:id',
             templateUrl: '/ngApp/views/contactDetailsView.html',
+            controller: MyApp.Controllers.ContactDetailsController,
+            controllerAs: 'vm'
+        })
+            .state('contactDetails.interaction', {
+            url: '/contactInteraction',
+            templateUrl: '/ngApp/views/routes/contactInteraction.html',
+            controller: MyApp.Controllers.ContactDetailsController,
+            controllerAs: 'vm'
+        })
+            .state('contactDetails.note', {
+            url: '/contactNote',
+            templateUrl: '/ngApp/views/routes/contactNote.html',
             controller: MyApp.Controllers.ContactDetailsController,
             controllerAs: 'vm'
         })

@@ -70,7 +70,7 @@ namespace CoderCampsCRM.Repositories
             };
 
             return dealViewModel;
-            
+
         }
 
         public DealViewModel getDealLogItemViewModel(int id)
@@ -111,9 +111,113 @@ namespace CoderCampsCRM.Repositories
 
         ///////////////Deal Items///////////////
         ////////////////////////////////////////
+
         public DealViewModel getAllDealViewModels()
         {
             var deals = _repo.Query<Deal>().ToList();
+
+            var companies = _repo.Query<Company>().ToList();
+
+            var contacts = _repo.Query<Contact>().ToList();
+
+            var dealViewModel = new DealViewModel
+            {
+                DealList = deals
+            };
+
+            return dealViewModel;
+
+        }
+
+        public DealViewModel getDealViewModelsPag(int takeCount, int skipCount, string order, string orderDirection)
+        {
+
+            List<Deal> deals;
+
+            if (order == "amount")
+            {
+                if (orderDirection == "descending")
+                {
+                    deals = _repo.Query<Deal>().OrderByDescending(d => d.Amount).Select(d => d).Skip(skipCount * takeCount).Take(takeCount).ToList();
+                }
+                else
+                {
+                    deals = _repo.Query<Deal>().OrderBy(d => d.Amount).Select(d => d).Skip(skipCount * takeCount).Take(takeCount).ToList();
+                }
+
+            }
+            else if (order == "name")
+            {
+                if (orderDirection == "descending")
+                {
+                    deals = _repo.Query<Deal>().OrderByDescending(d => d.DealName).Select(d => d).Skip(skipCount * takeCount).Take(takeCount).ToList();
+                }
+                else
+                {
+                    deals = _repo.Query<Deal>().OrderBy(d => d.DealName).Select(d => d).Skip(skipCount * takeCount).Take(takeCount).ToList();
+                }
+
+            }
+            else if (order == "stage")
+            {
+                if (orderDirection == "descending")
+                {
+                    deals = _repo.Query<Deal>().OrderByDescending(d => d.Stage).Select(d => d).Skip(skipCount * takeCount).Take(takeCount).ToList();
+                }
+                else
+                {
+                    deals = _repo.Query<Deal>().OrderBy(d => d.Stage).Select(d => d).Skip(skipCount * takeCount).Take(takeCount).ToList();
+                }
+
+            }
+            else if (order == "closeDate")
+            {
+                if (orderDirection == "descending")
+                {
+                    deals = _repo.Query<Deal>().OrderByDescending(d => d.CloseDate).Select(d => d).Skip(skipCount * takeCount).Take(takeCount).ToList();
+                }
+                else
+                {
+                    deals = _repo.Query<Deal>().OrderBy(d => d.CloseDate).Select(d => d).Skip(skipCount * takeCount).Take(takeCount).ToList();
+                }
+
+            }
+            else if (order == "contact")
+            {
+                if (orderDirection == "descending")
+                {
+                    deals = _repo.Query<Deal>().OrderByDescending(d => d.Contact.Name).Select(d => d).Skip(skipCount * takeCount).Take(takeCount).ToList();
+                }
+                else
+                {
+                    deals = _repo.Query<Deal>().OrderBy(d => d.Contact.Name).Select(d => d).Skip(skipCount * takeCount).Take(takeCount).ToList();
+                }
+
+            }
+            else if (order == "company")
+            {
+                if (orderDirection == "descending")
+                {
+                    deals = _repo.Query<Deal>().OrderByDescending(d => d.Company.CompanyName).Select(d => d).Skip(skipCount * takeCount).Take(takeCount).ToList();
+                }
+                else
+                {
+                    deals = _repo.Query<Deal>().OrderBy(d => d.Company.CompanyName).Select(d => d).Skip(skipCount * takeCount).Take(takeCount).ToList();
+                }
+
+            }
+            else
+            {
+                if (orderDirection == "descending")
+                {
+                    deals = _repo.Query<Deal>().OrderByDescending(d => d.Id).Select(d => d).Skip(skipCount * takeCount).Take(takeCount).ToList();
+                }
+                else
+                {
+                    deals = _repo.Query<Deal>().OrderBy(d => d.Id).Select(d => d).Skip(skipCount * takeCount).Take(takeCount).ToList();
+                }
+
+            }
 
             var companies = _repo.Query<Company>().ToList();
 

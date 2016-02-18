@@ -1,7 +1,10 @@
 ﻿namespace MyApp {
 
-    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router', 'angular-filepicker', 'ngDraggable']).config(($locationProvider: ng.ILocationProvider, $routeProvider: ng.route.IRouteProvider, $stateProvider: ng.ui.IStateProvider, $urlRouterProvider: ng.ui.IUrlRouterProvider, filepickerProvider) => {
+    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router', 'angular-filepicker', 'ngDraggable', 'uiGmapgoogle-maps', "highcharts-ng"]).config(($locationProvider: ng.ILocationProvider, $routeProvider: ng.route.IRouteProvider, $stateProvider: ng.ui.IStateProvider, $urlRouterProvider: ng.ui.IUrlRouterProvider, filepickerProvider, uiGmapGoogleMapApiProvider: any) => {
         filepickerProvider.setKey('ANnIsnaUARuBQjAtPZGBQz');
+        uiGmapGoogleMapApiProvider.configure({
+            //    key: 'your api key',
+        });
         $stateProvider
             .state('home', {
                 url: '/',
@@ -36,7 +39,13 @@
             .state('deals.list-view', {
                 url: '/list-view',
                 templateUrl: '/ngApp/views/routes/deal-list-view.html',
-                controller: MyApp.Controllers.DealsController,
+                controller: MyApp.Controllers.DealsListViewController,
+                controllerAs: 'vm'
+            })
+            .state('deals.chart-view', {
+                url: '/chart-view',
+                templateUrl: '/ngApp/views/routes/deal-chart-view.html',
+                controller: MyApp.Controllers.DealChartsController,
                 controllerAs: 'vm'
             })
             .state('tasks', {
@@ -94,8 +103,7 @@
             //    templateUrl: '/ngApp/views/company-info.html',
             //    controller: MyApp.Controllers.CompanyDetailsController,
             //    controllerAs: 'vm'
-            })
-           
+            })          
             .state('contacts', {
                 url: '/contacts',
                 templateUrl: '/ngApp/views/contactListView.html',
@@ -105,6 +113,18 @@
             .state('contactDetails', {
                 url: '/contactDetails/:id',
                 templateUrl: '/ngApp/views/contactDetailsView.html',
+                controller: MyApp.Controllers.ContactDetailsController,
+                controllerAs: 'vm'
+            })
+            .state('contactDetails.interaction', {
+                url: '/contactInteraction',
+                templateUrl: '/ngApp/views/routes/contactInteraction.html',
+                controller: MyApp.Controllers.ContactDetailsController,
+                controllerAs: 'vm'
+            })
+            .state('contactDetails.note', {
+                url: '/contactNote',
+                templateUrl: '/ngApp/views/routes/contactNote.html',
                 controller: MyApp.Controllers.ContactDetailsController,
                 controllerAs: 'vm'
             })
@@ -118,8 +138,7 @@
                 url: '/note',
                 templateUrl: 'ngApp/views/routes/deal-info-note.html',
                 controller: MyApp.Controllers.DealInfoNoteController,
-                controllerAs: "vm"
-              
+                controllerAs: "vm"             
             })
             .state('deal-info.activity', {
                 url: '/activity',

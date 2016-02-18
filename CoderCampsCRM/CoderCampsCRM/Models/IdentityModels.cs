@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity.Owin;
 using System.Data.Entity;
 using System.Collections;
 using System.Collections.Generic;
+using CoderCampsCRM.Models.ViewModels;
 
 namespace CoderCampsCRM.Models
 {
@@ -17,6 +18,7 @@ namespace CoderCampsCRM.Models
         public ICollection<Contact> Contacts { get; set; }
         public ICollection<Deal> Deals { get; set; }
         public ICollection<UserTask> UserTasks { get; set; }
+        //public ICollection<Location> Locations { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Company { get; set; }
@@ -44,6 +46,8 @@ namespace CoderCampsCRM.Models
         public IDbSet<DealContact> DealContacts { get; set; }
         public IDbSet<TaskContact> TaskContacts { get; set; }
         public IDbSet<ContactInteraction> ContactInteractions { get; set; }
+        //public IDbSet<Location> Locations { get; set; }
+        //public IDbSet<LocationContact> LocationContacts { get; set; }
         public IDbSet<ProfileUser> ProfileUser { get; set;}
 
         public ApplicationDbContext()

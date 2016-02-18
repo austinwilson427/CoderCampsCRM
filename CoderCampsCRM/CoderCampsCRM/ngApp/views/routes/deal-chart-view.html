@@ -1,0 +1,29 @@
+﻿<div class="chart_wrap">
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row view_search">
+                        <div class="col-md-4">
+                            <btn id="menu-toggle" class="btn btn-primary filter_button">Filter</btn>
+                            <div class="btn-group" role="group" aria-label="...">
+                                <a ui-sref="deals.list-view" class="btn btn-default">List</a>
+                                <a ui-sref="deals.table-view" class="btn btn-default">Table</a>
+                                <a ui-sref="deals.chart-view" class="btn btn-default active">Chart</a>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-md-offset-6">
+                            <button class="btn btn-primary" ng-click="vm.addDealModal()">+ Add Deal</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <highchart id="chart1" config="vm.highchartsNG"></highchart>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

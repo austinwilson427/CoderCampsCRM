@@ -8,20 +8,50 @@ var MyApp;
                 this.$location = $location;
                 this.$uibModal = $uibModal;
                 this.$state = $state;
+                this.showMap = false;
                 this.contact = {};
+                this.location = {};
                 this.contactView = this.contactService.getOneContact($stateParams['id']);
-                debugger;
             }
-            ContactDetailsController.prototype.deleteContact = function () {
-                return this.contactService.deleteContact(this.contactView.contact.id).then(this.$location.path("/contacts"));
+            ContactDetailsController.prototype.deleteModal = function () {
+                var _this = this;
+                this.$uibModal.open({
+                    templateUrl: "/ngApp/views/modals/contactDeleteModal.html",
+                    controller: MyApp.Controllers.ContactDeleteController,
+                    controllerAs: 'modal',
+                    size: 'sm',
+                    resolve: {
+                        contact: function () { return _this.contactView.contact; }
+                    }
+                });
+            };
+            ContactDetailsController.prototype.setLocation = function () {
+                this.zoom = 10;
+                this.center = { latitude: this.contactView.contact.latitude, longitude: this.contactView.contact.longitude };
+                this.marker = [
+                    {
+                        id: this.contactView.contact.id,
+                        options: {
+                            title: this.contactView.contact.name,
+                        },
+                        latitude: this.contactView.contact.latitude,
+                        longitude: this.contactView.contact.longitude,
+                    },
+                ];
+                if (this.showMap == false) {
+                    this.showMap = true;
+                }
+                else {
+                    this.showMap = false;
+                }
             };
             ContactDetailsController.prototype.editContact = function () {
                 $(".tdEdit").attr("contenteditable", "true").attr("style", "background-color: rgb(255, 255, 194)");
             };
-            ContactDetailsController.prototype.confirmEdit = function () {
-                $(".tdEdit").removeAttr("contenteditable").removeAttr("style");
+            ContactDetailsController.prototype.editNotes = function () {
                 this.contact.id = this.contactView.contact.id;
                 this.contact.companyId = this.contactView.contact.companyId;
+                this.contact.lastInteraction = $("#lastInteraction").text();
                 this.contact.name = $("#name").text();
                 this.contact.email = $("#email").text();
                 this.contact.phoneNumber = $("#phoneNumber").text();
@@ -30,12 +60,35 @@ var MyApp;
                 this.contact.city = $("#city").text();
                 this.contact.state = $("#state").text();
                 this.contact.zip = $("#zip").text();
+                this.contact.notes = $("#notes").text();
                 this.contact.streetAddress = $("#streetAddress").text();
+                this.contact.longitude = $("#long").text();
+                this.contact.latitude = $("#lat").text();
                 return this.contactService.editContact(this.contact);
             };
-            ContactDetailsController.prototype.chooseCompany = function (companyId) {
+            ContactDetailsController.prototype.confirmEdit = function () {
+                $(".tdEdit").removeAttr("contenteditable").removeAttr("style");
                 this.contact.id = this.contactView.contact.id;
-                this.contact.companyId = companyId;
+                this.contact.companyId = this.contactView.contact.companyId;
+                this.contact.lastInteraction = $("#lastInteraction").text();
+                this.contact.name = $("#name").text();
+                this.contact.email = $("#email").text();
+                this.contact.phoneNumber = $("#phoneNumber").text();
+                this.contact.jobTitle = $("#jobTitle").text();
+                this.contact.country = $("#country").text();
+                this.contact.city = $("#city").text();
+                this.contact.state = $("#state").text();
+                this.contact.zip = $("#zip").text();
+                this.contact.notes = $("#notes").text();
+                this.contact.streetAddress = $("#streetAddress").text();
+                this.contact.longitude = $("#long").text();
+                this.contact.latitude = $("#lat").text();
+                return this.contactService.editContact(this.contact);
+            };
+            ContactDetailsController.prototype.chooseCompany = function () {
+                this.contact.id = this.contactView.contact.id;
+                this.contact.companyId = this.companyChoice;
+                this.contact.lastInteraction = $("#lastInteraction").text();
                 this.contact.name = $("#name").text();
                 this.contact.email = $("#email").text();
                 this.contact.phoneNumber = $("#phoneNumber").text();
@@ -44,7 +97,17 @@ var MyApp;
                 this.contact.state = $("#state").text();
                 this.contact.zip = $("#zip").text();
                 this.contact.streetAddress = $("#streetAddress").text();
-                return this.contactService.editContact(this.contact);
+                this.contact.longitude = $("#long").text();
+                this.contact.latitude = $("#lat").text();
+                return this.contactService.editContact(this.contact).then(this.$state.reload());
+            };
+            ContactDetailsController.prototype.checkCoordsId = function () {
+                if (this.contactView.location) {
+                    this.location.id = this.contactView.location.id;
+                }
+                else {
+                    this.location.id = 0;
+                }
             };
             ContactDetailsController.prototype.addInteraction = function () {
                 this.interaction.contactId = this.contactView.contact.id;

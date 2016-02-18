@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http;
 
 namespace CoderCampsCRM.Models
 {
-    public class ContactDetailViewModel
+    public class ContactDetailViewModel : ApiController
     {
         public Company Company { get; set; }
         public Contact Contact { get; set; }

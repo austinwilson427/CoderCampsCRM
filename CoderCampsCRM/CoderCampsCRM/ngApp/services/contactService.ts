@@ -7,12 +7,14 @@
         public contactDetailResource;
         public contactListResource;
         public contactFilterResource;
+        public locationResource;
 
         constructor(private $resource: angular.resource.IResourceService) {
             this.contactResource = $resource("/api/contactList");
             this.interactionResource = $resource("/api/interactions");
             this.contactDetailResource = $resource("/api/contactDetailView/:id");
             this.contactListResource = $resource("/api/contactListView");
+            this.locationResource = $resource("/api/locations");
             this.contactFilterResource = $resource("/api/contactFilterView/:id", null, {
                 filterByCompanies: {
                     method: 'GET',
@@ -33,23 +35,57 @@
         }
 
         public filterByCompanies(id: number) {
-            return this.contactFilterResource.filterByCompanies({ id: id }).$promise;
+            let data = this.contactFilterResource.filterByCompanies({ id: id });
+            data.$promise.then(() => {
+                for (let contact of data.contacts) {
+                    contact.lastInteraction = new Date(Date.parse(contact.lastInteraction));
+                }
+            });
+            return data.$promise;
         }
 
         public filterByDeals(id: number) {
-            return this.contactFilterResource.filterByDeals({ id: id }).$promise;
+            let data = this.contactFilterResource.filterByDeals({ id: id });
+            data.$promise.then(() => {
+                for (let contact of data.contacts) {
+                    contact.lastInteraction = new Date(Date.parse(contact.lastInteraction));
+                }
+            });
+            return data.$promise;
         }
 
         public filterByTasks(id: number) {
-            return this.contactFilterResource.filterByTasks({ id: id }).$promise;
+            let data = this.contactFilterResource.filterByTasks({ id: id });
+            data.$promise.then(() => {
+                for (let contact of data.contacts) {
+                    contact.lastInteraction = new Date(Date.parse(contact.lastInteraction));
+                }
+            });
+            return data.$promise;
         }
 
         public getAllContacts() {
-            return this.contactListResource.get();
+            let data = this.contactListResource.get();
+            data.$promise.then(() => {
+                for (let contact of data.contacts) {
+                    contact.lastInteraction = new Date(Date.parse(contact.lastInteraction));
+                }
+            });
+            return data.$promise;
         }
 
         public getOneContact(id: number) {
-            return this.contactDetailResource.get({ id: id });
+            let data = this.contactDetailResource.get({ id: id });
+            data.$promise.then(() => {
+                for (let interaction of data.interactions) {
+                    interaction.date = new Date(Date.parse(interaction.date));
+                }
+            });
+            return data;
+        }
+
+        public addLocation(location) {
+            return this.locationResource.save(location).$promise;
         }
 
         public addContact(contact) {
@@ -57,11 +93,14 @@
         }
 
         public editContact(contact) {
-            return this.contactResource.save(contact);
+            debugger;
+            let data = this.contactResource.save(contact).$promise;
+            return data;
         }
 
         public deleteContact(id: number) {
-            return this.contactResource.remove({ id: id }).$promise;
+            let data = this.contactResource.remove({ id: id }).$promise;
+            return data;
         }
 
         public addInteraction(interaction) {

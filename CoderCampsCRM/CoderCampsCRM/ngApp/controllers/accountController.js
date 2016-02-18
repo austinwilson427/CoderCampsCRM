@@ -18,7 +18,7 @@ var MyApp;
                     controller: MyApp.Controllers.LoginController,
                     controllerAs: "controller",
                     resolve: {},
-                    size: "sm"
+                    size: "md"
                 });
             };
             AccountController.prototype.getClaim = function (type) {
@@ -109,7 +109,7 @@ var MyApp;
                     controller: MyApp.Controllers.LoginController,
                     controllerAs: "controller",
                     resolve: {},
-                    size: "sm"
+                    size: "md"
                 });
             };
             RegisterController.prototype.pickFile = function () {
@@ -185,7 +185,7 @@ var MyApp;
                         controller: MyApp.Controllers.LoginController,
                         controllerAs: "controller",
                         resolve: {},
-                        size: "sm"
+                        size: "md"
                     });
                 }).catch(function (result) {
                     _this.validationMessages = result;

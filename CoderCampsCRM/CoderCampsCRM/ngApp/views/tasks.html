@@ -9,7 +9,7 @@
                 </a>
             </li>
             <li>
-                <a class="my-nice-button" href="#"><i class="fa fa-exclamation"></i>&nbsp;<font color="red"><u>Past Due Tasks</u></font></a>
+                <a class="my-nice-button" href="#"><i class="fa fa-exclamation" style="color:red;"></i>&nbsp;<font color="red"><u>Past Due Tasks</u></font></a>
             </li>
             <li>
                 <a class="my-nice-checkbutton" href="#"><i class="fa fa-check"></i>&nbsp;<font>Due Today</font></a>
@@ -30,7 +30,7 @@
     <div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-md-12">
                     <h1>Tasks / To-Do's</h1>
 
                     <form action="" class="search-form" style="width: 100%;">
@@ -70,7 +70,7 @@
                                         </tr>
                                     </table>
                                     <br />
-                                    <div align="center"><a ui-sref="addtask" class="btn btn-default">Add Task</a></div>
+                                    <div align="center"><a ui-sref="addtask" class="btn btn-default"><i class="fa fa-plus-square" style="color:green;"></i> Add Task</a></div>
                                 </form>
                             </div>
                         </div>
@@ -81,6 +81,92 @@
                     <script></script>
                 </div>
             </div>
+            <!-- COLUMNS -->
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- NOT STARTED COLUMN START -->
+                    <div class="col-md-4">
+                        <h3>
+                            Not Started <i class="fa fa-exclamation" style="color:red;"></i> <font style="color:dimgrey" size="2"> (click for details)</font>
+                        </h3>
+                        <table class="table" id="tasktable">
+                            <tr ng-repeat="task in vm.tasks | filter: {status: 'Not Started'} | orderBy:'dueDate'" {{task.dueDate}}>
+
+                                <td>
+                                    <div class="panel-group" id="accordian">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <a class="panel-title collapsed" data-toggle="collapse" data-parent="#accordian" href="#panel-element-{{task.id}}">{{task.type}} due on {{task.dueDate}}</a>
+                                            </div>
+                                            <div id="panel-element-{{task.id}}" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    {{task.description}}&nbsp;&nbsp;<a href="/task-details/{{task.id}}"><span style="color: blue" class="glyphicon glyphicon-list"></span></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Column 1 END -->
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <!-- NOT STARTED COLUMN END -->
+                    <!-- IN PROGRESS COLUMN START -->
+                    <div class="col-md-4">
+                        <h3>
+                            In Progress <i class="fa fa-clock-o"></i> <font style="color:dimgrey" size="2"> (click for details)</font>
+                        </h3>
+                        <table class="table" id="tasktable">
+                            <tr ng-repeat="task in vm.tasks | filter: {status: 'In Progress'} | orderBy:'dueDate'" {{task.dueDate}}>
+
+                                <td>
+                                    <div class="panel-group" id="accordian">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <a class="panel-title collapsed" data-toggle="collapse" data-parent="#accordian" href="#panel-element-{{task.id}}">{{task.type}} due on {{task.dueDate}} </a>
+                                            </div>
+                                            <div id="panel-element-{{task.id}}" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    {{task.description}}&nbsp;&nbsp;<a href="/task-details/{{task.id}}"><span style="color: blue" class="glyphicon glyphicon-list"></span></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <!-- IN PROGRESS COLUMN END -->
+                    <!-- COMPLETED COLUMN START -->
+                    <div class="col-md-4">
+                        <h3>
+                            Completed <i class="fa fa-check-circle" style="color:green;"></i> <font style="color:dimgrey" size="2"> (click for details)</font>
+                        </h3>
+                        <table class="table" id="tasktable">
+                            <tr ng-repeat="task in vm.tasks | filter: {status: 'Completed'} | orderBy:'dueDate'" {{task.dueDate}}>
+
+                                <td>
+                                    <div class="panel-group" id="accordian">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <a class="panel-title collapsed" data-toggle="collapse" data-parent="#accordian" href="#panel-element-{{task.id}}">{{task.type}} due on {{task.dueDate}}</a><a style="float: right;" href="/deletetask/{{task.id}}"><span style="color: red" class="glyphicon glyphicon-remove"></span></a>
+                                            </div>
+                                            <div id="panel-element-{{task.id}}" class="panel-collapse collapse">
+                                                <div class="panel-body">
+                                                    {{task.description}}&nbsp;&nbsp;<a href="/task-details/{{task.id}}"><span style="color: blue" class="glyphicon glyphicon-list"></span></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Column 1 END -->
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <!-- COMPLETED COLUMN END -->
+                </div>
+            </div>
+            <!-- END COLUMNS -->
         </div>
     </div>
 </div>

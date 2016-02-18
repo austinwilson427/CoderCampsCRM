@@ -6,11 +6,20 @@ var MyApp;
             function DealService($resource) {
                 this.$resource = $resource;
                 this.dealResource = $resource("api/deals/:id");
+                this.dealResourcePag = $resource("api/deals/pag/:take/:skip/:order/:orderDirection");
                 this.dealResourceFromCompany = $resource("api/deals/company/:id");
                 this.dealResourceFromDealOwner = $resource("api/deals/deal-owner/:id");
             }
             DealService.prototype.listAllDeals = function () {
                 return this.dealResource.query();
+            };
+            DealService.prototype.listDealsByPag = function (takeCount, skipCount, order, direction) {
+                return this.dealResourcePag.query({
+                    skip: skipCount,
+                    take: takeCount,
+                    order: order,
+                    orderDirection: direction
+                });
             };
             DealService.prototype.getDealByDealId = function (id) {
                 return this.dealResource.get({ id: id });

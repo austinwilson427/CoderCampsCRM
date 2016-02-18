@@ -1,7 +1,7 @@
 ﻿<div id="wrapper" class="details_wrap toggled">
     <div id="sidebar-wrapper">
         <label>Show Archived Deals</label>
-        <input type="checkbox" ng-model="vm.showArchived" /><br />
+        <input type="checkbox" ng-model="vm.showArchived" ng-change="vm.filterBySelection()" /><br />
         <label>Filter By Date</label>
         <select class="form-control" ng-model="vm.dateFilter" ng-change="vm.filterBySelection()">
             <option value="all">All Deals</option>
@@ -40,6 +40,7 @@
                             <div class="btn-group" role="group" aria-label="...">
                                 <a ui-sref="deals.list-view" class="btn btn-default active">List</a>
                                 <a ui-sref="deals.table-view" class="btn btn-default">Table</a>
+                                <a ui-sref="deals.chart-view" class="btn btn-default">Chart</a>
                             </div>
                         </div>
                         <div class="col-md-6 form-group no-margin">
@@ -51,6 +52,38 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6 my_pages">
+                                    <label>Pages:</label>
+                                    <nav>
+                                        <ul class="pagination my_pag">
+                                            <li ng-class="vm.assignDisabledPrev()" ng-click="vm.prevPage()">
+                                                <a href="#" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                            </li>
+                                            <li ng-class="vm.assignClass(pages)" ng-repeat="pages in vm.pagesArray"><a ng-click="vm.paginate(pages)" href="#">{{pages}}</a></li>
+                                            <li ng-class="vm.assignDisabledNext()" ng-click="vm.nextPage()">
+                                                <a href="#" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <div class="col-md-6 my_items">
+                                    <label>Items Per Page:</label>
+                                    <nav>
+                                        <ul class="pagination my_pag">
+                                            <li ng-class="vm.assignClassItem(5)"><a ng-click="vm.selectItems(5)" href="#">5</a></li>
+                                            <li ng-class="vm.assignClassItem(10)"><a ng-click="vm.selectItems(10)" href="#">10</a></li>
+                                            <li ng-class="vm.assignClassItem(20)"><a ng-click="vm.selectItems(20)" href="#">20</a></li>
+                                            <li ng-class="vm.assignClassItem(50)"><a ng-click="vm.selectItems(50)" href="#">50</a></li>
+                                            <li ng-class="vm.assignClassItem(1000000)"><a ng-click="vm.selectItems('all')" href="#">All</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
                             <div class="table_wrap">
                                 <table class="table table-hover table-bordered deals_table">
                                     <tr>
@@ -65,10 +98,10 @@
                                         <th class="hover_blue" ng-click="vm.sortBy('stage')">Deal Stage <span ng-class="vm.menuDirectionStage"></span></th>
                                         <th class="hover_blue" ng-click="vm.sortBy('closeDate')">Close Date <span ng-class="vm.menuDirectionDate"></span></th>
                                         <th class="hover_blue" ng-click="vm.sortBy('amount')">Amount <span ng-class="vm.menuDirectionAmount"></span></th>
-                                        <th class="hover_blue" ng-click="vm.sortBy('dealOwnerId')">Deal Owner<span ng-class="vm.menuDirectionOwner"></span></th>
-                                        <th class="hover_blue" ng-click="vm.sortBy('companyId')">Company<span ng-class="vm.menuDirectionCompany"></span></th>
+                                        <th class="hover_blue" ng-click="vm.sortBy('dealOwner')">Deal Owner<span ng-class="vm.menuDirectionOwner"></span></th>
+                                        <th class="hover_blue" ng-click="vm.sortBy('company')">Company<span ng-class="vm.menuDirectionCompany"></span></th>
                                     </tr>
-                                    <tr ng-class="{archived: value.isArchived}" ng-repeat="(key, value) in vm.allDeals | orderBy: vm.sortName : vm.reverse | filter: vm.searchPhrase" ng-if="!value.isArchived || vm.showArchived">
+                                    <tr ng-class="{archived: value.isArchived}" ng-repeat="(key, value) in vm.allDeals | filter: vm.searchPhrase" ng-if="!value.isArchived || vm.showArchived">
                                         <td><input type="checkbox" ng-model="value.key" ng-click="vm.storeDeal(value)" /> <a ng-show="value.isArchived" href="#" ng-click="vm.unarchiveItem(value)"><span class="glyphicon glyphicon-plus"></span></a></td>
                                         <td><a ui-sref="deal-info({id: value.id})">{{value.dealName}}</a>&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="value.key"><a href="#" ng-click="vm.editDealModal(value)"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></span></td>
                                         <td>{{value.stage}}</td>
@@ -77,7 +110,7 @@
                                         <td><a href="contactDetails/{{value.contact.id}}">{{value.contact.name}}</a></td>
                                         <td><a target="_blank" href="{{value.company.companyDomainName}}">{{value.company.companyName}}</a></td>
                                     </tr>
-                                </table>
+                                </table>                             
                             </div>
                         </div>
                     </div>

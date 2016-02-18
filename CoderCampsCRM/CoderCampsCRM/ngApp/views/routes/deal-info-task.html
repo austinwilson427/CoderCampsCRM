@@ -1,11 +1,11 @@
-﻿<div>
+﻿<div class="task_wrap">
     <table class="activity">
         <tr>
             <td>
-                Start Date: <input type="text" ng-model="vm.startDateSelected" ng-change="vm.selectDate()" class="datepicker form-control">
+                Start Date: <input type="text" ng-model="vm.startDateSelected" ng-change="vm.selectDate()" class="customDates form-control">
             </td>
             <td>
-                End Date: <input type="text" ng-model="vm.endDateSelected" ng-change="vm.selectDate()" class="datepicker form-control">
+                End Date: <input type="text" ng-model="vm.endDateSelected" ng-change="vm.selectDate()" class="customDates form-control">
             </td>
             <td>
                 Status: <select class="form-control" ng-model="vm.statusSelected">
@@ -34,7 +34,7 @@
 </div>
 <script>
   $(function() {
-    $( ".datepicker" ).datepicker();
+    $( ".customDates" ).datepicker();
   });
 </script>
 
