@@ -36,6 +36,8 @@
         color: #1e1e1e;
     }
 
+
+
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
@@ -55,9 +57,47 @@ textarea {
     border-right-color: #808080;
     border-left-color: #383838;
 }
+/*----------------------------Landing page--------------------------------------------*/
 
 
+.jumbotron {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("https://pixabay.com/static/uploads/photo/2014/01/13/16/59/singapore-243669_960_720.jpg") no-repeat center;
+  background-size: cover;
+  height: 100vh;
+  color: white;
+  background-attachment: fixed;
+  margin: 0px;
+  padding: 20px !important;
+}
 
+.heading-wrap {
+    text-align: center;
+}
+
+.heading-wrap h1{
+    font-weight: 300;
+
+}
+.home_button_wrap {
+    text-align: center;
+    margin: 80px 0 0 0;
+}
+
+
+button.join {
+     background: linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.0));
+  background-size: cover;
+   background-attachment: fixed;
+   font-size: 20px;
+   padding: 10px 20px;
+   border: 2px solid white;
+
+}
+
+    button.join:hover {
+
+        background-color:#e10001; 
+    }
 /*-------------------------------Deals Section-------------------------------*/
 /*Input class to make input 100% wide*/
 .full {
@@ -365,7 +405,7 @@ td.trash_cell{
 }
 .search-form .form-group:hover,
 .search-form .form-group.hover {
-  width: 25%;
+  width: 15%;
   border-radius: 4px 25px 25px 4px;
 }
 .search-form .form-group span.form-control-feedback {
@@ -421,9 +461,16 @@ li.Twitter a, li.Facebook a, li.Google a {
 }
 
 
-
-
-
+/*BannerImageTasks*/
+#bannertaskstop{
+    background-image: url(http://i.imgur.com/TGsr7UL.png);
+    float: left;
+    height:100%;
+    width: 105%;
+    margin:-20px;
+    margin-right:-35px;
+    margin-left: -35px;
+}
 
 /*TABLE CSS*/
 
