@@ -209,6 +209,9 @@ table.activity td{
     padding: 5px;
 }
 
+.task_wrap{
+    margin-top: 10px;
+}
 .list_custom_wrap{
     margin: 40px auto;
 }
@@ -235,6 +238,21 @@ td.trash_cell{
 .folder_icon{
     padding-left: 5px
 }
+
+.my_pages label, .my_items label{
+    color: black;
+    font-weight: 300;
+    margin-top: 5px !important;
+}
+
+.my_items{
+    text-align: right;
+}
+
+.my_pag{
+    margin: 0 !important;
+}
+
 /*-------------------Contacts Section--------------------------*/
 
 .error {

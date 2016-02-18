@@ -1,0 +1,132 @@
+﻿<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>Task Details</h1>
+
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-4 col-md-offset-3">
+                <form novalidate ng-submit="vm.editTask()">
+                    <label>Task Type</label>
+                    <select class="form-control" ng-model="vm.taskToEdit.type">
+                        <option value="" selected disabled>Please select</option>
+                        <option>Phonecall</option>
+                        <option>Email</option>
+                        <option>Meeting</option>
+                        <option>Project</option>
+                    </select>
+                    <br />
+                    <!--<label>Start Date</label>-->
+                    <label>Select Date:</label>
+                    <div id="datepicker" class="input-group date" data-date-format="mm/dd/yyyy">
+                        <input class="form-control full" type="text" ng-model="vm.taskToEdit.startDate" />
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                    <!--<input type="text" class="form-control full" ng-model="vm.taskToEdit.startDate" placeholder="YYYY-MM-DD" />-->
+                    <br />
+                    <label>Description</label>
+                    <textarea class="form-control full" rows="5" id="description" ng-model="vm.taskToEdit.description"></textarea>
+                    <br />
+                    <label>Due Date</label>
+                    <div id="datepicker2" class="input-group date" data-date-format="mm/dd/yyyy">
+                        <input class="form-control full" type="text" ng-model="vm.taskToEdit.dueDate" />
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                    <!--<input type="text" class="form-control full" ng-model="vm.taskToEdit.dueDate" placeholder="YYYY-MM-DD" />-->
+                    <br />
+                    <label>Status</label>
+                    <select class="form-control" ng-model="vm.taskToEdit.status">
+                        <option value="" selected disabled>Please select</option>
+                        <option>Not Started</option>
+                        <option>In Progress</option>
+                        <option>Completed</option>
+                    </select>
+                    <br />
+                    <br />
+                    <button type="submit" class="btn btn-default">Save Changes</button>&nbsp;
+
+                    <a href="/tasks" class="btn btn-danger"><span style="color: white" class="glyphicon glyphicon-chevron-left"></span>Return to Tasks</a>
+                </form>
+            </div>
+
+            <script>
+                hcb_user = {
+                    // L10N
+                    comments_header: 'Add Task Note',
+                    _blank: '',
+                    name_label: 'Name',
+                    content_label: 'Enter your Note here',
+                    submit: 'Add Note',
+                    logout_link: '<img title="log out" src="//www.htmlcommentbox.com/static/images/door_out.png" alt="[logout]" class="hcb-icon"/>',
+                    admin_link: '',
+                    no_comments_msg: '',
+                    add: 'Add your Task Note',
+                    again: 'Post another note',
+                    rss: '',
+                    said: 'said:',
+                    prev_page: '<img src="//www.htmlcommentbox.com/static/images/arrow_left.png" class="hcb-icon" title="previous page" alt="[prev]"/>',
+                    next_page: '<img src="//www.htmlcommentbox.com/static/images/arrow_right.png" class="hcb-icon" title="next page" alt="[next]"/>',
+                    showing: 'Showing',
+                    to: 'to',
+                    website_label: 'website (optional)',
+                    email_label: 'email',
+                    anonymous: 'Anonymous',
+                    mod_label: '(mod)',
+                    subscribe: '',
+                    are_you_sure: 'Do you want to flag this comment as inappropriate?',
+
+                    reply: '<img src="//www.htmlcommentbox.com/static/images/reply.png"/> reply',
+                    flag: '',
+                    like: '',
+
+                    //dates
+                    days_ago: 'days ago',
+                    hours_ago: 'hours ago',
+                    minutes_ago: 'minutes ago',
+                    within_the_last_minute: 'within the last minute',
+
+                    msg_thankyou: 'Thank you for commenting!',
+                    msg_approval: '(this comment is not published until approved)',
+                    msg_approval_required: 'Thank you for commenting! Your comment will appear once approved by a moderator.',
+
+                    err_bad_html: 'Your comment contained bad html.',
+                    err_bad_email: 'Please enter a valid email address.',
+                    err_too_frequent: 'You must wait a few seconds between posting comments.',
+                    err_comment_empty: 'Your comment was not posted because it was empty!',
+                    err_denied: 'Your comment was not accepted.',
+
+                    //SETTINGS
+                    MAX_CHARS: 8192,
+                    PAGE: '', // ID of the webpage to show comments for. defaults to the webpage the user is currently visiting.
+                    RELATIVE_DATES: true // show dates in the form "X hours ago." etc.
+                };
+
+
+            </script>
+            <!-- begin comment box -->
+            <div class="col-md-4" id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Comments</a> are loading...</div>
+            <link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />
+            <script type="text/javascript" id="hcb">
+                if (!window.hcb_user) { hcb_user = {}; } (function () { var s = document.createElement("script"), l = hcb_user.PAGE || ("" + window.location).replace(/'/g, "%27"), h = "//www.htmlcommentbox.com"; s.setAttribute("type", "text/javascript"); s.setAttribute("src", h + "/jread?page=" + encodeURIComponent(l).replace("+", "%2B") + "&mod=%241%24wq1rdBcg%24qbiEEt2yqYpwhQ6OERcEG1" + "&opts=16862&num=10&ts=1455576236419"); if (typeof s != "undefined") document.getElementsByTagName("head")[0].appendChild(s); })();
+                //end comment box
+                $(function () {
+                    $("#datepicker").datepicker({
+                        autoclose: true,
+                        todayHighlight: true,
+                        orientation: 'bottom'
+                    }).datepicker('update', new Date()),
+                 $("#datepicker2").datepicker({
+                     autoclose: true,
+                     todayHighlight: true,
+                     orientation: 'bottom'
+                 }).datepicker('update', new Date());
+                });
+            </script>
+
+        </div>
+    </div>
+</div>
