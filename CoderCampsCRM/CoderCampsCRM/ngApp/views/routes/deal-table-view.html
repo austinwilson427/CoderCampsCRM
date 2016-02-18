@@ -1,7 +1,7 @@
 ﻿<div id="wrapper" class="details_wrap toggled">
     <div id="sidebar-wrapper">
         <label>Show Archived Deals</label>
-        <input type="checkbox" ng-model="vm.showArchived" /><br />
+        <input type="checkbox" ng-model="vm.showArchived" ng-change="vm.filterBySelection()" /><br />
         <label>Filter By Date</label>
         <select class="form-control" ng-model="vm.dateFilter" ng-change="vm.filterBySelection()">
             <option value="all">All Deals</option>
