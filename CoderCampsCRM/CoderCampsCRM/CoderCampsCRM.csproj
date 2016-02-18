@@ -253,9 +253,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602180108328_initial.cs" />
-    <Compile Include="Migrations\201602180108328_initial.Designer.cs">
-      <DependentUpon>201602180108328_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201602180457204_initia.cs" />
+    <Compile Include="Migrations\201602180457204_initia.Designer.cs">
+      <DependentUpon>201602180457204_initia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602181801307_2.cs" />
+    <Compile Include="Migrations\201602181801307_2.Designer.cs">
+      <DependentUpon>201602181801307_2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -274,6 +278,7 @@
     <Compile Include="Models\UserTask.cs" />
     <Compile Include="Models\ViewModels\CompanyViewModel.cs" />
     <Compile Include="Models\ViewModels\ContactDetailViewModel.cs" />
+    <Compile Include="Models\ViewModels\ContactFilterViewModel.cs" />
     <Compile Include="Models\ViewModels\ContactListViewModel.cs" />
     <Compile Include="Models\ViewModels\DealViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -283,10 +288,10 @@
     <Compile Include="Repositories\ContactListViewRepository.cs" />
     <Compile Include="Repositories\DealRepository.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
+    <Compile Include="Repositories\IContactListViewRepository.cs" />
     <Compile Include="Repositories\Interfaces\IDealRepository.cs" />
     <Compile Include="Repositories\Interfaces\ICompanyRepository.cs" />
     <Compile Include="Repositories\Interfaces\IContactDetailViewRepository.cs" />
-    <Compile Include="Repositories\Interfaces\IContactListViewRepository.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -1365,8 +1370,11 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602180108328_initial.resx">
-      <DependentUpon>201602180108328_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602180457204_initia.resx">
+      <DependentUpon>201602180457204_initia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602181801307_2.resx">
+      <DependentUpon>201602181801307_2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

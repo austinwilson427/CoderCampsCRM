@@ -1,5 +1,6 @@
 ﻿using CoderCampsCRM.Models;
 using CoderCampsCRM.Repositories;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,8 @@ namespace CoderCampsCRM.API
 
         public IHttpActionResult GetContactListViewModel()
         {
-            return Ok(_repo.GetContactListViewModel());
+            var userId = this.User.Identity.GetUserId();
+            return Ok(_repo.GetContactListViewModel(userId));
         }
     }
 }

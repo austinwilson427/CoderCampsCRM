@@ -4,7 +4,7 @@ namespace CoderCampsCRM.Repositories
 {
     public interface IContactListViewRepository
     {
-        ContactListViewModel GetContactListViewModel();
+        ContactListViewModel GetContactListViewModel(string id);
         ContactListViewModel GetFilteredContacts(ContactFilterViewModel vm);
     }
 }
