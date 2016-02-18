@@ -35,5 +35,9 @@ namespace CoderCampsCRM.Models
         public ICollection<Deal> Deals { get; set; }
         public ICollection<UserTask> UserTasks { get; set; }
 
+        public string UserId { get; set; }
+        [ForeignKey("UserId")]
+        public ApplicationUser User { get; set; }
+
     }
 }

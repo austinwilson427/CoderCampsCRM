@@ -19,5 +19,9 @@ namespace CoderCampsCRM.Models
         [ForeignKey("ContactId")]
         public Contact Contact { get; set; }
 
+        public string UserId { get; set; }
+        [ForeignKey("UserId")]
+        public ApplicationUser User { get; set; }
+
     }
 }

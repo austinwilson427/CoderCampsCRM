@@ -18,16 +18,18 @@ namespace CoderCampsCRM.Repositories
             _repo = repo;
         }
 
-        public ContactListViewModel GetContactListViewModel()
+        public ContactListViewModel GetContactListViewModel(string id)
         {
-            //var contacts = _repo.Query<Contact>().Where(c => c.UserId == User.Id).ToList();
-            var contacts = _repo.Query<Contact>().ToList();
-            //var deals = _repo.Query<Deal>().Where(d => d.UserId == User.Id).ToList();
-            var deals = _repo.Query<Deal>().ToList();
-            //var tasks = _repo.Query<Task>().Where(t => t.UserId == User.Id).ToList();
-            var tasks = _repo.Query<UserTask>().ToList();
-            var companies = _repo.Query<Company>().ToList();
-            //var companies = _repo.Query<Company>().Where(co => co.userId == User.Id).ToList();
+
+            var contacts = _repo.Query<Contact>().Where(c => c.UserId == id).ToList();
+            //var contacts = _repo.Query<Contact>().ToList();
+            var deals = _repo.Query<Deal>().Where(d => d.UserId == id).ToList();
+            //var deals = _repo.Query<Deal>().ToList();
+           var tasks = _repo.Query<UserTask>().Where(t => t.UserId == id).ToList();
+           //var tasks = _repo.Query<UserTask>().ToList();
+            //var companies = _repo.Query<Company>().ToList();
+            var companies = _repo.Query<Company>().Where(co => co.UserId == id).ToList();
+            //var interactions = _repo.Query<ContactInteraction>().ToList();
             var interactions = _repo.Query<ContactInteraction>().ToList();
 
             var contactListViewModel = new ContactListViewModel
