@@ -426,8 +426,9 @@ li.Twitter a, li.Facebook a, li.Google a {
     background-image: url(http://i.imgur.com/TGsr7UL.png);
     float: left;
     height:100%;
-    width: 110%;
+    width: 105%;
     margin:-20px;
+    margin-right:-35px;
     margin-left: -35px;
 }
 
