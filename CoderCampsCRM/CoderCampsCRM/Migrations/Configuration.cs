@@ -7,7 +7,7 @@ namespace CoderCampsCRM.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-
+    using System.Security.Claims;
     internal sealed class Configuration : DbMigrationsConfiguration<CoderCampsCRM.Models.ApplicationDbContext>
     {
         public Configuration()
@@ -21,16 +21,18 @@ namespace CoderCampsCRM.Migrations
             var userStore = new UserStore<ApplicationUser>(context);
             var userManager = new ApplicationUserManager(userStore);
 
-            var user = userManager.FindByName("deneme@gmail.com");
+            var user = userManager.FindByName("codercampscrm@gmail.com");
 
             if (user == null)
             {
                 user = new ApplicationUser
                 {
-                    UserName = "deneme@gmail.com",
-                    Email = "deneme@gmail.com",
-                    FirstName = "deneme",
-                    LastName = "deneme",
+                    UserName = "codercampscrm@gmail.com",
+                    Email = "codercampscrm@gmail.com",
+                    FirstName = "Coder",
+                    LastName = "Camps",
+                    TimeZone = "Pacific Time (US & Canada)",
+                    Company = "CoderCampsCrm",
                     Companies = new Company[]
             {
                 new Company {
@@ -51,53 +53,17 @@ namespace CoderCampsCRM.Migrations
                                 CompanyCreateDate = DateTime.Now,
                                 CompanyLastActivityeDate = null,
                                 CompanyNextActivityDate = null,
-                                CompanyAttachments ="http://media.dcentertainment.com/sites/default/files/MAD-Magazine-Arizona-Citizenship-Letter-1.jpg"
-                        }
-
-                    },
-                    Contacts = new Contact[]
-                    {
-                        new Contact {
-                                      Id = 1,
-                                      Name = " Cliff Barnes" ,
-                                      Email = "cliff.barnes@gmail.com",
-                                      PhoneNumber = "222-333-1111",
-                                      JobTitle = "Merchant Manager"
-                                    },
-                        new Contact {   
-                                      Id = 2,
-                                      Name = "Sue Ellen Ewing" ,
-                                      Email = "sue@gmail.com",
-                                      PhoneNumber = "666-111-9999",
-                                      JobTitle = "Merchant Officer"
-                        }
-                    }
-                };
-
-                userManager.Create(user, "Deneme@123");
-                userManager.AddClaim(user.Id, new System.Security.Claims.Claim("Admin", "true"));
-
-            }
-            var user2 = userManager.FindByName("deneme2@gmail.com");
-            if (user2 == null)
-            {
-                user2 = new ApplicationUser
-                {
-                    UserName = "deneme2@gmail.com",
-                    Email = "deneme2@gmail.com",
-                    FirstName = "deneme ",
-                    LastName = "deneme",
-                    Companies = new Company[]
-                    {
-                 new Company {
-                                CompanyName = "scotch-soda",
+                                CompanyAttachments ="http://media.dcentertainment.com/sites/default/files/MAD-Magazine-Arizona-Citizenship-Letter-1.jpg",
+                        },
+                new Company {
+                                CompanyName = "Scotch-Soda",
                                 CompanyDomainName ="www.scotch-soda.com",
                                 CompanyPhoneNumber ="1- (866) 544-1557",
                                 CompanyCountry ="Nederland",
                                 CompanyCity ="Amsterdam",
                                 CompanyState =null,
                                 CompanyZip ="11111",
-                                ComapanyAddress ="somewhere in Nederland",
+                                ComapanyAddress ="Somewhere in Nederland",
                                 CompanyDescription ="At Scotch & Soda we want people to love their clothes...",
                                 CompanyIndustry ="Web",
                                 CompanyIsPublic = true,
@@ -109,28 +75,14 @@ namespace CoderCampsCRM.Migrations
                                 CompanyNextActivityDate = null,
                                 CompanyAttachments ="http://media.dcentertainment.com/sites/default/files/MAD-Magazine-Arizona-Citizenship-Letter-1.jpg"}
                     },
-                    Contacts = new Contact[]
-                    {
-                        new Contact {
-                                      Id = 3,
-                                      Name = "Bobby Ewing" ,
-                                      Email = "bobby.ewing@gmail.com",
-                                      PhoneNumber = "333-222-5555",
-                                      JobTitle = "Merchant Manager"
-                                    },
-                        new Contact {
-                                      Id = 4,
-                                      Name = "Clayton Farlow" ,
-                                      Email = "clayton@gmail.com",
-                                      PhoneNumber = "333-222-5555",
-                                      JobTitle = "Merchant Officer"
-                        }
-                    },
                 };
 
+                userManager.Create(user, "Secret123!");
+                userManager.AddClaim(user.Id, new Claim("Admin", "true"));
+            }
 
-                Contact[] contacts = new Contact[]
-                {
+            Contact[] contacts = new Contact[]
+            {
                         new Contact {
                                       Id = 5,
                                       Name = "Austin Wilson" ,
@@ -166,12 +118,40 @@ namespace CoderCampsCRM.Migrations
                                       PhoneNumber = "163-662-8921",
                                       JobTitle = "Product Owner",
                                     },
-                };
+                         new Contact {
+                                      Id = 3,
+                                      Name = "Bobby Ewing" ,
+                                      Email = "bobby.ewing@gmail.com",
+                                      PhoneNumber = "333-222-5555",
+                                      JobTitle = "Merchant Manager",
+                                    },
+                        new Contact {
+                                      Id = 4,
+                                      Name = "Clayton Farlow" ,
+                                      Email = "clayton@gmail.com",
+                                      PhoneNumber = "333-222-5555",
+                                      JobTitle = "Merchant Officer",
+                                    },
+                         new Contact {
+                                      Id = 1,
+                                      Name = " Cliff Barnes" ,
+                                      Email = "cliff.barnes@gmail.com",
+                                      PhoneNumber = "222-333-1111",
+                                      JobTitle = "Merchant Manager"
+                                    },
+                        new Contact {
+                                      Id = 2,
+                                      Name = "Sue Ellen Ewing" ,
+                                      Email = "sue@gmail.com",
+                                      PhoneNumber = "666-111-9999",
+                                      JobTitle = "Merchant Officer"
+                                    }
+            };
 
-                context.Contacts.AddOrUpdate(con => con.Email, contacts);
+            context.Contacts.AddOrUpdate(con => con.Email, contacts);
 
-                Deal[] deals = new Deal[]
-                {
+            Deal[] deals = new Deal[]
+            {
                         new Deal {
                                       Id = 1,
                                       DealName = "Starbucks",
@@ -180,7 +160,7 @@ namespace CoderCampsCRM.Migrations
                                       ContactId = 5,
                                       Stage = "Qualified to Buy",
                                       isArchived = false
-                                      
+
                                     },
                         new Deal {
                                       Id = 2,
@@ -322,11 +302,11 @@ namespace CoderCampsCRM.Migrations
                                       isArchived = true
 
                                     }
-                };
+            };
 
-                context.Deals.AddOrUpdate(d => d.DealName, deals);
+            context.Deals.AddOrUpdate(d => d.DealName, deals);
 
-                UserTask[] tasks = new UserTask[] {
+            UserTask[] tasks = new UserTask[] {
 
 
                 new UserTask {Id = 1, Status = "In Progress", Description = "Submit ", DueDate = "03/1/2016", StartDate = "02/10/2016", Type ="Email"},
@@ -340,11 +320,10 @@ namespace CoderCampsCRM.Migrations
 
 
         };
-                context.Tasks.AddOrUpdate(t => t.Id, tasks);
+            context.Tasks.AddOrUpdate(t => t.Id, tasks);
 
-
-            }
         }
     }
 }
+
 

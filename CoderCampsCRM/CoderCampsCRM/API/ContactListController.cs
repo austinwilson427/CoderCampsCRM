@@ -21,7 +21,6 @@ namespace CoderCampsCRM.API
 
         public IHttpActionResult getAllContacts()
         {
-            var userId = this.User.Identity.GetUserId();
             return Ok(_repo.Query<Contact>().ToList());
         }
 
