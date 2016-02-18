@@ -97,12 +97,18 @@
                 templateUrl: '/ngApp/views/createCompany.html',
                 controller: MyApp.Controllers.CompaniesController,
                 controllerAs: 'vm'
-            //})
-            //.state('company-info', {
-            //    url: '/companies/:id',
-            //    templateUrl: '/ngApp/views/company-info.html',
-            //    controller: MyApp.Controllers.CompanyDetailsController,
-            //    controllerAs: 'vm'
+            })
+            .state('company-info', {
+                url: '/companies/:id',
+                templateUrl: '/ngApp/views/company-info.html',
+                controller: MyApp.Controllers.CompanyDetailsController,
+                controllerAs: 'vm'
+            })
+            .state('company-info.activity', {
+                url: '/activity',
+                templateUrl: 'ngApp/views/routes/company-info-activity.html',
+                controller: MyApp.Controllers.CompanyDetailsController,
+                controllerAs: "vm"
             })          
             .state('contacts', {
                 url: '/contacts',

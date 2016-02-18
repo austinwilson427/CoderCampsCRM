@@ -31,9 +31,9 @@ var MyApp;
             CompaniesService.prototype.getCompany = function (id) {
                 return this.companiesResource.get({ id: id });
             };
-            CompaniesService.prototype.getCompanyListView = function (id) {
-                return this.companyListResource.get({ id: id });
-            };
+            //public getCompanyListView(id) {
+            //    return this.companyListResource.get({ id: id });
+            //}
             CompaniesService.prototype.createCompany = function (company) {
                 return this.companiesResource.save(company).$promise;
             };
@@ -49,4 +49,3 @@ var MyApp;
         angular.module("MyApp").service("companiesService", CompaniesService);
     })(Services = MyApp.Services || (MyApp.Services = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=companyService.js.map

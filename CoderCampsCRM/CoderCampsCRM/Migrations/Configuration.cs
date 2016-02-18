@@ -99,7 +99,7 @@ namespace CoderCampsCRM.Migrations
                                 CompanyZip ="11111",
                                 ComapanyAddress ="somewhere in Nederland",
                                 CompanyDescription ="At Scotch & Soda we want people to love their clothes...",
-                                CompanyIndustry ="Web",
+                                CompanyIndustry ="Textile",
                                 CompanyIsPublic = true,
                                 CompanyFacebook ="https://www.facebook.com/ScotchOfficial",
                                 CompanyLinkedin ="https://www.linkedin.com/company/1014429",
@@ -125,9 +125,10 @@ namespace CoderCampsCRM.Migrations
                                       PhoneNumber = "333-222-5555",
                                       JobTitle = "Merchant Officer"
                         }
-                    },
+                    }
                 };
-
+                userManager.Create(user2, "Deneme@123");
+                userManager.AddClaim(user2.Id, new System.Security.Claims.Claim("User", "true"));
 
                 Contact[] contacts = new Contact[]
                 {

@@ -13,7 +13,7 @@
             this.contactResource = $resource("/api/contactList");
             this.interactionResource = $resource("/api/interactions");
             this.contactDetailResource = $resource("/api/contactDetailView/:id");
-            this.contactListResource = $resource("/api/contactListView");
+           this.contactListResource = $resource("/api/contactListView");
             this.locationResource = $resource("/api/locations");
             this.contactFilterResource = $resource("/api/contactFilterView/:id", null, {
                 filterByCompanies: {
@@ -84,6 +84,7 @@
             return data;
         }
 
+        
         public addLocation(location) {
             return this.locationResource.save(location).$promise;
         }
