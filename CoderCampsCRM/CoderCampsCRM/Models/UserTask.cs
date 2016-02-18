@@ -15,7 +15,7 @@ namespace CoderCampsCRM.Models
         public string Description { get; set; }
         public string Status { get; set; }
         public int? DealId { get; set; }
-        public string ContactId { get; set; }
+        public int? ContactId { get; set; }
         [ForeignKey("ContactId")]
         public Contact Contact { get; set; }
 
