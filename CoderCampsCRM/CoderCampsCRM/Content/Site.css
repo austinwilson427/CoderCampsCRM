@@ -365,7 +365,7 @@ td.trash_cell{
 }
 .search-form .form-group:hover,
 .search-form .form-group.hover {
-  width: 25%;
+  width: 15%;
   border-radius: 4px 25px 25px 4px;
 }
 .search-form .form-group span.form-control-feedback {
@@ -420,6 +420,17 @@ li.Twitter a, li.Facebook a, li.Google a {
     color: white;
 }
 
+
+/*BannerImageTasks*/
+#bannertaskstop{
+    background-image: url(http://www.amasango.com/assets/orange-banner.png);
+    float: left;
+    height:100%;
+    width: 105%;
+    margin:-20px;
+    margin-left: -35px;
+    z-index:-10;
+}
 
 
 
