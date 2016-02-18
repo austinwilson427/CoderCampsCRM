@@ -23,7 +23,11 @@ namespace CoderCampsCRM.Models
         [ForeignKey("CompanyId")]
         public Company Company { get; set; }
 
-        
+        public string UserId { get; set; }
+        [ForeignKey("UserId")]
+        public ApplicationUser User { get; set; }
+
+
         //public List<Contact> Contacts { get; set; }
 
     }

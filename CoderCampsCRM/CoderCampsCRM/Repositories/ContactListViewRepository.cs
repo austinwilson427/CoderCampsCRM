@@ -18,90 +18,122 @@ namespace CoderCampsCRM.Repositories
             _repo = repo;
         }
 
-        public ContactListViewModel GetContactListViewModel()
+        public ContactListViewModel GetContactListViewModel(string id)
         {
-            //var contacts = _repo.Query<Contact>().Where(c => c.UserId == User.Id).ToList();
-            var contacts = _repo.Query<Contact>().ToList();
-            //var deals = _repo.Query<Deal>().Where(d => d.UserId == User.Id).ToList();
-            var deals = _repo.Query<Deal>().ToList();
-            //var tasks = _repo.Query<Task>().Where(t => t.UserId == User.Id).ToList();
-            var tasks = _repo.Query<UserTask>().ToList();
-            var companies = _repo.Query<Company>().ToList();
-            //var companies = _repo.Query<Company>().Where(co => co.userId == User.Id).ToList();
+
+            var contacts = _repo.Query<Contact>().Where(c => c.UserId == id).ToList();
+            //var contacts = _repo.Query<Contact>().ToList();
+            var deals = _repo.Query<Deal>().Where(d => d.UserId == id).ToList();
+            //var deals = _repo.Query<Deal>().ToList();
+           var tasks = _repo.Query<UserTask>().Where(t => t.UserId == id).ToList();
+           //var tasks = _repo.Query<UserTask>().ToList();
+            //var companies = _repo.Query<Company>().ToList();
+            var companies = _repo.Query<Company>().Where(co => co.UserId == id).ToList();
+            //var interactions = _repo.Query<ContactInteraction>().ToList();
             var interactions = _repo.Query<ContactInteraction>().ToList();
 
             var contactListViewModel = new ContactListViewModel
             {
                 Companies = companies,
                 Contacts = contacts,
-                Deals = deals, 
-                Interactions = interactions,               
+                Deals = deals,
+                Interactions = interactions,
                 Tasks = tasks,
             };
 
             return contactListViewModel;
         }
 
-        public ContactListViewModel GetContactCompaniesViewModel(int id)
+        public ContactListViewModel GetFilteredContacts(ContactFilterViewModel vm)
         {
+            var contactsDeals = _repo.Query<DealContact>().Where(d => d.DealId == vm.DealId).Select(c => c.Contact).ToList();
+            var contactsCompanies = _repo.Query<Contact>().Where(c => c.CompanyId == vm.CompanyId).ToList();
+            var contactsTasks = _repo.Query<TaskContact>().Where(t => t.TaskId == vm.TaskId).Select(c => c.Contact).ToList();
+            //var combine1 = contacts.Intersect(contacts2).Intersect(contacts3).ToList();
+            var contactsFiltered = new List<Contact>();
+
+            if (vm.DealId != 0)
+            {
+                if (vm.CompanyId != 0)
+                {
+                    if (vm.TaskId != 0)
+                    {
+                        contactsFiltered = contactsDeals.Intersect(contactsDeals).Intersect(contactsCompanies).Intersect(contactsTasks).ToList();
+                    }
+                    else
+                    {
+                        contactsFiltered = contactsDeals.Intersect(contactsDeals).Intersect(contactsCompanies).ToList();
+                    }
+                }
+                else if (vm.TaskId != 0)
+                {
+                    contactsFiltered = contactsDeals.Intersect(contactsDeals).Intersect(contactsTasks).ToList();
+                }
+                else
+                {
+                    contactsFiltered = _repo.Query<DealContact>().Where(d => d.DealId == vm.DealId).Select(c => c.Contact).ToList();
+                }
+            }
+            else if (vm.TaskId != 0)
+            {
+                if (vm.CompanyId != 0)
+                {
+                    if (vm.DealId != 0)
+                    {
+                        contactsFiltered = contactsTasks.Intersect(contactsTasks).Intersect(contactsCompanies).Intersect(contactsDeals).ToList();
+                    }
+                    else
+                    {
+                        contactsFiltered = contactsTasks.Intersect(contactsTasks).Intersect(contactsCompanies).ToList();
+                    }
+                }
+                else if (vm.DealId != 0)
+                {
+                    contactsFiltered = contactsTasks.Intersect(contactsTasks).Intersect(contactsDeals).ToList();
+                }
+                else
+                {
+                    contactsFiltered = _repo.Query<TaskContact>().Where(t => t.TaskId == vm.TaskId).Select(c => c.Contact).ToList();
+                }
+            }
+            else if (vm.CompanyId != 0)
+            {
+                if (vm.TaskId != 0)
+                {
+                    if (vm.DealId != 0)
+                    {
+                        contactsFiltered = contactsCompanies.Intersect(contactsCompanies).Intersect(contactsTasks).Intersect(contactsDeals).ToList();
+                    }
+                    else
+                    {
+                        contactsFiltered = contactsCompanies.Intersect(contactsCompanies).Intersect(contactsTasks).ToList();
+                    }
+                }
+                else if (vm.DealId != 0)
+                {
+                    contactsFiltered = contactsCompanies.Intersect(contactsCompanies).Intersect(contactsDeals).ToList();
+                }
+                else
+                {
+                    contactsFiltered = _repo.Query<Contact>().Where(c => c.CompanyId == vm.CompanyId).ToList();
+                }
+            }
+
             var deals = _repo.Query<Deal>().ToList();
             var companies = _repo.Query<Company>().ToList();
             var tasks = _repo.Query<UserTask>().ToList();
             var interactions = _repo.Query<ContactInteraction>().ToList();
-            var contacts = _repo.Query<Contact>().Where(c => c.CompanyId == id).ToList();
 
-            var contactCompaniesViewModel = new ContactListViewModel
+            var contactListViewModel = new ContactListViewModel
             {
                 Companies = companies,
-                Contacts = contacts,
+                Contacts = contactsFiltered,
                 Deals = deals,
                 Interactions = interactions,
                 Tasks = tasks,
             };
 
-            return contactCompaniesViewModel;
-        }
-
-        public ContactListViewModel GetContactDealsViewModel(int id)
-        {
-            var deals = _repo.Query<Deal>().ToList();
-            var companies = _repo.Query<Company>().ToList();
-            var tasks = _repo.Query<UserTask>().ToList();
-            var interactions = _repo.Query<ContactInteraction>().ToList();
-            //var contacts = _db.DealContacts.Where(d => d.DealId == id).Select(c => c.Contact).ToList();
-            var contacts = _repo.Query<DealContact>().Where(d => d.DealId == id).Select(c => c.Contact).ToList();
-            //var locations = _repo.Query<LocationContact>().Where(l => l.DealId == id).Select(l => l.Location).ToList();
-            var contactDealsViewModel = new ContactListViewModel
-            {
-                Companies = companies,
-                Contacts = contacts,
-                Deals = deals,
-                Interactions = interactions,
-                Tasks = tasks,
-            };
-
-            return contactDealsViewModel;
-        }
-
-        public ContactListViewModel GetContactTasksViewModel(int id)
-        {
-            var deals = _repo.Query<Deal>().ToList();
-            var companies = _repo.Query<Company>().ToList();
-            var tasks = _repo.Query<UserTask>().ToList();
-            var contacts = _repo.Query<TaskContact>().Where(t => t.TaskId == id).Select(c => c.Contact).ToList();
-            var interactions = _repo.Query<ContactInteraction>().ToList();
-            //var locations = _repo.Query<LocationContact>().Where(l => l.TaskId == id).Select(l => l.Location).ToList();
-
-            var contactTasksViewModel = new ContactListViewModel
-            {
-                Companies = companies,
-                Contacts = contacts,
-                Deals = deals,
-                Interactions = interactions,
-                Tasks = tasks,
-            };
-
-            return contactTasksViewModel;
+            return contactListViewModel;
         }
     }
 }

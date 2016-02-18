@@ -1,6 +1,7 @@
 ﻿using CoderCampsCRM.Models;
 using CoderCampsCRM.Models.ViewModels;
 using CoderCampsCRM.Repositories;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,8 @@ namespace CoderCampsCRM.API
 
         public IHttpActionResult GetDeals()
         {
-            var dealData = _dealRepo.getAllDealViewModels();
+            var userId = this.User.Identity.GetUserId();
+            var dealData = _dealRepo.getAllDealViewModels(userId);
             return Ok(dealData.DealList);
 
         }

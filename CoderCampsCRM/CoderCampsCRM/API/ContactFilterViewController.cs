@@ -1,4 +1,5 @@
-﻿using CoderCampsCRM.Repositories;
+﻿using CoderCampsCRM.Models.ViewModels;
+using CoderCampsCRM.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,25 +18,10 @@ namespace CoderCampsCRM.API
             _repo = repo;
         }
 
-        [HttpGet]
-        [Route("api/contactFilterView/filterByCompanies/{id}")]
-        public IHttpActionResult GetFilteredByCompanies(int id)
+        [HttpPost]
+        public IHttpActionResult PostFilteredContacts(ContactFilterViewModel vm)
         {
-            return Ok(_repo.GetContactCompaniesViewModel(id));
-        }
-
-        [HttpGet]
-        [Route("api/contactFilterView/filterByDeals/{id}")]
-        public IHttpActionResult GetFilteredByDeals(int id)
-        {
-            return Ok(_repo.GetContactDealsViewModel(id));
-        }
-
-        [HttpGet]
-        [Route("api/contactFilterView/filterByTasks/{id}")]
-        public IHttpActionResult GetFilteredByTasks(int id)
-        {
-            return Ok(_repo.GetContactTasksViewModel(id));
+            return Ok(_repo.GetFilteredContacts(vm));
         }
     }
 }
