@@ -61,13 +61,13 @@ textarea {
 
 
 .jumbotron {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("https://pixabay.com/static/uploads/photo/2014/01/13/16/59/singapore-243669_960_720.jpg") no-repeat center;
-  background-size: cover;
-  height: 100vh;
-  color: white;
-  background-attachment: fixed;
-  margin: 0px;
-  padding: 20px !important;
+    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,1)), url("http://pre01.deviantart.net/6693/th/pre/f/2014/322/6/6/seattle_skyline_with_mount_rainier_2014_by_larrygorlin-d86vi3u.jpg") no-repeat center;
+    background-size: cover;
+    min-height: 100vh;
+    color: white;
+    background-attachment: fixed;
+    margin: 0px;
+    padding: 20px !important;
 }
 
 .heading-wrap {
@@ -75,36 +75,55 @@ textarea {
 }
 
 .heading-wrap h1{
-    font-weight: 300;
 
 }
+    .heading-wrap h1, .heading-wrap h2, .heading-wrap h3 {
+        font-weight: 300;
+    }
+
 .home_button_wrap {
+    width: 60%;
     text-align: center;
-    margin: 80px 0 0 0;
+    margin: 50px auto 20px;
 }
 
 
 button.join {
-     background: linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.0));
-  background-size: cover;
-   background-attachment: fixed;
-   font-size: 20px;
-   padding: 10px 20px;
-   border: 2px solid white;
-
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+    background-size: cover;
+    background-attachment: fixed;
+    font-size: 20px;
+    width: 200px;
+    padding: 5px 30px;
+    border: 2px solid white;
+    margin: 5px 40px;
 }
 
     button.join:hover {
-
-        background-color:#e10001; 
+        background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.0));
+        background-size: cover;
+        background-color: #e10001;
     }
+
+p.home_description {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 300;
+}
+
+.home_details a:link, .home_details a:visited{
+    font-size: 16px;
+    font-weight: 300;
+    color: #e10001;
+}
+
 /*-------------------------------Deals Section-------------------------------*/
 /*Input class to make input 100% wide*/
 .full {
     max-width: 100%;
 }
 
-.details_wrap label{
+.details_wrap label {
     color: white;
     margin-top: 10px;
 }
@@ -122,51 +141,49 @@ button.join {
     font-size: 10px;
 }
 
-.table_wrap th.hover_blue:hover{
+.table_wrap th.hover_blue:hover {
     cursor: pointer;
     background-image: linear-gradient(to bottom,#337ab7 0,#265a88 100%);
     color: white;
 }
 
-.modal-deal{
+.modal-deal {
     width: 500px;
 }
 
-.modal-deal label{
-    margin-top: 5px;
-}
+    .modal-deal label {
+        margin-top: 5px;
+    }
 
-.modal-deal button, .modal-deal a{
-    margin-top: 10px;
-}
+    .modal-deal button, .modal-deal a {
+        margin-top: 10px;
+    }
 
-table.deals_table{
+table.deals_table {
     font-size: 12px;
 }
 
-table.deals_table th:hover{
-    
-}
+    table.deals_table th:hover {
+    }
 
-.glyphicon-th, .glyphicon-list-alt{
+.glyphicon-th, .glyphicon-list-alt {
     font-size: 30px;
     margin: 0 5px;
 }
 
-.glyphicon-th{
+.glyphicon-th {
     position: relative;
     top: 0;
 }
 
-.no-margin{
+.no-margin {
     margin: 0 !important;
 }
 
-.filter_button{
-
+.filter_button {
 }
 
-.min_amount{
+.min_amount {
     padding-right: 2px;
 }
 
@@ -174,122 +191,123 @@ table.deals_table th:hover{
     padding-left: 2px;
 }
 
-input.amount_input{
+input.amount_input {
     width: 100%;
 }
 
-.archived{
+.archived {
     background-color: #464444;
     color: white;
 }
 
-.archived:hover{
-    color: black;
-}
+    .archived:hover {
+        color: black;
+    }
 
-.archived span.glyphicon-plus{
-    font-size: 16px;
-    margin-left: 8px;
-}
+    .archived span.glyphicon-plus {
+        font-size: 16px;
+        margin-left: 8px;
+    }
 
-.details_head{
+.details_head {
     margin-bottom: 40px;
 }
 
-.first_main_row{
+.first_main_row {
     margin-bottom: 40px;
 }
 
-.text_wrap{
+.text_wrap {
     width: 80%;
     margin: auto;
 }
 
-.log_item_wrap{
+.log_item_wrap {
     width: 90%;
     margin: auto;
 }
-.activity_button_wrap{
+
+.activity_button_wrap {
     width: 80%;
     margin: auto;
     display: block;
 }
 
-textarea.deal_notes{
+textarea.deal_notes {
     max-width: 100%;
     width: 100%;
 }
 
-table.log_items td{
-    
+table.log_items td {
 }
 
-td.submitted_cell, td.start_time_cell{
+td.submitted_cell, td.start_time_cell {
     font-weight: 600;
 }
 
-td.submitted_cell{
+td.submitted_cell {
     border-right: none !important;
 }
 
-td.start_time_cell{
+td.start_time_cell {
     border-left: none !important;
     text-align: right;
 }
 
-td.content_cell{
+td.content_cell {
     padding: 20px 5px !important;
 }
 
-table.activity{
+table.activity {
     width: 100%;
 }
 
-table.activity td{
-    padding: 5px;
-}
+    table.activity td {
+        padding: 5px;
+    }
 
-.task_wrap{
+.task_wrap {
     margin-top: 10px;
 }
-.list_custom_wrap{
+
+.list_custom_wrap {
     margin: 40px auto;
 }
 
-.contact_to_add{
+.contact_to_add {
     width: 60%;
     margin: 10px auto 80px;
     text-align: center;
 }
 
-.view_search{
+.view_search {
     margin-bottom: 20px;
 }
 
-td.trash_cell{
+td.trash_cell {
     text-align: center;
     width: 60px;
 }
 
-.trash_icon{
+.trash_icon {
     padding-right: 5px;
 }
 
-.folder_icon{
-    padding-left: 5px
+.folder_icon {
+    padding-left: 5px;
 }
 
-.my_pages label, .my_items label{
+.my_pages label, .my_items label {
     color: black;
     font-weight: 300;
     margin-top: 5px !important;
 }
 
-.my_items{
+.my_items {
     text-align: right;
 }
 
-.my_pag{
+.my_pag {
     margin: 0 !important;
 }
 
@@ -303,7 +321,7 @@ td.trash_cell{
     background-color: orange;
 }
 
-.tableDetailRow{
+.tableDetailRow {
     font-weight: 600;
 }
 
@@ -311,14 +329,14 @@ td.trash_cell{
     width: 100%;
     height: 25%;
     margin-top: 20px;
-    margin-left: 0; 
+    margin-left: 0;
     background-color: lightgray;
     border-radius: 3px;
 }
 
-.contactPanel button {
-    margin-bottom: 20px;
-}
+    .contactPanel button {
+        margin-bottom: 20px;
+    }
 
 #interactionForm {
     margin-top: 10px;
@@ -342,7 +360,7 @@ td.trash_cell{
     margin-left: 40px;
 }
 
-#manageRow{
+#manageRow {
     max-width: 30px;
     border: none;
     border-bottom: hidden;
@@ -355,7 +373,7 @@ td.trash_cell{
     margin-top: 20px;
 }
 
-#contactUiRouteWrap{
+#contactUiRouteWrap {
     margin-top: 10px;
     margin-left: 55px;
 }
@@ -365,7 +383,7 @@ td.trash_cell{
     margin-left: 40px;
 }
 
-#itemsPerPage{
+#itemsPerPage {
     position: relative;
     left: 10px;
     bottom: 30px;
@@ -373,78 +391,89 @@ td.trash_cell{
 
 /*SEARCHBAR CSS*/
 .search-form .form-group {
-  float: right !important;
-  transition: all 0.35s, border-radius 0s;
-  width: 32px;
-  height: 32px;
-  background-color: #fff;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-  border-radius: 25px;
-  border: 1px solid #ccc;
+    float: right !important;
+    transition: all 0.35s, border-radius 0s;
+    width: 32px;
+    height: 32px;
+    background-color: #fff;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    border-radius: 25px;
+    border: 1px solid #ccc;
 }
-.search-form .form-group input.form-control {
-  padding-right: 20px;
-  border: 0 none;
-  background: transparent;
-  box-shadow: none;
-  display:block;
-}
-.search-form .form-group input.form-control::-webkit-input-placeholder {
-  display: none;
-}
-.search-form .form-group input.form-control:-moz-placeholder {
-  /* Firefox 18- */
-  display: none;
-}
-.search-form .form-group input.form-control::-moz-placeholder {
-  /* Firefox 19+ */
-  display: none;
-}
-.search-form .form-group input.form-control:-ms-input-placeholder {
-  display: none;
-}
-.search-form .form-group:hover,
-.search-form .form-group.hover {
-  width: 15%;
-  border-radius: 4px 25px 25px 4px;
-}
-.search-form .form-group span.form-control-feedback {
-  position: absolute;
-  top: -1px;
-  right: -2px;
-  z-index: 2;
-  display: block;
-  width: 34px;
-  height: 34px;
-  line-height: 34px;
-  text-align: center;
-  color: #3596e0;
-  left: initial;
-  font-size: 14px;
-}
+
+    .search-form .form-group input.form-control {
+        padding-right: 20px;
+        border: 0 none;
+        background: transparent;
+        box-shadow: none;
+        display: block;
+    }
+
+        .search-form .form-group input.form-control::-webkit-input-placeholder {
+            display: none;
+        }
+
+        .search-form .form-group input.form-control:-moz-placeholder {
+            /* Firefox 18- */
+            display: none;
+        }
+
+        .search-form .form-group input.form-control::-moz-placeholder {
+            /* Firefox 19+ */
+            display: none;
+        }
+
+        .search-form .form-group input.form-control:-ms-input-placeholder {
+            display: none;
+        }
+
+    .search-form .form-group:hover,
+    .search-form .form-group.hover {
+        width: 15%;
+        border-radius: 4px 25px 25px 4px;
+    }
+
+    .search-form .form-group span.form-control-feedback {
+        position: absolute;
+        top: -1px;
+        right: -2px;
+        z-index: 2;
+        display: block;
+        width: 34px;
+        height: 34px;
+        line-height: 34px;
+        text-align: center;
+        color: #3596e0;
+        left: initial;
+        font-size: 14px;
+    }
 
 /*Login*/
 ul.socialMedia {
-    list-style:none;
-    padding: 0
+    list-style: none;
+    padding: 0;
 }
+
 li.Twitter, li.Facebook, li.Google {
-     padding: 0;
+    padding: 0;
     color: white;
     width: 100%;
-    border-radius:  5px;
+    border-radius: 5px;
     margin: 5px auto;
 }
 
 li.Twitter {
     background-color: #00aced;
 }
+
 li.Facebook {
     background-color: #3b5998;
 }
+
 li.Google {
-    background-color:  #dd4b39;
+    background-color: #dd4b39;
 }
+
 .bird, .book, .plus {
     position: relative;
     top: 2px;
@@ -462,32 +491,30 @@ li.Twitter a, li.Facebook a, li.Google a {
 
 
 /*BannerImageTasks*/
-#bannertaskstop{
+#bannertaskstop {
     background-image: url(http://i.imgur.com/TGsr7UL.png);
     float: left;
-    height:100%;
+    height: 100%;
     width: 105%;
-    margin:-20px;
-    margin-right:-35px;
+    margin: -20px;
+    margin-right: -35px;
     margin-left: -35px;
 }
 
 /*TABLE CSS*/
 
 #tasktable {
- border-spacing: 10px;
- empty-cells:show;
- width:90%;
- text-align:left;
+    border-spacing: 10px;
+    empty-cells: show;
+    width: 90%;
+    text-align: left;
 }
-#tasktable tr td{
-  white-space:nowrap;
-  text-align:left;
- }
+
+    #tasktable tr td {
+        white-space: nowrap;
+        text-align: left;
+    }
 
 #accordian {
     margin: -10px;
-    
 }
-
-
