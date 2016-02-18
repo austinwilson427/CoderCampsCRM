@@ -349,10 +349,8 @@
     <Content Include="Global.asax" />
     <Content Include="Images\Black-Background-Collapsar-1080x1920.jpg" />
     <Content Include="ngApp\scripts\angular_filepicker.min.js" />
-    <Content Include="ngApp\scripts\Chart.js" />
     <Content Include="ngApp\scripts\highcharts-ng.js" />
     <Content Include="ngApp\scripts\ngDraggable.js" />
-    <Content Include="ngApp\scripts\tc-angular-chartjs.js" />
     <Content Include="ngApp\views\about.html" />
     <Content Include="ngApp\views\addtask.html" />
     <Content Include="ngApp\views\companies.html" />
