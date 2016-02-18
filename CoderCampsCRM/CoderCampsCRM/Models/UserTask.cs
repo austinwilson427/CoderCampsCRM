@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -14,6 +15,9 @@ namespace CoderCampsCRM.Models
         public string Description { get; set; }
         public string Status { get; set; }
         public int? DealId { get; set; }
+        public string ContactId { get; set; }
+        [ForeignKey("ContactId")]
+        public Contact Contact { get; set; }
 
     }
 }
