@@ -270,6 +270,7 @@
     <Compile Include="Models\UserTask.cs" />
     <Compile Include="Models\ViewModels\CompanyViewModel.cs" />
     <Compile Include="Models\ViewModels\ContactDetailViewModel.cs" />
+    <Compile Include="Models\ViewModels\ContactFilterViewModel.cs" />
     <Compile Include="Models\ViewModels\ContactListViewModel.cs" />
     <Compile Include="Models\ViewModels\DealViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

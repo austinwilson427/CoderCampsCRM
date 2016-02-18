@@ -15,20 +15,10 @@ namespace CoderCampsCRM.Models
         public string Content { get; set; }
         public string SubmittedBy { get; set; }
         public int? TaskId { get; set; }
-        //[ForeignKey("TaskId")]
-        //public Task Task { get; set; }
+     
 
-        public int? ContactId { get; set; }
-        [ForeignKey("ContactId")]
-        public Contact Contact { get; set; }
-
-        public int? CompanyId { get; set; }
-        [ForeignKey("CompanyId")]
+      
         public Company Company { get; set; }
-
-        public int? DealId { get; set; }
-        [ForeignKey("DealId")]
-        public Deal Deal { get; set; }
 
     }
 }

@@ -26,20 +26,23 @@ namespace CoderCampsCRM.API
         }
         public IHttpActionResult Get()
         {
-            string userId = User.Identity.GetUserId();
-            //var user = _repo.Query<ApplicationUser>().Where(u => u.Id == userId).Include(u => u.Company).FirstOrDefault();
-            //var company = _repo.Find<Company>();
-            //if (user.Company = userId)
 
-            //var companies = from c in _repo.Query<Company>()
-            //                select c;
+            var companyData = _companyRepo.getAllCompanyViewModels();
+            return Ok(companyData.CompanyList);
+            //string userId = User.Identity.GetUserId();
+            ////var user = _repo.Query<ApplicationUser>().Where(u => u.Id == userId).Include(u => u.Company).FirstOrDefault();
+            ////var company = _repo.Find<Company>();
+            ////if (user.Company = userId)
 
-            var compList = from c in _repo.Query<Company>()
-                           where c.ApplicationUser_Id == userId
-                           select c;
+            ////var companies = from c in _repo.Query<Company>()
+            ////                select c;
 
-            return Ok(compList.ToList());
-            //return Ok(companies.ToList());
+            //var compList = from c in _repo.Query<Company>()
+            //               where c.ApplicationUser_Id == userId
+            //               select c;
+
+            //return Ok(compList.ToList());
+            ////return Ok(companies.ToList());
         }
 
         public IHttpActionResult Get(int id)
