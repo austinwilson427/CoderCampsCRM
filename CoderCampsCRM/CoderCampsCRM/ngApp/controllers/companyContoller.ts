@@ -44,11 +44,11 @@
             });
         }
 
-        public getCompanyLogItemsByRouteId() {
-            this.companyLogItemService.listCompanyLogItemsByCCompanyId(this.routeId).$promise.then((result) => {
-                this.companyLogItems = result;
-            });
-        }
+        //public getCompanyLogItemsByRouteId() {
+        //    this.companyLogItemService.listCompanyLogItemsByCCompanyId(this.routeId).$promise.then((result) => {
+        //        this.companyLogItems = result;
+        //    });
+        //}
 
         //public showDetailsModal(id) {
 
@@ -236,7 +236,7 @@
             this.getCompany();
             this.getAllContact();
             this.getAllDeals();
-            this.getCompanyLogItemsByRouteId();
+            //this.getCompanyLogItemsByRouteId();
            // this.submitActivity()
          //  this.getAllTasks();
             
@@ -255,11 +255,11 @@
                 
             });
         }
-        public getCompanyLogItemsByRouteId() {
-            this.companyLogItemService.listCompanyLogItemsByCCompanyId(this.routeId).$promise.then((result) => {
-                this.companyLogItems = result;
-            });
-        }
+        //public getCompanyLogItemsByRouteId() {
+        //    this.companyLogItemService.listCompanyLogItemsByCCompanyId(this.routeId).$promise.then((result) => {
+        //        this.companyLogItems = result;
+        //    });
+        //}
 
         public getAllContact() {
 

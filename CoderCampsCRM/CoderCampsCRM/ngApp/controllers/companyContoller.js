@@ -28,12 +28,11 @@ var MyApp;
                     console.log(_this.companies);
                 });
             };
-            CompaniesController.prototype.getCompanyLogItemsByRouteId = function () {
-                var _this = this;
-                this.companyLogItemService.listCompanyLogItemsByCCompanyId(this.routeId).$promise.then(function (result) {
-                    _this.companyLogItems = result;
-                });
-            };
+            //public getCompanyLogItemsByRouteId() {
+            //    this.companyLogItemService.listCompanyLogItemsByCCompanyId(this.routeId).$promise.then((result) => {
+            //        this.companyLogItems = result;
+            //    });
+            //}
             //public showDetailsModal(id) {
             //    this.$uibModal.open({
             //        templateUrl: "/ngApp/views/company-info.html",
@@ -170,7 +169,7 @@ var MyApp;
                 this.getCompany();
                 this.getAllContact();
                 this.getAllDeals();
-                this.getCompanyLogItemsByRouteId();
+                //this.getCompanyLogItemsByRouteId();
                 // this.submitActivity()
                 //  this.getAllTasks();
                 // this.companies = this.companiesService.getCompanies();
@@ -188,12 +187,11 @@ var MyApp;
                     _this.companyInfo = result;
                 });
             };
-            CompanyDetailsController.prototype.getCompanyLogItemsByRouteId = function () {
-                var _this = this;
-                this.companyLogItemService.listCompanyLogItemsByCCompanyId(this.routeId).$promise.then(function (result) {
-                    _this.companyLogItems = result;
-                });
-            };
+            //public getCompanyLogItemsByRouteId() {
+            //    this.companyLogItemService.listCompanyLogItemsByCCompanyId(this.routeId).$promise.then((result) => {
+            //        this.companyLogItems = result;
+            //    });
+            //}
             CompanyDetailsController.prototype.getAllContact = function () {
                 var _this = this;
                 this.contactService.getAllContacts().then(function (result) {
