@@ -3,9 +3,10 @@ var MyApp;
     var Controllers;
     (function (Controllers) {
         var CompaniesController = (function () {
-            function CompaniesController($uibModal, companiesService, dealService, contactService, $location, $state, $stateParams) {
+            function CompaniesController($uibModal, companiesService, companyLogItemService, dealService, contactService, $location, $state, $stateParams) {
                 this.$uibModal = $uibModal;
                 this.companiesService = companiesService;
+                this.companyLogItemService = companyLogItemService;
                 this.dealService = dealService;
                 this.contactService = contactService;
                 this.$location = $location;
@@ -25,6 +26,12 @@ var MyApp;
                         _this.companies.push(result[i]);
                     }
                     console.log(_this.companies);
+                });
+            };
+            CompaniesController.prototype.getCompanyLogItemsByRouteId = function () {
+                var _this = this;
+                this.companyLogItemService.listCompanyLogItemsByCCompanyId(this.routeId).$promise.then(function (result) {
+                    _this.companyLogItems = result;
                 });
             };
             //public showDetailsModal(id) {
@@ -162,8 +169,9 @@ var MyApp;
                 this.getCompany();
                 this.getAllContact();
                 this.getAllDeals();
+                this.getCompanyLogItemsByRouteId();
                 // this.submitActivity()
-                // this.getAllTasks();
+                //  this.getAllTasks();
                 // this.companies = this.companiesService.getCompanies();
                 // this.company = companiesService.getCompany(companyId);
                 // this.company = companiesService.getCompany($routeParams['id'])
@@ -177,6 +185,12 @@ var MyApp;
                 var _this = this;
                 this.companiesService.getCompany(this.routeId).$promise.then(function (result) {
                     _this.companyInfo = result;
+                });
+            };
+            CompanyDetailsController.prototype.getCompanyLogItemsByRouteId = function () {
+                var _this = this;
+                this.companyLogItemService.listCompanyLogItemsByCCompanyId(this.routeId).$promise.then(function (result) {
+                    _this.companyLogItems = result;
                 });
             };
             CompanyDetailsController.prototype.getAllContact = function () {

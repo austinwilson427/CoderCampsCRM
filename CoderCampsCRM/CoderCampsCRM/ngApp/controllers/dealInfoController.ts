@@ -307,7 +307,7 @@
         public myContacts;
 
         constructor(private $stateParams: ng.ui.IStateParamsService, private dealService: MyApp.Services.DealService, private dealLogItemService: MyApp.Services.DealLogItemService, private $location: ng.ILocationService, private $route: ng.route.IRouteService, private taskService: MyApp.Services.TaskService, private contactService: MyApp.Services.ContactService) {
-            this.contactService.getAllContacts().$promise.then((result) => {
+            this.contactService.getAllContacts().then((result) => {
                 this.myContacts = result.contacts;
                 this.routeId = $stateParams["id"];
                 this.getDeal();

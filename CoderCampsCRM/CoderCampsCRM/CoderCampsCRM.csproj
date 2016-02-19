@@ -253,14 +253,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602180451134_initial.cs" />
-    <Compile Include="Migrations\201602180451134_initial.Designer.cs">
-      <DependentUpon>201602180451134_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602180502237_initial2.cs" />
-    <Compile Include="Migrations\201602180502237_initial2.Designer.cs">
-      <DependentUpon>201602180502237_initial2.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -278,6 +270,7 @@
     <Compile Include="Models\UserTask.cs" />
     <Compile Include="Models\ViewModels\CompanyViewModel.cs" />
     <Compile Include="Models\ViewModels\ContactDetailViewModel.cs" />
+    <Compile Include="Models\ViewModels\ContactFilterViewModel.cs" />
     <Compile Include="Models\ViewModels\ContactListViewModel.cs" />
     <Compile Include="Models\ViewModels\DealViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -383,6 +376,7 @@
     <Content Include="ngApp\views\profile.html" />
     <Content Include="ngApp\views\register.html" />
     <Content Include="ngApp\views\routes\company-info-activity.html" />
+    <Content Include="ngApp\views\routes\company-info-task.html" />
     <Content Include="ngApp\views\routes\deal-chart-view.html" />
     <Content Include="ngApp\views\routes\deal-info-activity.html" />
     <Content Include="ngApp\views\routes\deal-info-event.html" />
@@ -1337,6 +1331,7 @@
     <TypeScriptCompile Include="ngApp\controllers\contactListController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\companyContoller.ts" />
     <TypeScriptCompile Include="ngApp\controllers\controllers.ts" />
+    <TypeScriptCompile Include="ngApp\controllers\dashboardController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\dealController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\dealInfoController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\ProfileController.ts" />
@@ -1371,14 +1366,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602180451134_initial.resx">
-      <DependentUpon>201602180451134_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602180502237_initial2.resx">
-      <DependentUpon>201602180502237_initial2.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

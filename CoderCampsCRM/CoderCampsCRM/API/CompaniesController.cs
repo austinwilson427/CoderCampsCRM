@@ -47,7 +47,7 @@ namespace CoderCampsCRM.API
 
         public IHttpActionResult Get(int id)
         {
-            var company = _repo.Query<Company>().Where(c => c.Id == id).Include(c => c.Contacts).FirstOrDefault();
+            var company = _repo.Query<Company>().Where(c => c.Id == id).Include(c => c.Contacts).Include(c=>c.UserTasks).FirstOrDefault();
             return Ok(company);
         }
 
