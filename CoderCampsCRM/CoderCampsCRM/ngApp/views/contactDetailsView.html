@@ -55,7 +55,11 @@
         <button class="btn btn-primary" ng-click="vm.editContact()">Edit</button>
         <button class="btn btn-danger" ng-click="vm.deleteModal()">Delete</button>
         <button class="btn btn-primary" ng-click="vm.setLocation()">Show map</button>
-        <a href="http://www.latlong.net/convert-address-to-lat-long.html" target="_blank" ng-show="!vm.contactView.location.longitude || !vm.contactView.location.latitude">Need coordinates?</a>
+        <div class="row">
+            <div class="col-md-12">
+                <a href="http://www.latlong.net/convert-address-to-lat-long.html" target="_blank" ng-show="!vm.contactView.location.longitude || !vm.contactView.location.latitude">Need coordinates?</a>
+            </div>
+        </div>
         <div class="row" ng-show="vm.showMap">
             <div class="col-md-12">
                 <ui-gmap-google-map center='vm.center' zoom='vm.zoom' draggable="true">
@@ -67,117 +71,121 @@
                 </ui-gmap-google-map>
             </div>
         </div>
-        <div class="col-md-3 col-md-offset-1 contactPanel">
-            <h3 class="text-center">Company</h3>
-            <div class="form-group" ng-show="!vm.contactView.company">
-                <select class="form-control" ng-change="vm.chooseCompany()" ng-model="vm.companyChoice">
-                    <option ng-repeat="company in vm.contactView.companies" value="{{company.id}}">{{company.companyName}}</option>
-                </select>
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="text-center">Company</h3>
+                <div class="form-group" ng-show="!vm.contactView.company">
+                    <select class="form-control center-block" ng-change="vm.chooseCompany()" ng-model="vm.companyChoice">
+                        <option ng-repeat="company in vm.contactView.companies" value="{{company.id}}">{{company.companyName}}</option>
+                    </select>
+                </div>
+                <table class="table deals_table table-hover table-bordered table-responsive" ng-hide="!vm.contactView.company">
+                    <tr>
+                        <td>Name</td>
+                        <td class="tableDetailRow">{{vm.contactView.company.companyName}}</td>
+                    </tr>
+                    <tr>
+                        <td>Domain</td>
+                        <td class="tableDetailRow"><a href="{{vm.contactView.company.companyDomainName}}">{{vm.contactView.company.companyDomainName}}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Industry</td>
+                        <td class="tableDetailRow">{{vm.contactView.company.companyIndustry}}</td>
+                    </tr>
+                    <tr>
+                        <td>Country</td>
+                        <td class="tableDetailRow">{{vm.contactView.company.companyCountry}}</td>
+                    </tr>
+                    <tr>
+                        <td>City</td>
+                        <td class="tableDetailRow">{{vm.contactView.company.companyCity}}</td>
+                    </tr>
+                    <tr>
+                        <td>State</td>
+                        <td class="tableDetailRow">{{vm.contactView.company.companyState}}</td>
+                    </tr>
+                    <tr>
+                        <td>Zip</td>
+                        <td class="tableDetailRow">{{vm.contactView.company.companyZip}}</td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td class="tableDetailRow">{{vm.contactView.company.comapanyAddress}}</td>
+                    </tr>
+                    <tr>
+                        <td>Phone Number</td>
+                        <td class="tableDetailRow">{{vm.contactView.company.companyPhoneNumber}}</td>
+                    </tr>
+                    <tr class="form-group">
+                        <td>Description</td>
+                        <td class="tableDetailRow"><textarea class="form-control img-responsive" rows="10" cols="40" readonly>{{vm.contactView.company.companyDescription}}</textarea></td>
+                    </tr>
+                    <tr>
+                        <td>Facebook Link</td>
+                        <td class="tableDetailRow"><a href="{{vm.contactView.company.companyFacebook}}">{{vm.contactView.company.companyFacebook}}</a></td>
+                    </tr>
+                    <tr>
+                        <td>LinkedIn Link</td>
+                        <td class="tableDetailRow"><a href="{{vm.contactView.company.companyLinkedIn}}">{{vm.contactView.company.companyLinkedin}}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Twitter Link</td>
+                        <td class="tableDetailRow"><a href="{{vm.contactView.company.companyTwitter}}">{{vm.contactView.company.companyTwitter}}</a></td>
+                    </tr>
+                </table>
             </div>
-            <table class="table table-responsive" ng-hide="!vm.contactView.company">
-                <tr>
-                    <td>Name</td>
-                    <td class="tableDetailRow">{{vm.contactView.company.companyName}}</td>
-                </tr>
-                <tr>
-                    <td>Domain</td>
-                    <td class="tableDetailRow"><a href="{{vm.contactView.company.companyDomainName}}">{{vm.contactView.company.companyDomainName}}</a></td>
-                </tr>
-                <tr>
-                    <td>Industry</td>
-                    <td class="tableDetailRow">{{vm.contactView.company.companyIndustry}}</td>
-                </tr>
-                <tr>
-                    <td>Country</td>
-                    <td class="tableDetailRow">{{vm.contactView.company.companyCountry}}</td>
-                </tr>
-                <tr>
-                    <td>City</td>
-                    <td class="tableDetailRow">{{vm.contactView.company.companyCity}}</td>
-                </tr>
-                <tr>
-                    <td>State</td>
-                    <td class="tableDetailRow">{{vm.contactView.company.companyState}}</td>
-                </tr>
-                <tr>
-                    <td>Zip</td>
-                    <td class="tableDetailRow">{{vm.contactView.company.companyZip}}</td>
-                </tr>
-                <tr>
-                    <td>Address</td>
-                    <td class="tableDetailRow">{{vm.contactView.company.comapanyAddress}}</td>
-                </tr>
-                <tr>
-                    <td>Phone Number</td>
-                    <td class="tableDetailRow">{{vm.contactView.company.companyPhoneNumber}}</td>
-                </tr>
-                <tr class="form-group">
-                    <td>Description</td>
-                    <td class="tableDetailRow"><textarea class="form-control img-responsive" rows="10" cols="40" readonly>{{vm.contactView.company.companyDescription}}</textarea></td>
-                </tr>
-                <tr>
-                    <td>Facebook Link</td>
-                    <td class="tableDetailRow"><a href="{{vm.contactView.company.companyFacebook}}">{{vm.contactView.company.companyFacebook}}</a></td>
-                </tr>
-                <tr>
-                    <td>LinkedIn Link</td>
-                    <td class="tableDetailRow"><a href="{{vm.contactView.company.companyLinkedIn}}">{{vm.contactView.company.companyLinkedin}}</a></td>
-                </tr>
-                <tr>
-                    <td>Twitter Link</td>
-                    <td class="tableDetailRow"><a href="{{vm.contactView.company.companyTwitter}}">{{vm.contactView.company.companyTwitter}}</a></td>
-                </tr>
-            </table>
         </div>
-        <div class="col-md-3 col-md-offset-1 contactPanel">
-            <h3 class="text-center">Deals</h3>
-            <button class="btn btn-primary">Add Deal</button>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Stage</th>
-                        <th>Amount</th>
-                        <th>Close Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="deal in vm.contactView.deals">
-                        <td><a ui-sref="deal-info({id: deal.id})">{{deal.dealName}}</a></td>
-                        <td>{{deal.stage}}</td>
-                        <td>{{deal.amount}}</td>
-                        <td>{{deal.closeDate | date: 'short'}}</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="text-center">Deals</h3>
+                <table class="table table-hover deals_table table-responsive table-bordered table_wrap">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Stage</th>
+                            <th>Amount</th>
+                            <th>Close Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="deal in vm.contactView.deals">
+                            <td><a ui-sref="deal-info({id: deal.id})">{{deal.dealName}}</a></td>
+                            <td>{{deal.stage}}</td>
+                            <td>{{deal.amount}}</td>
+                            <td>{{deal.closeDate | date: 'short'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-primary">Add Deal</button>
+            </div>
         </div>
-        <div class="col-md-3 col-md-offset-1 contactPanel">
-            <h3 class="text-center">Tasks</h3>
-            <button class="btn btn-primary">Add Task</button>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Type</th>
-                        <th>Description</th>
-                        <th>Status</th>
-                        <th>Start Date</th>
-                        <th>Due Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="task in vm.contactView.tasks">
-                        <td>{{task.type}}</td>
-                        <td>{{task.description}}</td>
-                        <td>{{task.status}}</td>
-                        <td>{{task.startDate | date: 'short'}}</td>
-                        <td>{{task.dueDate | date: 'short'}}</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="text-center">Tasks</h3>
+                <table class="table table-hover deals_table table-responsive table-bordered table_wrap">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Due Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="task in vm.contactView.tasks">
+                            <td>{{task.type}}</td>
+                            <td>{{task.description}}</td>
+                            <td>{{task.status}}</td>
+                            <td>{{task.dueDate | date: 'short'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-primary">Add Task</button>
+            </div>
         </div>
     </div>
     <div class="col-md-7">
-        <div class="col-md-3 col-md-offset-3 btn-group" id="contactBtnGroup" role="group" aria-label="...">
+        <div class="col-md-5 col-md-offset-3 btn-group" id="contactBtnGroup" role="group" aria-label="...">
             <a ui-sref="contactDetails.interaction" class="btn btn-default">New interaction</a>
             <a ui-sref="contactDetails.note" class="btn btn-default">Contact Notes</a>
         </div>
@@ -209,13 +217,13 @@
                 </table>
             </div>
         </div>
-    </div>    
+    </div>
 </div>
 
 <style>
     .angular-google-map-container {
         height: 400px;
-        width: 445px;
+        width: 100%;
         border: 1px solid black;
         margin-top: 20px;
     }

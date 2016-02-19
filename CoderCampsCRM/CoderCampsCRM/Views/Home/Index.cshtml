@@ -52,11 +52,11 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li class="divider-vertical"></li>
-                        <li><a ui-sref="home">Home<span class="sr-only">(current)</span></a></li>
-                        <li><a ui-sref="contacts">Contacts</a></li>
-                        <li><a ui-sref="companies">Companies</a></li>
-                        <li><a ui-sref="deals.list-view">Deals</a></li>
-                        <li><a ui-sref="tasks">Tasks</a></li>
+                        <li ng-show="account.isLoggedIn()"><a ui-sref="dashboard">Dashboard</a></li>
+                        <li ng-show="account.isLoggedIn()"><a ui-sref="contacts">Contacts</a></li>
+                        <li ng-show="account.isLoggedIn()"><a ui-sref="companies">Companies</a></li>
+                        <li ng-show="account.isLoggedIn()"><a ui-sref="deals.list-view">Deals</a></li>
+                        <li ng-show="account.isLoggedIn()"><a ui-sref="tasks">Tasks</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
 

@@ -72,6 +72,7 @@
             this.contact.streetAddress = $("#streetAddress").text();
             this.contact.longitude = $("#long").text();
             this.contact.latitude = $("#lat").text();  
+            this.contact.userId = this.contactView.contact.userId;
             return this.contactService.editContact(this.contact);
         }
 
@@ -91,7 +92,8 @@
             this.contact.notes = $("#notes").text();
             this.contact.streetAddress = $("#streetAddress").text();  
             this.contact.longitude = $("#long").text();
-            this.contact.latitude = $("#lat").text();         
+            this.contact.latitude = $("#lat").text();    
+            this.contact.userId = this.contactView.contact.userId;     
             return this.contactService.editContact(this.contact);
         }
 
@@ -110,6 +112,7 @@
             this.contact.streetAddress = $("#streetAddress").text(); 
             this.contact.longitude = $("#long").text();
             this.contact.latitude = $("#lat").text();  
+            this.contact.userId = this.contactView.contact.userId;
             return this.contactService.editContact(this.contact).then(this.$state.reload());            
         }
 
