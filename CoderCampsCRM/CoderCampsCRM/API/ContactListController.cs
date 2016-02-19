@@ -35,6 +35,8 @@ namespace CoderCampsCRM.API
             {
                 if (contact.Id == 0)
                 {
+                    var userId = this.User.Identity.GetUserId();
+                    contact.UserId = userId;
                     _repo.Add(contact);
                     _repo.SaveChanges();
                     return Ok();
@@ -43,6 +45,7 @@ namespace CoderCampsCRM.API
                 {
                     var original = _repo.Find<Contact>(contact.Id);
                     original.Id = contact.Id;
+                    original.UserId = contact.UserId;
                     original.Name = contact.Name;
                     original.JobTitle = contact.JobTitle;
                     original.PhoneNumber = contact.PhoneNumber;
