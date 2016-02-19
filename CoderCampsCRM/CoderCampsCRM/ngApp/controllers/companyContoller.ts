@@ -45,7 +45,7 @@
         }
 
         public getCompanyLogItemsByRouteId() {
-            this.companyLogItemService.listCompanyLogItemsByCCompanyId(this.routeId).$promise.then((result) => {
+            this.companyLogItemService.listCompanyLogItemsByCompanyId(this.routeId).$promise.then((result) => {
                 this.companyLogItems = result;
             });
         }
@@ -221,7 +221,7 @@
         public companyLogItems;
 
         constructor(
-            //private companyLogItemService: MyApp.Services.CompanyLogItemService,
+            private companyLogItemService: MyApp.Services.CompanyLogItemService,
             private companiesService: MyApp.Services.CompaniesService,
             private dealService: MyApp.Services.DealService,
             private taskService: MyApp.Services.TaskService,
@@ -256,7 +256,7 @@
             });
         }
         public getCompanyLogItemsByRouteId() {
-            this.companyLogItemService.listCompanyLogItemsByCCompanyId(this.routeId).$promise.then((result) => {
+            this.companyLogItemService.listCompanyLogItemsByCompanyId(this.routeId).$promise.then((result) => {
                 this.companyLogItems = result;
             });
         }

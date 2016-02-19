@@ -11,6 +11,7 @@ var MyApp;
                 this.contactListResource = $resource("/api/contactListView");
                 this.locationResource = $resource("/api/locations");
                 this.contactFilterResource = $resource("/api/contactFilterView/:id");
+                this.googleContactResource = $resource("/api/contactList/:id");
             }
             ContactService.prototype.filterContacts = function (companyId, dealId, taskId) {
                 var vm = {};
@@ -26,6 +27,13 @@ var MyApp;
                 });
                 return data.$promise;
             };
+            //////////////Google Contacts /////////
+            ContactService.prototype.getGoogleContacts = function () {
+                debugger;
+                var data = this.googleContactResource.query().$promise;
+                return data;
+            };
+            ;
             ContactService.prototype.getAllContacts = function () {
                 var data = this.contactListResource.get();
                 data.$promise.then(function () {

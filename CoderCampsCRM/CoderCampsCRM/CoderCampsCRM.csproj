@@ -253,9 +253,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602190042128_initial.cs" />
-    <Compile Include="Migrations\201602190042128_initial.Designer.cs">
-      <DependentUpon>201602190042128_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201602192028566_Initial.cs" />
+    <Compile Include="Migrations\201602192028566_Initial.Designer.cs">
+      <DependentUpon>201602192028566_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602192117285_Initial2.cs" />
+    <Compile Include="Migrations\201602192117285_Initial2.Designer.cs">
+      <DependentUpon>201602192117285_Initial2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602192208165_Initial3.cs" />
+    <Compile Include="Migrations\201602192208165_Initial3.Designer.cs">
+      <DependentUpon>201602192208165_Initial3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -267,6 +275,8 @@
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Deal.cs" />
     <Compile Include="Models\DealLogItem.cs" />
+    <Compile Include="Models\ExternalLoginData.cs" />
+    <Compile Include="Models\GooglePlusAccessToken.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Movie.cs" />
@@ -1326,16 +1336,20 @@
   <ItemGroup>
     <TypeScriptCompile Include="ngApp\app.ts" />
     <TypeScriptCompile Include="ngApp\controllers\accountController.ts" />
+    <TypeScriptCompile Include="ngApp\controllers\companyInfoController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\contactAddController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\contactDetailsController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\contactListController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\companyContoller.ts" />
     <TypeScriptCompile Include="ngApp\controllers\controllers.ts" />
+    <TypeScriptCompile Include="ngApp\controllers\dashboardController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\dealController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\dealInfoController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\ProfileController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\taskController.ts" />
     <TypeScriptCompile Include="ngApp\services\accountService.ts" />
+    <TypeScriptCompile Include="ngApp\services\companyInfoController.ts" />
+    <TypeScriptCompile Include="ngApp\services\companyLogItemService.ts" />
     <TypeScriptCompile Include="ngApp\services\contactService.ts" />
     <TypeScriptCompile Include="ngApp\services\companyService.ts" />
     <TypeScriptCompile Include="ngApp\services\dealContactService.ts" />
@@ -1366,8 +1380,14 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602190042128_initial.resx">
-      <DependentUpon>201602190042128_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602192028566_Initial.resx">
+      <DependentUpon>201602192028566_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602192117285_Initial2.resx">
+      <DependentUpon>201602192117285_Initial2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602192208165_Initial3.resx">
+      <DependentUpon>201602192208165_Initial3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

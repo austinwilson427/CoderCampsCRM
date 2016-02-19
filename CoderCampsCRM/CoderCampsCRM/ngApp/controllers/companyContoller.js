@@ -30,7 +30,7 @@ var MyApp;
             };
             CompaniesController.prototype.getCompanyLogItemsByRouteId = function () {
                 var _this = this;
-                this.companyLogItemService.listCompanyLogItemsByCCompanyId(this.routeId).$promise.then(function (result) {
+                this.companyLogItemService.listCompanyLogItemsByCompanyId(this.routeId).$promise.then(function (result) {
                     _this.companyLogItems = result;
                 });
             };
@@ -154,9 +154,8 @@ var MyApp;
         })();
         Controllers.CompaniesController = CompaniesController;
         var CompanyDetailsController = (function () {
-            function CompanyDetailsController(
-                //private companyLogItemService: MyApp.Services.CompanyLogItemService,
-                companiesService, dealService, taskService, $stateParams, $state, $location, contactService, $routeParams, $route) {
+            function CompanyDetailsController(companyLogItemService, companiesService, dealService, taskService, $stateParams, $state, $location, contactService, $routeParams, $route) {
+                this.companyLogItemService = companyLogItemService;
                 this.companiesService = companiesService;
                 this.dealService = dealService;
                 this.taskService = taskService;
@@ -190,7 +189,7 @@ var MyApp;
             };
             CompanyDetailsController.prototype.getCompanyLogItemsByRouteId = function () {
                 var _this = this;
-                this.companyLogItemService.listCompanyLogItemsByCCompanyId(this.routeId).$promise.then(function (result) {
+                this.companyLogItemService.listCompanyLogItemsByCompanyId(this.routeId).$promise.then(function (result) {
                     _this.companyLogItems = result;
                 });
             };

@@ -17,9 +17,13 @@
         public companyFilter;
         public dealFilter;
         public taskFilter;
-
+        
         constructor(private contactService: MyApp.Services.ContactService, private $location: ng.ILocationService, private $uibModal: angular.ui.bootstrap.IModalService, private $state: ng.ui.IStateService) {
-            this.showAllContacts();
+            this.contactService.getGoogleContacts().then(() => {this.showAllContacts()
+
+            });
+
+
         }
 
         public updateSearchList() {

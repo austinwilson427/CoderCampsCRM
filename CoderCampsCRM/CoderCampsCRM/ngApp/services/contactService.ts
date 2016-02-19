@@ -8,14 +8,16 @@
         public contactListResource;
         public contactFilterResource;
         public locationResource;
+        public googleContactResource;
 
         constructor(private $resource: angular.resource.IResourceService) {
             this.contactResource = $resource("/api/contactList");
             this.interactionResource = $resource("/api/interactions");
             this.contactDetailResource = $resource("/api/contactDetailView/:id");
-           this.contactListResource = $resource("/api/contactListView");
+            this.contactListResource = $resource("/api/contactListView");
             this.locationResource = $resource("/api/locations");
             this.contactFilterResource = $resource("/api/contactFilterView/:id");
+            this.googleContactResource = $resource("/api/contactList/:id");
         }
 
         public filterContacts(companyId: number, dealId: number, taskId: number) {
@@ -31,6 +33,13 @@
             });
             return data.$promise;
         }
+        //////////////Google Contacts /////////
+        public getGoogleContacts() {
+            debugger;
+            let data = this.googleContactResource.query().$promise;
+            return data; 
+        };
+
 
         public getAllContacts() {
             let data = this.contactListResource.get();

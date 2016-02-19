@@ -10,6 +10,12 @@ var MyApp;
             controller: MyApp.Controllers.HomeController,
             controllerAs: 'controller'
         })
+            .state('dashboard', {
+            url: '/dashboard',
+            templateUrl: '/ngApp/views/dashboard.html',
+            controller: MyApp.Controllers.DashboardController,
+            controllerAs: 'vm'
+        })
             .state('externalRegister', {
             url: '/externalRegister',
             templateUrl: '/ngApp/views/externalRegister.html',

@@ -18,7 +18,7 @@
             return this.companyResource.get({ id: id });
         }
 
-        public listCompanyLogItemsByDealId(id) {
+        public listCompanyLogItemsByCompanyId(id) {
             return this.companyResourceFromCompany.query({ id: id });
         }
 
