@@ -22,6 +22,7 @@ namespace CoderCampsCRM.Tests
             var mockDealRepository = new Mock<IDealRepository>();
             mockDealRepository.Setup(x => x.getAllDealViewModels()).Returns(new DealViewModel
             {
+                
                 DealList = new List<Deal>
                 {
                     new Deal

@@ -12,13 +12,24 @@ var MyApp;
                 this.$route = $route;
                 this.$location = $location;
                 this.routeId = $stateParams["id"];
-                this.getDeal();
+                this.getDealOwned();
+                this.getDealShared();
                 this.getDealLogItemsByRouteId();
                 this.getContactsByDealId();
+                this.getSharersByDealId();
             }
-            DealInfoController.prototype.getDeal = function () {
+            DealInfoController.prototype.getDealShared = function () {
                 var _this = this;
-                this.dealService.getDealByDealId(this.routeId).$promise.then(function (result) {
+                this.dealService.getDealsSharedByDealId(this.routeId).$promise.then(function (result) {
+                    console.log(result);
+                    _this.dealInfo = result;
+                    _this.company = result.company;
+                });
+            };
+            DealInfoController.prototype.getDealOwned = function () {
+                var _this = this;
+                this.dealService.getDealsOwnedByDealId(this.routeId).$promise.then(function (result) {
+                    console.log(result);
                     _this.dealInfo = result;
                     _this.company = result.company;
                 });
@@ -45,11 +56,29 @@ var MyApp;
                     });
                 });
             };
+            DealInfoController.prototype.getSharersByDealId = function () {
+                var _this = this;
+                this.dealContactService.getAllDealSharersByDealId(this.routeId).$promise.then(function (result) {
+                    _this.dealSharers = result;
+                    _this.contactService.getAllContacts().then(function (result) {
+                        _this.allRemainingSharers = result;
+                        for (var i = 0; i < _this.dealSharers.length; i++) {
+                            for (var j = 0; j < _this.allRemainingSharers.contacts.length; j++) {
+                                if (_this.allRemainingSharers.contacts[j].id == _this.dealSharers[i].contactId) {
+                                    _this.allRemainingSharers.contacts.splice(j, 1);
+                                }
+                            }
+                        }
+                    });
+                    console.log(_this.dealSharers);
+                });
+            };
             DealInfoController.prototype.addDealContact = function () {
                 var _this = this;
                 var dealContactToAdd = {
                     dealId: null,
-                    contactId: null
+                    contactId: null,
+                    isDealSharer: false
                 };
                 dealContactToAdd.dealId = this.routeId;
                 dealContactToAdd.contactId = this.contactIdToAdd;
@@ -57,10 +86,29 @@ var MyApp;
                     _this.getContactsByDealId();
                 });
             };
+            DealInfoController.prototype.addShareholderContact = function () {
+                var _this = this;
+                var dealContactToAdd = {
+                    dealId: null,
+                    contactId: null,
+                    isDealSharer: true
+                };
+                dealContactToAdd.dealId = this.routeId;
+                dealContactToAdd.contactId = this.contactIdToAdd;
+                this.dealContactService.saveDealContact(dealContactToAdd).then(function (result) {
+                    _this.getSharersByDealId();
+                });
+            };
             DealInfoController.prototype.deleteDealContact = function (id) {
                 var _this = this;
                 this.dealContactService.deleteDealContact(id).then(function (result) {
                     _this.getContactsByDealId();
+                });
+            };
+            DealInfoController.prototype.deleteShareContact = function (id) {
+                var _this = this;
+                this.dealContactService.deleteDealContact(id).then(function (result) {
+                    _this.getSharersByDealId();
                 });
             };
             return DealInfoController;
@@ -74,11 +122,20 @@ var MyApp;
                 this.$location = $location;
                 this.$route = $route;
                 this.routeId = $stateParams["id"];
+                this.getDealShared();
                 this.getDeal();
             }
+            DealInfoNoteController.prototype.getDealShared = function () {
+                var _this = this;
+                this.dealService.getDealsSharedByDealId(this.routeId).$promise.then(function (result) {
+                    console.log(result);
+                    _this.dealInfo = result;
+                    _this.company = result.company;
+                });
+            };
             DealInfoNoteController.prototype.getDeal = function () {
                 var _this = this;
-                this.dealService.getDealByDealId(this.routeId).$promise.then(function (result) {
+                this.dealService.getDealsOwnedByDealId(this.routeId).$promise.then(function (result) {
                     _this.dealInfo = result;
                 });
             };
@@ -96,11 +153,6 @@ var MyApp;
                 noteToSubmit.type = "Note";
                 noteToSubmit.content = this.noteContent;
                 noteToSubmit.dealId = this.dealInfo.id;
-                /*Temporary ContactId*/
-                //noteToSubmit.contactId = 1;
-                /*Temporary SubmittedBy*/
-                noteToSubmit.submittedBy = "Austin Wilson";
-                console.log(noteToSubmit);
                 this.dealLogItemService.saveDealLogItem(noteToSubmit).then(function () {
                     location.reload(false);
                 }).catch(function (error) {
@@ -127,6 +179,7 @@ var MyApp;
                 this.timeSelected = 48;
                 this.timeToAdd = 720;
                 this.routeId = $stateParams["id"];
+                this.getDealShared();
                 this.getDeal();
                 this.timeObject = [
                     { value: 0, display: '12:00 AM' },
@@ -227,9 +280,17 @@ var MyApp;
                     { value: 95, display: '11:45 PM' }
                 ];
             }
+            DealInfoActivityController.prototype.getDealShared = function () {
+                var _this = this;
+                this.dealService.getDealsSharedByDealId(this.routeId).$promise.then(function (result) {
+                    console.log(result);
+                    _this.dealInfo = result;
+                    _this.company = result.company;
+                });
+            };
             DealInfoActivityController.prototype.getDeal = function () {
                 var _this = this;
-                this.dealService.getDealByDealId(this.routeId).$promise.then(function (result) {
+                this.dealService.getDealsOwnedByDealId(this.routeId).$promise.then(function (result) {
                     _this.dealInfo = result;
                 });
             };
@@ -255,10 +316,6 @@ var MyApp;
                 activityToSubmit.type = "Activity";
                 activityToSubmit.content = this.activityContent;
                 activityToSubmit.dealId = this.dealInfo.id;
-                /*Temporary ContactId*/
-                activityToSubmit.contactId = 1;
-                /*Temporary SubmittedBy*/
-                activityToSubmit.submittedBy = "Austin Wilson";
                 this.dealLogItemService.saveDealLogItem(activityToSubmit).then(function () {
                     location.reload(false);
                 }).catch(function (error) {
@@ -284,15 +341,24 @@ var MyApp;
                 this.$route = $route;
                 this.taskService = taskService;
                 this.contactService = contactService;
-                this.contactService.getAllContacts().$promise.then(function (result) {
+                this.contactService.getAllContacts().then(function (result) {
                     _this.myContacts = result.contacts;
                     _this.routeId = $stateParams["id"];
+                    _this.getDealShared();
                     _this.getDeal();
                 });
             }
+            DealInfoTaskController.prototype.getDealShared = function () {
+                var _this = this;
+                this.dealService.getDealsSharedByDealId(this.routeId).$promise.then(function (result) {
+                    console.log(result);
+                    _this.dealInfo = result;
+                    _this.company = result.company;
+                });
+            };
             DealInfoTaskController.prototype.getDeal = function () {
                 var _this = this;
-                this.dealService.getDealByDealId(this.routeId).$promise.then(function (result) {
+                this.dealService.getDealsOwnedByDealId(this.routeId).$promise.then(function (result) {
                     _this.dealInfo = result;
                 });
             };
@@ -314,8 +380,6 @@ var MyApp;
                 taskToSubmit.dealId = this.dealInfo.id;
                 /*Temporary ContactId*/
                 taskToSubmit.contactId = this.assignedTo;
-                /*Temporary SubmittedBy*/
-                taskToSubmit.submittedBy = "Austin Wilson";
                 this.dealLogItemService.saveDealLogItem(taskToSubmit).then(function (result) {
                     var formatTask = {
                         type: _this.typeSelected,
@@ -349,4 +413,3 @@ var MyApp;
         Controllers.DealInfoEventController = DealInfoEventController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=dealInfoController.js.map

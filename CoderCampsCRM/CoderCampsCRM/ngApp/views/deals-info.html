@@ -119,6 +119,22 @@
     <div class="col-md-6">
         <div class="row">
             <div class="col-md-12">
+                <label>Deal Sharers</label>
+                <div class="row">
+                    <div ng-repeat="sharer in vm.dealSharers" class="col-md-3">
+                        {{sharer.contact.name}} <a href="#" ng-click="vm.deleteShareContact(sharer.id)"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a>
+                    </div>
+                </div>
+                <div class="contact_to_add form-group">
+                    <label class="text-center">Select Contact To Add As A Deal Sharer</label>
+                    <select ng-model="vm.contactIdToAdd" ng-change="vm.addShareholderContact()" class="form-control full">
+                        <option value="{{remaining.id}}" ng-repeat="remaining in vm.allRemainingSharers.contacts">{{remaining.name}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
                 <div class="activity_button_wrap btn-group" role="group" aria-label="...">
                     <a ui-sref="deal-info.note" class="btn btn-default">New Note</a>
                     <a ui-sref="deal-info.activity" class="btn btn-default">Log Activity</a>

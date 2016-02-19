@@ -257,6 +257,18 @@
     <Compile Include="Migrations\201602181858339_initial.Designer.cs">
       <DependentUpon>201602181858339_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602191328581_initial1.cs" />
+    <Compile Include="Migrations\201602191328581_initial1.Designer.cs">
+      <DependentUpon>201602191328581_initial1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602191338290_initial2.cs" />
+    <Compile Include="Migrations\201602191338290_initial2.Designer.cs">
+      <DependentUpon>201602191338290_initial2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602191450032_initial3.cs" />
+    <Compile Include="Migrations\201602191450032_initial3.Designer.cs">
+      <DependentUpon>201602191450032_initial3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -284,8 +296,8 @@
     <Compile Include="Repositories\ContactListViewRepository.cs" />
     <Compile Include="Repositories\DealRepository.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
-    <Compile Include="Repositories\Interfaces\IContactListViewRepository.cs" />
     <Compile Include="Repositories\Interfaces\IDealRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IContactListViewRepository.cs" />
     <Compile Include="Repositories\Interfaces\ICompanyRepository.cs" />
     <Compile Include="Repositories\Interfaces\IContactDetailViewRepository.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -293,6 +305,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\queries.css" />
     <Content Include="Content\tc-charts.css" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
@@ -1370,6 +1383,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201602181858339_initial.resx">
       <DependentUpon>201602181858339_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602191328581_initial1.resx">
+      <DependentUpon>201602191328581_initial1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602191338290_initial2.resx">
+      <DependentUpon>201602191338290_initial2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602191450032_initial3.resx">
+      <DependentUpon>201602191450032_initial3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

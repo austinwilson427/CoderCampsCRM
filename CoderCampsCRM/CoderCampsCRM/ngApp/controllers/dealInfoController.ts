@@ -9,16 +9,31 @@
         public dealContacts;
         public allContacts;
         public contactIdToAdd;
+        public dealSharers;
+        public allRemainingSharers;
 
         constructor(private dealService: MyApp.Services.DealService, private $stateParams: ng.ui.IStateParamsService, private dealLogItemService: MyApp.Services.DealLogItemService, private dealContactService: MyApp.Services.DealContactService, private contactService: MyApp.Services.ContactService, private $route: ng.route.IRouteService, private $location: ng.ILocationService) {
             this.routeId = $stateParams["id"];
-            this.getDeal();
+
+            this.getDealOwned();
+            this.getDealShared();
+
             this.getDealLogItemsByRouteId();
             this.getContactsByDealId();
+            this.getSharersByDealId();
         }
 
-        public getDeal() {
-            this.dealService.getDealByDealId(this.routeId).$promise.then((result) => {
+        public getDealShared() {
+            this.dealService.getDealsSharedByDealId(this.routeId).$promise.then((result) => {
+                console.log(result);
+                this.dealInfo = result;
+                this.company = result.company;
+            });
+        }
+
+        public getDealOwned() {
+            this.dealService.getDealsOwnedByDealId(this.routeId).$promise.then((result) => {
+                console.log(result);
                 this.dealInfo = result;
                 this.company = result.company;
             });
@@ -48,10 +63,28 @@
 
         }
 
+        public getSharersByDealId() {
+            this.dealContactService.getAllDealSharersByDealId(this.routeId).$promise.then((result) => {
+                this.dealSharers = result;
+                this.contactService.getAllContacts().then((result) => {
+                    this.allRemainingSharers = result;
+                    for (var i = 0; i < this.dealSharers.length; i++) {
+                        for (var j = 0; j < this.allRemainingSharers.contacts.length; j++) {
+                            if (this.allRemainingSharers.contacts[j].id == this.dealSharers[i].contactId) {
+                                this.allRemainingSharers.contacts.splice(j, 1);
+                            }
+                        }
+                    }
+                });
+                console.log(this.dealSharers);
+            });
+        }
+
         public addDealContact() {
             let dealContactToAdd = {
                 dealId: null,
-                contactId: null
+                contactId: null,
+                isDealSharer: false
             }
             dealContactToAdd.dealId = this.routeId;
             dealContactToAdd.contactId = this.contactIdToAdd;
@@ -62,9 +95,29 @@
 
         }
 
+        public addShareholderContact() {
+                let dealContactToAdd = {
+                    dealId: null,
+                    contactId: null,
+                    isDealSharer: true
+                }
+                dealContactToAdd.dealId = this.routeId;
+                dealContactToAdd.contactId = this.contactIdToAdd;
+
+                this.dealContactService.saveDealContact(dealContactToAdd).then((result) => {
+                    this.getSharersByDealId();
+                });
+        }
+
         public deleteDealContact(id) {
-            this.dealContactService.deleteDealContact(id).then((result) => {                
+            this.dealContactService.deleteDealContact(id).then((result) => {
                 this.getContactsByDealId();
+            });
+        }
+
+        public deleteShareContact(id) {
+            this.dealContactService.deleteDealContact(id).then((result) => {
+                this.getSharersByDealId();
             });
         }
     }
@@ -79,11 +132,20 @@
 
         constructor(private $stateParams: ng.ui.IStateParamsService, private dealService: MyApp.Services.DealService, private dealLogItemService: MyApp.Services.DealLogItemService, private $location: ng.ILocationService, private $route: ng.route.IRouteService) {
             this.routeId = $stateParams["id"];
+            this.getDealShared();
             this.getDeal();
         }
 
+        public getDealShared() {
+            this.dealService.getDealsSharedByDealId(this.routeId).$promise.then((result) => {
+                console.log(result);
+                this.dealInfo = result;
+                this.company = result.company;
+            });
+        }
+
         public getDeal() {
-            this.dealService.getDealByDealId(this.routeId).$promise.then((result) => {
+            this.dealService.getDealsOwnedByDealId(this.routeId).$promise.then((result) => {
                 this.dealInfo = result;
             });
         }
@@ -101,11 +163,7 @@
             noteToSubmit.type = "Note";
             noteToSubmit.content = this.noteContent;
             noteToSubmit.dealId = this.dealInfo.id;
-            /*Temporary ContactId*/
-            //noteToSubmit.contactId = 1;
-            /*Temporary SubmittedBy*/
-            noteToSubmit.submittedBy = "Austin Wilson";
-            console.log(noteToSubmit);
+
             this.dealLogItemService.saveDealLogItem(noteToSubmit).then(() => {
                 location.reload(false);
             }).catch((error) => {
@@ -135,12 +193,14 @@
         public routeId;
         public dealInfo;
         public validationErrors;
+        public company;
 
         constructor(private $stateParams: ng.ui.IStateParamsService, private dealService: MyApp.Services.DealService, private dealLogItemService: MyApp.Services.DealLogItemService, private $location: ng.ILocationService, private $route: ng.route.IRouteService) {
             this.formatDate = new Date();
             this.timeSelected = 48;
             this.timeToAdd = 720;
             this.routeId = $stateParams["id"];
+            this.getDealShared();
             this.getDeal();
             this.timeObject = [
                 { value: 0, display: '12:00 AM' },
@@ -242,8 +302,16 @@
             ]
         }
 
+        public getDealShared() {
+            this.dealService.getDealsSharedByDealId(this.routeId).$promise.then((result) => {
+                console.log(result);
+                this.dealInfo = result;
+                this.company = result.company;
+            });
+        }
+
         public getDeal() {
-            this.dealService.getDealByDealId(this.routeId).$promise.then((result) => {
+            this.dealService.getDealsOwnedByDealId(this.routeId).$promise.then((result) => {
                 this.dealInfo = result;
             });
         }
@@ -272,10 +340,6 @@
             activityToSubmit.type = "Activity";
             activityToSubmit.content = this.activityContent;
             activityToSubmit.dealId = this.dealInfo.id;
-            /*Temporary ContactId*/
-            activityToSubmit.contactId = 1;
-            /*Temporary SubmittedBy*/
-            activityToSubmit.submittedBy = "Austin Wilson";
 
             this.dealLogItemService.saveDealLogItem(activityToSubmit).then(() => {
                 location.reload(false);
@@ -305,17 +369,27 @@
         public taskContent;
         public dealInfo;
         public myContacts;
+        public company;
 
         constructor(private $stateParams: ng.ui.IStateParamsService, private dealService: MyApp.Services.DealService, private dealLogItemService: MyApp.Services.DealLogItemService, private $location: ng.ILocationService, private $route: ng.route.IRouteService, private taskService: MyApp.Services.TaskService, private contactService: MyApp.Services.ContactService) {
-            this.contactService.getAllContacts().$promise.then((result) => {
+            this.contactService.getAllContacts().then((result) => {
                 this.myContacts = result.contacts;
                 this.routeId = $stateParams["id"];
+                this.getDealShared();
                 this.getDeal();
             });
         }
 
+        public getDealShared() {
+            this.dealService.getDealsSharedByDealId(this.routeId).$promise.then((result) => {
+                console.log(result);
+                this.dealInfo = result;
+                this.company = result.company;
+            });
+        }
+
         public getDeal() {
-            this.dealService.getDealByDealId(this.routeId).$promise.then((result) => {
+            this.dealService.getDealsOwnedByDealId(this.routeId).$promise.then((result) => {
                 this.dealInfo = result;
             });
         }
@@ -338,8 +412,6 @@
             taskToSubmit.dealId = this.dealInfo.id;
             /*Temporary ContactId*/
             taskToSubmit.contactId = this.assignedTo;
-            /*Temporary SubmittedBy*/
-            taskToSubmit.submittedBy = "Austin Wilson";
 
             this.dealLogItemService.saveDealLogItem(taskToSubmit).then((result) => {
                 let formatTask = {

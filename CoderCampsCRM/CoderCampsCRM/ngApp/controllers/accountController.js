@@ -51,6 +51,7 @@ var MyApp;
             }
             LoginController.prototype.login = function () {
                 var _this = this;
+                console.log(this.loginUser);
                 this.accountService.login(this.loginUser).then(function () {
                     _this.closeModal();
                     _this.$location.path('/dashboard');
@@ -216,4 +217,3 @@ var MyApp;
         Controllers.ConfirmEmailController = ConfirmEmailController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=accountController.js.map

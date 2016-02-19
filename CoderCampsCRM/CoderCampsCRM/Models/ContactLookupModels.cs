@@ -15,6 +15,7 @@ namespace CoderCampsCRM.Models
         public int ContactId { get; set; }
         [ForeignKey("ContactId")]
         public Contact Contact { get; set; }
+        public Boolean isDealSharer { get; set; }
     }
 
     public class TaskContact

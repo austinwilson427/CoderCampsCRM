@@ -28,8 +28,8 @@ var MyApp;
             }
             DealsListViewController.prototype.filterBySelection = function () {
                 var _this = this;
-                this.dealService.listAllDeals().$promise.then(function (result) {
-                    _this.allDeals = [];
+                this.dealService.listAllDealsOwned().$promise.then(function (result) {
+                    _this.allDealsOwned = [];
                     var today = new Date();
                     var today_num = today.setDate(today.getDate());
                     var today_month = new Date().getMonth();
@@ -70,9 +70,9 @@ var MyApp;
                             filteredDates.push(result[i_1]);
                         }
                     }
-                    _this.allDeals = filteredDates;
+                    _this.allDealsOwned = filteredDates;
                     var filteredAmounts = [];
-                    for (var i in _this.allDeals) {
+                    for (var i in _this.allDealsOwned) {
                         var minimumAmount = _this.minAmount;
                         var maximumAmount = _this.maxAmount;
                         if (minimumAmount == undefined) {
@@ -81,50 +81,50 @@ var MyApp;
                         if (maximumAmount == undefined || maximumAmount == 0) {
                             maximumAmount = 100000000000;
                         }
-                        if (_this.allDeals[i].amount > minimumAmount && _this.allDeals[i].amount < maximumAmount) {
-                            filteredAmounts.push(_this.allDeals[i]);
+                        if (_this.allDealsOwned[i].amount > minimumAmount && _this.allDealsOwned[i].amount < maximumAmount) {
+                            filteredAmounts.push(_this.allDealsOwned[i]);
                         }
                     }
-                    _this.allDeals = filteredAmounts;
+                    _this.allDealsOwned = filteredAmounts;
                     var filteredStages = [];
-                    for (var i in _this.allDeals) {
-                        if (_this.stageFilter == 1 && _this.allDeals[i].stage == "Appointment Scheduled") {
-                            filteredStages.push(_this.allDeals[i]);
+                    for (var i in _this.allDealsOwned) {
+                        if (_this.stageFilter == 1 && _this.allDealsOwned[i].stage == "Appointment Scheduled") {
+                            filteredStages.push(_this.allDealsOwned[i]);
                         }
-                        else if (_this.stageFilter == 2 && _this.allDeals[i].stage == "Qualified to Buy") {
-                            filteredStages.push(_this.allDeals[i]);
+                        else if (_this.stageFilter == 2 && _this.allDealsOwned[i].stage == "Qualified to Buy") {
+                            filteredStages.push(_this.allDealsOwned[i]);
                         }
-                        else if (_this.stageFilter == 3 && _this.allDeals[i].stage == "Presentation Scheduled") {
-                            filteredStages.push(_this.allDeals[i]);
+                        else if (_this.stageFilter == 3 && _this.allDealsOwned[i].stage == "Presentation Scheduled") {
+                            filteredStages.push(_this.allDealsOwned[i]);
                         }
-                        else if (_this.stageFilter == 4 && _this.allDeals[i].stage == "Decision Maker Bought In") {
-                            filteredStages.push(_this.allDeals[i]);
+                        else if (_this.stageFilter == 4 && _this.allDealsOwned[i].stage == "Decision Maker Bought In") {
+                            filteredStages.push(_this.allDealsOwned[i]);
                         }
-                        else if (_this.stageFilter == 5 && _this.allDeals[i].stage == "Contract Sent") {
-                            filteredStages.push(_this.allDeals[i]);
+                        else if (_this.stageFilter == 5 && _this.allDealsOwned[i].stage == "Contract Sent") {
+                            filteredStages.push(_this.allDealsOwned[i]);
                         }
-                        else if (_this.stageFilter == 6 && _this.allDeals[i].stage == "Closed Won") {
-                            filteredStages.push(_this.allDeals[i]);
+                        else if (_this.stageFilter == 6 && _this.allDealsOwned[i].stage == "Closed Won") {
+                            filteredStages.push(_this.allDealsOwned[i]);
                         }
-                        else if (_this.stageFilter == 7 && _this.allDeals[i].stage == "Closed Lost") {
-                            filteredStages.push(_this.allDeals[i]);
+                        else if (_this.stageFilter == 7 && _this.allDealsOwned[i].stage == "Closed Lost") {
+                            filteredStages.push(_this.allDealsOwned[i]);
                         }
                         else if (_this.stageFilter == 0) {
-                            filteredStages.push(_this.allDeals[i]);
+                            filteredStages.push(_this.allDealsOwned[i]);
                         }
                     }
-                    _this.allDeals = filteredStages;
+                    _this.allDealsOwned = filteredStages;
                     var filterArchived = [];
-                    for (var i in _this.allDeals) {
-                        if (_this.allDeals[i].isArchived == false) {
-                            filterArchived.push(_this.allDeals[i]);
+                    for (var i in _this.allDealsOwned) {
+                        if (_this.allDealsOwned[i].isArchived == false) {
+                            filterArchived.push(_this.allDealsOwned[i]);
                         }
-                        else if (_this.allDeals[i].isArchived == true && _this.showArchived == true) {
-                            filterArchived.push(_this.allDeals[i]);
+                        else if (_this.allDealsOwned[i].isArchived == true && _this.showArchived == true) {
+                            filterArchived.push(_this.allDealsOwned[i]);
                         }
                     }
-                    _this.allDeals = filterArchived;
-                    var itemsFiltered = _this.allDeals;
+                    _this.allDealsOwned = filterArchived;
+                    var itemsFiltered = _this.allDealsOwned;
                     itemsFiltered.sort(function (a, b) {
                         if (_this.sortName == "amount" || _this.sortName == "-amount") {
                             if (a.amount == b.amount) {
@@ -279,7 +279,278 @@ var MyApp;
                         }
                         itemPagFilter[k] = itemsFiltered[k];
                     }
-                    _this.allDeals = itemPagFilter;
+                    _this.allDealsOwned = itemPagFilter;
+                    _this.filterBySelectionShared();
+                });
+            };
+            DealsListViewController.prototype.filterBySelectionShared = function () {
+                var _this = this;
+                this.dealService.listAllDealsShared().$promise.then(function (result) {
+                    _this.allDealsShared = [];
+                    for (var i = 0; i < result.length; i++) {
+                        _this.allDealsShared.push(result[i].deal);
+                    }
+                    result = _this.allDealsShared;
+                    _this.allDealsShared = [];
+                    var today = new Date();
+                    var today_num = today.setDate(today.getDate());
+                    var today_month = new Date().getMonth();
+                    var today_date = new Date().getDate();
+                    var today_year = new Date().getFullYear();
+                    var week_from_today = today.setDate(today.getDate() + 7);
+                    var month_from_today = today.setDate(today.getDate() + 24); //Adding 24 + 7 for 31 days
+                    var filteredDates = [];
+                    for (var i_2 = 0; i_2 < result.length; i_2++) {
+                        var inner_full = new Date(result[i_2].closeDate);
+                        var inner_full_num = inner_full.setDate(inner_full.getDate());
+                        var inner_set = inner_full.setDate(inner_full.getDate());
+                        var inner_month = new Date(result[i_2].closeDate).getMonth();
+                        var inner_date = new Date(result[i_2].closeDate).getDate();
+                        var inner_year = new Date(result[i_2].closeDate).getFullYear();
+                        if (_this.dateFilter == "today") {
+                            if (today_month == inner_month && today_date == inner_date && today_year == inner_year) {
+                                filteredDates.push(result[i_2]);
+                            }
+                        }
+                        else if (_this.dateFilter == "week") {
+                            if (inner_set < week_from_today && inner_full_num >= today_num) {
+                                filteredDates.push(result[i_2]);
+                            }
+                            else if (today_month == inner_month && today_date == inner_date && today_year == inner_year) {
+                                filteredDates.push(result[i_2]);
+                            }
+                        }
+                        else if (_this.dateFilter == "month") {
+                            if (inner_set < month_from_today && inner_full_num >= today_num) {
+                                filteredDates.push(result[i_2]);
+                            }
+                            else if (today_month == inner_month && today_date == inner_date && today_year == inner_year) {
+                                filteredDates.push(result[i_2]);
+                            }
+                        }
+                        else {
+                            filteredDates.push(result[i_2]);
+                        }
+                    }
+                    _this.allDealsShared = filteredDates;
+                    var filteredAmounts = [];
+                    for (var j in _this.allDealsShared) {
+                        var minimumAmount = _this.minAmount;
+                        var maximumAmount = _this.maxAmount;
+                        if (minimumAmount == undefined) {
+                            minimumAmount = 0;
+                        }
+                        if (maximumAmount == undefined || maximumAmount == 0) {
+                            maximumAmount = 100000000000;
+                        }
+                        if (_this.allDealsShared[j].amount > minimumAmount && _this.allDealsShared[j].amount < maximumAmount) {
+                            filteredAmounts.push(_this.allDealsShared[j]);
+                        }
+                    }
+                    _this.allDealsShared = filteredAmounts;
+                    var filteredStages = [];
+                    for (var k in _this.allDealsShared) {
+                        if (_this.stageFilter == 1 && _this.allDealsShared[k].stage == "Appointment Scheduled") {
+                            filteredStages.push(_this.allDealsShared[k]);
+                        }
+                        else if (_this.stageFilter == 2 && _this.allDealsShared[k].stage == "Qualified to Buy") {
+                            filteredStages.push(_this.allDealsShared[k]);
+                        }
+                        else if (_this.stageFilter == 3 && _this.allDealsShared[k].stage == "Presentation Scheduled") {
+                            filteredStages.push(_this.allDealsShared[k]);
+                        }
+                        else if (_this.stageFilter == 4 && _this.allDealsShared[k].stage == "Decision Maker Bought In") {
+                            filteredStages.push(_this.allDealsShared[k]);
+                        }
+                        else if (_this.stageFilter == 5 && _this.allDealsShared[k].stage == "Contract Sent") {
+                            filteredStages.push(_this.allDealsShared[k]);
+                        }
+                        else if (_this.stageFilter == 6 && _this.allDealsShared[k].stage == "Closed Won") {
+                            filteredStages.push(_this.allDealsShared[k]);
+                        }
+                        else if (_this.stageFilter == 7 && _this.allDealsShared[k].stage == "Closed Lost") {
+                            filteredStages.push(_this.allDealsShared[k]);
+                        }
+                        else if (_this.stageFilter == 0) {
+                            filteredStages.push(_this.allDealsShared[k]);
+                        }
+                    }
+                    _this.allDealsShared = filteredStages;
+                    var filterArchived = [];
+                    for (var m in _this.allDealsShared) {
+                        if (_this.allDealsShared[m].isArchived == false) {
+                            filterArchived.push(_this.allDealsShared[m]);
+                        }
+                        else if (_this.allDealsShared[m].isArchived == true && _this.showArchived == true) {
+                            filterArchived.push(_this.allDealsShared[m]);
+                        }
+                    }
+                    _this.allDealsShared = filterArchived;
+                    var itemsFiltered = _this.allDealsShared;
+                    itemsFiltered.sort(function (a, b) {
+                        if (_this.sortName == "amount" || _this.sortName == "-amount") {
+                            if (a.amount == b.amount) {
+                                return 0;
+                            }
+                            else {
+                                if (a.amount > b.amount) {
+                                    if (_this.sortName == "amount") {
+                                        return 1;
+                                    }
+                                    else {
+                                        return -1;
+                                    }
+                                }
+                                else if (a.amount < b.amount) {
+                                    if (_this.sortName == "amount") {
+                                        return -1;
+                                    }
+                                    else {
+                                        return 1;
+                                    }
+                                }
+                            }
+                        }
+                        else if (_this.sortName == "dealName" || _this.sortName == "-dealName") {
+                            if (a.dealName == b.dealName) {
+                                return 0;
+                            }
+                            else {
+                                if (a.dealName > b.dealName) {
+                                    if (_this.sortName == "dealName") {
+                                        return 1;
+                                    }
+                                    else {
+                                        return -1;
+                                    }
+                                }
+                                else if (a.dealName < b.dealName) {
+                                    if (_this.sortName == "dealName") {
+                                        return -1;
+                                    }
+                                    else {
+                                        return 1;
+                                    }
+                                }
+                            }
+                        }
+                        else if (_this.sortName == "stage" || _this.sortName == "-stage") {
+                            if (a.stage == b.stage) {
+                                return 0;
+                            }
+                            else {
+                                if (a.stage > b.stage) {
+                                    if (_this.sortName == "stage") {
+                                        return 1;
+                                    }
+                                    else {
+                                        return -1;
+                                    }
+                                }
+                                else if (a.stage < b.stage) {
+                                    if (_this.sortName == "stage") {
+                                        return -1;
+                                    }
+                                    else {
+                                        return 1;
+                                    }
+                                }
+                            }
+                        }
+                        else if (_this.sortName == "closeDate" || _this.sortName == "-closeDate") {
+                            if (a.closeDate == b.closeDate) {
+                                return 0;
+                            }
+                            else {
+                                if (a.closeDate > b.closeDate) {
+                                    if (_this.sortName == "closeDate") {
+                                        return 1;
+                                    }
+                                    else {
+                                        return -1;
+                                    }
+                                }
+                                else if (a.closeDate < b.closeDate) {
+                                    if (_this.sortName == "closeDate") {
+                                        return -1;
+                                    }
+                                    else {
+                                        return 1;
+                                    }
+                                }
+                            }
+                        }
+                        else if (_this.sortName == "dealOwner" || _this.sortName == "-dealOwner") {
+                            if (a.contact.name == b.contact.name) {
+                                return 0;
+                            }
+                            else {
+                                if (a.contact.name > b.contact.name) {
+                                    if (_this.sortName == "dealOwner") {
+                                        return 1;
+                                    }
+                                    else {
+                                        return -1;
+                                    }
+                                }
+                                else if (a.contact.name < b.contact.name) {
+                                    if (_this.sortName == "dealOwner") {
+                                        return -1;
+                                    }
+                                    else {
+                                        return 1;
+                                    }
+                                }
+                            }
+                        }
+                        else if (_this.sortName == "company" || _this.sortName == "-company") {
+                            if (a.company.companyName == b.company.companyName) {
+                                return 0;
+                            }
+                            else {
+                                if (a.company.companyName > b.company.companyName) {
+                                    if (_this.sortName == "dealOwner") {
+                                        return 1;
+                                    }
+                                    else {
+                                        return -1;
+                                    }
+                                }
+                                else if (a.company.companyName < b.company.companyName) {
+                                    if (_this.sortName == "dealOwner") {
+                                        return -1;
+                                    }
+                                    else {
+                                        return 1;
+                                    }
+                                }
+                            }
+                        }
+                    });
+                    _this.totalPages = Math.ceil(itemsFiltered.length / _this.itemsPerPage);
+                    _this.pagesArray = [];
+                    for (var n = 1; n <= _this.totalPages; n++) {
+                        _this.pagesArray.push(n);
+                    }
+                    var itemPagFilter = [];
+                    var start = (_this.currentPage - 1) * _this.itemsPerPage;
+                    var end = start + _this.itemsPerPage;
+                    for (var k_1 = start; k_1 < end; k_1++) {
+                        if (!itemsFiltered[k_1]) {
+                            break;
+                        }
+                        itemPagFilter[k_1] = itemsFiltered[k_1];
+                    }
+                    _this.allDealsShared = itemPagFilter;
+                    var allDeals = [];
+                    for (var i = 0; i < _this.allDealsOwned.length; i++) {
+                        allDeals.push(_this.allDealsOwned[i]);
+                    }
+                    for (var p = 0; p < _this.allDealsShared.length; p++) {
+                        allDeals.push(_this.allDealsShared[p]);
+                    }
+                    _this.allDeals = allDeals;
+                    console.log(_this.allDeals);
                 });
             };
             DealsListViewController.prototype.paginate = function (page) {
@@ -329,18 +600,6 @@ var MyApp;
                 }
                 this.currentPage++;
                 this.filterBySelection();
-            };
-            DealsListViewController.prototype.getAllItems = function () {
-                var _this = this;
-                this.dealService.listAllDeals().$promise.then(function (result) {
-                    _this.allDeals = [];
-                    var company;
-                    for (var i = 0; i < result.length; i++) {
-                        //company = this.companiesService.getCompany(result[i].companyId);
-                        //result[i].company = company;
-                        _this.allDeals.push(result[i]);
-                    }
-                });
             };
             DealsListViewController.prototype.sortBy = function (field) {
                 this.currentPage = 1;
@@ -476,7 +735,7 @@ var MyApp;
             }
             AddDealModal.prototype.getMyContacts = function () {
                 var _this = this;
-                this.contactService.getAllContacts().$promise.then(function (result) {
+                this.contactService.getAllContacts().then(function (result) {
                     _this.myContacts = result;
                 });
             };
@@ -520,7 +779,7 @@ var MyApp;
             }
             EditDealModal.prototype.getMyContacts = function () {
                 var _this = this;
-                this.contactService.getAllContacts().$promise.then(function (result) {
+                this.contactService.getAllContacts().then(function (result) {
                     _this.myContacts = result;
                 });
             };
@@ -550,12 +809,13 @@ var MyApp;
             return EditDealModal;
         })();
         var DeleteDealModal = (function () {
-            function DeleteDealModal(dealService, $location, $uibModalInstance, dealsToDelete, $route) {
+            function DeleteDealModal(dealService, $location, $uibModalInstance, dealsToDelete, $route, dealLogItemService) {
                 this.dealService = dealService;
                 this.$location = $location;
                 this.$uibModalInstance = $uibModalInstance;
                 this.dealsToDelete = dealsToDelete;
                 this.$route = $route;
+                this.dealLogItemService = dealLogItemService;
                 this.dealsToDeleteLength = dealsToDelete.length;
             }
             DeleteDealModal.prototype.deleteDeal = function () {
@@ -566,19 +826,24 @@ var MyApp;
                         finalDeal = this.dealsToDelete[i];
                         break;
                     }
+                    console.log(i);
+                    this.dealLogItemService.deleteDealLogItem(this.dealsToDelete[i].id).then(function (result) {
+                    });
                     this.dealService.deleteDeal(this.dealsToDelete[i].id);
                 }
-                this.dealService.deleteDeal(finalDeal.id).then(function () {
-                    _this.closeModal();
-                    _this.$location.path('/deals');
-                    _this.$route.reload();
-                }).catch(function (error) {
-                    var validationErrors = [];
-                    for (var i in error.data.modelState) {
-                        var errorMessage = error.data.modelState[i];
-                        validationErrors = validationErrors.concat(errorMessage);
-                    }
-                    _this.validationErrors = validationErrors;
+                this.dealLogItemService.deleteDealLogItem(finalDeal.id).then(function (result) {
+                    _this.dealService.deleteDeal(finalDeal.id).then(function () {
+                        _this.closeModal();
+                        _this.$location.path('/deals');
+                        _this.$route.reload();
+                    }).catch(function (error) {
+                        var validationErrors = [];
+                        for (var i in error.data.modelState) {
+                            var errorMessage = error.data.modelState[i];
+                            validationErrors = validationErrors.concat(errorMessage);
+                        }
+                        _this.validationErrors = validationErrors;
+                    });
                 });
             };
             DeleteDealModal.prototype.closeModal = function () {
@@ -636,23 +901,17 @@ var MyApp;
             }
             DealTableViewController.prototype.getAllItems = function () {
                 var _this = this;
-                this.dealService.listAllDeals().$promise.then(function (result) {
+                this.dealService.listAllDealsOwned().$promise.then(function (result) {
                     _this.allDeals = [];
                     var company;
                     for (var i = 0; i < result.length; i++) {
                         _this.allDeals.push(result[i]);
                     }
-                    _this.draggableObjects = _this.allDeals;
-                    _this.droppedObjects1 = _this.draggableObjects;
-                    _this.droppedObjects2 = _this.draggableObjects;
-                    _this.droppedObjects3 = _this.draggableObjects;
-                    _this.droppedObjects4 = _this.draggableObjects;
-                    _this.droppedObjects5 = _this.draggableObjects;
                 });
             };
             DealTableViewController.prototype.filterBySelection = function () {
                 var _this = this;
-                this.dealService.listAllDeals().$promise.then(function (result) {
+                this.dealService.listAllDealsOwned().$promise.then(function (result) {
                     _this.allDeals = [];
                     var today = new Date();
                     var today_num = today.setDate(today.getDate());
@@ -662,36 +921,36 @@ var MyApp;
                     var week_from_today = today.setDate(today.getDate() + 7);
                     var month_from_today = today.setDate(today.getDate() + 24); //Adding 24 + 7 for 31 days
                     var filteredDates = [];
-                    for (var i_2 = 0; i_2 < result.length; i_2++) {
-                        var inner_full = new Date(result[i_2].closeDate);
+                    for (var i_3 = 0; i_3 < result.length; i_3++) {
+                        var inner_full = new Date(result[i_3].closeDate);
                         var inner_full_num = inner_full.setDate(inner_full.getDate());
                         var inner_set = inner_full.setDate(inner_full.getDate());
-                        var inner_month = new Date(result[i_2].closeDate).getMonth();
-                        var inner_date = new Date(result[i_2].closeDate).getDate();
-                        var inner_year = new Date(result[i_2].closeDate).getFullYear();
+                        var inner_month = new Date(result[i_3].closeDate).getMonth();
+                        var inner_date = new Date(result[i_3].closeDate).getDate();
+                        var inner_year = new Date(result[i_3].closeDate).getFullYear();
                         if (_this.dateFilter == "today") {
                             if (today_month == inner_month && today_date == inner_date && today_year == inner_year) {
-                                filteredDates.push(result[i_2]);
+                                filteredDates.push(result[i_3]);
                             }
                         }
                         else if (_this.dateFilter == "week") {
                             if (inner_set < week_from_today && inner_full_num >= today_num) {
-                                filteredDates.push(result[i_2]);
+                                filteredDates.push(result[i_3]);
                             }
                             else if (today_month == inner_month && today_date == inner_date && today_year == inner_year) {
-                                filteredDates.push(result[i_2]);
+                                filteredDates.push(result[i_3]);
                             }
                         }
                         else if (_this.dateFilter == "month") {
                             if (inner_set < month_from_today && inner_full_num >= today_num) {
-                                filteredDates.push(result[i_2]);
+                                filteredDates.push(result[i_3]);
                             }
                             else if (today_month == inner_month && today_date == inner_date && today_year == inner_year) {
-                                filteredDates.push(result[i_2]);
+                                filteredDates.push(result[i_3]);
                             }
                         }
                         else {
-                            filteredDates.push(result[i_2]);
+                            filteredDates.push(result[i_3]);
                         }
                     }
                     _this.allDeals = filteredDates;
@@ -720,6 +979,12 @@ var MyApp;
                         }
                     }
                     _this.allDeals = filterArchived;
+                    _this.draggableObjects = _this.allDeals;
+                    _this.droppedObjects1 = _this.draggableObjects;
+                    _this.droppedObjects2 = _this.draggableObjects;
+                    _this.droppedObjects3 = _this.draggableObjects;
+                    _this.droppedObjects4 = _this.draggableObjects;
+                    _this.droppedObjects5 = _this.draggableObjects;
                 });
             };
             DealTableViewController.prototype.addDealModal = function () {
@@ -828,7 +1093,7 @@ var MyApp;
             function DealChartsController(dealService) {
                 var _this = this;
                 this.dealService = dealService;
-                this.dealService.listAllDeals().$promise.then(function (result) {
+                this.dealService.listAllDealsOwned().$promise.then(function (result) {
                     var qualifiedToBuy = [];
                     var appointmentScheduled = [];
                     var presentationScheduled = [];
@@ -935,4 +1200,3 @@ var MyApp;
         Controllers.DealChartsController = DealChartsController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=dealController.js.map
