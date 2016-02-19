@@ -349,4 +349,3 @@ var MyApp;
         Controllers.DealInfoEventController = DealInfoEventController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=dealInfoController.js.map

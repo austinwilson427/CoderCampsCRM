@@ -60,6 +60,7 @@ namespace CoderCampsCRM.API
                     original.Notes = contact.Notes;
                     original.Longitude = contact.Longitude;
                     original.Latitude = contact.Latitude;
+                    original.ImageUrl = contact.ImageUrl;
                     _repo.SaveChanges();
                     return Ok();
                 }

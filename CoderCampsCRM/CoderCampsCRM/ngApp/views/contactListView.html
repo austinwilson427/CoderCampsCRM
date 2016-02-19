@@ -23,7 +23,7 @@
                     <button class="btn btn-primary" ng-show="!vm.showMap" ng-click="vm.toggleMap()">Show Map</button>
                 </div>
                 <div class="col-md-8 form-group">
-                    <input type="text" class="form-control full" ng-change="vm.updateSearchList()" ng-model="searchText" ng-model-options="{debounce: 1000}" placeholder="Search contacts by name" />
+                    <input type="text" class="form-control full" id="searchBar" ng-change="vm.updateSearchList()" ng-model="vm.searchText" ng-model-options="{debounce: 1000}" placeholder="Search contacts by name" />
                 </div>
                 <div class="col-md-2">
                     <button class="btn btn-primary" ng-click="vm.openNewContactModal()">+ Add Contact</button>
@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="table_wrap">
-                <table class="table table-bordered table-hover deals_table">
+                <table class="table table-bordered table-responsive table-hover deals_table">
                     <thead>
                         <tr>
                             <th class="hover_blue" ng-click="sortType = 'name'; sortReverse = !sortReverse">Name<span ng-show="sortType == 'name' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'name' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>
@@ -56,7 +56,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="contact in vm.contactsView.contacts.slice(((vm.currentPage-1)*vm.itemsPerPage), ((vm.currentPage)*vm.itemsPerPage)) | filter: {name: searchText} | orderBy:sortType:sortReverse">
+                        <tr ng-repeat="contact in vm.contactsView.contacts.slice(((vm.currentPage-1)*vm.itemsPerPage), ((vm.currentPage)*vm.itemsPerPage)) | filter: {name: vm.searchText} | orderBy:sortType:sortReverse">
                             <td>{{contact.name}}</td>
                             <td>{{contact.company.companyName}}</td>
                             <td>{{contact.jobTitle}}</td>

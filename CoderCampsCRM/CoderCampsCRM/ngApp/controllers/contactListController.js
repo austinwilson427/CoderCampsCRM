@@ -12,6 +12,7 @@ var MyApp;
                 this.sortReverse = false;
                 this.showMap = true;
                 this.markers = [];
+                this.markersSearch = [];
                 this.currentPage = 1;
                 this.maxSize = 5;
                 this.itemsPerPage = 5;
@@ -20,6 +21,7 @@ var MyApp;
             ContactListController.prototype.updateSearchList = function () {
                 this.currentPage = 1;
                 this.itemsPerPage += this.currentPage + 5;
+                this.setLocations();
             };
             ContactListController.prototype.totalItemsGet = function () {
                 this.totalItems = this.contactsView.contacts.length;
@@ -27,25 +29,55 @@ var MyApp;
             ContactListController.prototype.setLocations = function () {
                 this.zoom = 4;
                 this.center = { latitude: 40.09024, longitude: -97.712891 };
-                if (this.markers != []) {
-                    this.markers = [];
-                    this.setMarkers();
+                if (this.searchText == undefined) {
+                    if (this.markers != []) {
+                        this.markers = [];
+                        this.setMarkers();
+                    }
                 }
                 else {
-                    this.setMarkers();
+                    for (var _i = 0, _a = this.markers; _i < _a.length; _i++) {
+                        var marker = _a[_i];
+                        if (marker.options.title.toLowerCase().includes(this.searchText.toLowerCase())) {
+                            this.markersSearch.push(marker);
+                        }
+                    }
+                    this.markers = [];
+                    this.setMarkers(this.markersSearch);
                 }
             };
             ContactListController.prototype.setMarkers = function () {
-                for (var _i = 0, _a = this.contactsView.contacts; _i < _a.length; _i++) {
-                    var contact = _a[_i];
-                    if (contact.longitude && contact.latitude) {
-                        this.markers.push({
-                            id: contact.id,
-                            options: {
-                                title: contact.name,
-                            },
-                            coords: { latitude: contact.latitude, longitude: contact.longitude }
-                        });
+                var markersSearch = [];
+                for (var _i = 0; _i < arguments.length; _i++) {
+                    markersSearch[_i - 0] = arguments[_i];
+                }
+                if (!this.searchText) {
+                    for (var _a = 0, _b = this.contactsView.contacts; _a < _b.length; _a++) {
+                        var contact = _b[_a];
+                        if (contact.longitude && contact.latitude) {
+                            this.markers.push({
+                                id: contact.id,
+                                options: {
+                                    title: contact.name,
+                                },
+                                coords: { latitude: contact.latitude, longitude: contact.longitude }
+                            });
+                        }
+                    }
+                }
+                else {
+                    for (var _c = 0; _c < markersSearch.length; _c++) {
+                        var markers = markersSearch[_c];
+                        for (var _d = 0; _d < markers.length; _d++) {
+                            var markerFiltered = markers[_d];
+                            this.markers.push({
+                                id: markerFiltered.id,
+                                options: {
+                                    title: markerFiltered.options.title,
+                                },
+                                coords: { latitude: markerFiltered.coords.latitude, longitude: markerFiltered.coords.longitude }
+                            });
+                        }
                     }
                 }
             };
@@ -89,4 +121,3 @@ var MyApp;
         Controllers.ContactListController = ContactListController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=contactListController.js.map
