@@ -31,9 +31,9 @@ var MyApp;
             CompaniesService.prototype.getCompany = function (id) {
                 return this.companiesResource.get({ id: id });
             };
-            CompaniesService.prototype.getCompanyListView = function (id) {
-                return this.companyListResource.get({ id: id });
-            };
+            //public getCompanyListView(id) {
+            //    return this.companyListResource.get({ id: id });
+            //}
             CompaniesService.prototype.createCompany = function (company) {
                 return this.companiesResource.save(company).$promise;
             };

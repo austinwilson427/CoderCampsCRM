@@ -1,9 +1,10 @@
 ﻿namespace MyApp.Controllers {
 
     export class CompaniesController {
+        public routeId;
         public companies;
         public company;
-        public contactsView;
+        public contactView;
         public filterChoice;
         public dateFilter;
         public stageFilter;
@@ -12,16 +13,21 @@
         public selCity;
         public selState;
         public selIndustry;
+        public companyLogItems;
+     
 
         constructor(private $uibModal: angular.ui.bootstrap.IModalService,
             private companiesService: MyApp.Services.CompaniesService,
+            private companyLogItemService: MyApp.Services.CompanyLogItemService,
             private dealService: MyApp.Services.DealService,
             private contactService: MyApp.Services.ContactService,
             private $location: angular.ILocationService,
-            private $state: ng.ui.IStateService) {
+            private $state: ng.ui.IStateService,
+            $stateParams: ng.ui.IStateParamsService) {
            // this.companies = this.companiesService.getCompanies();
-            this.contactsView = contactService.getAllContacts();
+            this.contactView = contactService.getAllContacts();
             this.getAllItems();
+           
           
         }
         public getAllItems() {
@@ -37,18 +43,25 @@
                 console.log(this.companies);
             });
         }
-        public showDetailsModal(id) {
 
-            this.$uibModal.open({
-                templateUrl: "/ngApp/views/company-info.html",
-                controller: CompanyDetailsController,
-                controllerAs: 'vm',
-                resolve: {
-                    companyId: () => id
-                },
-                size: 'lg'
-            });
-        }
+        //public getCompanyLogItemsByRouteId() {
+        //    this.companyLogItemService.listCompanyLogItemsByCCompanyId(this.routeId).$promise.then((result) => {
+        //        this.companyLogItems = result;
+        //    });
+        //}
+
+        //public showDetailsModal(id) {
+
+        //    this.$uibModal.open({
+        //        templateUrl: "/ngApp/views/company-info.html",
+        //        controller: CompanyDetailsController,
+        //        controllerAs: 'vm',
+        //        resolve: {
+        //            companyId: () => id
+        //        },
+        //        size: 'lg'
+        //    });
+        //}
 
         public editModal(id) {
             this.$uibModal.open({
@@ -61,6 +74,7 @@
                 size: 'lg'
             });
         }
+        
         public createcompanyModal() {
             this.$uibModal.open({
                 templateUrl: "/ngApp/views/modals/createcompanyModal.html",
@@ -197,18 +211,193 @@
         public routeId;
         public company;
         public companies;
-        public contactsView;
+        public companyInfo;
+        public contactView;
+        public deals;
+        public tasks;
+        public activityContent;
+        public formatDate;
+        public validationErrors;
+        public companyLogItems;
 
-        constructor(private companyId,
+        constructor(
+            //private companyLogItemService: MyApp.Services.CompanyLogItemService,
             private companiesService: MyApp.Services.CompaniesService,
+            private dealService: MyApp.Services.DealService,
+            private taskService: MyApp.Services.TaskService,
             private $stateParams: ng.ui.IStateParamsService,
             private $state: ng.ui.IStateService,
-            private contactService: MyApp.Services.ContactService ) {
-            this.companies = this.companiesService.getCompanies();
-            this.company = companiesService.getCompany(companyId);
-            this.contactsView = contactService.getAllContacts();
+            private $location: angular.ILocationService,
+            private contactService: MyApp.Services.ContactService,
+            $routeParams: ng.route.IRouteParamsService,
+            private $route: ng.route.IRouteService) {
+            this.company = {};
             this.routeId = $stateParams["id"];
+            this.getCompany();
+            this.getAllContact();
+            this.getAllDeals();
+            //this.getCompanyLogItemsByRouteId();
+           // this.submitActivity()
+         //  this.getAllTasks();
+            
+          // this.companies = this.companiesService.getCompanies();
+          // this.company = companiesService.getCompany(companyId);
+         // this.company = companiesService.getCompany($routeParams['id'])
+           //this.contactView = contactService.getAllContacts();
+            //this.contactView = this.contactService.getOneContact($stateParams['id']);  
+           // this.deals = this.dealService.getDealByDealId($stateParams['id']);      
+            //this.routeId = $stateParams["id"];
+            //console.log(this.deals);
         }
+        public getCompany() {
+            this.companiesService.getCompany(this.routeId).$promise.then((result) => {
+                this.companyInfo = result;
+                
+            });
+        }
+        //public getCompanyLogItemsByRouteId() {
+        //    this.companyLogItemService.listCompanyLogItemsByCCompanyId(this.routeId).$promise.then((result) => {
+        //        this.companyLogItems = result;
+        //    });
+        //}
+
+        public getAllContact() {
+
+            this.contactService.getAllContacts().then((result) => {
+                this.contactView = [];
+                let contact;
+               // console.log(result.contacts);
+                for (var i = 0; i < result.contacts.length; i++) {
+                   // console.log(result.contacts[i].companyId);
+                    contact = this.contactService.getOneContact(result.contacts[i].companyId);
+                  //  console.log(contact);
+                    if (this.routeId == result.contacts[i].companyId) {
+                        //result[i].contact = contact;
+                        this.contactView.push(result.contacts[i]);
+                    }
+                }
+                
+            });
+        }
+
+        public getAllDeals() {
+
+            this.dealService.listAllDeals().$promise.then((result) => {
+                this.deals = [];
+                let deal;
+                //console.log(result[1].companyId);
+                for (var i = 0; i < result.length; i++) {
+                    deal = this.dealService.getDealByDealId(result[i].companyId);
+                  // result[i].deal = deal;
+                    if (this.routeId == result[i].companyId) {
+                        this.deals.push(result[i]);
+                    }
+                }
+               });
+        }
+        //public getAllTasks() {
+
+        //    this.taskService.listTasks().$promise.then((result) => {
+        //        this.tasks = [];
+        //        let task;
+        //        console.log(result);
+        //        for (var i = 0; i < result.length; i++) {
+        //            task = this.taskService.getTask(result[i].company_Id);
+        //            // result[i].deal = deal;
+        //            if (this.routeId == result[i].company_Id) {
+        //                this.tasks.push(result[i]);
+        //            }
+        //        }
+        //    });
+        //}
+
+
+        public editCompany() {
+            $(".tdEdit").attr("contenteditable", "true").attr("style", "background-color: rgb(255, 255, 194)");
+        }
+        public editNotes() {
+            $(".tdEdit").removeAttr("contenteditable").removeAttr("style");
+            this.company.id = this.companyInfo.id;
+            this.company.companyName = $("#companyName").text();
+            this.company.companyDomainName = $("#companyDomainName").text();
+            this.company.companyPhoneNumber = $("#companyPhoneNumber").text();
+            this.company.companyCountry = $("#companyCountry").text();
+            this.company.country = $("#country").text();
+            this.company.companyCity = $("#companyCity").text();
+            this.company.companyState = $("#companyState").text();
+            this.company.companyZip = $("#companyZip").text();
+            this.company.comapanyAddress = $("#comapanyAddress").text();
+            this.company.companyDescription = $("#companyDescription").text();
+            this.company.companyIndustry = $("#companyIndustry").text();
+            this.company.companyIsPublic = $("#companyIsPublic").text();
+            this.company.companyFacebook = $("#companyFacebook").text();
+            this.company.companyLinkedin = $("#companyLinkedin").text();
+            this.company.companyLinkedin = $("#companyTwitter").text();
+            
+            this.company.longitude = $("#long").text();
+            this.company.latitude = $("#lat").text();
+            return this.companiesService.editCompany(this.company);
+        }
+        public confirmEdit() {
+            $(".tdEdit").removeAttr("contenteditable").removeAttr("style");
+            this.company.id = this.companyInfo.id;
+           
+          
+            this.company.companyName = $("#companyName").text();
+            this.company.companyDomainName = $("#companyDomainName").text();
+            this.company.companyPhoneNumber = $("#companyPhoneNumber").text();
+            this.company.companyCountry = $("#companyCountry").text();
+            this.company.country = $("#country").text();
+            this.company.companyCity = $("#companyCity").text();
+            this.company.companyState = $("#companyState").text();
+            this.company.companyZip = $("#companyZip").text();
+            this.company.comapanyAddress = $("#comapanyAddress").text();
+            this.company.companyDescription = $("#companyDescription").text();
+            this.company.companyIndustry = $("#companyIndustry").text();
+            this.company.companyIsPublic = $("#companyIsPublic").text();
+            this.company.companyFacebook = $("#companyFacebook").text();
+            this.company.companyLinkedin = $("#companyLinkedin").text();
+            this.company.companyLinkedin = $("#companyTwitter").text();
+
+            this.company.longitude = $("#long").text();
+            this.company.latitude = $("#lat").text();
+            return this.companiesService.editCompany(this.company);
+        }
+
+        //public submitActivity() {
+        //    let activityToSubmit = {
+        //        startTime: null,
+        //        type: null,
+        //        content: null,
+        //        dealId: null,
+        //        contactId: null,
+        //        submittedBy: null
+        //    };
+
+        //    activityToSubmit.startTime = this.formatDate;
+        //    activityToSubmit.type = "Activity";
+        //    activityToSubmit.content = this.activityContent;
+        //    activityToSubmit.dealId = this.companyInfo.id;
+        //    /*Temporary ContactId*/
+        //    activityToSubmit.contactId = 1;
+        //    /*Temporary SubmittedBy*/
+        //    activityToSubmit.submittedBy = "Austin Wilson";
+
+        //    this.companyLogItemService.saveCompanyLogItem(activityToSubmit).then(() => {
+        //        location.reload(false);
+        //    }).catch((error) => {
+
+        //        let validationErrors = [];
+        //        for (let i in error.data.modelState) {
+        //            let errorMessage = error.data.modelState[i];
+        //            validationErrors = validationErrors.concat(errorMessage);
+        //        }
+        //        this.validationErrors = validationErrors;
+        //      //  console.log(this.validationErrors);
+        //    });
+
+        //}
+
 
     }
 

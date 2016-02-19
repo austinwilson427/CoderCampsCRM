@@ -10,12 +10,6 @@ var MyApp;
             controller: MyApp.Controllers.HomeController,
             controllerAs: 'controller'
         })
-            .state('dashboard', {
-            url: '/dashboard',
-            templateUrl: '/ngApp/views/dashboard.html',
-            controller: MyApp.Controllers.DashboardController,
-            controllerAs: 'vm'
-        })
             .state('externalRegister', {
             url: '/externalRegister',
             templateUrl: '/ngApp/views/externalRegister.html',
@@ -98,6 +92,12 @@ var MyApp;
             url: '/createcompany',
             templateUrl: '/ngApp/views/createCompany.html',
             controller: MyApp.Controllers.CompaniesController,
+            controllerAs: 'vm'
+        })
+            .state('company-info', {
+            url: '/companies/:id',
+            templateUrl: '/ngApp/views/company-info.html',
+            controller: MyApp.Controllers.CompanyDetailsController,
             controllerAs: 'vm'
         })
             .state('contacts', {

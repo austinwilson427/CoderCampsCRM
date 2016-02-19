@@ -1,5 +1,6 @@
 ﻿using CoderCampsCRM.Models;
 using CoderCampsCRM.Repositories;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;

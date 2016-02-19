@@ -10,10 +10,18 @@ var MyApp;
         })();
         Controllers.TaskListController = TaskListController;
         var TaskAddController = (function () {
-            function TaskAddController(taskService, $location) {
+            function TaskAddController(taskService, $location, $route, contactService) {
+                //this.getContacts();
                 this.taskService = taskService;
                 this.$location = $location;
+                this.$route = $route;
+                this.contactService = contactService;
             }
+            //public getMyContacts() {
+            //    this.contactService.getAllContacts().$promise.then((result) => {
+            //        this.myContacts = result;
+            //    });
+            //}
             TaskAddController.prototype.addTask = function () {
                 var _this = this;
                 this.loaded = false;

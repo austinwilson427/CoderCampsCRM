@@ -34,9 +34,9 @@
         public getCompany(id) {
             return this.companiesResource.get({ id: id });
         }
-        public getCompanyListView(id) {
-            return this.companyListResource.get({ id: id });
-        }
+        //public getCompanyListView(id) {
+        //    return this.companyListResource.get({ id: id });
+        //}
         public createCompany(company) {
             return this.companiesResource.save(company).$promise;
         }
