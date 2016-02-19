@@ -154,8 +154,9 @@ var MyApp;
         })();
         Controllers.CompaniesController = CompaniesController;
         var CompanyDetailsController = (function () {
-            function CompanyDetailsController(companyLogItemService, companiesService, dealService, taskService, $stateParams, $state, $location, contactService, $routeParams, $route) {
-                this.companyLogItemService = companyLogItemService;
+            function CompanyDetailsController(
+                //private companyLogItemService: MyApp.Services.CompanyLogItemService,
+                companiesService, dealService, taskService, $stateParams, $state, $location, contactService, $routeParams, $route) {
                 this.companiesService = companiesService;
                 this.dealService = dealService;
                 this.taskService = taskService;
@@ -311,3 +312,4 @@ var MyApp;
         Controllers.EditCompanyController = EditCompanyController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
+//# sourceMappingURL=companyContoller.js.map

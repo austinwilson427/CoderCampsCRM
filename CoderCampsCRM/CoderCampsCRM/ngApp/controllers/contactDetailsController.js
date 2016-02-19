@@ -64,6 +64,7 @@ var MyApp;
                 this.contact.streetAddress = $("#streetAddress").text();
                 this.contact.longitude = $("#long").text();
                 this.contact.latitude = $("#lat").text();
+                this.contact.userId = this.contactView.contact.userId;
                 return this.contactService.editContact(this.contact);
             };
             ContactDetailsController.prototype.confirmEdit = function () {
@@ -83,6 +84,7 @@ var MyApp;
                 this.contact.streetAddress = $("#streetAddress").text();
                 this.contact.longitude = $("#long").text();
                 this.contact.latitude = $("#lat").text();
+                this.contact.userId = this.contactView.contact.userId;
                 return this.contactService.editContact(this.contact);
             };
             ContactDetailsController.prototype.chooseCompany = function () {
@@ -99,6 +101,7 @@ var MyApp;
                 this.contact.streetAddress = $("#streetAddress").text();
                 this.contact.longitude = $("#long").text();
                 this.contact.latitude = $("#lat").text();
+                this.contact.userId = this.contactView.contact.userId;
                 return this.contactService.editContact(this.contact).then(this.$state.reload());
             };
             ContactDetailsController.prototype.checkCoordsId = function () {
@@ -121,3 +124,4 @@ var MyApp;
         Controllers.ContactDetailsController = ContactDetailsController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
+//# sourceMappingURL=contactDetailsController.js.map

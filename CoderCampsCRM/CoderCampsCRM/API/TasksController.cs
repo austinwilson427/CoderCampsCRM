@@ -59,6 +59,7 @@ namespace CoderCampsCRM.API
                     originalTask.StartDate = taskToAdd.StartDate;
                     originalTask.Type = taskToAdd.Type;
                     originalTask.DueDate = taskToAdd.DueDate;
+                    originalTask.ContactId = taskToAdd.ContactId;
                     originalTask.Description = taskToAdd.Description;
 
 
