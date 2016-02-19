@@ -208,7 +208,7 @@
         public validationErrors;
 
         constructor(
-            private companyLogItemService: MyApp.Services.CompanyLogItemService,
+            //private companyLogItemService: MyApp.Services.CompanyLogItemService,
             private companiesService: MyApp.Services.CompaniesService,
             private dealService: MyApp.Services.DealService,
             private taskService: MyApp.Services.TaskService,

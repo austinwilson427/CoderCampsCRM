@@ -28,6 +28,11 @@
                 <br />
                 <label>Description</label>
                 <textarea class="form-control full" rows="5" id="description" ng-model="vm.taskToAdd.description"></textarea>
+                <!--<br />
+                <label>Primary Contact</label>
+                <select ng-model="vm.taskToAdd.contactId" class="form-control full">
+                    <option ng-repeat="contact in vm.myContacts.contacts" value="{{contact.id}}">{{contact.name}}</option>
+                </select>-->
                 <br />
                 <label>Due Date:</label>
                 <div id="datepicker2" class="input-group date" data-date-format="mm/dd/yyyy" style="width:300px">
