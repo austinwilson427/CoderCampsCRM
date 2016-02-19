@@ -10,14 +10,26 @@
             this.tasks = taskService.listTasks();
         }
 
+
     }
 
     export class TaskAddController {
         public loaded;
         public taskToAdd;
-        constructor(private taskService: MyApp.Services.TaskService, private $location: ng.ILocationService) {
+        public validationErrors;
+        public myContacts;
+        public myCompanies;
+
+        constructor(private taskService: MyApp.Services.TaskService, private $location: ng.ILocationService, private $route: ng.route.IRouteService, private contactService: MyApp.Services.ContactService) {
+            //this.getContacts();
+            
         }
 
+        //public getMyContacts() {
+        //    this.contactService.getAllContacts().$promise.then((result) => {
+        //        this.myContacts = result;
+        //    });
+        //}
 
         addTask() {
             this.loaded = false;
