@@ -13,7 +13,7 @@
         public marker;
         public showMap = false;
         public file;
-        public imageReady;
+        public imageReady: boolean;
 
         constructor(private contactService: MyApp.Services.ContactService, private $location: ng.ILocationService, private $uibModal: ng.ui.bootstrap.IModalService, $stateParams: ng.ui.IStateParamsService, private $state: ng.ui.IStateService, private filepickerService) {
             this.contact = {};
@@ -62,13 +62,12 @@
         }
 
         public fileUploaded(file) {
-            debugger;
             this.file = file;
             this.imageReady = true;
+            this.imageUpload();
         }
 
         public imageUpload() {
-            debugger;
             this.getViewDetails();
             this.contact.imageUrl = this.file.url;
             return this.contactService.editContact(this.contact);

@@ -50,12 +50,11 @@ var MyApp;
                 this.filepickerService.pick({ mimetype: 'image/*' }, this.fileUploaded.bind(this));
             };
             ContactDetailsController.prototype.fileUploaded = function (file) {
-                debugger;
                 this.file = file;
                 this.imageReady = true;
+                this.imageUpload();
             };
             ContactDetailsController.prototype.imageUpload = function () {
-                debugger;
                 this.getViewDetails();
                 this.contact.imageUrl = this.file.url;
                 return this.contactService.editContact(this.contact);
