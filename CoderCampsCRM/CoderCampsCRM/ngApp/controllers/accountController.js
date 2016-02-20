@@ -217,3 +217,4 @@ var MyApp;
         Controllers.ConfirmEmailController = ConfirmEmailController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
+//# sourceMappingURL=accountController.js.map

@@ -265,21 +265,7 @@ var MyApp;
                             }
                         }
                     });
-                    _this.totalPages = Math.ceil(itemsFiltered.length / _this.itemsPerPage);
-                    _this.pagesArray = [];
-                    for (var j = 1; j <= _this.totalPages; j++) {
-                        _this.pagesArray.push(j);
-                    }
-                    var itemPagFilter = [];
-                    var start = (_this.currentPage - 1) * _this.itemsPerPage;
-                    var end = start + _this.itemsPerPage;
-                    for (var k = start; k < end; k++) {
-                        if (!itemsFiltered[k]) {
-                            break;
-                        }
-                        itemPagFilter[k] = itemsFiltered[k];
-                    }
-                    _this.allDealsOwned = itemPagFilter;
+                    _this.allDealsOwned = itemsFiltered;
                     _this.filterBySelectionShared();
                 });
             };
@@ -527,21 +513,7 @@ var MyApp;
                             }
                         }
                     });
-                    _this.totalPages = Math.ceil(itemsFiltered.length / _this.itemsPerPage);
-                    _this.pagesArray = [];
-                    for (var n = 1; n <= _this.totalPages; n++) {
-                        _this.pagesArray.push(n);
-                    }
-                    var itemPagFilter = [];
-                    var start = (_this.currentPage - 1) * _this.itemsPerPage;
-                    var end = start + _this.itemsPerPage;
-                    for (var k_1 = start; k_1 < end; k_1++) {
-                        if (!itemsFiltered[k_1]) {
-                            break;
-                        }
-                        itemPagFilter[k_1] = itemsFiltered[k_1];
-                    }
-                    _this.allDealsShared = itemPagFilter;
+                    _this.allDealsShared = itemsFiltered;
                     var allDeals = [];
                     for (var i = 0; i < _this.allDealsOwned.length; i++) {
                         allDeals.push(_this.allDealsOwned[i]);
@@ -550,7 +522,21 @@ var MyApp;
                         allDeals.push(_this.allDealsShared[p]);
                     }
                     _this.allDeals = allDeals;
-                    console.log(_this.allDeals);
+                    _this.totalPages = Math.ceil(_this.allDeals.length / _this.itemsPerPage);
+                    _this.pagesArray = [];
+                    for (var p = 1; p <= _this.totalPages; p++) {
+                        _this.pagesArray.push(p);
+                    }
+                    var itemPagFilter = [];
+                    var start = (_this.currentPage - 1) * _this.itemsPerPage;
+                    var end = start + _this.itemsPerPage;
+                    for (var k_1 = start; k_1 < end; k_1++) {
+                        if (!_this.allDeals[k_1]) {
+                            break;
+                        }
+                        itemPagFilter[k_1] = _this.allDeals[k_1];
+                    }
+                    _this.allDeals = itemPagFilter;
                 });
             };
             DealsListViewController.prototype.paginate = function (page) {
@@ -1200,3 +1186,4 @@ var MyApp;
         Controllers.DealChartsController = DealChartsController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
+//# sourceMappingURL=dealController.js.map

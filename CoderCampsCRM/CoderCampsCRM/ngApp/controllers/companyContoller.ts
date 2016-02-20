@@ -235,7 +235,7 @@
             this.routeId = $stateParams["id"];
             this.getCompany();
             this.getAllContact();
-            this.getAllDeals();
+            //this.getAllDeals();
             //this.getCompanyLogItemsByRouteId();
            // this.submitActivity()
          //  this.getAllTasks();
@@ -280,21 +280,21 @@
             });
         }
 
-        public getAllDeals() {
+        //public getAllDeals() {
 
-            this.dealService.listAllDeals().$promise.then((result) => {
-                this.deals = [];
-                let deal;
-                //console.log(result[1].companyId);
-                for (var i = 0; i < result.length; i++) {
-                    deal = this.dealService.getDealByDealId(result[i].companyId);
-                  // result[i].deal = deal;
-                    if (this.routeId == result[i].companyId) {
-                        this.deals.push(result[i]);
-                    }
-                }
-               });
-        }
+        //    this.dealService.listAllDeals().$promise.then((result) => {
+        //        this.deals = [];
+        //        let deal;
+        //        //console.log(result[1].companyId);
+        //        for (var i = 0; i < result.length; i++) {
+        //            deal = this.dealService.getDealByDealId(result[i].companyId);
+        //          // result[i].deal = deal;
+        //            if (this.routeId == result[i].companyId) {
+        //                this.deals.push(result[i]);
+        //            }
+        //        }
+        //       });
+        //}
         //public getAllTasks() {
 
         //    this.taskService.listTasks().$promise.then((result) => {

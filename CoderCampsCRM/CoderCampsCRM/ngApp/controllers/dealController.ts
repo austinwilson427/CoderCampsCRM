@@ -269,23 +269,7 @@
 
                 });
 
-                this.totalPages = Math.ceil(itemsFiltered.length / this.itemsPerPage);
-                this.pagesArray = [];
-                for (var j = 1; j <= this.totalPages; j++) {
-                    this.pagesArray.push(j);
-                }
-
-                let itemPagFilter = [];
-                let start = (this.currentPage - 1) * this.itemsPerPage;
-                let end = start + this.itemsPerPage;
-                for (let k = start; k < end; k++) {
-                    if (!itemsFiltered[k]) {
-                        break;
-                    }
-                    itemPagFilter[k] = itemsFiltered[k];
-                }
-
-                this.allDealsOwned = itemPagFilter;
+                this.allDealsOwned = itemsFiltered;
 
                 this.filterBySelectionShared();
             });
@@ -520,23 +504,7 @@
 
                 });
 
-                this.totalPages = Math.ceil(itemsFiltered.length / this.itemsPerPage);
-                this.pagesArray = [];
-                for (var n = 1; n <= this.totalPages; n++) {
-                    this.pagesArray.push(n);
-                }
-
-                let itemPagFilter = [];
-                let start = (this.currentPage - 1) * this.itemsPerPage;
-                let end = start + this.itemsPerPage;
-                for (let k = start; k < end; k++) {
-                    if (!itemsFiltered[k]) {
-                        break;
-                    }
-                    itemPagFilter[k] = itemsFiltered[k];
-                }
-
-                this.allDealsShared = itemPagFilter;
+                this.allDealsShared = itemsFiltered;
 
                 let allDeals = [];
                 for (var i = 0; i < this.allDealsOwned.length; i++) {
@@ -545,8 +513,26 @@
                 for (var p = 0; p < this.allDealsShared.length; p++) {
                     allDeals.push(this.allDealsShared[p]);
                 }
+
                 this.allDeals = allDeals;
-                console.log(this.allDeals);
+                this.totalPages = Math.ceil(this.allDeals.length / this.itemsPerPage);
+                this.pagesArray = [];
+                for (var p = 1; p <= this.totalPages; p++) {
+                    this.pagesArray.push(p);
+                }
+
+                let itemPagFilter = [];
+                let start = (this.currentPage - 1) * this.itemsPerPage;
+                let end = start + this.itemsPerPage;
+                for (let k = start; k < end; k++) {
+                    if (!this.allDeals[k]) {
+                        break;
+                    }
+                    itemPagFilter[k] = this.allDeals[k];
+                }
+
+                this.allDeals = itemPagFilter;
+
             });
 
         }

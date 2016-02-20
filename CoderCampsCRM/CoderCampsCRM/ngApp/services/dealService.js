@@ -49,3 +49,4 @@ var MyApp;
         angular.module("MyApp").service("dealService", DealService);
     })(Services = MyApp.Services || (MyApp.Services = {}));
 })(MyApp || (MyApp = {}));
+//# sourceMappingURL=dealService.js.map

@@ -116,6 +116,23 @@ p.home_description {
     color: #e10001;
 }
 
+/*-------------------------------Dashboard-----------------------------------*/
+
+.all-icons-wrap{
+    padding: 30px;
+    margin-top: 20px;
+}
+.icon-wrap{
+    text-align: center;
+    border: 1px solid gray;
+    padding: 60px 20px;
+}
+.dashboard-icon{
+    font-size: 60px;
+}
+
+
+
 /*-------------------------------Deals Section-------------------------------*/
 /*Input class to make input 100% wide*/
 .full {
