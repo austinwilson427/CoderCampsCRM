@@ -30,6 +30,12 @@
             this.setLocations();
         }
 
+        public syncGoogleContacts() {
+            this.contactService.getGoogleContacts().then(() => {
+                this.showAllContacts();
+            });
+        }
+
         public totalItemsGet() {
             this.totalItems = this.contactsView.contacts.length;
         }

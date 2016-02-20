@@ -4,7 +4,6 @@ var MyApp;
     (function (Controllers) {
         var ContactListController = (function () {
             function ContactListController(contactService, $location, $uibModal, $state) {
-                var _this = this;
                 this.contactService = contactService;
                 this.$location = $location;
                 this.$uibModal = $uibModal;
@@ -17,14 +16,18 @@ var MyApp;
                 this.currentPage = 1;
                 this.maxSize = 5;
                 this.itemsPerPage = 5;
-                this.contactService.getGoogleContacts().then(function () {
-                    _this.showAllContacts();
-                });
+                this.showAllContacts();
             }
             ContactListController.prototype.updateSearchList = function () {
                 this.currentPage = 1;
                 this.itemsPerPage += this.currentPage + 5;
                 this.setLocations();
+            };
+            ContactListController.prototype.syncGoogleContacts = function () {
+                var _this = this;
+                this.contactService.getGoogleContacts().then(function () {
+                    _this.showAllContacts();
+                });
             };
             ContactListController.prototype.totalItemsGet = function () {
                 this.totalItems = this.contactsView.contacts.length;
@@ -124,3 +127,4 @@ var MyApp;
         Controllers.ContactListController = ContactListController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
+//# sourceMappingURL=contactListController.js.map
