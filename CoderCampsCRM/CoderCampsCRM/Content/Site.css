@@ -401,6 +401,16 @@ td.trash_cell {
     bottom: 30px;
 }
 
+.contactImage {
+    border: 1px solid black;
+    max-width: 100%;
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto !important;
+    margin-bottom: 30px;
+}
+
 /*SEARCHBAR CSS*/
 .search-form .form-group {
     float: right !important;

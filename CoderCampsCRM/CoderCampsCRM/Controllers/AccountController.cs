@@ -16,6 +16,7 @@ using Microsoft.Owin.Security.OAuth;
 using CoderCampsCRM.Models;
 using CoderCampsCRM.Providers;
 using CoderCampsCRM.Results;
+using System.Linq;
 
 namespace CoderCampsCRM.Controllers
 {
@@ -255,14 +256,28 @@ namespace CoderCampsCRM.Controllers
 
             bool hasRegistered = user != null;
 
+            var otheruser = Request.GetOwinContext().Authentication.User;
+            string googleAccessToken = null;
+            using (var appdbcontext = new ApplicationDbContext())
+            {
+                var userEmail = otheruser.Claims.First(cl => cl.Type.ToLower().Contains("emailaddress")).Value;
+                var googleExternalLoginData = appdbcontext.ExternalLoginDatas.FirstOrDefault(eld => eld.Type == "GoogleAccessToken" && eld.Key == userEmail);
+
+                googleAccessToken = googleExternalLoginData.Value;
+            }
+
             if (hasRegistered)
             {
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
 
                 ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
                    OAuthDefaults.AuthenticationType);
+                if (!string.IsNullOrEmpty(googleAccessToken))
+                    oAuthIdentity.AddClaim(new Claim("GoogleAccessToken", googleAccessToken));
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
+                if (!string.IsNullOrEmpty(googleAccessToken))
+                    cookieIdentity.AddClaim(new Claim("GoogleAccessToken", googleAccessToken));
 
                 AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user);
                 Authentication.SignIn(properties, oAuthIdentity, cookieIdentity);
@@ -271,11 +286,88 @@ namespace CoderCampsCRM.Controllers
             {
                 IEnumerable<Claim> claims = externalLogin.GetClaims();
                 ClaimsIdentity identity = new ClaimsIdentity(claims, OAuthDefaults.AuthenticationType);
+                if (!string.IsNullOrEmpty(googleAccessToken))
+                    identity.AddClaim(new Claim("GoogleAccessToken", googleAccessToken));
                 Authentication.SignIn(identity);
             }
 
             return Ok();
         }
+
+        //// GET api/Account/ExternalLogin
+        //[OverrideAuthentication]
+        //[HostAuthentication(DefaultAuthenticationTypes.ExternalCookie)]
+        //[AllowAnonymous]
+        //[Route("ExternalLogin", Name = "ExternalLogin")]
+        //public async Task<IHttpActionResult> GetExternalLogin(string provider, string error = null)
+        //{
+        //    if (error != null)
+        //    {
+        //        return Redirect(Url.Content("~/") + "#error=" + Uri.EscapeDataString(error));
+        //    }
+
+        //    if (!User.Identity.IsAuthenticated)
+        //    {
+        //        return new ChallengeResult(provider, this);
+        //    }
+
+        //    ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
+
+        //    if (externalLogin == null)
+        //    {
+        //        return InternalServerError();
+        //    }
+
+        //    if (externalLogin.LoginProvider != provider)
+        //    {
+        //        Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+        //        return new ChallengeResult(provider, this);
+        //    }
+
+        //    ApplicationUser user = await UserManager.FindAsync(new UserLoginInfo(externalLogin.LoginProvider,
+        //        externalLogin.ProviderKey));
+
+        //    bool hasRegistered = user != null;
+
+        //    var otheruser = Request.GetOwinContext().Authentication.User;
+        //    string googleAccessToken = null;
+        //    using (var appdbcontext = new ApplicationDbContext())
+        //    {
+        //        var userEmail = otheruser.Claims.First(cl => cl.Type.ToLower().Contains("emailaddress")).Value;
+        //        var googleExternalLoginData = appdbcontext.ExternalLoginDatas.FirstOrDefault(eld => eld.Type == "GoogleAccessToken" && eld.Key == userEmail);
+        //        if (googleExternalLoginData != null)
+        //        {
+        //            googleAccessToken = googleExternalLoginData.Value;
+        //        }
+        //    }
+
+        //    if (hasRegistered)
+        //    {
+        //        Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+
+        //        ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
+        //           OAuthDefaults.AuthenticationType);
+        //        if (!string.IsNullOrEmpty(googleAccessToken))
+        //            oAuthIdentity.AddClaim(new Claim("GoogleAccessToken", googleAccessToken));
+        //        ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
+        //            CookieAuthenticationDefaults.AuthenticationType);
+        //        if (!string.IsNullOrEmpty(googleAccessToken))
+        //            cookieIdentity.AddClaim(new Claim("GoogleAccessToken", googleAccessToken));
+
+        //        AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user);
+        //        Authentication.SignIn(properties, oAuthIdentity, cookieIdentity);
+        //    }
+        //    else
+        //    {
+        //        IEnumerable<Claim> claims = externalLogin.GetClaims();
+        //        ClaimsIdentity identity = new ClaimsIdentity(claims, OAuthDefaults.AuthenticationType);
+        //        if (!string.IsNullOrEmpty(googleAccessToken))
+        //            identity.AddClaim(new Claim("GoogleAccessToken", googleAccessToken));
+        //        Authentication.SignIn(identity);
+        //    }
+
+        //    return Ok();
+        //}
 
         // GET api/Account/ExternalLogins?returnUrl=%2F&generateState=true
         [AllowAnonymous]
