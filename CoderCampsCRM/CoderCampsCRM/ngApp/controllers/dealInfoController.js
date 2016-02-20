@@ -284,7 +284,7 @@ var MyApp;
                 this.$route = $route;
                 this.taskService = taskService;
                 this.contactService = contactService;
-                this.contactService.getAllContacts().$promise.then(function (result) {
+                this.contactService.getAllContacts().then(function (result) {
                     _this.myContacts = result.contacts;
                     _this.routeId = $stateParams["id"];
                     _this.getDeal();

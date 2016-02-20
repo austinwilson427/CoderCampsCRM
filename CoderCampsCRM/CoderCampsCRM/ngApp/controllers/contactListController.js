@@ -4,6 +4,7 @@ var MyApp;
     (function (Controllers) {
         var ContactListController = (function () {
             function ContactListController(contactService, $location, $uibModal, $state) {
+                var _this = this;
                 this.contactService = contactService;
                 this.$location = $location;
                 this.$uibModal = $uibModal;
@@ -16,7 +17,9 @@ var MyApp;
                 this.currentPage = 1;
                 this.maxSize = 5;
                 this.itemsPerPage = 5;
-                this.showAllContacts();
+                this.contactService.getGoogleContacts().then(function () {
+                    _this.showAllContacts();
+                });
             }
             ContactListController.prototype.updateSearchList = function () {
                 this.currentPage = 1;

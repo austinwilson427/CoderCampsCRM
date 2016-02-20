@@ -1,6 +1,7 @@
 ﻿namespace MyApp.Controllers {
 
     export class CompaniesController {
+        public routeId;
         public companies;
         public company;
         public contactView;
@@ -12,9 +13,12 @@
         public selCity;
         public selState;
         public selIndustry;
+        public companyLogItems;
+     
 
         constructor(private $uibModal: angular.ui.bootstrap.IModalService,
             private companiesService: MyApp.Services.CompaniesService,
+            private companyLogItemService: MyApp.Services.CompanyLogItemService,
             private dealService: MyApp.Services.DealService,
             private contactService: MyApp.Services.ContactService,
             private $location: angular.ILocationService,
@@ -23,6 +27,7 @@
            // this.companies = this.companiesService.getCompanies();
             this.contactView = contactService.getAllContacts();
             this.getAllItems();
+           
           
         }
         public getAllItems() {
@@ -38,6 +43,13 @@
                 console.log(this.companies);
             });
         }
+
+        public getCompanyLogItemsByRouteId() {
+            this.companyLogItemService.listCompanyLogItemsByCompanyId(this.routeId).$promise.then((result) => {
+                this.companyLogItems = result;
+            });
+        }
+
         //public showDetailsModal(id) {
 
         //    this.$uibModal.open({
@@ -206,9 +218,10 @@
         public activityContent;
         public formatDate;
         public validationErrors;
+        public companyLogItems;
 
         constructor(
-            //private companyLogItemService: MyApp.Services.CompanyLogItemService,
+            private companyLogItemService: MyApp.Services.CompanyLogItemService,
             private companiesService: MyApp.Services.CompaniesService,
             private dealService: MyApp.Services.DealService,
             private taskService: MyApp.Services.TaskService,
@@ -223,8 +236,9 @@
             this.getCompany();
             this.getAllContact();
             this.getAllDeals();
+            this.getCompanyLogItemsByRouteId();
            // this.submitActivity()
-           // this.getAllTasks();
+         //  this.getAllTasks();
             
           // this.companies = this.companiesService.getCompanies();
           // this.company = companiesService.getCompany(companyId);
@@ -239,6 +253,11 @@
             this.companiesService.getCompany(this.routeId).$promise.then((result) => {
                 this.companyInfo = result;
                 
+            });
+        }
+        public getCompanyLogItemsByRouteId() {
+            this.companyLogItemService.listCompanyLogItemsByCompanyId(this.routeId).$promise.then((result) => {
+                this.companyLogItems = result;
             });
         }
 
