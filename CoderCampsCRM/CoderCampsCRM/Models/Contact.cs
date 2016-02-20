@@ -13,6 +13,10 @@ namespace CoderCampsCRM.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
+
+        public string GoogleId { get; set; }
+        public string ImagerUrl { get; set; }
+
         public string PhoneNumber { get; set; }
         public string Country { get; set; }
         public string City { get; set; }
@@ -24,6 +28,7 @@ namespace CoderCampsCRM.Models
         public DateTime ?LastInteraction { get; set; }
         public string Longitude { get; set; }
         public string Latitude { get; set; }
+        public string ImageUrl { get; set; }
 
         public string UserId { get; set; }
         [ForeignKey("UserId")]        

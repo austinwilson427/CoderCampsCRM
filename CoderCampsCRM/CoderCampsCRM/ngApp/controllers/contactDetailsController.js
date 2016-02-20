@@ -3,11 +3,12 @@ var MyApp;
     var Controllers;
     (function (Controllers) {
         var ContactDetailsController = (function () {
-            function ContactDetailsController(contactService, $location, $uibModal, $stateParams, $state) {
+            function ContactDetailsController(contactService, $location, $uibModal, $stateParams, $state, filepickerService) {
                 this.contactService = contactService;
                 this.$location = $location;
                 this.$uibModal = $uibModal;
                 this.$state = $state;
+                this.filepickerService = filepickerService;
                 this.showMap = false;
                 this.contact = {};
                 this.location = {};
@@ -45,10 +46,27 @@ var MyApp;
                     this.showMap = false;
                 }
             };
+            ContactDetailsController.prototype.pickFile = function () {
+                this.filepickerService.pick({ mimetype: 'image/*' }, this.fileUploaded.bind(this));
+            };
+            ContactDetailsController.prototype.fileUploaded = function (file) {
+                this.file = file;
+                this.imageReady = true;
+                this.imageUpload();
+            };
+            ContactDetailsController.prototype.imageUpload = function () {
+                this.getViewDetails();
+                this.contact.imageUrl = this.file.url;
+                return this.contactService.editContact(this.contact);
+            };
             ContactDetailsController.prototype.editContact = function () {
                 $(".tdEdit").attr("contenteditable", "true").attr("style", "background-color: rgb(255, 255, 194)");
             };
-            ContactDetailsController.prototype.editNotes = function () {
+            ContactDetailsController.prototype.btnEdit = function () {
+                this.getViewDetails();
+                return this.contactService.editContact(this.contact);
+            };
+            ContactDetailsController.prototype.getViewDetails = function () {
                 this.contact.id = this.contactView.contact.id;
                 this.contact.companyId = this.contactView.contact.companyId;
                 this.contact.lastInteraction = $("#lastInteraction").text();
@@ -65,43 +83,15 @@ var MyApp;
                 this.contact.longitude = $("#long").text();
                 this.contact.latitude = $("#lat").text();
                 this.contact.userId = this.contactView.contact.userId;
-                return this.contactService.editContact(this.contact);
+                this.contact.imageUrl = this.contactView.contact.imageUrl;
             };
             ContactDetailsController.prototype.confirmEdit = function () {
                 $(".tdEdit").removeAttr("contenteditable").removeAttr("style");
-                this.contact.id = this.contactView.contact.id;
-                this.contact.companyId = this.contactView.contact.companyId;
-                this.contact.lastInteraction = $("#lastInteraction").text();
-                this.contact.name = $("#name").text();
-                this.contact.email = $("#email").text();
-                this.contact.phoneNumber = $("#phoneNumber").text();
-                this.contact.jobTitle = $("#jobTitle").text();
-                this.contact.country = $("#country").text();
-                this.contact.city = $("#city").text();
-                this.contact.state = $("#state").text();
-                this.contact.zip = $("#zip").text();
-                this.contact.notes = $("#notes").text();
-                this.contact.streetAddress = $("#streetAddress").text();
-                this.contact.longitude = $("#long").text();
-                this.contact.latitude = $("#lat").text();
-                this.contact.userId = this.contactView.contact.userId;
+                this.getViewDetails();
                 return this.contactService.editContact(this.contact);
             };
             ContactDetailsController.prototype.chooseCompany = function () {
-                this.contact.id = this.contactView.contact.id;
-                this.contact.companyId = this.companyChoice;
-                this.contact.lastInteraction = $("#lastInteraction").text();
-                this.contact.name = $("#name").text();
-                this.contact.email = $("#email").text();
-                this.contact.phoneNumber = $("#phoneNumber").text();
-                this.contact.jobTitle = $("#jobTitle").text();
-                this.contact.city = $("#city").text();
-                this.contact.state = $("#state").text();
-                this.contact.zip = $("#zip").text();
-                this.contact.streetAddress = $("#streetAddress").text();
-                this.contact.longitude = $("#long").text();
-                this.contact.latitude = $("#lat").text();
-                this.contact.userId = this.contactView.contact.userId;
+                this.getViewDetails();
                 return this.contactService.editContact(this.contact).then(this.$state.reload());
             };
             ContactDetailsController.prototype.checkCoordsId = function () {
