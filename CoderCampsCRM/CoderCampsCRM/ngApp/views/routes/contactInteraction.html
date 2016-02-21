@@ -1,0 +1,13 @@
+﻿<div id="interactionWrap">
+    <div class="col-md-6" id="interactionForm">
+        <div class="form-group">
+            <label>Subject</label><input class="form-control" ng-model="vm.interaction.subject" type="text" placeholder="Add a title..." />
+        </div>
+        <div class="form-group">
+            <label>Date</label><input class="form-control" ng-model="vm.interaction.date" type="datetime-local" />
+        </div>
+    </div>
+    <textarea class="form-control img-responsive" ng-model="vm.interaction.description" rows="8" cols="20" placeholder="Add a description..."></textarea>
+    <button class="btn btn-primary" id="interactionBtn" ng-click="vm.addInteraction()" ng-show="vm.interaction.description || vm.interaction.subject">Save</button>
+</div>
+
