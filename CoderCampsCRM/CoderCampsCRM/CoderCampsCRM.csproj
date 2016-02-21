@@ -253,17 +253,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602192028566_Initial.cs" />
-    <Compile Include="Migrations\201602192028566_Initial.Designer.cs">
-      <DependentUpon>201602192028566_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602192117285_Initial2.cs" />
-    <Compile Include="Migrations\201602192117285_Initial2.Designer.cs">
-      <DependentUpon>201602192117285_Initial2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602192208165_Initial3.cs" />
-    <Compile Include="Migrations\201602192208165_Initial3.Designer.cs">
-      <DependentUpon>201602192208165_Initial3.cs</DependentUpon>
+    <Compile Include="Migrations\201602200056069_initial.cs" />
+    <Compile Include="Migrations\201602200056069_initial.Designer.cs">
+      <DependentUpon>201602200056069_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -388,6 +380,8 @@
     <Content Include="ngApp\views\notFound.html" />
     <Content Include="ngApp\views\profile.html" />
     <Content Include="ngApp\views\register.html" />
+    <Content Include="ngApp\views\routes\contactInteraction.html" />
+    <Content Include="ngApp\views\routes\contactNote.html" />
     <Content Include="ngApp\views\routes\deal-chart-view.html" />
     <Content Include="ngApp\views\routes\deal-info-activity.html" />
     <Content Include="ngApp\views\routes\deal-info-event.html" />
@@ -1380,14 +1374,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602192028566_Initial.resx">
-      <DependentUpon>201602192028566_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602192117285_Initial2.resx">
-      <DependentUpon>201602192117285_Initial2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602192208165_Initial3.resx">
-      <DependentUpon>201602192208165_Initial3.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602200056069_initial.resx">
+      <DependentUpon>201602200056069_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -3,7 +3,7 @@ namespace CoderCampsCRM.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -44,6 +44,8 @@ namespace CoderCampsCRM.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
                         Email = c.String(),
+                        GoogleId = c.String(),
+                        ImagerUrl = c.String(),
                         PhoneNumber = c.String(),
                         Country = c.String(),
                         City = c.String(),
@@ -55,6 +57,7 @@ namespace CoderCampsCRM.Migrations
                         LastInteraction = c.DateTime(),
                         Longitude = c.String(),
                         Latitude = c.String(),
+                        ImageUrl = c.String(),
                         UserId = c.String(maxLength: 128),
                         CompanyId = c.Int(),
                     })
@@ -238,6 +241,17 @@ namespace CoderCampsCRM.Migrations
                 .Index(t => t.DealId);
             
             CreateTable(
+                "dbo.ExternalLoginDatas",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Type = c.String(),
+                        Key = c.String(),
+                        Value = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.ProfileUsers",
                 c => new
                     {
@@ -325,6 +339,7 @@ namespace CoderCampsCRM.Migrations
             DropTable("dbo.TaskContacts");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.ProfileUsers");
+            DropTable("dbo.ExternalLoginDatas");
             DropTable("dbo.DealLogItems");
             DropTable("dbo.DealContacts");
             DropTable("dbo.ContactInteractions");

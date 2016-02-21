@@ -61,6 +61,7 @@ var MyApp;
                 return this.contactResource.save(contact).$promise;
             };
             ContactService.prototype.editContact = function (contact) {
+                debugger;
                 var data = this.contactResource.save(contact).$promise;
                 return data;
             };

@@ -28,6 +28,7 @@ namespace CoderCampsCRM.Models
         public DateTime ?LastInteraction { get; set; }
         public string Longitude { get; set; }
         public string Latitude { get; set; }
+        public string ImageUrl { get; set; }
 
         public string UserId { get; set; }
         [ForeignKey("UserId")]        

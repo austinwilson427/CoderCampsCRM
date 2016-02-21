@@ -71,6 +71,7 @@
         }
 
         public editContact(contact) {
+            debugger;
             let data = this.contactResource.save(contact).$promise;
             return data;
         }
