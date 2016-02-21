@@ -101,6 +101,8 @@ namespace CoderCampsCRM.API
 
                 if (dealContactToAdd.Id == 0)
                 {
+                    dealContactToAdd.CreatedOn = DateTime.Now;
+                    dealContactToAdd.UserId = userId;
                     _genRepo.Add<DealContact>(dealContactToAdd);
                     _genRepo.SaveChanges();
                     return Ok();

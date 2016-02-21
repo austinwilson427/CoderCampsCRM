@@ -94,7 +94,7 @@ var MyApp;
                     isDealSharer: true
                 };
                 dealContactToAdd.dealId = this.routeId;
-                dealContactToAdd.contactId = this.contactIdToAdd;
+                dealContactToAdd.contactId = this.shareIdToAdd;
                 this.dealContactService.saveDealContact(dealContactToAdd).then(function (result) {
                     _this.getSharersByDealId();
                 });
@@ -102,12 +102,14 @@ var MyApp;
             DealInfoController.prototype.deleteDealContact = function (id) {
                 var _this = this;
                 this.dealContactService.deleteDealContact(id).then(function (result) {
+                    _this.contactIdToAdd = null;
                     _this.getContactsByDealId();
                 });
             };
             DealInfoController.prototype.deleteShareContact = function (id) {
                 var _this = this;
                 this.dealContactService.deleteDealContact(id).then(function (result) {
+                    _this.shareIdToAdd = null;
                     _this.getSharersByDealId();
                 });
             };

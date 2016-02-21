@@ -1,40 +1,50 @@
-﻿<div class="task_wrap">
-    <table class="activity">
-        <tr>
-            <td>
-                Start Date: <input type="text" ng-model="vm.startDateSelected" ng-change="vm.selectDate()" class="customDates form-control">
-            </td>
-            <td>
-                End Date: <input type="text" ng-model="vm.endDateSelected" ng-change="vm.selectDate()" class="customDates form-control">
-            </td>
-            <td>
-                Status: <select class="form-control" ng-model="vm.statusSelected">
-                    <option>Not Started</option>
-                    <option>In Progress</option>
-                    <option>Completed</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Type: <select class="form-control" ng-model="vm.typeSelected">
-                    <option>Call</option>
-                    <option>In Person Meeting</option>
-                </select>
-            </td>
-            <td>
-                Assign To: <select class="form-control" ng-model="vm.assignedTo">
-                    <option ng-repeat="contact in vm.myContacts" value="{{contact.id}}">{{contact.name}}</option>
-                </select>
-            </td>
-        </tr>
-        <tr><td colspan="3"><textarea ng-model="vm.taskContent" class="deal_notes" rows="10" placeholder="Describe the task..."></textarea></td></tr>
-    </table>
-    <button ng-show="vm.taskContent" ng-click="vm.submitTask()" class="btn btn-success">Save Task</button>
+﻿<div class="task_wrap route_wrap">
+    <div class="row">
+        <div class="col-md-4 task_start_date">
+            <label>Start Date:</label>
+            <input type="text" ng-model="vm.startDateSelected" ng-change="vm.selectDate()" class="customDates form-control full">
+        </div>
+        <div class="col-md-4 task_end_date">
+            <label>End Date:</label>
+            <input type="text" ng-model="vm.endDateSelected" ng-change="vm.selectDate()" class="customDates form-control full">
+        </div>
+        <div class="col-md-4 task_status">
+            <label>Status:</label>
+            <select class="form-control full" ng-model="vm.statusSelected">
+                <option>Not Started</option>
+                <option>In Progress</option>
+                <option>Completed</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 task_type">
+            <label>Type:</label>
+            <select class="form-control full" ng-model="vm.typeSelected">
+                <option>Call</option>
+                <option>In Person Meeting</option>
+            </select>
+        </div>
+        <div class="col-md-4 task_assign">
+            <label>Assign To:</label>
+            <select class="form-control full" ng-model="vm.assignedTo">
+                <option ng-repeat="contact in vm.myContacts" value="{{contact.id}}">{{contact.name}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 task_content">
+            <textarea ng-model="vm.taskContent" class="deal_notes" rows="10" placeholder="Describe the task..."></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <button ng-show="vm.taskContent" ng-click="vm.submitTask()" class="btn btn-success form-control full">Save Task</button>
+        </div>
+    </div>
 </div>
 <script>
-  $(function() {
-    $( ".customDates" ).datepicker();
-  });
+    $(function () {
+        $(".customDates").datepicker();
+    });
 </script>
-

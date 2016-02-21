@@ -1,44 +1,399 @@
 ﻿/*Big Tablets to 1200px (widths smaller than the 1140px row in our website)*/
-@media only screen and (max-width: 1200px){
-    
+@media only screen and (max-width: 1200px) {
+
+    body .fullWrapper .week {
+        width: 100%;
+        padding: 10px;
+    }
+
+        body .fullWrapper .week .dayWrapper [ng-drag].english {
+            width: 96%;
+        }
+
+            body .fullWrapper .week .dayWrapper [ng-drag].english .deal-cat,
+            body .fullWrapper .week .dayWrapper [ng-drag].english p {
+                font-size: 12px;
+            }
+
+            .text_wrap, .button_main_wrap{
+                padding: 0 !important;
+            }
+
+    .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .details_head {
+        margin-bottom: 30px;
+    }
+
+    .contact_table_wrap {
+        padding: 0;
+    }
+
+        .contact_table_wrap table td, .contact_table_wrap table th {
+            padding: 8px 4px !important;
+        }
+
+    td.delete_x {
+        padding: 8px 0 !important;
+    }
 }
 
 /* Small Tablet to Big Tablet: 768px to 1023px */
-@media only screen and (max-width: 1023px){
-       input.form-control{
+@media only screen and (max-width: 1023px) {
+
+    /*---------------Deals-----------------*/
+    .list-view-button-wrap {
+        text-align: center;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    .view_search {
+        margin-bottom: 0;
+    }
+
+    .search-bar {
+        width: 100%;
+    }
+
+        .search-bar input {
+            width: 60%;
+            margin: 10px auto;
+        }
+
+    .add-deal-button-wrap {
+        text-align: center;
+        margin-bottom: 0;
+        width: 100%;
+    }
+
+    .my_pages, .my_items {
+        text-align: center;
+    }
+
+    .my_items {
+        margin-bottom: 30px;
+    }
+
+    .add-deal-button-wrap button {
+        width: 300px;
+        font-size: 24px;
+    }
+
+    .navbar-text {
+        display: none;
+    }
+
+    input.form-control {
         max-width: 100%;
     }
-       button.btn{
+
+    button.btn {
         margin-bottom: 16px;
     }
-       .home_button_wrap{
-           width: 100%;
-           margin-top: 200px;
-       }
+
+    .home_button_wrap {
+        width: 100%;
+        margin-top: 200px;
+    }
+
+    .fullWrapper-wrap {
+        overflow-y: hidden;
+    }
+
+    .fullWrapper {
+        width: 1040px;
+    }
+
+    .toggled#sidebar-wrapper {
+        display: none;
+    }
+
+    #wrapper.toggled, #sidebar-wrapper {
+        width: 100% !important;
+        z-index: auto;
+        position: relative;
+        left: 0;
+        margin-left: 0;
+        padding: 0 0 20px 0;
+        text-align: center;
+    }
+
+    .min_amount, .max_amount {
+        padding: 0;
+    }
+
+    #sidebar-wrapper select.date-filter, #sidebar-wrapper select.stage-filter, #sidebar-wrapper input.amount_input {
+        max-width: 100%;
+        width: 60%;
+        margin: auto;
+    }
+
+    .row {
+        margin: 0 !important;
+    }
+
+    #page-content-wrapper {
+        padding: 20px 0;
+    }
+
+    .container-fluid {
+        padding: 0;
+    }
+
+    .col-md-12 {
+        padding: 5px;
+    }
+
+    .details_head {
+        text-align: center;
+        margin-bottom: 40px !important;
+    }
+
+    .head_currency, .head_close_date {
+        display: none;
+    }
+
+    .contact_table_wrap table th {
+        font-size: 12px;
+    }
+
+    .contact_table_wrap table td {
+        font-size: 12px;
+    }
+
+    .text_wrap{
+        width: 100%;
+    }
+
+    .activity_button_wrap{
+        width: 100%;
+    }
+    .activity_date_wrap, .activity_time_wrap{
+        margin-top: 20px;
+        width: 48%;
+        float: left;
+        padding-left: 0;
+    }
+
+    .activity_content_wrap, .note_content_wrap{
+        padding: 0;
+    }
+
+    .task_end_date, .task_start_date, .task_status, .task_type, .task_assign{
+        padding-left: 0;
+    }
+    .task_start_date, .task_end_date, .task_status{
+        width: 33%;
+        float: left;
+        margin-bottom: 5px;
+    }
+
+    .task_type, .task_assign{
+        width: 33%;
+        float: left;
+    }
+
+    .task_content{
+        padding: 0;
+    }
+
+    .log_item_wrap{
+        width: 100%;
+    }
+
+    .log_item_wrap_wrap{
+        padding: 0;
+    }
+
 }
 
 /* All phones and tablets smaller than ipad: from 481px to 767px */
-@media only screen and (max-width: 767px){
+@media only screen and (max-width: 767px) {
 
-    section.jumbotron{
+
+
+    section.jumbotron {
         padding: 10px 5px 10px 5px !important;
     }
-    .heading-wrap h2{
+
+    .heading-wrap h2 {
         font-size: 24px;
     }
-    .heading-wrap h3{
+
+    .heading-wrap h3 {
         font-size: 20px;
     }
 
-    .home_button_wrap{
-        margin-top:70px;
+    .home_button_wrap {
+        margin-top: 70px;
     }
 
+    /*---------------Deals-----------------*/
+
+    .table_wrap {
+        overflow-y: hidden;
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .deals_table {
+        max-width: 300%;
+        width: 1040px;
+    }
+
+        .deals_table th.deal_name, .deals_table th.deal_stage, .deals_table th.deal_owner, .deals_table th.company {
+            max-width: 200px;
+            width: 200px;
+            text-align: center;
+        }
+
+        .deals_table th.close_date, .deals_table th.amount {
+            max-width: 100px;
+            width: 150px;
+            text-align: center;
+        }
+
+        .deals_table th.check_box {
+            width: 40px;
+        }
+
+    #menu-toggle {
+        display: none;
+    }
+
+    .task_type, .task_assign {
+        width: 50%;
+    }
 }
 
 /* Small phones from 0 to 480px */
-@media only screen and (max-width: 480px){
-    
-	
-}
+@media only screen and (max-width: 480px) {
 
+    li.btn a {
+        width: 90%;
+    }
+
+    .table_wrap {
+        overflow-y: hidden;
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 0;
+    }
+
+    .btn-group {
+        margin: 20px auto;
+        width: 100%;
+    }
+
+    .search-bar {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    input.form-control {
+        width: 100%;
+    }
+
+    .add-deal-button-wrap button {
+        font-size: 16px;
+        width: 150px;
+    }
+
+    .my_pages, .my_items {
+        font-size: 11px;
+    }
+
+    .container-fluid {
+        padding: 0;
+    }
+
+    .btn-group-inner-wrap {
+        width: 100%;
+    }
+
+    .head_deal_name h1 {
+        font-size: 24px;
+    }
+
+    .about_deal_table_wrap table th, .about_company_table_wrap table th {
+        font-size: 20px;
+    }
+
+    .about_deal_table_wrap table td, .about_company_table_wrap table td {
+        font-size: 12px;
+    }
+
+    .contact_table_wrap {
+        padding: 0;
+    }
+
+    .table_scroll_wrap {
+        overflow-y: hidden;
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+        .table_scroll_wrap table {
+            width: 400px;
+            max-width: 200%;
+        }
+
+    .left_wrap, .right_wrap {
+        padding: 0;
+    }
+
+    .contact_table_wrap table th {
+    }
+
+    .contact_table_wrap table td {
+    }
+
+    .contact_to_add {
+        width: 90%;
+    }
+
+    .activity_button_wrap {
+        width: 100%;
+        padding-left: 5px;
+    }
+
+        .activity_button_wrap a {
+            font-size: 10px;
+            padding: 5px;
+        }
+
+    .button_main_wrap {
+        padding-left: 4px;
+        padding-right: 0;
+    }
+
+    .log_item_wrap {
+        width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+        font-size: 11px;
+    }
+    table.activity td{
+        width: 50%;
+    }
+
+    .task_start_date, .task_end_date, .task_status, .task_type, .task_assign, .activity_date_wrap, .activity_time_wrap {
+        width: 100%;
+        padding-left: 5px;
+    }
+
+    .task_content, .activity_content_wrap, .note_content_wrap{
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    
+}

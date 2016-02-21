@@ -43,6 +43,7 @@ namespace CoderCampsCRM.API
             {
                 if (contact.Id == 0)
                 {
+                    contact.CreatedOn = DateTime.Now;
                     var userId = this.User.Identity.GetUserId();
                     contact.UserId = userId;
                     _repo.Add(contact);

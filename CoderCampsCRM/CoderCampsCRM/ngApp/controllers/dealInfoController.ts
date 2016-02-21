@@ -9,6 +9,7 @@
         public dealContacts;
         public allContacts;
         public contactIdToAdd;
+        public shareIdToAdd;
         public dealSharers;
         public allRemainingSharers;
 
@@ -102,7 +103,7 @@
                     isDealSharer: true
                 }
                 dealContactToAdd.dealId = this.routeId;
-                dealContactToAdd.contactId = this.contactIdToAdd;
+                dealContactToAdd.contactId = this.shareIdToAdd;
 
                 this.dealContactService.saveDealContact(dealContactToAdd).then((result) => {
                     this.getSharersByDealId();
@@ -111,12 +112,14 @@
 
         public deleteDealContact(id) {
             this.dealContactService.deleteDealContact(id).then((result) => {
+                this.contactIdToAdd = null;
                 this.getContactsByDealId();
             });
         }
 
         public deleteShareContact(id) {
             this.dealContactService.deleteDealContact(id).then((result) => {
+                this.shareIdToAdd = null;
                 this.getSharersByDealId();
             });
         }

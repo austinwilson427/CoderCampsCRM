@@ -27,5 +27,6 @@ namespace CoderCampsCRM.Models
         [ForeignKey("UserId")]
         public ApplicationUser User { get; set; }
 
+        public DateTime? CreatedOn { get; set; }
     }
 }

@@ -21,6 +21,23 @@ namespace CoderCampsCRM.Repositories
             return contacts;
         }
 
-        
+        public List<Company> getAllCompanies(string id)
+        {
+            var companies = _repo.Query<Company>().Where(c => c.UserId == id).ToList();
+            return companies;
+        }
+
+        public List<Deal> getAllDeals(string id)
+        {
+            var deals = _repo.Query<Deal>().Where(c => c.UserId == id).ToList();
+            return deals;
+        }
+
+        public List<UserTask> getAllTasks(string id)
+        {
+            var tasks = _repo.Query<UserTask>().Where(c => c.UserId == id).ToList();
+            return tasks;
+        }
+
     }
 }

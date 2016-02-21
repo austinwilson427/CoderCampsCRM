@@ -104,10 +104,15 @@ namespace CoderCampsCRM.API
             return Ok(data.Deal);
         }
 
+        [Route("api/deals/owned")]
         public IHttpActionResult PostDeal(Deal dealToAdd)
         {
             var userId = this.User.Identity.GetUserId();
             dealToAdd.UserId = userId;
+            var user = _genRepo.Query<ApplicationUser>().Where(a => a.Id == userId).FirstOrDefault();
+
+            var contact = _genRepo.Query<Contact>().Where(c => c.Email == user.Email).FirstOrDefault();
+
             if(userId == null)
             {
                 return Unauthorized();
@@ -117,6 +122,8 @@ namespace CoderCampsCRM.API
 
                 if (dealToAdd.Id == 0)
                 {
+                    dealToAdd.CreatedOn = DateTime.Now;
+                    dealToAdd.ContactId = contact.Id;
                     _genRepo.Add<Deal>(dealToAdd);
                     _genRepo.SaveChanges();
                     return Ok(dealToAdd);
@@ -138,6 +145,7 @@ namespace CoderCampsCRM.API
             return BadRequest(ModelState);
         }
 
+        [Route("api/deals/owned")]
         public IHttpActionResult DeleteDeal(int id)
         {
             Deal dealBeingDeleted = _genRepo.Find<Deal>(id);

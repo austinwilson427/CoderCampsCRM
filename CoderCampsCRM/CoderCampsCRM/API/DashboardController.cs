@@ -21,15 +21,51 @@ namespace CoderCampsCRM.API
         }
 
         [Route("api/dashboard/contacts")]
-        public IHttpActionResult GetDealsOwned()
+        public IHttpActionResult GetContactsOwned()
         {
             var userId = this.User.Identity.GetUserId();
             var contactData = _dashRepo.getAllContacts(userId);
             if (userId == null)
             {
-                //return Unauthorized();
+                return Unauthorized();
             }
             return Ok(contactData);
+        }
+
+        [Route("api/dashboard/companies")]
+        public IHttpActionResult GetCompaniesOwned()
+        {
+            var userId = this.User.Identity.GetUserId();
+            var companyData = _dashRepo.getAllCompanies(userId);
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
+            return Ok(companyData);
+        }
+
+        [Route("api/dashboard/deals")]
+        public IHttpActionResult GetDealsOwned()
+        {
+            var userId = this.User.Identity.GetUserId();
+            var dealData = _dashRepo.getAllDeals(userId);
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
+            return Ok(dealData);
+        }
+
+        [Route("api/dashboard/tasks")]
+        public IHttpActionResult GetTasksOwned()
+        {
+            var userId = this.User.Identity.GetUserId();
+            var taskData = _dashRepo.getAllTasks(userId);
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
+            return Ok(taskData);
         }
     }
 }

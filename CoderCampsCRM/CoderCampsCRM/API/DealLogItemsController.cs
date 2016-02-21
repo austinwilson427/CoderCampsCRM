@@ -66,6 +66,8 @@ namespace CoderCampsCRM.API
             {
                 if (logItemToAdd.Id == 0)
                 {
+                    logItemToAdd.UserId = userId;
+                    logItemToAdd.CreatedOn = DateTime.Now;
                     logItemToAdd.SubmittedBy = fullName;
                     _genRepo.Add<DealLogItem>(logItemToAdd);
                     _genRepo.SaveChanges();

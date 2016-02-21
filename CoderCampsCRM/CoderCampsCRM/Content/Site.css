@@ -73,9 +73,10 @@ section.jumbotron {
     text-align: center;
 }
 
-.heading-wrap h1{
-    margin-bottom: 50px;
-}
+    .heading-wrap h1 {
+        margin-bottom: 50px;
+    }
+
     .heading-wrap h1, .heading-wrap h2, .heading-wrap h3 {
         font-weight: 300;
     }
@@ -110,7 +111,7 @@ p.home_description {
     font-weight: 300;
 }
 
-.home_details a:link, .home_details a:visited{
+.home_details a:link, .home_details a:visited {
     font-size: 16px;
     font-weight: 300;
     color: #e10001;
@@ -118,20 +119,68 @@ p.home_description {
 
 /*-------------------------------Dashboard-----------------------------------*/
 
-.all-icons-wrap{
-    padding: 30px;
+.first-part{
+    padding-right: 20px;
+}
+.all-icons-wrap {
+    padding: 0 30px 30px 30px;
     margin-top: 20px;
+    background-color: #fdfdfd;
 }
-.icon-wrap{
+
+.all-icons-wrap h2{
     text-align: center;
-    border: 1px solid gray;
-    padding: 60px 20px;
-}
-.dashboard-icon{
-    font-size: 60px;
+    border-bottom: 1px solid #ae0001;;
+    padding-bottom: 10px;
+    color: #ae0001;
+    margin-bottom: 40px;
 }
 
+.icon-wrap a:link, .icon-wrap a:visited{
+    color: #ae0001;
+}
 
+.icon-wrap a:hover, .icon-wrap a:active{
+    color: #370000;
+}
+
+.icon-wrap {
+    text-align: center;
+    color: #ae0001;
+    font-size: 20px;
+    border-right: 2px solid;
+}
+
+.icon-wrap:last-child{
+    border: none;
+}
+
+.dashboard-icon, .total-display{
+    position: relative;
+    bottom: 5px;
+}
+
+.dashboard-icon {
+    font-size: 55px;
+}
+
+.dashboard-wrap {
+    background-color: #3c3c3c;
+    min-height: 100vh;
+    padding: 20px 40px 20px 40px;
+}
+
+.dashboard-activity-wrap{
+    color: white;
+    padding: 10px 0 10px 30px;
+    font-size: 16px;
+}
+
+.dashboard-activity-wrap h4{
+    text-align: center;
+    padding-bottom: 10px;
+    font-weight: 400;
+}
 
 /*-------------------------------Deals Section-------------------------------*/
 /*Input class to make input 100% wide*/
@@ -234,17 +283,33 @@ input.amount_input {
 }
 
 .text_wrap {
-    width: 80%;
+    width: 96%;
     margin: auto;
+}
+
+.deal_share_wrap{
+    text-align: center;
+}
+
+.deal_share_wrap label.title{
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.my_remove{
+    margin-left: 10px;
 }
 
 .log_item_wrap {
-    width: 90%;
-    margin: auto;
+    width: 96%;
+    margin: 20px auto;
 }
 
+.button_main_wrap{
+    margin-bottom: 10px;
+}
 .activity_button_wrap {
-    width: 80%;
+    width: 96%;
     margin: auto;
     display: block;
 }
@@ -252,6 +317,7 @@ input.amount_input {
 textarea.deal_notes {
     max-width: 100%;
     width: 100%;
+    margin-top: 20px;
 }
 
 table.log_items td {
@@ -327,6 +393,17 @@ td.trash_cell {
     margin: 0 !important;
 }
 
+p.title{
+    text-align: center;
+}
+
+.deal-cat{
+    text-align: left;
+}
+
+.route_wrap{
+    margin-bottom: 20px;
+}
 /*-------------------Contacts Section--------------------------*/
 
 .error {
@@ -346,9 +423,9 @@ td.trash_cell {
     background-color: lightgray;
 }
 
-.contactPanel button {
-    margin-bottom: 20px;
-}
+    .contactPanel button {
+        margin-bottom: 20px;
+    }
 
 #interactionForm {
     margin-top: 10px;
