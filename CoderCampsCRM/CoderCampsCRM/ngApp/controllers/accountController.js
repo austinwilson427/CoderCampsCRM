@@ -56,8 +56,6 @@ var MyApp;
                     _this.closeModal();
                     _this.$location.path('/dashboard');
                 }).catch(function (results) {
-                    console.log("Error");
-                    console.log(results);
                     _this.validationMessages = results;
                 });
             };
@@ -217,4 +215,3 @@ var MyApp;
         Controllers.ConfirmEmailController = ConfirmEmailController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=accountController.js.map

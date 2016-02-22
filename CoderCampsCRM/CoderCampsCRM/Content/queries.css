@@ -15,9 +15,9 @@
                 font-size: 12px;
             }
 
-            .text_wrap, .button_main_wrap{
-                padding: 0 !important;
-            }
+    .text_wrap, .button_main_wrap {
+        padding: 0 !important;
+    }
 
     .row {
         margin-left: 0 !important;
@@ -38,6 +38,14 @@
 
     td.delete_x {
         padding: 8px 0 !important;
+    }
+
+    .pagination_wrap {
+        width: 30%;
+    }
+
+    .items_per_page_wrap_wrap {
+        width: 50%;
     }
 }
 
@@ -165,50 +173,84 @@
         font-size: 12px;
     }
 
-    .text_wrap{
+    .text_wrap {
         width: 100%;
     }
 
-    .activity_button_wrap{
+    .activity_button_wrap {
         width: 100%;
     }
-    .activity_date_wrap, .activity_time_wrap{
+
+    .activity_date_wrap, .activity_time_wrap {
         margin-top: 20px;
         width: 48%;
         float: left;
         padding-left: 0;
     }
 
-    .activity_content_wrap, .note_content_wrap{
+    .activity_content_wrap, .note_content_wrap {
         padding: 0;
     }
 
-    .task_end_date, .task_start_date, .task_status, .task_type, .task_assign{
+    .task_end_date, .task_start_date, .task_status, .task_type, .task_assign {
         padding-left: 0;
     }
-    .task_start_date, .task_end_date, .task_status{
+
+    .task_start_date, .task_end_date, .task_status {
         width: 33%;
         float: left;
         margin-bottom: 5px;
     }
 
-    .task_type, .task_assign{
+    .task_type, .task_assign {
         width: 33%;
         float: left;
     }
 
-    .task_content{
+    .task_content {
         padding: 0;
     }
 
-    .log_item_wrap{
+    .log_item_wrap {
         width: 100%;
     }
 
-    .log_item_wrap_wrap{
+    .log_item_wrap_wrap {
         padding: 0;
     }
 
+    .filterSideBarContent {
+        margin: auto;
+    }
+
+    .filter_button {
+        display: none;
+    }
+
+    .pagination_wrap, .items_per_page_wrap_wrap {
+        margin: auto;
+        width: 30%;
+    }
+
+    .items_per_page_wrap {
+        float: none;
+        text-align: center;
+    }
+
+    select#itemsPerPage{
+        margin: auto;
+    }
+
+    .contacts_table_wrap{
+        overflow-y: hidden;
+    }
+    .contacts_table{
+        width: 1040px;
+    }
+    .angular-google-map-container{
+        width: 500px;
+        height: 300px;
+    }
 }
 
 /* All phones and tablets smaller than ipad: from 481px to 767px */
@@ -267,6 +309,19 @@
 
     .task_type, .task_assign {
         width: 50%;
+    }
+
+    .hide_map_wrap, .map_wrap{
+        display: none;
+    }
+
+    .pagination_wrap{
+        width: 80%;
+    }
+
+    .items_per_page_wrap_wrap{
+        width: 80%;
+        margin-bottom: 50px;
     }
 }
 
@@ -381,7 +436,8 @@
         padding-right: 5px;
         font-size: 11px;
     }
-    table.activity td{
+
+    table.activity td {
         width: 50%;
     }
 
@@ -390,10 +446,8 @@
         padding-left: 5px;
     }
 
-    .task_content, .activity_content_wrap, .note_content_wrap{
+    .task_content, .activity_content_wrap, .note_content_wrap {
         padding-left: 5px;
         padding-right: 5px;
     }
-
-    
 }

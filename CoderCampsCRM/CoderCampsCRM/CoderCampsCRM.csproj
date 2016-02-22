@@ -254,6 +254,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602221453297_initial.cs" />
+    <Compile Include="Migrations\201602221453297_initial.Designer.cs">
+      <DependentUpon>201602221453297_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602221514200_initial1.cs" />
+    <Compile Include="Migrations\201602221514200_initial1.Designer.cs">
+      <DependentUpon>201602221514200_initial1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602221625170_initial2.cs" />
+    <Compile Include="Migrations\201602221625170_initial2.Designer.cs">
+      <DependentUpon>201602221625170_initial2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -270,6 +282,7 @@
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\ProfileUser.cs" />
+    <Compile Include="Models\Quota.cs" />
     <Compile Include="Models\UserTask.cs" />
     <Compile Include="Models\ViewModels\CompanyViewModel.cs" />
     <Compile Include="Models\ViewModels\ContactDetailViewModel.cs" />
@@ -377,6 +390,7 @@
     <Content Include="ngApp\views\modals\edit-deal.html" />
     <Content Include="ngApp\views\modals\contactAddModal.html" />
     <Content Include="ngApp\views\modals\editCompanyModal.html" />
+    <Content Include="ngApp\views\modals\quotaModal.html" />
     <Content Include="ngApp\views\myAccount.html" />
     <Content Include="ngApp\views\notFound.html" />
     <Content Include="ngApp\views\profile.html" />
@@ -1374,6 +1388,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201602221453297_initial.resx">
+      <DependentUpon>201602221453297_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602221514200_initial1.resx">
+      <DependentUpon>201602221514200_initial1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602221625170_initial2.resx">
+      <DependentUpon>201602221625170_initial2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

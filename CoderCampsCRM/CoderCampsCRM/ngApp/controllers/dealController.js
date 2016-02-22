@@ -812,7 +812,6 @@ var MyApp;
                         finalDeal = this.dealsToDelete[i];
                         break;
                     }
-                    console.log(i);
                     this.dealLogItemService.deleteDealLogItem(this.dealsToDelete[i].id).then(function (result) {
                     });
                     this.dealService.deleteDeal(this.dealsToDelete[i].id);
@@ -1186,4 +1185,3 @@ var MyApp;
         Controllers.DealChartsController = DealChartsController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=dealController.js.map

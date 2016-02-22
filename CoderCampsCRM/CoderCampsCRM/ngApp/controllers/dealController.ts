@@ -805,7 +805,7 @@
     class DeleteDealModal {
         public validationErrors;
         public dealsToDeleteLength;
-
+        
         constructor(private dealService: MyApp.Services.DealService, private $location: ng.ILocationService, private $uibModalInstance: ng.ui.bootstrap.IModalServiceInstance, public dealsToDelete, private $route: ng.route.IRouteService, private dealLogItemService: MyApp.Services.DealLogItemService) {
             this.dealsToDeleteLength = dealsToDelete.length;
 
@@ -818,7 +818,6 @@
                     finalDeal = this.dealsToDelete[i];
                     break;
                 }
-                console.log(i);
                 this.dealLogItemService.deleteDealLogItem(this.dealsToDelete[i].id).then((result) => {
                     
                 });

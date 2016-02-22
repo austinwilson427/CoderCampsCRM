@@ -53,8 +53,6 @@
                 this.closeModal();
                 this.$location.path('/dashboard');
             }).catch((results) => {
-                console.log("Error");
-                console.log(results);
                 this.validationMessages = results;
             });
         }

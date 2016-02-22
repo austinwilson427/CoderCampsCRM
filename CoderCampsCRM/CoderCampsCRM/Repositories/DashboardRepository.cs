@@ -39,5 +39,10 @@ namespace CoderCampsCRM.Repositories
             return tasks;
         }
 
+        public List<Quota> getAllQuotas(string id)
+        {
+            var quotas = _repo.Query<Quota>().Where(c => c.UserId == id).ToList();
+            return quotas;
+        }
     }
 }

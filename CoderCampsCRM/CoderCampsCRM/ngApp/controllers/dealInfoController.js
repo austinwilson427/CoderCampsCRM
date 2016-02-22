@@ -21,18 +21,134 @@ var MyApp;
             DealInfoController.prototype.getDealShared = function () {
                 var _this = this;
                 this.dealService.getDealsSharedByDealId(this.routeId).$promise.then(function (result) {
-                    console.log(result);
                     _this.dealInfo = result;
                     _this.company = result.company;
+                    var stage = _this.dealInfo.stage;
+                    _this.findAndSetStage(stage);
                 });
             };
             DealInfoController.prototype.getDealOwned = function () {
                 var _this = this;
                 this.dealService.getDealsOwnedByDealId(this.routeId).$promise.then(function (result) {
-                    console.log(result);
                     _this.dealInfo = result;
                     _this.company = result.company;
+                    var stage = _this.dealInfo.stage;
+                    _this.findAndSetStage(stage);
                 });
+            };
+            DealInfoController.prototype.findAndSetStage = function (stage) {
+                if (stage == "Appointment Scheduled") {
+                    this.appointmentScheduled = true;
+                    this.qualifiedToBuy = false;
+                    this.presentationScheduled = false;
+                    this.decisionMaker = false;
+                    this.contractSent = false;
+                    this.closedWon = false;
+                    this.closedLost = false;
+                    this.appointmentScheduledGlow = true;
+                    this.qualifiedToBuyGlow = false;
+                    this.presentationScheduledGlow = false;
+                    this.decisionMakerGlow = false;
+                    this.contractSentGlow = false;
+                    this.closedWonGlow = false;
+                    this.closedLostGlow = false;
+                }
+                else if (stage == "Qualified to Buy") {
+                    this.appointmentScheduled = false;
+                    this.qualifiedToBuy = true;
+                    this.presentationScheduled = false;
+                    this.decisionMaker = false;
+                    this.contractSent = false;
+                    this.closedWon = false;
+                    this.closedLost = false;
+                    this.appointmentScheduledGlow = true;
+                    this.qualifiedToBuyGlow = true;
+                    this.presentationScheduledGlow = false;
+                    this.decisionMakerGlow = false;
+                    this.contractSentGlow = false;
+                    this.closedWonGlow = false;
+                    this.closedLostGlow = false;
+                }
+                else if (stage == "Presentation Scheduled") {
+                    this.appointmentScheduled = false;
+                    this.qualifiedToBuy = false;
+                    this.presentationScheduled = true;
+                    this.decisionMaker = false;
+                    this.contractSent = false;
+                    this.closedWon = false;
+                    this.closedLost = false;
+                    this.appointmentScheduledGlow = true;
+                    this.qualifiedToBuyGlow = true;
+                    this.presentationScheduledGlow = true;
+                    this.decisionMakerGlow = false;
+                    this.contractSentGlow = false;
+                    this.closedWonGlow = false;
+                    this.closedLostGlow = false;
+                }
+                else if (stage == "Decision Maker Bought In") {
+                    this.appointmentScheduled = false;
+                    this.qualifiedToBuy = false;
+                    this.presentationScheduled = false;
+                    this.decisionMaker = true;
+                    this.contractSent = false;
+                    this.closedWon = false;
+                    this.closedLost = false;
+                    this.appointmentScheduledGlow = true;
+                    this.qualifiedToBuyGlow = true;
+                    this.presentationScheduledGlow = true;
+                    this.decisionMakerGlow = true;
+                    this.contractSentGlow = false;
+                    this.closedWonGlow = false;
+                    this.closedLostGlow = false;
+                }
+                else if (stage == "Contract Sent") {
+                    this.appointmentScheduled = false;
+                    this.qualifiedToBuy = false;
+                    this.presentationScheduled = false;
+                    this.decisionMaker = false;
+                    this.contractSent = true;
+                    this.closedWon = false;
+                    this.closedLost = false;
+                    this.appointmentScheduledGlow = true;
+                    this.qualifiedToBuyGlow = true;
+                    this.presentationScheduledGlow = true;
+                    this.decisionMakerGlow = true;
+                    this.contractSentGlow = true;
+                    this.closedWonGlow = false;
+                    this.closedLostGlow = false;
+                }
+                else if (stage == "Closed Won") {
+                    this.appointmentScheduled = false;
+                    this.qualifiedToBuy = false;
+                    this.presentationScheduled = false;
+                    this.decisionMaker = false;
+                    this.contractSent = false;
+                    this.closedWon = true;
+                    this.closedLost = false;
+                    this.appointmentScheduledGlow = true;
+                    this.qualifiedToBuyGlow = true;
+                    this.presentationScheduledGlow = true;
+                    this.decisionMakerGlow = true;
+                    this.contractSentGlow = true;
+                    this.closedWonGlow = true;
+                    this.closedLostGlow = false;
+                }
+                else if (stage == "Closed Lost") {
+                    this.appointmentScheduled = false;
+                    this.qualifiedToBuy = false;
+                    this.presentationScheduled = false;
+                    this.decisionMaker = false;
+                    this.contractSent = false;
+                    this.closedWon = false;
+                    this.closedLost = true;
+                    this.appointmentScheduledGlow = false;
+                    this.qualifiedToBuyGlow = false;
+                    this.presentationScheduledGlow = false;
+                    this.decisionMakerGlow = false;
+                    this.contractSentGlow = false;
+                    this.closedWonGlow = false;
+                    this.closedLostGlow = true;
+                }
             };
             DealInfoController.prototype.getDealLogItemsByRouteId = function () {
                 var _this = this;
@@ -70,7 +186,6 @@ var MyApp;
                             }
                         }
                     });
-                    console.log(_this.dealSharers);
                 });
             };
             DealInfoController.prototype.addDealContact = function () {
@@ -113,6 +228,14 @@ var MyApp;
                     _this.getSharersByDealId();
                 });
             };
+            DealInfoController.prototype.editStage = function (stage) {
+                var _this = this;
+                this.dealInfo.stage = stage;
+                this.dealService.saveDeal(this.dealInfo).then(function () {
+                    _this.getDealOwned();
+                    _this.getDealShared();
+                });
+            };
             return DealInfoController;
         })();
         Controllers.DealInfoController = DealInfoController;
@@ -130,7 +253,6 @@ var MyApp;
             DealInfoNoteController.prototype.getDealShared = function () {
                 var _this = this;
                 this.dealService.getDealsSharedByDealId(this.routeId).$promise.then(function (result) {
-                    console.log(result);
                     _this.dealInfo = result;
                     _this.company = result.company;
                 });
@@ -164,7 +286,6 @@ var MyApp;
                         validationErrors = validationErrors.concat(errorMessage);
                     }
                     _this.validationErrors = validationErrors;
-                    console.log(_this.validationErrors);
                 });
             };
             return DealInfoNoteController;
@@ -285,7 +406,6 @@ var MyApp;
             DealInfoActivityController.prototype.getDealShared = function () {
                 var _this = this;
                 this.dealService.getDealsSharedByDealId(this.routeId).$promise.then(function (result) {
-                    console.log(result);
                     _this.dealInfo = result;
                     _this.company = result.company;
                 });
@@ -327,7 +447,6 @@ var MyApp;
                         validationErrors = validationErrors.concat(errorMessage);
                     }
                     _this.validationErrors = validationErrors;
-                    console.log(_this.validationErrors);
                 });
             };
             return DealInfoActivityController;
@@ -353,7 +472,6 @@ var MyApp;
             DealInfoTaskController.prototype.getDealShared = function () {
                 var _this = this;
                 this.dealService.getDealsSharedByDealId(this.routeId).$promise.then(function (result) {
-                    console.log(result);
                     _this.dealInfo = result;
                     _this.company = result.company;
                 });
@@ -401,7 +519,6 @@ var MyApp;
                         validationErrors = validationErrors.concat(errorMessage);
                     }
                     _this.validationErrors = validationErrors;
-                    console.log(_this.validationErrors);
                 });
             };
             return DealInfoTaskController;
@@ -415,4 +532,3 @@ var MyApp;
         Controllers.DealInfoEventController = DealInfoEventController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=dealInfoController.js.map
