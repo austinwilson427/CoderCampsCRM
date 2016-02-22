@@ -255,18 +255,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602200056069_initial.cs" />
-    <Compile Include="Migrations\201602200056069_initial.Designer.cs">
-      <DependentUpon>201602200056069_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602221514200_initial1.cs" />
-    <Compile Include="Migrations\201602221514200_initial1.Designer.cs">
-      <DependentUpon>201602221514200_initial1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602221625170_initial2.cs" />
-    <Compile Include="Migrations\201602221625170_initial2.Designer.cs">
-      <DependentUpon>201602221625170_initial2.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1392,11 +1380,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602200056069_initial.resx">
-      <DependentUpon>201602200056069_initial.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
