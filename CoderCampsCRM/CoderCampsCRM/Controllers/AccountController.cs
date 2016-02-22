@@ -423,12 +423,13 @@ namespace CoderCampsCRM.Controllers
             var user = new ApplicationUser() {
                 UserName = model.UserName,
                 Email = model.Email,
-                FirstName= model.FirstName,
-                LastName=model.LastName,
-                Company=model.Company,
-                PhoneNumber=model.PhoneNumber,
-                TimeZone=model.TimeZone,
-                PicUrl=model.PicUrl
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Company = model.Company,
+                PhoneNumber = model.PhoneNumber,
+                TimeZone = model.TimeZone,
+                PicUrl = model.PicUrl,
+                MemberSince = DateTime.Now,
             };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);

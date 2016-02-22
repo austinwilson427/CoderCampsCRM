@@ -15,4 +15,3 @@ var MyApp;
         angular.module('MyApp').service('movieService', MovieService);
     })(Services = MyApp.Services || (MyApp.Services = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=services.js.map

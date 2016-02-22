@@ -3,7 +3,7 @@ namespace CoderCampsCRM.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initial : DbMigration
+    public partial class initia : DbMigration
     {
         public override void Up()
         {
@@ -77,6 +77,7 @@ namespace CoderCampsCRM.Migrations
                         Company = c.String(),
                         TimeZone = c.String(),
                         PicUrl = c.String(),
+                        MemberSince = c.DateTime(nullable: false),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),

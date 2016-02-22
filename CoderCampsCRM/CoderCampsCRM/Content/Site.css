@@ -345,6 +345,9 @@ td.trash_cell {
 
 #filterBtn {
     margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+
 }
 
 #interactionBtn {
@@ -392,6 +395,17 @@ td.trash_cell {
     margin-right: auto;
     height: auto !important;
     margin-bottom: 30px;
+}
+
+.filterSideBarContent{
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+}
+
+.adminImg {
+    width: 100px;
+    height: auto !important;
 }
 
 /*SEARCHBAR CSS*/

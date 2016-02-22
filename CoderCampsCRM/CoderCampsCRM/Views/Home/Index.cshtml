@@ -54,11 +54,12 @@
                     <ul class="nav navbar-nav">
                         <li class="divider-vertical"></li>
                         <li><a ui-sref="home">Home<span class="sr-only">(current)</span></a></li>
-                        <li ng-show="account.isLoggedIn()"><a ui-sref="dashboard">Dashboard</a></li>
-                        <li ng-show="account.isLoggedIn()"><a ui-sref="contacts">Contacts</a></li>
-                        <li ng-show="account.isLoggedIn()"><a ui-sref="companies">Companies</a></li>
-                        <li ng-show="account.isLoggedIn()"><a ui-sref="deals.list-view">Deals</a></li>
-                        <li ng-show="account.isLoggedIn()"><a ui-sref="tasks">Tasks</a></li>
+                        <li ng-show="account.isLoggedIn()"><a ng-show="account.isLoggedIn()" ui-sref="dashboard">Dashboard</a></li>
+                        <li ng-show="account.isLoggedIn()"><a ng-show="account.isLoggedIn()" ui-sref="contacts">Contacts</a></li>
+                        <li ng-show="account.isLoggedIn()"><a ng-show="account.isLoggedIn()" ui-sref="companies">Companies</a></li>
+                        <li ng-show="account.isLoggedIn()"><a ng-show="account.isLoggedIn()" ui-sref="deals.list-view">Deals</a></li>
+                        <li ng-show="account.isLoggedIn()"><a ng-show="account.isLoggedIn()" ui-sref="tasks">Tasks</a></li>
+                        <li ng-show="account.getClaim('Admin')"><a ng-show="account.getClaim('Admin')" ui-sref="admin">Admin Page</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
 
@@ -118,6 +119,7 @@
     <script src="~/ngApp/app.js"></script>
     <script src="~/ngApp/services/services.js"></script>
     <script src="~/ngApp/services/accountService.js"></script>
+    <script src="~/ngApp/services/adminService.js"></script>
     <script src="~/ngApp/services/dealService.js"></script>
     <script src="~/ngApp/services/dealLogItemService.js"></script>
     <script src="~/ngApp/services/contactService.js"></script>
@@ -131,6 +133,7 @@
     <!--Controllers-->
     <script src="~/ngApp/controllers/controllers.js"></script>
     <script src="~/ngApp/controllers/accountController.js"></script>
+    <script src="~/ngApp/controllers/adminController.js"></script>
     <script src="~/ngApp/controllers/dealController.js"></script>
     <script src="~/ngApp/controllers/dealInfoController.js"></script>
     <script src="~/ngApp/controllers/contactListController.js"></script>
