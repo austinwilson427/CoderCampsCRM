@@ -1,0 +1,102 @@
+﻿<div class="dashboard-wrap">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-12 all-icons-wrap">
+                    <h2>Current Items</h2>
+                    <div class="col-md-3 icon-wrap">
+                        <a ui-sref="contacts">
+                            <i class="ion-ios-person-outline dashboard-icon"></i>
+                            <div class="total-display">
+                                {{vm.totalContacts}} Contacts
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-3 icon-wrap">
+                        <a ui-sref="companies">
+                            <i class="ion-ios-people-outline dashboard-icon"></i>
+                            <div class="total-display">
+                                {{vm.totalCompanies}} Companies
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-3 icon-wrap">
+                        <a ui-sref="deals.list-view">
+                            <i class="ion-social-usd-outline dashboard-icon"></i>
+                            <div class="total-display">
+                                {{vm.totalDeals}} Deals Owned
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-3 icon-wrap">
+                        <a ui-sref="tasks">
+                            <i class="ion-ios-list-outline dashboard-icon"></i>
+                            <div class="total-display">
+                                {{vm.totalTasks}} Tasks
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row progress-wrap">
+                <h2>Deal Forecast</h2>
+                <div class="row quota_detail_wrap">
+                    <div class="col-md-4 col-md-offset-2">
+                        <h4>Weighted Total:</h4>
+                        <span class="quota_count">{{vm.weightedTotal | currency}}</span>
+                    </div>
+                    <div class="col-md-4">
+                        <h4>Monthly Quota:</h4>
+                        <span class="quota_count">{{vm.monthlyQuota | currency}}</span>
+                    </div>
+                    <div class="col-md-2">
+                        <button ng-click="vm.showQuotaModal()" class="quota_btn">Set Quota</button>
+                    </div>
+                </div>
+                <div ng-if="vm.monthlyQuota > 0" class="row">
+                    <div class="col-md-12 my_progress">
+                        <uib-progressbar max="vm.monthlyQuota" value="vm.weightedTotal"><span style="color:white; white-space:nowrap;">{{vm.percentComplete}} %</span></uib-progressbar>
+                    </div>
+                </div>
+                <div ng-if="vm.monthlyQuota <= 0" class="row">
+                    <div class="col-md-12 my_progress">
+                        <p class="set_quota">Set Monthly Quota to See Your Weighted Progress</p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Matt's Task Details-->
+            <div class="row productivity-wrap">
+                <h2>Productivity</h2>
+                <!--Content Here-->
+            </div>
+        </div>
+        <div class="col-md-3 dashboard-activity-wrap">
+            <h4>Recent Activity</h4>
+            <table class="table table-condensed">
+                <tr ng-repeat="activity in vm.allActivity | orderBy: '-createdOn' track by $index">
+                    <td ng-if="activity.category == 'contact' && $index < 10">
+                        You added <a ui-sref="contactDetails({id: activity.id})">{{activity.name}}</a>  to your contacts<br />
+                        <span class="date_time">{{activity.createdOn | date: 'short'}}</span>
+                    </td>
+                    <td ng-if="activity.category == 'company' && $index < 10">
+                        You added <a ui-sref="company-info({id: activity.id})">
+                            {{activity.name}}
+                        </a> to your companies<br />
+                        <span class="date_time">{{activity.createdOn | date: 'short'}}</span>
+                    </td>
+                    <td ng-if="activity.category == 'deal' && $index < 10">
+                        You created a deal titled <a ui-sref="deal-info({id: activity.id})">{{activity.name}}</a> <br />
+                        <span class="date_time">{{activity.createdOn | date: 'short'}}</span>
+                    </td>
+                    <td ng-if="activity.category == 'task' && $index < 10">
+                        You created a new <a ui-sref="taskdetails({id: activity.id})">task</a> that is due on {{activity.dueBy | date: 'short'}}<br />
+                        <span class="date_time">{{activity.createdOn | date: 'short'}}</span>
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
