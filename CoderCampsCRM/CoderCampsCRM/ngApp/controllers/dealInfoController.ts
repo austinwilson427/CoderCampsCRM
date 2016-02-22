@@ -13,7 +13,7 @@
         public dealSharers;
         public allRemainingSharers;
         public appointmentScheduled; public qualifiedToBuy; public presentationScheduled;
-        public decisionMaker; public contractSent; public closedWon; public closedLost; public appointmentScheduledGlow; public qualifiedToBuyGlow; public presentationScheduledGlow; public decisionMakerGlow; public contractSentGlow; public closedWonGlow;public closedLostGlow;
+        public decisionMaker; public contractSent; public closedWon; public closedLost; public appointmentScheduledGlow; public qualifiedToBuyGlow; public presentationScheduledGlow; public decisionMakerGlow; public contractSentGlow; public closedWonGlow; public closedLostGlow;
 
         constructor(private dealService: MyApp.Services.DealService, private $stateParams: ng.ui.IStateParamsService, private dealLogItemService: MyApp.Services.DealLogItemService, private dealContactService: MyApp.Services.DealContactService, private contactService: MyApp.Services.ContactService, private $route: ng.route.IRouteService, private $location: ng.ILocationService) {
             this.routeId = $stateParams["id"];
@@ -210,17 +210,17 @@
         }
 
         public addShareholderContact() {
-                let dealContactToAdd = {
-                    dealId: null,
-                    contactId: null,
-                    isDealSharer: true
-                }
-                dealContactToAdd.dealId = this.routeId;
-                dealContactToAdd.contactId = this.shareIdToAdd;
+            let dealContactToAdd = {
+                dealId: null,
+                contactId: null,
+                isDealSharer: true
+            }
+            dealContactToAdd.dealId = this.routeId;
+            dealContactToAdd.contactId = this.shareIdToAdd;
 
-                this.dealContactService.saveDealContact(dealContactToAdd).then((result) => {
-                    this.getSharersByDealId();
-                });
+            this.dealContactService.saveDealContact(dealContactToAdd).then((result) => {
+                this.getSharersByDealId();
+            });
         }
 
         public deleteDealContact(id) {
@@ -238,12 +238,26 @@
         }
 
         public editStage(stage) {
-            this.dealInfo.stage = stage;
 
-            this.dealService.saveDeal(this.dealInfo).then(() => {
-                this.getDealOwned();
-                this.getDealShared();
-            });
+            let dealInfoToSave = {
+                amount: this.dealInfo.amount,
+                closeDate: this.dealInfo.closeDate,
+                companyId: this.dealInfo.companyId,
+                contactId: this.dealInfo.contactId,
+                createdOn: this.dealInfo.createdOn,
+                dealName: this.dealInfo.dealName,
+                id: this.dealInfo.id,
+                isArchived: this.dealInfo.isArchived,
+                stage: stage
+            }
+
+            if (dealInfoToSave.id != 0) {
+                this.dealService.saveDeal(dealInfoToSave).then(() => {
+                    this.getDealOwned();
+                    this.getDealShared();
+                });
+            }
+
 
         }
     }

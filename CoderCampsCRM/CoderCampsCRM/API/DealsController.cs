@@ -128,12 +128,17 @@ namespace CoderCampsCRM.API
             {
                 return Unauthorized();
             }
+
             if (ModelState.IsValid)
             {
 
                 if (dealToAdd.Id == 0)
                 {
                     dealToAdd.CreatedOn = DateTime.Now;
+                    if(contact == null)
+                    {
+                        return Ok();
+                    }
                     dealToAdd.ContactId = contact.Id;
                     _genRepo.Add<Deal>(dealToAdd);
                     _genRepo.SaveChanges();
