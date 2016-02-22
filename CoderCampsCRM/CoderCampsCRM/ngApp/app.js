@@ -16,6 +16,12 @@ var MyApp;
             controller: MyApp.Controllers.DashboardController,
             controllerAs: 'vm'
         })
+            .state('admin', {
+            url: '/adminPage',
+            templateUrl: '/ngApp/views/adminPage.html',
+            controller: MyApp.Controllers.AdminController,
+            controllerAs: 'vm'
+        })
             .state('externalRegister', {
             url: '/externalRegister',
             templateUrl: '/ngApp/views/externalRegister.html',
@@ -185,4 +191,3 @@ var MyApp;
         $httpProvider.interceptors.push('authInterceptor');
     });
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=app.js.map

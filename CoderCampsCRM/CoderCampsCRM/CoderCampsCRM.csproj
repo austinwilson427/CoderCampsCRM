@@ -199,6 +199,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\AdminController.cs" />
     <Compile Include="API\CompaniesController.cs" />
     <Compile Include="API\CompanyLogItemsController.cs" />
     <Compile Include="API\ContactFilterViewController.cs" />
@@ -253,6 +254,18 @@
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602221453297_initial.cs" />
+    <Compile Include="Migrations\201602221453297_initial.Designer.cs">
+      <DependentUpon>201602221453297_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602221514200_initial1.cs" />
+    <Compile Include="Migrations\201602221514200_initial1.Designer.cs">
+      <DependentUpon>201602221514200_initial1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602221625170_initial2.cs" />
+    <Compile Include="Migrations\201602221625170_initial2.Designer.cs">
+      <DependentUpon>201602221625170_initial2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -357,6 +370,7 @@
     <Content Include="ngApp\scripts\ngDraggable.js" />
     <Content Include="ngApp\views\about.html" />
     <Content Include="ngApp\views\addtask.html" />
+    <Content Include="ngApp\views\adminPage.html" />
     <Content Include="ngApp\views\companies.html" />
     <Content Include="ngApp\views\confirmEmail.html" />
     <Content Include="ngApp\views\contactDetailsView.html" />
@@ -1333,6 +1347,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="ngApp\app.ts" />
     <TypeScriptCompile Include="ngApp\controllers\accountController.ts" />
+    <TypeScriptCompile Include="ngApp\controllers\adminController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\companyInfoController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\contactAddController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\contactDetailsController.ts" />
@@ -1345,6 +1360,7 @@
     <TypeScriptCompile Include="ngApp\controllers\ProfileController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\taskController.ts" />
     <TypeScriptCompile Include="ngApp\services\accountService.ts" />
+    <TypeScriptCompile Include="ngApp\services\adminService.ts" />
     <TypeScriptCompile Include="ngApp\services\companyInfoController.ts" />
     <TypeScriptCompile Include="ngApp\services\companyLogItemService.ts" />
     <TypeScriptCompile Include="ngApp\services\contactService.ts" />
@@ -1376,6 +1392,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201602221453297_initial.resx">
+      <DependentUpon>201602221453297_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602221514200_initial1.resx">
+      <DependentUpon>201602221514200_initial1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602221625170_initial2.resx">
+      <DependentUpon>201602221625170_initial2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
