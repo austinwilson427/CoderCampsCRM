@@ -175,6 +175,7 @@ var MyApp;
             DealInfoController.prototype.getSharersByDealId = function () {
                 var _this = this;
                 this.dealContactService.getAllDealSharersByDealId(this.routeId).$promise.then(function (result) {
+                    console.log(result);
                     _this.dealSharers = result;
                     _this.contactService.getAllContacts().then(function (result) {
                         _this.allRemainingSharers = result;
@@ -230,11 +231,23 @@ var MyApp;
             };
             DealInfoController.prototype.editStage = function (stage) {
                 var _this = this;
-                this.dealInfo.stage = stage;
-                this.dealService.saveDeal(this.dealInfo).then(function () {
-                    _this.getDealOwned();
-                    _this.getDealShared();
-                });
+                var dealInfoToSave = {
+                    amount: this.dealInfo.amount,
+                    closeDate: this.dealInfo.closeDate,
+                    companyId: this.dealInfo.companyId,
+                    contactId: this.dealInfo.contactId,
+                    createdOn: this.dealInfo.createdOn,
+                    dealName: this.dealInfo.dealName,
+                    id: this.dealInfo.id,
+                    isArchived: this.dealInfo.isArchived,
+                    stage: stage
+                };
+                if (dealInfoToSave.id != 0) {
+                    this.dealService.saveDeal(dealInfoToSave).then(function () {
+                        _this.getDealOwned();
+                        _this.getDealShared();
+                    });
+                }
             };
             return DealInfoController;
         })();

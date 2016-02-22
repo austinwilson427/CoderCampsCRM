@@ -3,7 +3,7 @@ namespace CoderCampsCRM.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initia : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -60,6 +60,7 @@ namespace CoderCampsCRM.Migrations
                         ImageUrl = c.String(),
                         UserId = c.String(maxLength: 128),
                         CompanyId = c.Int(),
+                        CreatedOn = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Companies", t => t.CompanyId)
@@ -119,6 +120,7 @@ namespace CoderCampsCRM.Migrations
                         ContactId = c.Int(),
                         CompanyId = c.Int(),
                         UserId = c.String(maxLength: 128),
+                        CreatedOn = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Companies", t => t.CompanyId)
@@ -166,6 +168,7 @@ namespace CoderCampsCRM.Migrations
                         DealId = c.Int(),
                         ContactId = c.Int(),
                         UserId = c.String(maxLength: 128),
+                        CreatedOn = c.DateTime(),
                         Company_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
@@ -187,6 +190,7 @@ namespace CoderCampsCRM.Migrations
                         Content = c.String(),
                         SubmittedBy = c.String(),
                         TaskId = c.Int(),
+                        CreatedOn = c.DateTime(),
                         Company_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
@@ -202,6 +206,7 @@ namespace CoderCampsCRM.Migrations
                         Subject = c.String(),
                         Description = c.String(),
                         ContactId = c.Int(nullable: false),
+                        CreatedOn = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Contacts", t => t.ContactId, cascadeDelete: true)
@@ -214,12 +219,17 @@ namespace CoderCampsCRM.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         DealId = c.Int(nullable: false),
                         ContactId = c.Int(nullable: false),
+                        isDealSharer = c.Boolean(nullable: false),
+                        UserId = c.String(maxLength: 128),
+                        CreatedOn = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Contacts", t => t.ContactId, cascadeDelete: true)
                 .ForeignKey("dbo.Deals", t => t.DealId, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
                 .Index(t => t.DealId)
-                .Index(t => t.ContactId);
+                .Index(t => t.ContactId)
+                .Index(t => t.UserId);
             
             CreateTable(
                 "dbo.DealLogItems",
@@ -234,12 +244,16 @@ namespace CoderCampsCRM.Migrations
                         TaskId = c.Int(),
                         ContactId = c.Int(),
                         DealId = c.Int(),
+                        UserId = c.String(maxLength: 128),
+                        CreatedOn = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Contacts", t => t.ContactId)
                 .ForeignKey("dbo.Deals", t => t.DealId)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
                 .Index(t => t.ContactId)
-                .Index(t => t.DealId);
+                .Index(t => t.DealId)
+                .Index(t => t.UserId);
             
             CreateTable(
                 "dbo.ExternalLoginDatas",
@@ -264,6 +278,21 @@ namespace CoderCampsCRM.Migrations
                         CompanyName = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Quotas",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        UserId = c.String(maxLength: 128),
+                        QuotaSet = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Month = c.Int(nullable: false),
+                        Year = c.Int(nullable: false),
+                        CreatedOn = c.DateTime(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
+                .Index(t => t.UserId);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -296,8 +325,11 @@ namespace CoderCampsCRM.Migrations
             DropForeignKey("dbo.TaskContacts", "TaskId", "dbo.UserTasks");
             DropForeignKey("dbo.TaskContacts", "ContactId", "dbo.Contacts");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.Quotas", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.DealLogItems", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.DealLogItems", "DealId", "dbo.Deals");
             DropForeignKey("dbo.DealLogItems", "ContactId", "dbo.Contacts");
+            DropForeignKey("dbo.DealContacts", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.DealContacts", "DealId", "dbo.Deals");
             DropForeignKey("dbo.DealContacts", "ContactId", "dbo.Contacts");
             DropForeignKey("dbo.ContactInteractions", "ContactId", "dbo.Contacts");
@@ -317,8 +349,11 @@ namespace CoderCampsCRM.Migrations
             DropIndex("dbo.TaskContacts", new[] { "ContactId" });
             DropIndex("dbo.TaskContacts", new[] { "TaskId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.Quotas", new[] { "UserId" });
+            DropIndex("dbo.DealLogItems", new[] { "UserId" });
             DropIndex("dbo.DealLogItems", new[] { "DealId" });
             DropIndex("dbo.DealLogItems", new[] { "ContactId" });
+            DropIndex("dbo.DealContacts", new[] { "UserId" });
             DropIndex("dbo.DealContacts", new[] { "ContactId" });
             DropIndex("dbo.DealContacts", new[] { "DealId" });
             DropIndex("dbo.ContactInteractions", new[] { "ContactId" });
@@ -339,6 +374,7 @@ namespace CoderCampsCRM.Migrations
             DropIndex("dbo.Companies", new[] { "UserId" });
             DropTable("dbo.TaskContacts");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.Quotas");
             DropTable("dbo.ProfileUsers");
             DropTable("dbo.ExternalLoginDatas");
             DropTable("dbo.DealLogItems");
