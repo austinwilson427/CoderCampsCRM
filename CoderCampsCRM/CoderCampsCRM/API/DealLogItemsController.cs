@@ -33,8 +33,17 @@ namespace CoderCampsCRM.API
             var userInfo = _genRepo.Query<ApplicationUser>().Where(a => a.Id == userId).FirstOrDefault();
             var contactInfo = _genRepo.Query<Contact>().Where(c => c.Email == userInfo.Email).FirstOrDefault();
 
+            DealContact dealSharer;
+            if (contactInfo == null)
+            {
+                dealSharer = null;
+            }
+            else
+            {
+                dealSharer = _genRepo.Query<DealContact>().Where(d => d.ContactId == contactInfo.Id && d.isDealSharer == true && d.DealId == id).FirstOrDefault();
+            }
+
             var dealOwner = _genRepo.Query<Deal>().Where(d => d.UserId == userId && d.Id == id).FirstOrDefault();
-            var dealSharer = _genRepo.Query<DealContact>().Where(d => d.ContactId == contactInfo.Id && d.isDealSharer == true && d.DealId == id).FirstOrDefault();
 
             if (dealOwner == null && dealSharer == null)
             {
@@ -123,8 +132,17 @@ namespace CoderCampsCRM.API
             var userInfo = _genRepo.Query<ApplicationUser>().Where(a => a.Id == userId).FirstOrDefault();
             var contactInfo = _genRepo.Query<Contact>().Where(c => c.Email == userInfo.Email).FirstOrDefault();
 
-            var dealOwner = _genRepo.Query<Deal>().Where(d => d.UserId == userId && d.Id == id).FirstOrDefault();
-            var dealSharer = _genRepo.Query<DealContact>().Where(d => d.ContactId == contactInfo.Id && d.isDealSharer == true && d.DealId == id).FirstOrDefault();
+            DealContact dealSharer;
+            if (contactInfo == null)
+            {
+                dealSharer = null;
+            }
+            else
+            {
+                dealSharer = _genRepo.Query<DealContact>().Where(d => d.ContactId == contactInfo.Id && d.isDealSharer == true && d.DealId == id).FirstOrDefault();
+            }
+
+            var dealOwner = _genRepo.Query<Deal>().Where(d => d.UserId == userId && d.Id == id).FirstOrDefault();         
 
             if (dealOwner == null && dealSharer == null)
             {

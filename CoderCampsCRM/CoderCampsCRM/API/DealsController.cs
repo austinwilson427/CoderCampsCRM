@@ -92,6 +92,12 @@ namespace CoderCampsCRM.API
             var userId = this.User.Identity.GetUserId();
             var userInfo = _genRepo.Query<ApplicationUser>().Where(a => a.Id == userId).FirstOrDefault();
             var contactInfo = _genRepo.Query<Contact>().Where(c => c.Email == userInfo.Email).FirstOrDefault();
+
+            if(contactInfo == null)
+            {
+                return Ok();
+            }
+
             var dealContact = _genRepo.Query<DealContact>().Where(dc => dc.ContactId == contactInfo.Id && dc.DealId == id && dc.isDealSharer == true).FirstOrDefault();
 
             if (userId == null || dealContact == null)

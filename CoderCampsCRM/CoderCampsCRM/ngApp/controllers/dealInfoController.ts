@@ -179,6 +179,7 @@
 
         public getSharersByDealId() {
             this.dealContactService.getAllDealSharersByDealId(this.routeId).$promise.then((result) => {
+                console.log(result);
                 this.dealSharers = result;
                 this.contactService.getAllContacts().then((result) => {
                     this.allRemainingSharers = result;

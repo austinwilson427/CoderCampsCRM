@@ -45,15 +45,18 @@ namespace CoderCampsCRM.API
             var contactInfo = _genRepo.Query<Contact>().Where(c => c.Email == userInfo.Email).FirstOrDefault();
 
             var dealOwner = _genRepo.Query<Deal>().Where(d => d.UserId == userId && d.Id == id).FirstOrDefault();
-            var dealSharer = _genRepo.Query<DealContact>().Where(d => d.ContactId == contactInfo.Id && d.isDealSharer == true && d.DealId == id).FirstOrDefault();
 
-            if(dealOwner == null && dealSharer == null)
+            DealContact dealSharer;
+            if (contactInfo == null)
             {
-                return Unauthorized();
+                dealSharer = null;
+            }
+            else
+            {
+                dealSharer = _genRepo.Query<DealContact>().Where(d => d.ContactId == contactInfo.Id && d.isDealSharer == true && d.DealId == id).FirstOrDefault();
             }
 
-
-            if ((userId == null || userInfo.Email != contactInfo.Email))
+            if (dealOwner == null && dealSharer == null)
             {
                 return Unauthorized();
             }
@@ -70,8 +73,17 @@ namespace CoderCampsCRM.API
             var userInfo = _genRepo.Query<ApplicationUser>().Where(a => a.Id == userId).FirstOrDefault();
             var contactInfo = _genRepo.Query<Contact>().Where(c => c.Email == userInfo.Email).FirstOrDefault();
 
+            DealContact dealSharer;
+            if (contactInfo == null)
+            {
+                dealSharer = null;
+            }
+            else
+            {
+                dealSharer = _genRepo.Query<DealContact>().Where(d => d.ContactId == contactInfo.Id && d.isDealSharer == true && d.DealId == id).FirstOrDefault();
+            }
+
             var dealOwner = _genRepo.Query<Deal>().Where(d => d.UserId == userId && d.Id == id).FirstOrDefault();
-            var dealSharer = _genRepo.Query<DealContact>().Where(d => d.ContactId == contactInfo.Id && d.isDealSharer == true && d.DealId == id).FirstOrDefault();
 
             if ((dealOwner == null && dealSharer == null) || userId == null)
             {
@@ -88,7 +100,17 @@ namespace CoderCampsCRM.API
             var contactInfo = _genRepo.Query<Contact>().Where(c => c.Email == userInfo.Email).FirstOrDefault();
 
             var dealOwner = _genRepo.Query<Deal>().Where(d => d.UserId == userId && d.Id == dealContactToAdd.DealId).FirstOrDefault();
-            var dealSharer = _genRepo.Query<DealContact>().Where(d => d.ContactId == contactInfo.Id && d.isDealSharer == true && d.DealId == dealContactToAdd.DealId).FirstOrDefault();
+
+            DealContact dealSharer;
+            if (contactInfo == null)
+            {
+                dealSharer = null;
+            }
+            else
+            {
+                dealSharer = _genRepo.Query<DealContact>().Where(d => d.ContactId == contactInfo.Id && d.isDealSharer == true && d.DealId == dealContactToAdd.DealId).FirstOrDefault();
+            }
+
 
             if ((dealOwner == null && dealSharer == null) || userId == null)
             {
@@ -127,8 +149,16 @@ namespace CoderCampsCRM.API
 
             DealContact dealContactBeingDeleted = _genRepo.Find<DealContact>(id);
 
+            DealContact dealSharer;
+            if (contactInfo == null)
+            {
+                dealSharer = null;
+            }
+            else
+            {
+                dealSharer = _genRepo.Query<DealContact>().Where(d => d.ContactId == contactInfo.Id && d.isDealSharer == true && d.DealId == dealContactBeingDeleted.DealId).FirstOrDefault();
+            }
             var dealOwner = _genRepo.Query<Deal>().Where(d => d.UserId == userId && d.Id == dealContactBeingDeleted.DealId).FirstOrDefault();
-            var dealSharer = _genRepo.Query<DealContact>().Where(d => d.ContactId == contactInfo.Id && d.isDealSharer == true && d.DealId == dealContactBeingDeleted.DealId).FirstOrDefault();
 
             if ((dealOwner == null && dealSharer == null) || userId == null)
             {

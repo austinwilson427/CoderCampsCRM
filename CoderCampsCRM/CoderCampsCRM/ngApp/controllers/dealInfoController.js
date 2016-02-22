@@ -175,6 +175,7 @@ var MyApp;
             DealInfoController.prototype.getSharersByDealId = function () {
                 var _this = this;
                 this.dealContactService.getAllDealSharersByDealId(this.routeId).$promise.then(function (result) {
+                    console.log(result);
                     _this.dealSharers = result;
                     _this.contactService.getAllContacts().then(function (result) {
                         _this.allRemainingSharers = result;
@@ -532,3 +533,4 @@ var MyApp;
         Controllers.DealInfoEventController = DealInfoEventController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
+//# sourceMappingURL=dealInfoController.js.map
