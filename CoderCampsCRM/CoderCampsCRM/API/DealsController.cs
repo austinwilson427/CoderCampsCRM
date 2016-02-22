@@ -29,7 +29,7 @@ namespace CoderCampsCRM.API
             var dealData = _dealRepo.getAllDealViewModels(userId);
             if (userId == null)
             {
-                //return Unauthorized();
+                return Unauthorized();
             }
             return Ok(dealData.DealList);
         }
@@ -41,11 +41,16 @@ namespace CoderCampsCRM.API
             var userInfo = _genRepo.Query<ApplicationUser>().Where(a => a.Id == userId).FirstOrDefault();
             var contactInfo = _genRepo.Query<Contact>().Where(c => c.Email == userInfo.Email).FirstOrDefault();
 
+            if (contactInfo == null)
+            {
+                return Ok();
+            }
+
             var dealContactData = _dealRepo.getAllDealsSharedByContactId(contactInfo.Id);
 
             if (userId == null || userInfo.Email != contactInfo.Email || contactInfo.Email == null)
             {
-                //return Unauthorized();
+                return Unauthorized();
             }
 
             return Ok(dealContactData.DealContactsList);
