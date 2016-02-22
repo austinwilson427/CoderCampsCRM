@@ -18,7 +18,7 @@
 
         constructor(private $uibModal: angular.ui.bootstrap.IModalService,
             private companiesService: MyApp.Services.CompaniesService,
-            private companyLogItemService: MyApp.Services.CompanyLogItemService,
+            //private companyLogItemService: MyApp.Services.CompanyLogItemService,
             private dealService: MyApp.Services.DealService,
             private contactService: MyApp.Services.ContactService,
             private $location: angular.ILocationService,
@@ -44,11 +44,11 @@
             });
         }
 
-        public getCompanyLogItemsByRouteId() {
-            this.companyLogItemService.listCompanyLogItemsByCCompanyId(this.routeId).$promise.then((result) => {
-                this.companyLogItems = result;
-            });
-        }
+        //public getCompanyLogItemsByRouteId() {
+        //    this.companyLogItemService.listCompanyLogItemsByCCompanyId(this.routeId).$promise.then((result) => {
+        //        this.companyLogItems = result;
+        //    });
+        //}
 
         //public showDetailsModal(id) {
 
@@ -233,10 +233,10 @@
             private $route: ng.route.IRouteService) {
             this.company = {};
             this.routeId = $stateParams["id"];
-            this.getCompany();
+            //this.getCompany();
             this.getAllContact();
             this.getAllDeals();
-            this.getCompanyLogItemsByRouteId();
+           // this.getCompanyLogItemsByRouteId();
            // this.submitActivity()
          //  this.getAllTasks();
             
@@ -249,17 +249,17 @@
             //this.routeId = $stateParams["id"];
             //console.log(this.deals);
         }
-        public getCompany() {
-            this.companiesService.getCompany(this.routeId).$promise.then((result) => {
-                this.companyInfo = result;
+        //public getCompany() {
+        //    this.companiesService.getCompany(this.routeId).$promise.then((result) => {
+        //        this.companyInfo = result;
                 
-            });
-        }
-        public getCompanyLogItemsByRouteId() {
-            this.companyLogItemService.listCompanyLogItemsByCCompanyId(this.routeId).$promise.then((result) => {
-                this.companyLogItems = result;
-            });
-        }
+        //    });
+        //}
+        //public getCompanyLogItemsByRouteId() {
+        //    this.companyLogItemService.listCompanyLogItemsByCCompanyId(this.routeId).$promise.then((result) => {
+        //        this.companyLogItems = result;
+        //    });
+        //}
 
         public getAllContact() {
 
