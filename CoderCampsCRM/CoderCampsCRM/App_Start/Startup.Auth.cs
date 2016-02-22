@@ -79,8 +79,47 @@ namespace CoderCampsCRM
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = ConfigurationManager.AppSettings["googleClientId"],
-                ClientSecret = ConfigurationManager.AppSettings["googleClientSecret"]
+                ClientId = "727912271125-a0icjohqht0fh5m2c3buvp89hlkcurc9.apps.googleusercontent.com",
+                ClientSecret = "WlNLsdjV9ApQSi38ChXQvmy9",
+                Scope = { "https://www.googleapis.com/auth/userinfo.email",
+                    "https://www.googleapis.com/auth/userinfo.profile",
+                    "https://www.google.com/m8/feeds/",
+                    "https://www.googleapis.com/auth/contacts",
+                    "https://docs.google.com/feeds/"
+                },
+                Provider = new GoogleOAuth2AuthenticationProvider
+                {
+                    OnAuthenticated = async context =>
+                    {
+                        // Retrieve the OAuth access token to store for subsequent API calls
+                        string accessToken = context.AccessToken; // -> this is GOOGLE access token
+
+                        using (var appdbcontext = new ApplicationDbContext())
+                        {
+                            var googleExternalLoginData = appdbcontext.ExternalLoginDatas.FirstOrDefault(eld => eld.Type == "GoogleAccessToken" && eld.Key == context.Email);
+
+                            if (googleExternalLoginData == null)
+                            {
+                                googleExternalLoginData = new ExternalLoginData();
+                                googleExternalLoginData.Type = "GoogleAccessToken";
+                                googleExternalLoginData.Key = context.Email;
+
+                                appdbcontext.ExternalLoginDatas.Add(googleExternalLoginData);
+                            }
+                            googleExternalLoginData.Value = accessToken;
+                            await appdbcontext.SaveChangesAsync();
+                        }
+
+                        // Retrieve the name of the user in Google
+                        string googleName = context.Name;
+
+                        // Retrieve the user's email address
+                        string googleEmailAddress = context.Email;
+
+                        // You can even retrieve the full JSON-serialized user
+                        var serializedUser = context.User;
+                    }
+                }
             });
         }
     }

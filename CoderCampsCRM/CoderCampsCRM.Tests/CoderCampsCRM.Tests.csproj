@@ -71,6 +71,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ContactListControllerTest.cs" />
     <Compile Include="DealLogItemsControllerTest.cs" />
     <Compile Include="DealsControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

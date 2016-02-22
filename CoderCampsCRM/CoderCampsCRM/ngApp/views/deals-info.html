@@ -1,155 +1,229 @@
-﻿<div class="row details_head">
-    <div class="col-md-4">
-        <h1>{{vm.dealInfo.dealName}}</h1>
-    </div>
-    <div class="col-md-2 col-md-offset-4">
-        <h3>Amount</h3>
-        <h4>{{vm.dealInfo.amount | currency}}</h4>
-    </div>
-    <div class="col-md-2">
-        <h3>Close Date</h3>
-        <h4>{{vm.dealInfo.closeDate | date: 'MM/dd/yy'}}</h4>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-6">
-        <div class="row">
-            <div class="col-md-12">
-                <table class="table">
-                    <tr>
-                        <th colspan="2" class="text-center">About</th>
-                    </tr>
-                    <tr>
-                        <td>Amount</td>
-                        <td>{{vm.dealInfo.amount | currency}}</td>
-                    </tr>
-                    <tr>
-                        <td>Deal Stage</td>
-                        <td>{{vm.dealInfo.stage}}</td>
-                    </tr>
-                    <tr>
-                        <td>Close Date</td>
-                        <td>{{vm.dealInfo.closeDate | date: 'MM/dd/yy'}}</td>
-                    </tr>
-                    <tr>
-                        <td>CRM Owner</td>
-                        <td><a href="contactDetails/{{vm.dealInfo.contact.id}}">{{vm.dealInfo.contact.name}}</a></td>
-                    </tr>
-                </table>
-            </div>
+﻿<div class="deals-info-wrap">
+    <div class="row details_head fix_row">
+        <div class="col-md-8 head_deal_name">
+            <h1>{{vm.dealInfo.dealName}}</h1>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <table class="table">
-                    <tr>
-                        <th colspan="2" class="text-center">Company</th>
-                    </tr>
-                    <tr>
-                        <td>Name</td>
-                        <td>{{vm.company.companyName}}</td>
-                    </tr>
-                    <tr>
-                        <td>Domain</td>
-                        <td><a href="{{vm.company.companyDomainName}}">{{vm.company.companyDomainName}}</a></td>
-                    </tr>
-                    <tr>
-                        <td>Industry</td>
-                        <td>{{vm.company.companyIndustry}}</td>
-                    </tr>
-                    <tr>
-                        <td>Phone</td>
-                        <td>{{vm.company.companyPhoneNumber}}</td>
-                    </tr>
-                    <tr>
-                        <td>City</td>
-                        <td>{{vm.company.companyCity}}</td>
-                    </tr>
-                    <tr>
-                        <td>State</td>
-                        <td>{{vm.company.companyState}}</td>
-                    </tr>
-                    <tr>
-                        <td>Zip Code</td>
-                        <td>{{vm.company.companyZip}}</td>
-                    </tr>
-                    <tr>
-                        <td>Twitter</td>
-                        <td><a href="{{vm.company.companyTwitter}}">{{vm.company.companyTwitter}}</a></td>
-                    </tr>
-                    <tr>
-                        <td>Facebook</td>
-                        <td><a href="{{vm.company.companyFacebook}}">{{vm.company.companyFacebook}}</a></td>
-                    </tr>
-                    <tr>
-                        <td>LinkedIn</td>
-                        <td><a href="{{vm.company.companyLinkedin}}">{{vm.company.companyLinkedin}}</a></td>
-                    </tr>
-                    <tr>
-                        <td>Description</td>
-                        <td>{{vm.company.companyDescription}}</td>
-                    </tr>
-                </table>
-            </div>
+        <div class="col-md-2 head_currency">
+            <h3>Amount</h3>
+            <h4>{{vm.dealInfo.amount | currency}}</h4>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <table class="table">
-                    <tr><th colspan="4" class="text-center">Contacts</th></tr>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone Number</th>
-                    </tr>
-                    <tr ng-repeat="dealContact in vm.dealContacts">
-                        <td><a ui-sref="contactDetails({id: dealContact.contact.id})">{{dealContact.contact.name}}</a></td>
-                        <td>{{dealContact.contact.email}}</td>
-                        <td>{{dealContact.contact.phoneNumber}}</td>
-                        <td><a href="#" ng-click="vm.deleteDealContact(dealContact.id)"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a></td>
-                    </tr>
-                </table>
-                <div class="contact_to_add form-group">
-                    <label class="text-center">Select Contact To Add</label>
-                    <select ng-model="vm.contactIdToAdd" ng-change="vm.addDealContact()" class="form-control full">
-                        <option value="{{remaining.id}}" ng-repeat="remaining in vm.allContacts.contacts">{{remaining.name}}</option>
-                    </select>
+        <div class="col-md-2 head_close_date">
+            <h3>Close Date</h3>
+            <h4>{{vm.dealInfo.closeDate | date: 'MM/dd/yy'}}</h4>
+        </div>
+    </div>
+    <div class="row fix_row">
+        <div class="col-md-12">
+            <ul class="list-bar">
+                <li ng-click="vm.editStage('Appointment Scheduled')">
+                    <div class="status"><span ng-show="vm.appointmentScheduled">Appointment Scheduled</span></div>
+                    <div ng-show="vm.appointmentScheduledGlow" class="probability-bar"></div>
+                    <div ng-show="!vm.appointmentScheduledGlow" class="probability-bar-empty"></div>
+                </li>
+                <li ng-click="vm.editStage('Qualified to Buy')">
+                    <div class="status"><span ng-show="vm.qualifiedToBuy">Qualified to Buy</span></div>
+                    <div ng-show="vm.qualifiedToBuyGlow" class="probability-bar"></div>
+                    <div ng-show="!vm.qualifiedToBuyGlow" class="probability-bar-empty"></div>
+                </li>
+                <li ng-click="vm.editStage('Presentation Scheduled')">
+                    <div class="status"><span ng-show="vm.presentationScheduled">Presentation Scheduled</span></div>
+                    <div ng-show="vm.presentationScheduledGlow" class="probability-bar"></div>
+                    <div ng-show="!vm.presentationScheduledGlow" class="probability-bar-empty"></div>
+                </li>
+                <li ng-click="vm.editStage('Decision Maker Bought In')">
+                    <div class="status"><span ng-show="vm.decisionMaker">Decision Maker Bought In</span></div>
+                    <div ng-show="vm.decisionMakerGlow" class="probability-bar"></div>
+                    <div ng-show="!vm.decisionMakerGlow" class="probability-bar-empty"></div>
+                </li>
+                <li ng-click="vm.editStage('Contract Sent')">
+                    <div class="status"><span ng-show="vm.contractSent">Contract Sent</span></div>
+                    <div ng-show="vm.contractSentGlow" class="probability-bar"></div>
+                    <div ng-show="!vm.contractSentGlow" class="probability-bar-empty"></div>
+                </li>
+                <li ng-click="vm.editStage('Closed Won')">
+                    <div class="status"><span ng-show="vm.closedWon">Closed Won</span></div>
+                    <div ng-show="vm.closedWonGlow" class="probability-bar"></div>
+                    <div ng-show="!vm.closedWonGlow" class="probability-bar-empty"></div>
+                </li>
+                <li ng-click="vm.editStage('Closed Lost')">
+                    <div class="status status-last"><span ng-show="vm.closedLost">Closed Lost</span></div>
+                    <div ng-show="vm.closedLostGlow" class="probability-bar-lost"></div>
+                    <div ng-show="!vm.closedLostGlow" class="probability-bar-empty"></div>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+    <div class="row fix_row">
+        <div class="col-md-6 left_wrap">
+            <div class="row">
+                <div class="col-md-12 about_deal_table_wrap">
+                    <table class="table">
+                        <tr>
+                            <th colspan="2" class="text-center">About</th>
+                        </tr>
+                        <tr>
+                            <td>Amount</td>
+                            <td>{{vm.dealInfo.amount | currency}}</td>
+                        </tr>
+                        <tr>
+                            <td>Deal Stage</td>
+                            <td>{{vm.dealInfo.stage}}</td>
+                        </tr>
+                        <tr>
+                            <td>Close Date</td>
+                            <td>{{vm.dealInfo.closeDate | date: 'MM/dd/yy'}}</td>
+                        </tr>
+                        <tr>
+                            <td>CRM Owner</td>
+                            <td><a href="contactDetails/{{vm.dealInfo.contact.id}}">{{vm.dealInfo.contact.name}}</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 about_company_table_wrap">
+                    <table class="table">
+                        <tr>
+                            <th colspan="2" class="text-center">Company</th>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>{{vm.company.companyName}}</td>
+                        </tr>
+                        <tr>
+                            <td>Domain</td>
+                            <td><a href="{{vm.company.companyDomainName}}">{{vm.company.companyDomainName}}</a></td>
+                        </tr>
+                        <tr>
+                            <td>Industry</td>
+                            <td>{{vm.company.companyIndustry}}</td>
+                        </tr>
+                        <tr>
+                            <td>Phone</td>
+                            <td>{{vm.company.companyPhoneNumber}}</td>
+                        </tr>
+                        <tr>
+                            <td>City</td>
+                            <td>{{vm.company.companyCity}}</td>
+                        </tr>
+                        <tr>
+                            <td>State</td>
+                            <td>{{vm.company.companyState}}</td>
+                        </tr>
+                        <tr>
+                            <td>Zip Code</td>
+                            <td>{{vm.company.companyZip}}</td>
+                        </tr>
+                        <tr>
+                            <td>Twitter</td>
+                            <td><a href="{{vm.company.companyTwitter}}">{{vm.company.companyTwitter}}</a></td>
+                        </tr>
+                        <tr>
+                            <td>Facebook</td>
+                            <td><a href="{{vm.company.companyFacebook}}">{{vm.company.companyFacebook}}</a></td>
+                        </tr>
+                        <tr>
+                            <td>LinkedIn</td>
+                            <td><a href="{{vm.company.companyLinkedin}}">{{vm.company.companyLinkedin}}</a></td>
+                        </tr>
+                        <tr>
+                            <td>Description</td>
+                            <td>{{vm.company.companyDescription}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 contact_table_wrap">
+                    <div class="table_scroll_wrap">
+                        <table class="table">
+                            <tr><th colspan="4" class="text-center">Contacts</th></tr>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone Number</th>
+                            </tr>
+                            <tr ng-repeat="dealContact in vm.dealContacts">
+                                <td><a ui-sref="contactDetails({id: dealContact.contact.id})">{{dealContact.contact.name}}</a></td>
+                                <td>{{dealContact.contact.email}}</td>
+                                <td>{{dealContact.contact.phoneNumber}}</td>
+                                <td class="delete_x"><a href="#" ng-click="vm.deleteDealContact(dealContact.id)"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="contact_to_add form-group">
+                        <label class="text-center">Select Contact To Add</label>
+                        <select ng-model="vm.contactIdToAdd" ng-change="vm.addDealContact()" class="form-control full">
+                            <option value="{{remaining.id}}" ng-repeat="remaining in vm.allContacts.contacts">{{remaining.name}}</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-6">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="activity_button_wrap btn-group" role="group" aria-label="...">
-                    <a ui-sref="deal-info.note" class="btn btn-default">New Note</a>
-                    <a ui-sref="deal-info.activity" class="btn btn-default">Log Activity</a>
-                    <a ui-sref="deal-info.task" class="btn btn-default">Create Task</a>
-                    <a ui-sref="deal-info.event" class="btn btn-default">Schedule Event</a>
+        <div class="col-md-6 right_wrap">
+            <div class="row">
+                <div class="col-md-12 contact_table_wrap">
+                    <div class="table_scroll_wrap">
+                        <table class="table">
+                            <tr><th colspan="4" class="text-center">Deal Sharers</th></tr>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone Number</th>
+                            </tr>
+                            <tr ng-repeat="sharer in vm.dealSharers">
+                                <td><a ui-sref="contactDetails({id: sharer.contact.id})">{{sharer.contact.name}}</a></td>
+                                <td>{{sharer.contact.email}}</td>
+                                <td>{{sharer.contact.phoneNumber}}</td>
+                                <td class="delete_x"><a href="#" ng-click="vm.deleteShareContact(sharer.id)"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></a></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="contact_to_add form-group">
+                        <label class="text-center">Select Contact To Add As a Deal Sharer</label>
+                        <select ng-model="vm.shareIdToAdd" ng-change="vm.addShareholderContact()" class="form-control full">
+                            <option value="{{remaining.id}}" ng-repeat="remaining in vm.allRemainingSharers.contacts">{{remaining.name}}</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="text_wrap">
+            </div>
+            <div class="row">
+                <div class="col-md-12 button_main_wrap">
+                    <div class="activity_button_wrap btn-group" role="group" aria-label="...">
+                        <a ui-sref="deal-info.note" class="btn btn-default">New Note</a>
+                        <a ui-sref="deal-info.activity" class="btn btn-default">Log Activity</a>
+                        <a ui-sref="deal-info.task" class="btn btn-default">Create Task</a>
+                        <a ui-sref="deal-info.event" class="btn btn-default">Schedule Event</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text_wrap">
                     <div ui-view></div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="log_item_wrap">
-                    <table class="table table-condensed table-bordered log_items" ng-repeat="item in vm.dealLogItems">
-                        <tr ng-if="item.type=='Note'">
-                            <td class="submitted_cell">{{item.submittedBy}} left a note</td>
-                            <td class="start_time_cell">{{item.startTime | date: 'short'}}</td>
-                        </tr>
-                        <tr ng-if="item.type=='Activity'">
-                            <td class="submitted_cell">{{item.submittedBy}} logged an activity</td>
-                            <td class="start_time_cell">{{item.startTime | date: 'short'}}</td>
-                        </tr>
-                        <tr ng-if="item.type=='Task'">
-                            <td class="submitted_cell">{{item.submittedBy}} created a task for {{item.contact.name}}</td>
-                            <td class="start_time_cell">{{item.startTime | date: 'short'}}</td>
-                        </tr>
-                        <tr>
-                            <td class="content_cell" colspan="2">{{item.content}}</td>
-                        </tr>
-                    </table>
+            <div class="row">
+                <div class="col-md-12 log_item_wrap_wrap">
+                    <div class="log_item_wrap">
+                        <table class="table table-condensed table-bordered log_items" ng-repeat="item in vm.dealLogItems">
+                            <tr ng-if="item.type=='Note'">
+                                <td class="submitted_cell">{{item.submittedBy}} left a note</td>
+                                <td class="start_time_cell">{{item.startTime | date: 'short'}}</td>
+                            </tr>
+                            <tr ng-if="item.type=='Activity'">
+                                <td class="submitted_cell">{{item.submittedBy}} logged an activity</td>
+                                <td class="start_time_cell">{{item.startTime | date: 'short'}}</td>
+                            </tr>
+                            <tr ng-if="item.type=='Task'">
+                                <td class="submitted_cell">{{item.submittedBy}} created a task for {{item.contact.name}}</td>
+                                <td class="start_time_cell">{{item.startTime | date: 'short'}}</td>
+                            </tr>
+                            <tr>
+                                <td class="content_cell" colspan="2">{{item.content}}</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

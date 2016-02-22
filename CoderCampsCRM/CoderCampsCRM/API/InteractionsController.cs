@@ -25,6 +25,7 @@ namespace CoderCampsCRM.API
             {
                 if (interaction.Id == 0)
                 {
+                    interaction.CreatedOn = DateTime.Now;
                     var dto = new DateTimeOffset(interaction.Date);
                     interaction.Date = dto.DateTime;
                     var contact = _repo.Find<Contact>(interaction.ContactId);

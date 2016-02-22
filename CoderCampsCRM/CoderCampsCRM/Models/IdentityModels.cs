@@ -37,6 +37,7 @@ namespace CoderCampsCRM.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public IDbSet<Quota> Quotas { get; set; }
         public IDbSet<UserTask> Tasks { get; set; }
         public IDbSet<Deal> Deals { get; set; }
         public IDbSet<DealLogItem> DealLogItems { get; set; }
@@ -46,6 +47,7 @@ namespace CoderCampsCRM.Models
         public IDbSet<DealContact> DealContacts { get; set; }
         public IDbSet<TaskContact> TaskContacts { get; set; }
         public IDbSet<ContactInteraction> ContactInteractions { get; set; }
+        public IDbSet<ExternalLoginData> ExternalLoginDatas { get; set; }
         //public IDbSet<Location> Locations { get; set; }
         //public IDbSet<LocationContact> LocationContacts { get; set; }
         public IDbSet<ProfileUser> ProfileUser { get; set;}

@@ -5,56 +5,63 @@
 </div>
 <div class="row">
     <div class="col-md-3 col-md-offset-1 table_wrap">
-        <h3 class="text-center">Contact Details</h3>
-        <table class="table deals_table table-hover table-bordered table-responsive">
-            <tr>
-                <td>Name</td>
-                <td class="tableDetailRow tdEdit" id="name" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.name}}</td>
-            </tr>
-            <tr>
-                <td>Job Title</td>
-                <td class="tableDetailRow tdEdit" id="jobTitle" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.jobTitle}}</td>
-            </tr>
-            <tr>
-                <td>Email</td>
-                <td class="tableDetailRow tdEdit" id="email" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.email}}</td>
-            </tr>
-            <tr>
-                <td>Phone Number</td>
-                <td class="tableDetailRow tdEdit" id="phoneNumber" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.phoneNumber}}</td>
-            </tr>
-            <tr>
-                <td>Country</td>
-                <td class="tableDetailRow tdEdit" id="country" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.country}}</td>
-            </tr>
-            <tr>
-                <td>City</td>
-                <td class="tableDetailRow tdEdit" id="city" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.city}}</td>
-            </tr>
-            <tr>
-                <td>State</td>
-                <td class="tableDetailRow tdEdit" id="state" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.state}}</td>
-            </tr>
-            <tr>
-                <td>Street Address</td>
-                <td class="tableDetailRow tdEdit" id="streetAddress" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.streetAddress}}</td>
-            </tr>
-            <tr>
-                <td>Zip</td>
-                <td class="tableDetailRow tdEdit" id="zip" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.zip}}</td>
-            </tr>
-            <tr>
-                <td>Latitude</td>
-                <td class="tableDetailRow tdEdit" id="lat" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.latitude}}</td>
-            </tr>
-            <tr>
-                <td>Longitude</td>
-                <td class="tableDetailRow tdEdit" id="long" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.longitude}}</td>
-            </tr>
-        </table>
-        <button class="btn btn-primary" ng-click="vm.editContact()" >Edit</button>
-        <button class="btn btn-danger" ng-click="vm.deleteModal()">Delete</button>
-        <button class="btn btn-primary" ng-click="vm.setLocation()">Show map</button>
+        <img src="{{vm.contactView.contact.imageUrl}}" ng-show="vm.contactView.contact.imageUrl" class="contactImage img-responsive" />
+        <img class="contactImage img-responsive" ng-show="!vm.contactView.contact.imageUrl" src="https://lh3.googleusercontent.com/-hMc92L1bTw4/AAAAAAAAAAI/AAAAAAAAAAA/q7C3_uBZp2w/photo.jpg">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table deals_table table-hover table-bordered table-responsive">
+                    <tr>
+                        <td>Name</td>
+                        <td class="tableDetailRow tdEdit" id="name" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Job Title</td>
+                        <td class="tableDetailRow tdEdit" id="jobTitle" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.jobTitle}}</td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td class="tableDetailRow tdEdit" id="email" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.email}}</td>
+                    </tr>
+                    <tr>
+                        <td>Phone Number</td>
+                        <td class="tableDetailRow tdEdit" id="phoneNumber" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.phoneNumber}}</td>
+                    </tr>
+                    <tr>
+                        <td>Country</td>
+                        <td class="tableDetailRow tdEdit" id="country" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.country}}</td>
+                    </tr>
+                    <tr>
+                        <td>City</td>
+                        <td class="tableDetailRow tdEdit" id="city" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.city}}</td>
+                    </tr>
+                    <tr>
+                        <td>State</td>
+                        <td class="tableDetailRow tdEdit" id="state" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.state}}</td>
+                    </tr>
+                    <tr>
+                        <td>Street Address</td>
+                        <td class="tableDetailRow tdEdit" id="streetAddress" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.streetAddress}}</td>
+                    </tr>
+                    <tr>
+                        <td>Zip</td>
+                        <td class="tableDetailRow tdEdit" id="zip" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.zip}}</td>
+                    </tr>
+                    <tr>
+                        <td>Latitude</td>
+                        <td class="tableDetailRow tdEdit" id="lat" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.latitude}}</td>
+                    </tr>
+                    <tr>
+                        <td>Longitude</td>
+                        <td class="tableDetailRow tdEdit" id="long" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.longitude}}</td>
+                    </tr>
+                </table>
+                <button class="btn btn-primary" ng-click="vm.editContact()">Edit</button>
+                <button class="btn btn-danger" ng-click="vm.deleteModal()">Delete</button>
+                <button class="btn btn-primary" ng-click="vm.pickFile()" ng-show="!vm.imageReady">Upload Image</button>
+                <button class="btn btn-primary" ng-click="vm.imageUpload()" ng-show="vm.imageReady">Save Image</button>
+                <button class="btn btn-primary" ng-click="vm.setLocation()">Show map</button>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <a href="http://www.latlong.net/convert-address-to-lat-long.html" target="_blank" ng-show="!vm.contactView.location.longitude || !vm.contactView.location.latitude">Need coordinates?</a>

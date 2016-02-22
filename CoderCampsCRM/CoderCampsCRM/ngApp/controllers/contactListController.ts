@@ -9,7 +9,8 @@
         public showMap = true;
         public zoom;
         public center;
-        public markers = [];
+        public markers: any = [];
+        public markersSearch: any = [];
         public totalItems;
         public currentPage = 1;
         public maxSize = 5;
@@ -17,6 +18,7 @@
         public companyFilter;
         public dealFilter;
         public taskFilter;
+        public searchText;
 
         constructor(private contactService: MyApp.Services.ContactService, private $location: ng.ILocationService, private $uibModal: angular.ui.bootstrap.IModalService, private $state: ng.ui.IStateService) {
             this.showAllContacts();
@@ -25,33 +27,64 @@
         public updateSearchList() {
             this.currentPage = 1;
             this.itemsPerPage += this.currentPage + 5;
+            this.setLocations();
+        }
+
+        public syncGoogleContacts() {
+            this.contactService.getGoogleContacts().then(() => {
+                this.showAllContacts();
+            });
         }
 
         public totalItemsGet() {
             this.totalItems = this.contactsView.contacts.length;
-        } 
+        }
 
         public setLocations() {
             this.zoom = 4;
             this.center = { latitude: 40.09024, longitude: -97.712891 };
-            if (this.markers != []) {
+            if (this.searchText == undefined) {
+                if (this.markers != []) {
+                    this.markers = [];
+                    this.setMarkers();
+                }
+            }
+            else {
+                for (let marker of this.markers) {
+                    if (marker.options.title.toLowerCase().includes(this.searchText.toLowerCase())) {
+                        this.markersSearch.push(marker);
+                    }
+                }
                 this.markers = [];
-                this.setMarkers();
-            } else {
-                this.setMarkers();
+                this.setMarkers(this.markersSearch);
             }
         }
 
-        public setMarkers() {
-            for (let contact of this.contactsView.contacts) {
-                if (contact.longitude && contact.latitude) {
-                    this.markers.push({
-                        id: contact.id,
-                        options: {
-                            title: contact.name,
-                        },
-                        coords: { latitude: contact.latitude, longitude: contact.longitude }
-                    })
+        public setMarkers(...markersSearch) {
+            if (!this.searchText) {
+                for (let contact of this.contactsView.contacts) {
+                    if (contact.longitude && contact.latitude) {
+                        this.markers.push({
+                            id: contact.id,
+                            options: {
+                                title: contact.name,
+                            },
+                            coords: { latitude: contact.latitude, longitude: contact.longitude }
+                        })
+                    }
+                }
+            }
+            else {
+                for (let markers of markersSearch) {
+                    for (let markerFiltered of markers) {
+                        this.markers.push({
+                            id: markerFiltered.id,
+                            options: {
+                                title: markerFiltered.options.title,
+                            },
+                            coords: { latitude: markerFiltered.coords.latitude, longitude: markerFiltered.coords.longitude }
+                        })
+                    }
                 }
             }
         }

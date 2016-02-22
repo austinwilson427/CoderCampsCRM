@@ -205,6 +205,7 @@
     <Compile Include="API\ContactDetailViewController.cs" />
     <Compile Include="API\ContactListController.cs" />
     <Compile Include="API\ContactListViewController.cs" />
+    <Compile Include="API\DashboardController.cs" />
     <Compile Include="API\DealLogItemsController.cs" />
     <Compile Include="API\DealContactsController.cs" />
     <Compile Include="API\DealsController.cs" />
@@ -253,6 +254,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602221453297_initial.cs" />
+    <Compile Include="Migrations\201602221453297_initial.Designer.cs">
+      <DependentUpon>201602221453297_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602221514200_initial1.cs" />
+    <Compile Include="Migrations\201602221514200_initial1.Designer.cs">
+      <DependentUpon>201602221514200_initial1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602221625170_initial2.cs" />
+    <Compile Include="Migrations\201602221625170_initial2.Designer.cs">
+      <DependentUpon>201602221625170_initial2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -263,10 +276,13 @@
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Deal.cs" />
     <Compile Include="Models\DealLogItem.cs" />
+    <Compile Include="Models\ExternalLoginData.cs" />
+    <Compile Include="Models\GooglePlusAccessToken.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\ProfileUser.cs" />
+    <Compile Include="Models\Quota.cs" />
     <Compile Include="Models\UserTask.cs" />
     <Compile Include="Models\ViewModels\CompanyViewModel.cs" />
     <Compile Include="Models\ViewModels\ContactDetailViewModel.cs" />
@@ -278,10 +294,12 @@
     <Compile Include="Repositories\CompanyRepository.cs" />
     <Compile Include="Repositories\ContactDetailViewRepository.cs" />
     <Compile Include="Repositories\ContactListViewRepository.cs" />
+    <Compile Include="Repositories\DashboardRepository.cs" />
     <Compile Include="Repositories\DealRepository.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
-    <Compile Include="Repositories\Interfaces\IContactListViewRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IDashboardRepository.cs" />
     <Compile Include="Repositories\Interfaces\IDealRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IContactListViewRepository.cs" />
     <Compile Include="Repositories\Interfaces\ICompanyRepository.cs" />
     <Compile Include="Repositories\Interfaces\IContactDetailViewRepository.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -289,6 +307,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\queries.css" />
     <Content Include="Content\tc-charts.css" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
@@ -354,6 +373,7 @@
     <Content Include="ngApp\views\confirmEmail.html" />
     <Content Include="ngApp\views\contactDetailsView.html" />
     <Content Include="ngApp\views\contactListView.html" />
+    <Content Include="ngApp\views\dashboard.html" />
     <Content Include="ngApp\views\deals-info.html" />
     <Content Include="ngApp\views\deals.html" />
     <Content Include="ngApp\views\deletetask.html" />
@@ -370,10 +390,13 @@
     <Content Include="ngApp\views\modals\edit-deal.html" />
     <Content Include="ngApp\views\modals\contactAddModal.html" />
     <Content Include="ngApp\views\modals\editCompanyModal.html" />
+    <Content Include="ngApp\views\modals\quotaModal.html" />
     <Content Include="ngApp\views\myAccount.html" />
     <Content Include="ngApp\views\notFound.html" />
     <Content Include="ngApp\views\profile.html" />
     <Content Include="ngApp\views\register.html" />
+    <Content Include="ngApp\views\routes\contactInteraction.html" />
+    <Content Include="ngApp\views\routes\contactNote.html" />
     <Content Include="ngApp\views\routes\deal-chart-view.html" />
     <Content Include="ngApp\views\routes\deal-info-activity.html" />
     <Content Include="ngApp\views\routes\deal-info-event.html" />
@@ -1322,18 +1345,23 @@
   <ItemGroup>
     <TypeScriptCompile Include="ngApp\app.ts" />
     <TypeScriptCompile Include="ngApp\controllers\accountController.ts" />
+    <TypeScriptCompile Include="ngApp\controllers\companyInfoController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\contactAddController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\contactDetailsController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\contactListController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\companyContoller.ts" />
     <TypeScriptCompile Include="ngApp\controllers\controllers.ts" />
+    <TypeScriptCompile Include="ngApp\controllers\dashboardController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\dealController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\dealInfoController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\ProfileController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\taskController.ts" />
     <TypeScriptCompile Include="ngApp\services\accountService.ts" />
+    <TypeScriptCompile Include="ngApp\services\companyInfoController.ts" />
+    <TypeScriptCompile Include="ngApp\services\companyLogItemService.ts" />
     <TypeScriptCompile Include="ngApp\services\contactService.ts" />
     <TypeScriptCompile Include="ngApp\services\companyService.ts" />
+    <TypeScriptCompile Include="ngApp\services\dashboardService.ts" />
     <TypeScriptCompile Include="ngApp\services\dealContactService.ts" />
     <TypeScriptCompile Include="ngApp\services\dealLogItemService.ts" />
     <TypeScriptCompile Include="ngApp\services\dealService.ts" />
@@ -1360,6 +1388,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201602221453297_initial.resx">
+      <DependentUpon>201602221453297_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602221514200_initial1.resx">
+      <DependentUpon>201602221514200_initial1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602221625170_initial2.resx">
+      <DependentUpon>201602221625170_initial2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

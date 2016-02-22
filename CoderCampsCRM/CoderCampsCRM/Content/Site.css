@@ -1,6 +1,5 @@
 ﻿body {
     padding-top: 50px;
-    padding-bottom: 20px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -73,9 +72,10 @@ section.jumbotron {
     text-align: center;
 }
 
-.heading-wrap h1{
-    margin-bottom: 50px;
-}
+    .heading-wrap h1 {
+        margin-bottom: 50px;
+    }
+
     .heading-wrap h1, .heading-wrap h2, .heading-wrap h3 {
         font-weight: 300;
     }
@@ -110,12 +110,147 @@ p.home_description {
     font-weight: 300;
 }
 
-.home_details a:link, .home_details a:visited{
+.home_details a:link, .home_details a:visited {
     font-size: 16px;
     font-weight: 300;
     color: #e10001;
 }
 
+/*-------------------------------Dashboard-----------------------------------*/
+
+.first-part {
+    padding-right: 20px;
+}
+
+.all-icons-wrap {
+    padding: 0 30px 30px 30px;
+    margin-top: 20px;
+    background-color: #fdfdfd;
+}
+
+.productivity-wrap{
+    background-color: #fdfdfd;
+    min-height: 200px;
+    margin-top: 20px;
+    padding: 0 30px 30px 30px;
+}
+    .all-icons-wrap h2, .progress-wrap h2, .productivity-wrap h2 {
+        text-align: left;
+        border-bottom: 1px solid #370000;
+        padding-bottom: 10px;
+        padding-left: 20px;
+        color: #370000;
+        font-weight: 400;
+    }
+
+    .all-icons-wrap h2 {
+        margin-bottom: 40px;
+    }
+
+.progress-wrap h2 {
+    margin-bottom: 0;
+}
+
+p.set_quota{
+    text-align: center;
+}
+
+p.set_monthly{
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.quota_btn{
+    color: #370000;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    font-size: 13px;
+    line-height: 1.28;
+    -webkit-user-select: none;
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 0 0 1px transparent;
+    text-transform: none;
+    background: #fdfdfd;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-color: #dee3e4;
+    margin-top: 20px;
+    padding: 4px 10px;
+}
+
+.quota_btn:hover, .quota_btn:active{
+    background-color: #ae0001;
+    color: #fdfdfd;
+}
+
+.my_progress .progress-bar {
+    background-image: linear-gradient(to top, #326011, #427d16);
+}
+
+.quota_detail_wrap {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.icon-wrap a:link, .icon-wrap a:visited {
+    color: #370000;
+}
+
+.icon-wrap a:hover, .icon-wrap a:active {
+    color: #ae0001;
+}
+
+.icon-wrap {
+    text-align: center;
+    color: #370000;
+    font-size: 20px;
+    border-right: 2px solid;
+}
+
+    .icon-wrap:last-child {
+        border: none;
+    }
+
+.dashboard-icon, .total-display {
+    position: relative;
+    bottom: 5px;
+}
+
+.dashboard-icon {
+    font-size: 55px;
+}
+
+.dashboard-wrap {
+    background-color: #3c3c3c;
+    min-height: 100vh;
+    padding: 20px 40px 20px 40px;
+}
+
+.dashboard-activity-wrap {
+    color: white;
+    padding: 10px 0 10px 30px;
+    font-size: 16px;
+}
+
+    .dashboard-activity-wrap h4 {
+        text-align: center;
+        padding-bottom: 10px;
+        font-weight: 400;
+    }
+
+.date_time {
+    font-size: 12px;
+}
+
+.progress-wrap {
+    background-color: #fdfdfd;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 0 30px 30px 30px;
+}
 /*-------------------------------Deals Section-------------------------------*/
 /*Input class to make input 100% wide*/
 .full {
@@ -212,22 +347,44 @@ input.amount_input {
     margin-bottom: 40px;
 }
 
+.fix_row {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
 .first_main_row {
     margin-bottom: 40px;
 }
 
 .text_wrap {
-    width: 80%;
+    width: 96%;
     margin: auto;
+}
+
+.deal_share_wrap {
+    text-align: center;
+}
+
+    .deal_share_wrap label.title {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+.my_remove {
+    margin-left: 10px;
 }
 
 .log_item_wrap {
-    width: 90%;
-    margin: auto;
+    width: 96%;
+    margin: 20px auto;
+}
+
+.button_main_wrap {
+    margin-bottom: 10px;
 }
 
 .activity_button_wrap {
-    width: 80%;
+    width: 96%;
     margin: auto;
     display: block;
 }
@@ -235,6 +392,7 @@ input.amount_input {
 textarea.deal_notes {
     max-width: 100%;
     width: 100%;
+    margin-top: 20px;
 }
 
 table.log_items td {
@@ -310,6 +468,95 @@ td.trash_cell {
     margin: 0 !important;
 }
 
+p.title {
+    text-align: center;
+}
+
+.deal-cat {
+    text-align: left;
+}
+
+.route_wrap {
+    margin-bottom: 20px;
+}
+
+.table_wrap {
+    width: 100%;
+}
+
+ul.list-bar {
+    margin: 10px auto;
+    position: relative;
+    background: whitesmoke;
+    border: 1px solid #e6e6e6;
+    height: 24px;
+    width: 96%;
+    justify-content: space-around;
+    padding-left: 0;
+    list-style: none;
+}
+
+    ul.list-bar li {
+        width: 13.9%;
+        cursor: pointer;
+        display: inline-block;
+        padding: 0 5px;
+        vertical-align: middle;
+    }
+
+.probability-bar {
+    position: relative;
+    bottom: 10px;
+    border: 1px solid #d7d7d7;
+    margin: -6px 2px;
+    height: 7px;
+    width: 98%;
+    transform: translateZ(0) skewX(-20deg);
+    background-image: linear-gradient(to top, #68c522, #74d247);
+}
+
+.probability-bar-empty {
+    position: relative;
+    bottom: 10px;
+    border: 1px solid #d7d7d7;
+    margin: -6px 2px;
+    height: 7px;
+    width: 98%;
+    transform: translateZ(0) skewX(-20deg);
+    background-color: #bbc0c3;
+}
+
+.probability-bar-lost {
+    position: relative;
+    bottom: 10px;
+    border: 1px solid #d7d7d7;
+    margin: -6px 2px;
+    height: 7px;
+    width: 98%;
+    transform: translateZ(0) skewX(-20deg);
+    background-color: red;
+}
+
+.status {
+    position: relative;
+    bottom: 25px;
+    height: 20px;
+    font-weight: 500;
+    font-family: "ProximaNovaA-Bold","proxima-nova",sans-serif;
+    text-rendering: geometricPrecision;
+    text-transform: uppercase;
+    width: 200%;
+    letter-spacing: .025em;
+    word-spacing: 0.1em;
+}
+
+.status-last {
+    width: 100%;
+}
+
+.deals-info-wrap {
+    width: 100%;
+}
 /*-------------------Contacts Section--------------------------*/
 
 .error {
@@ -329,9 +576,9 @@ td.trash_cell {
     background-color: lightgray;
 }
 
-.contactPanel button {
-    margin-bottom: 20px;
-}
+    .contactPanel button {
+        margin-bottom: 20px;
+    }
 
 #interactionForm {
     margin-top: 10px;
@@ -356,11 +603,20 @@ td.trash_cell {
 }
 
 #manageRow {
-    max-width: 30px;
     border: none;
     border-bottom: hidden;
     border-right: hidden;
     background-color: white;
+    width: 50px;
+}
+
+.ipp label {
+    color: black;
+}
+
+.my_items select {
+    width: 200px;
+    text-align: right;
 }
 
 #contactBtnGroup {
@@ -378,10 +634,47 @@ td.trash_cell {
     margin-left: 40px;
 }
 
+.items_per_page_wrap {
+    text-align: right;
+    float: left;
+}
+
 #itemsPerPage {
-    position: relative;
-    left: 10px;
-    bottom: 30px;
+    width: 100px;
+}
+
+.hide_map_wrap {
+    margin-bottom: 10px;
+}
+
+ul.pagination, ul.pagination li a {
+    height: 34px !important;
+}
+
+.pagination_wrap {
+    padding-top: 20px;
+}
+
+.pagination {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.contactImage {
+    border: 1px solid black;
+    max-width: 100%;
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto !important;
+    margin-bottom: 30px;
+}
+
+.angular-google-map-container {
+    height: 400px;
+    width: 700px;
+    border: 1px solid black;
+    margin: 20px auto 35px;
 }
 
 /*SEARCHBAR CSS*/
