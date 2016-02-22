@@ -7,6 +7,7 @@ using System.Data.Entity;
 using System.Collections;
 using System.Collections.Generic;
 using CoderCampsCRM.Models.ViewModels;
+using System;
 
 namespace CoderCampsCRM.Models
 {
@@ -24,6 +25,7 @@ namespace CoderCampsCRM.Models
         public string Company { get; set; }
         public string TimeZone { get; set; }
         public string PicUrl { get; set; }
+        public DateTime MemberSince { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {

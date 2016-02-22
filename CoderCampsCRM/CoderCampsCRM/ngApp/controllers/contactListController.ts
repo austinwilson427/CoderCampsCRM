@@ -4,7 +4,7 @@
 
         public contactsView;
         public filterChoice;
-        public sortType = name;
+        public sortType;
         public sortReverse = false;
         public showMap = true;
         public zoom;
@@ -12,13 +12,13 @@
         public markers: any = [];
         public markersSearch: any = [];
         public totalItems;
-        public currentPage = 1;
-        public maxSize = 5;
-        public itemsPerPage = 5;
         public companyFilter;
         public dealFilter;
         public taskFilter;
         public searchText;
+        public currentPage = 1;
+        public maxSize = 10;
+        public itemsPerPage = 10;
 
         constructor(private contactService: MyApp.Services.ContactService, private $location: ng.ILocationService, private $uibModal: angular.ui.bootstrap.IModalService, private $state: ng.ui.IStateService) {
             this.showAllContacts();
@@ -119,6 +119,9 @@
             this.contactsView = this.contactService.getAllContacts().then((result) => {
                 this.contactsView = result;
                 this.totalItems = result.contacts.length;
+                this.taskFilter = null;
+                this.dealFilter = null;
+                this.companyFilter = null;
                 this.setLocations();
             });
         }

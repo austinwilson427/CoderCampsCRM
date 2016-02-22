@@ -1,6 +1,6 @@
 ﻿<div id="wrapper" class="details_wrap toggled">
     <div id="sidebar-wrapper">
-        <label>Filter by Company</label>
+        <label class="text-center">Filter by Company</label>
         <select class="form-control filterSideBarContent" ng-change="vm.filterContacts()" ng-model="vm.companyFilter">
             <option ng-repeat="company in vm.contactsView.companies" value="{{company.id}}">{{company.companyName}}</option>
         </select>
@@ -12,96 +12,89 @@
         <select class="form-control filterSideBarContent" ng-change="vm.filterContacts()" ng-model="vm.taskFilter">
             <option ng-repeat="task in vm.contactsView.tasks" value="{{task.id}}">{{task.description}}</option>
         </select>
-        <button class="btn btn-primary" id="filterBtn" ng-click="vm.showAllContacts()">Show all contacts</button>
+        <button class="btn btn-primary form-control" id="filterBtn" ng-click="vm.showAllContacts()">Show all contacts</button>
     </div>
-    <div id="page-content-wrapper">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="row details_wrap">
-                    <div class="col-md-2 filter_button">
-                        <btn id="menu-toggle" class="btn btn-primary">Filter</btn>
-                    </div>
-                    <div class="col-md-6 form-group search-bar">
-                        <input type="text" class="form-control full" id="searchBar" ng-change="vm.updateSearchList()" ng-model="vm.searchText" ng-model-options="{debounce: 1000}" placeholder="Search contacts by name" />
-                    </div>
-                    <div class="col-md-4">
-                        <button class="btn btn-primary" ng-click="vm.openNewContactModal()">+ Add Contact</button>
-                        <button class="btn btn-primary" ng-click="vm.syncGoogleContacts()">Sync Gmail Contacts</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 hide_map_wrap text-center">
+    <div class="row" id="page-content-wrapper">
+        <div class="col-md-12">
+            <div class="row details_wrap">
+                <div class="col-md-2">
+                    <btn id="menu-toggle" class="btn btn-primary">Filter</btn>
                     <button class="btn btn-primary" ng-show="vm.showMap" ng-click="vm.toggleMap()">Hide Map</button>
                     <button class="btn btn-primary" ng-show="!vm.showMap" ng-click="vm.toggleMap()">Show Map</button>
-            </div>
-        </div>
-        <div class="row map_wrap" ng-show="vm.showMap">
-            <div class="col-md-12">
-                <h2 class="text-center">Contact Locations</h2>
-                <ui-gmap-google-map center='vm.center' zoom='vm.zoom' draggable="true">
-                    <ui-gmap-marker ng-repeat="marker in vm.markers"
-                                    idKey="marker.id"
-                                    coords="marker.coords"
-                                    options="marker.options">
-                    </ui-gmap-marker>
-                </ui-gmap-google-map>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="table_wrap contacts_table_wrap">
-                    <table class="table table-bordered table-responsive table-hover deals_table contacts_table">
-                        <thead>
-                            <tr>
-                                <th class="hover_blue" ng-click="sortType = 'name'; sortReverse = !sortReverse">Name<span ng-show="sortType == 'name' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'name' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>
-                                <th class="hover_blue" ng-click="sortType = 'companyName'; sortReverse = !sortReverse">Company<span ng-show="sortType == 'companyName' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'companyName' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>
-                                <th class="hover_blue" ng-click="sortType = 'jobTitle'; sortReverse = !sortReverse">Job Title<span ng-show="sortType == 'jobTitle' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'jobTitle' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>
-                                <th class="hover_blue" style="cursor: default">Email</th>
-                                <th class="hover_blue" style="cursor: default">Phone</th>
-                                <th class="hover_blue" ng-click="sortType = 'country'; sortReverse = !sortReverse">Country<span ng-show="sortType == 'country' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'country' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>
-                                <th class="hover_blue" ng-click="sortType = 'city'; sortReverse = !sortReverse">City<span ng-show="sortType == 'city' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'city' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>
-                                <th class="hover_blue" ng-click="sortType = 'lastInteraction'; sortReverse = !sortReverse">Last Interaction<span ng-show="sortType == 'lastInteraction' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'lastInteraction' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="contact in vm.contactsView.contacts.slice(((vm.currentPage-1)*vm.itemsPerPage), ((vm.currentPage)*vm.itemsPerPage)) | filter: {name: vm.searchText} | orderBy:sortType:sortReverse">
-                                <td>{{contact.name}}</td>
-                                <td>{{contact.company.companyName}}</td>
-                                <td>{{contact.jobTitle}}</td>
-                                <td>{{contact.email}}</td>
-                                <td>{{contact.phoneNumber}}</td>
-                                <td>{{contact.country}}</td>
-                                <td>{{contact.city}}</td>
-                                <td>{{contact.lastInteraction | date: 'short'}}</td>
-                                <td id="manageRow"><a href="/contactDetails/{{contact.id}}" class="btn btn-primary manage">Manage</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                </div>
+                <div class="col-md-8 form-group">
+                    <input type="text" class="form-control full" id="searchBar" ng-change="vm.updateSearchList()" ng-model="vm.searchText" ng-model-options="{debounce: 1000}" placeholder="Search contacts by name" />
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-primary" ng-click="vm.openNewContactModal()">+ Add Contact</button>
+                    <button class="btn btn-primary" ng-click="vm.syncGoogleContacts()">Sync Gmail Contacts</button>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 pagination_wrap">
+            <div class="row" ng-show="vm.showMap">
+                <div class="col-md-12">
+                    <h2 class="text-center">Contact Locations</h2>
+                    <ui-gmap-google-map center='vm.center' zoom='vm.zoom' draggable="true">
+                        <ui-gmap-marker ng-repeat="marker in vm.markers"
+                                        idKey="marker.id"
+                                        coords="marker.coords"
+                                        options="marker.options">
+                        </ui-gmap-marker>
+                    </ui-gmap-google-map>
+                </div>
+            </div>
+            <div class="table_wrap">
                 <uib-pagination total-items="vm.totalItems" ng-model="vm.currentPage" max-size="vm.maxSize" class="pagination-sm" items-per-page="{{vm.itemsPerPage}}"></uib-pagination>
-            </div>
-            <div class="col-md-8 items_per_page_wrap_wrap">
-                <div class="items_per_page_wrap">
-                    Items Per Page:
-                    <select id="itemsPerPage" class="form-control full" ng-model="vm.itemsPerPage">
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="20">20</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                    </select>
-                </div>
-                
+                <select id="itemsPerPage" ng-model="vm.itemsPerPage">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+                <table class="table table-bordered table-responsive table-hover deals_table">
+                    <thead>
+                        <tr>
+                            <th class="hover_blue" ng-click="sortType = 'name'; sortReverse = !sortReverse">Name<span ng-show="sortType == 'name' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'name' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>
+                            <th class="hover_blue" ng-click="sortType = 'companyName'; sortReverse = !sortReverse">Company<span ng-show="sortType == 'companyName' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'companyName' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>
+                            <th class="hover_blue" ng-click="sortType = 'jobTitle'; sortReverse = !sortReverse">Job Title<span ng-show="sortType == 'jobTitle' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'jobTitle' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>
+                            <th class="hover_blue" style="cursor: default">Email</th>
+                            <th class="hover_blue" style="cursor: default">Phone Number</th>
+                            <th class="hover_blue" ng-click="sortType = 'country'; sortReverse = !sortReverse">Country<span ng-show="sortType == 'country' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'country' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>
+                            <th class="hover_blue" ng-click="sortType = 'city'; sortReverse = !sortReverse">City<span ng-show="sortType == 'city' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'city' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>
+                            <th class="hover_blue" ng-click="sortType = 'lastInteraction'; sortReverse = !sortReverse">Last Interaction<span ng-show="sortType == 'lastInteraction' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'lastInteraction' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="contact in vm.contactsView.contacts.slice(((vm.currentPage-1)*vm.itemsPerPage), ((vm.currentPage)*vm.itemsPerPage)) | filter: {name: vm.searchText} | orderBy:sortType:sortReverse">
+                            <td>{{contact.name}}</td>
+                            <td>{{contact.company.companyName}}</td>
+                            <td>{{contact.jobTitle}}</td>
+                            <td>{{contact.email}}</td>
+                            <td>{{contact.phoneNumber}}</td>
+                            <td>{{contact.country}}</td>
+                            <td>{{contact.city}}</td>
+                            <td>{{contact.lastInteraction | date: 'short'}}</td>
+                            <td id="manageRow"><a href="/contactDetails/{{contact.id}}" class="btn btn-primary">Manage</a></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    .angular-google-map-container {
+        height: 400px;
+        width: 700px;
+        border: 1px solid black;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+        margin-bottom: 35px;
+    }
+</style>
+
 <script>
     $("#menu-toggle").click(function (e) {
         e.preventDefault();

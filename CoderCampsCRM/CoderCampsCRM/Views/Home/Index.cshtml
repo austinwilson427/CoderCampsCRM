@@ -16,21 +16,21 @@
     <link href="~/Content/simple-sidebar.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.js" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.js" rel="stylesheet" />    
     <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/dark-hive/jquery-ui.css">
     <link href="~/Content/queries.css" rel="stylesheet" />
-
+    
 </head>
 <body ng-controller="AccountController as account">
-    @* OLD CODE FROM CODER CAMPS TEMPLATE - NAVBAR ADDED - WILL NEED TO USE NG-SHOW AND NG-CLICK INFORMATION *@
-    @*<h1>My App</h1>
-    <div>
-        <a href="/">Home</a> /
-        <a href="/about">About</a> /
-        <a href="/login" ng-show="!account.isLoggedIn()">login</a>
-        <a href="#" ng-click="account.logout()" ng-show="account.isLoggedIn()">logout</a>
-    </div>*@
+        @* OLD CODE FROM CODER CAMPS TEMPLATE - NAVBAR ADDED - WILL NEED TO USE NG-SHOW AND NG-CLICK INFORMATION *@
+        @*<h1>My App</h1>
+        <div>
+            <a href="/">Home</a> /
+            <a href="/about">About</a> /
+            <a href="/login" ng-show="!account.isLoggedIn()">login</a>
+            <a href="#" ng-click="account.logout()" ng-show="account.isLoggedIn()">logout</a>
+        </div>*@
     <div class="nav_wrap">
         <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
             <div class="container-fluid">
@@ -53,12 +53,13 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li class="divider-vertical"></li>
-                        <li><a ng-show="!account.isLoggedIn()" ui-sref="home">Home<span class="sr-only">(current)</span></a></li>
-                        <li ng-show="account.isLoggedIn()"><a ui-sref="dashboard">Dashboard</a></li>
-                        <li ng-show="account.isLoggedIn()"><a ui-sref="contacts">Contacts</a></li>
-                        <li ng-show="account.isLoggedIn()"><a ui-sref="companies">Companies</a></li>
-                        <li ng-show="account.isLoggedIn()"><a ui-sref="deals.list-view">Deals</a></li>
-                        <li ng-show="account.isLoggedIn()"><a ui-sref="tasks">Tasks</a></li>
+                        <li><a ui-sref="home">Home<span class="sr-only">(current)</span></a></li>
+                        <li ng-show="account.isLoggedIn()"><a ng-show="account.isLoggedIn()" ui-sref="dashboard">Dashboard</a></li>
+                        <li ng-show="account.isLoggedIn()"><a ng-show="account.isLoggedIn()" ui-sref="contacts">Contacts</a></li>
+                        <li ng-show="account.isLoggedIn()"><a ng-show="account.isLoggedIn()" ui-sref="companies">Companies</a></li>
+                        <li ng-show="account.isLoggedIn()"><a ng-show="account.isLoggedIn()" ui-sref="deals.list-view">Deals</a></li>
+                        <li ng-show="account.isLoggedIn()"><a ng-show="account.isLoggedIn()" ui-sref="tasks">Tasks</a></li>
+                        <li ng-show="account.getClaim('Admin')"><a ng-show="account.getClaim('Admin')" ui-sref="admin">Admin Page</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
 
@@ -86,7 +87,7 @@
 
 
 
-    <div ui-view></div>
+        <div ui-view></div>
 
 
 
@@ -118,6 +119,7 @@
     <script src="~/ngApp/app.js"></script>
     <script src="~/ngApp/services/services.js"></script>
     <script src="~/ngApp/services/accountService.js"></script>
+    <script src="~/ngApp/services/adminService.js"></script>
     <script src="~/ngApp/services/dealService.js"></script>
     <script src="~/ngApp/services/dealLogItemService.js"></script>
     <script src="~/ngApp/services/contactService.js"></script>
@@ -132,6 +134,7 @@
     <!--Controllers-->
     <script src="~/ngApp/controllers/controllers.js"></script>
     <script src="~/ngApp/controllers/accountController.js"></script>
+    <script src="~/ngApp/controllers/adminController.js"></script>
     <script src="~/ngApp/controllers/dealController.js"></script>
     <script src="~/ngApp/controllers/dealInfoController.js"></script>
     <script src="~/ngApp/controllers/contactListController.js"></script>

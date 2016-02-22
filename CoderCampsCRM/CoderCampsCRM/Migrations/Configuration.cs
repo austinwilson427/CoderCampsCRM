@@ -33,6 +33,7 @@ namespace CoderCampsCRM.Migrations
                     LastName = "Camps",
                     TimeZone = "Pacific Time (US & Canada)",
                     Company = "CoderCampsCrm",
+                    MemberSince = new DateTime(2016, 05, 02),
                 };
 
                 userManager.Create(user, "Secret123!");
