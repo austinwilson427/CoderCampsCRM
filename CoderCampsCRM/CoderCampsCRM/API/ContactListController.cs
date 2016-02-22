@@ -43,6 +43,7 @@ namespace CoderCampsCRM.API
             {
                 if (contact.Id == 0)
                 {
+                    contact.CreatedOn = DateTime.Now;
                     var userId = this.User.Identity.GetUserId();
                     contact.UserId = userId;
                     _repo.Add(contact);
@@ -87,7 +88,8 @@ namespace CoderCampsCRM.API
         /// <summary>
         /// Google contacts get part
         /// </summary>
-      //  [Authorize]
+        /// [Authorize]
+        /// // public Models.Contact[] Get()
         public IEnumerable<Models.Contact> Get()
         {
             string resultJson = string.Empty;
@@ -149,8 +151,7 @@ namespace CoderCampsCRM.API
 
                 foreach (var entry in entries)
                 {
-                    Debug.WriteLine(" next entry processing " + entries.IndexOf(entry));
-
+                    
                     if (entry["gd$email"] == null)
                     {
                         continue;
@@ -214,6 +215,8 @@ namespace CoderCampsCRM.API
             }
 
             return gmailContacts;
+            //return gmailContacts.ToArray();
+
         }
 
     }

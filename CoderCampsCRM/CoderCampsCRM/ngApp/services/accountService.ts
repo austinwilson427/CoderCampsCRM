@@ -31,7 +31,6 @@
         login(loginUser) {
             return this.$q((resolve, reject) => {
                 let data = "grant_type=password&username=" + loginUser.userName + "&password=" + loginUser.password;
-               
                 this.$http.post('/Token', data,
                     {
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }

@@ -33,7 +33,7 @@
 
 
     }
-
+    
     angular.module("MyApp").service("companyLogItemService", CompanyLogItemService);
 
 }

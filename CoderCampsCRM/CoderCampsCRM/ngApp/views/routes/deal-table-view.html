@@ -3,7 +3,7 @@
         <label>Show Archived Deals</label>
         <input type="checkbox" ng-model="vm.showArchived" ng-change="vm.filterBySelection()" /><br />
         <label>Filter By Date</label>
-        <select class="form-control" ng-model="vm.dateFilter" ng-change="vm.filterBySelection()">
+        <select class="form-control date-filter" ng-model="vm.dateFilter" ng-change="vm.filterBySelection()">
             <option value="all">All Deals</option>
             <option value="today">Deals For Today</option>
             <option value="week">Deals For Week</option>
@@ -23,7 +23,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="row">
+                    <div class="row view_search">
                         <div class="col-md-4 view_search">
                             <a href="#" ng-show="vm.showTrash" ng-click="vm.deleteDealModal()"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                             <a href="#" ng-show="vm.showTrash" ng-click="vm.archiveDealModal()"><span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span></a>
@@ -34,83 +34,222 @@
                                 <a ui-sref="deals.chart-view" class="btn btn-default">Chart</a>
                             </div>
                         </div>
-                        <div class="col-md-6 form-group no-margin">
+                        <div class="col-md-6 form-group no-margin search-bar">
                             <input class="form-control full" placeholder="Search all deals in this view..." ng-model="vm.searchPhrase" />
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2 add-deal-button-wrap">
                             <button class="btn btn-primary" ng-click="vm.addDealModal()">+ Add Deal</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="fullWrapper">
-                                <div class="week">
-                                    <div class="dayWrapper" ng-drop="true" ng-drop-success="vm.onDropComplete1($data,$event)">
-                                        <div class="day"><p>{{vm.stages[0]}}</p></div>
-                                        <div ng-repeat="deal in vm.allDeals | orderBy: 'closeDate' | filter: vm.searchPhrase" ng-drag="true" ng-drag-data="deal" ng-drag-success="vm.onDragSuccess1($data,$event)" ng-if="deal.stage=='Appointment Scheduled'" ng-click="" class="english">
-                                            <p class="title">Name: <a ui-sref="deal-info({id: deal.id})">{{deal.dealName}}</a></p>
-                                            <p class="class">Company: {{deal.company.companyName}}</p>
-                                            <p class="teacher">Amount: {{deal.amount | currency}}</p>
-                                            <p class="subject">Deal Owner: <a ui-sref="contactDetails({id: deal.contactId})">{{deal.contact.name}}</a></p>
-                                            <p class="subject">Close Date: {{deal.closeDate | date: 'MM/dd/yy'}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="dayWrapper" ng-drop="true" ng-drop-success="vm.onDropComplete2($data,$event)">
-                                        <div class="day"><p>{{vm.stages[1]}}</p></div>
-                                        <div ng-repeat="deal in vm.allDeals | orderBy: 'closeDate' | filter: vm.searchPhrase" ng-drag="true" ng-drag-data="deal" ng-drag-success="vm.onDragSuccess2($data,$event)" ng-if="deal.stage=='Qualified to Buy'" ng-click="" class="english">
-                                            <p class="title">Name: <a ui-sref="deal-info({id: deal.id})">{{deal.dealName}}</a></p>
-                                            <p class="class">Company: {{deal.company.companyName}}</p>
-                                            <p class="teacher">Amount: {{deal.amount | currency}}</p>
-                                            <p class="subject">Deal Owner: <a ui-sref="contactDetails({id: deal.contactId})">{{deal.contact.name}}</a></p>
-                                            <p class="subject">Close Date: {{deal.closeDate | date: 'MM/dd/yy'}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="dayWrapper" ng-drop="true" ng-drop-success="vm.onDropComplete3($data,$event)">
-                                        <div class="day"><p>{{vm.stages[2]}}</p></div>
-                                        <div ng-repeat="deal in vm.allDeals | orderBy: 'closeDate' | filter: vm.searchPhrase" ng-drag="true" ng-drag-data="deal" ng-drag-success="vm.onDragSuccess3($data,$event)" ng-if="deal.stage=='Presentation Scheduled'" ng-click="" class="english">
-                                            <p class="title">Name: <a ui-sref="deal-info({id: deal.id})">{{deal.dealName}}</a></p>
-                                            <p class="class">Company: {{deal.company.companyName}}</p>
-                                            <p class="teacher">Amount: {{deal.amount | currency}}</p>
-                                            <p class="subject">Deal Owner: <a ui-sref="contactDetails({id: deal.contactId})">{{deal.contact.name}}</a></p>
-                                            <p class="subject">Close Date: {{deal.closeDate | date: 'MM/dd/yy'}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="dayWrapper" ng-drop="true" ng-drop-success="vm.onDropComplete4($data,$event)">
-                                        <div class="day"><p>{{vm.stages[3]}}</p></div>
-                                        <div ng-repeat="deal in vm.allDeals | orderBy: 'closeDate' | filter: vm.searchPhrase" ng-drag="true" ng-drag-data="deal" ng-drag-success="vm.onDragSuccess4($data,$event)" ng-if="deal.stage=='Decision Maker Bought In'" ng-click="" class="english">
-                                            <p class="title">Name: <a ui-sref="deal-info({id: deal.id})">{{deal.dealName}}</a></p>
-                                            <p class="class">Company: {{deal.company.companyName}}</p>
-                                            <p class="teacher">Amount: {{deal.amount | currency}}</p>
-                                            <p class="subject">Deal Owner: <a ui-sref="contactDetails({id: deal.contactId})">{{deal.contact.name}}</a></p>
-                                            <p class="subject">Close Date: {{deal.closeDate | date: 'MM/dd/yy'}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="dayWrapper" ng-drop="true" ng-drop-success="vm.onDropComplete5($data,$event)">
-                                        <div class="day"><p>{{vm.stages[4]}}</p></div>
-                                        <div ng-repeat="deal in vm.allDeals | orderBy: 'closeDate' | filter: vm.searchPhrase" ng-drag="true" ng-drag-data="deal" ng-drag-success="vm.onDragSuccess5($data,$event)" ng-if="deal.stage=='Contract Sent'" ng-click="" class="english">
-                                            <p class="title">Name: <a ui-sref="deal-info({id: deal.id})">{{deal.dealName}}</a></p>
-                                            <p class="class">Company: {{deal.company.companyName}}</p>
-                                            <p class="teacher">Amount: {{deal.amount | currency}}</p>
-                                            <p class="subject">Deal Owner: <a ui-sref="contactDetails({id: deal.contactId})">{{deal.contact.name}}</a></p>
-                                            <p class="subject">Close Date: {{deal.closeDate | date: 'MM/dd/yy'}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="overlay">
-                                        <p class="title">title: </p><input type="text" ng-model="vm.class.title">
-                                        <p class="class">class: </p><input type="text" ng-model="vm.class.class">
-                                        <p class="teacher">teacher: </p><input type="text" ng-model="vm.class.teacher">
-                                        <p class="subject">subject: </p><input type="text" ng-model="vm.class.subject">
-                                        <button class="btnSave" ng-click="vm.hideOverlay()">save</button>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="fullWrapper-wrap">
+        <div class="fullWrapper">
+            <div class="week">
+                <div class="dayWrapper" ng-drop="true" ng-drop-success="vm.onDropComplete1($data,$event)">
+                    <div class="day"><p>{{vm.stages[0]}}</p></div>
+                    <div ng-repeat="deal in vm.allDeals | orderBy: 'closeDate' | filter: vm.searchPhrase" ng-drag="true" ng-drag-data="deal" ng-drag-success="vm.onDragSuccess1($data,$event)" ng-if="deal.stage=='Appointment Scheduled'" ng-click="" class="english">
+                        <p class="title"><a ui-sref="deal-info({id: deal.id})">{{deal.dealName}}</a></p>
+                        <div class="deal-cat">
+                            <span class="first">
+                                Company:
+                            </span>
+                            <span class="second">
+                                {{deal.company.companyName}}
+                            </span>
+                        </div>
+                        <div class="deal-cat">
+                            <span class="first">
+                                Amount:
+                            </span>
+                            <span class="second">
+                                {{deal.amount | currency}}
+                            </span>
+                        </div>
+                        <div class="deal-cat">
+                            <span class="first">
+                                Owner:
+                            </span>
+                            <span class="second">
+                                <a ui-sref="contactDetails({id: deal.contactId})">{{deal.contact.name}}</a>
+                            </span>
+                        </div>
+                        <div class="deal-cat">
+                            <span class="first">
+                                Close Date:
+                            </span>
+                            <span class="second">
+                                {{deal.closeDate | date: 'MM/dd/yy'}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="dayWrapper" ng-drop="true" ng-drop-success="vm.onDropComplete2($data,$event)">
+                    <div class="day"><p>{{vm.stages[1]}}</p></div>
+                    <div ng-repeat="deal in vm.allDeals | orderBy: 'closeDate' | filter: vm.searchPhrase" ng-drag="true" ng-drag-data="deal" ng-drag-success="vm.onDragSuccess2($data,$event)" ng-if="deal.stage=='Qualified to Buy'" ng-click="" class="english">
+                        <p class="title"><a ui-sref="deal-info({id: deal.id})">{{deal.dealName}}</a></p>
+                        <div class="deal-cat">
+                            <span class="first">
+                                Company:
+                            </span>
+                            <span class="second">
+                                {{deal.company.companyName}}
+                            </span>
+                        </div>
+                        <div class="deal-cat">
+                            <span class="first">
+                                Amount:
+                            </span>
+                            <span class="second">
+                                {{deal.amount | currency}}
+                            </span>
+                        </div>
+                        <div class="deal-cat">
+                            <span class="first">
+                                Owner:
+                            </span>
+                            <span class="second">
+                                <a ui-sref="contactDetails({id: deal.contactId})">{{deal.contact.name}}</a>
+                            </span>
+                        </div>
+                        <div class="deal-cat">
+                            <span class="first">
+                                Close Date:
+                            </span>
+                            <span class="second">
+                                {{deal.closeDate | date: 'MM/dd/yy'}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="dayWrapper" ng-drop="true" ng-drop-success="vm.onDropComplete3($data,$event)">
+                    <div class="day"><p>{{vm.stages[2]}}</p></div>
+                    <div ng-repeat="deal in vm.allDeals | orderBy: 'closeDate' | filter: vm.searchPhrase" ng-drag="true" ng-drag-data="deal" ng-drag-success="vm.onDragSuccess3($data,$event)" ng-if="deal.stage=='Presentation Scheduled'" ng-click="" class="english">
+                        <p class="title"><a ui-sref="deal-info({id: deal.id})">{{deal.dealName}}</a></p>
+                        <div class="deal-cat">
+                            <span class="first">
+                                Company:
+                            </span>
+                            <span class="second">
+                                {{deal.company.companyName}}
+                            </span>
+                        </div>
+                        <div class="deal-cat">
+                            <span class="first">
+                                Amount:
+                            </span>
+                            <span class="second">
+                                {{deal.amount | currency}}
+                            </span>
+                        </div>
+                        <div class="deal-cat">
+                            <span class="first">
+                                Owner:
+                            </span>
+                            <span class="second">
+                                <a ui-sref="contactDetails({id: deal.contactId})">{{deal.contact.name}}</a>
+                            </span>
+                        </div>
+                        <div class="deal-cat">
+                            <span class="first">
+                                Close Date:
+                            </span>
+                            <span class="second">
+                                {{deal.closeDate | date: 'MM/dd/yy'}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="dayWrapper" ng-drop="true" ng-drop-success="vm.onDropComplete4($data,$event)">
+                    <div class="day"><p>{{vm.stages[3]}}</p></div>
+                    <div ng-repeat="deal in vm.allDeals | orderBy: 'closeDate' | filter: vm.searchPhrase" ng-drag="true" ng-drag-data="deal" ng-drag-success="vm.onDragSuccess4($data,$event)" ng-if="deal.stage=='Decision Maker Bought In'" ng-click="" class="english">
+                        <p class="title"><a ui-sref="deal-info({id: deal.id})">{{deal.dealName}}</a></p>
+                        <div class="deal-cat">
+                            <span class="first">
+                                Company:
+                            </span>
+                            <span class="second">
+                                {{deal.company.companyName}}
+                            </span>
+                        </div>
+                        <div class="deal-cat">
+                            <span class="first">
+                                Amount:
+                            </span>
+                            <span class="second">
+                                {{deal.amount | currency}}
+                            </span>
+                        </div>
+                        <div class="deal-cat">
+                            <span class="first">
+                                Owner:
+                            </span>
+                            <span class="second">
+                                <a ui-sref="contactDetails({id: deal.contactId})">{{deal.contact.name}}</a>
+                            </span>
+                        </div>
+                        <div class="deal-cat">
+                            <span class="first">
+                                Close Date:
+                            </span>
+                            <span class="second">
+                                {{deal.closeDate | date: 'MM/dd/yy'}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="dayWrapper" ng-drop="true" ng-drop-success="vm.onDropComplete5($data,$event)">
+                    <div class="day"><p>{{vm.stages[4]}}</p></div>
+                    <div ng-repeat="deal in vm.allDeals | orderBy: 'closeDate' | filter: vm.searchPhrase" ng-drag="true" ng-drag-data="deal" ng-drag-success="vm.onDragSuccess5($data,$event)" ng-if="deal.stage=='Contract Sent'" ng-click="" class="english">
+                        <p class="title"><a ui-sref="deal-info({id: deal.id})">{{deal.dealName}}</a></p>
+                        <div class="deal-cat">
+                            <span class="first">
+                                Company:
+                            </span>
+                            <span class="second">
+                                {{deal.company.companyName}}
+                            </span>
+                        </div>
+                        <div class="deal-cat">
+                            <span class="first">
+                                Amount:
+                            </span>
+                            <span class="second">
+                                {{deal.amount | currency}}
+                            </span>
+                        </div>
+                        <div class="deal-cat">
+                            <span class="first">
+                                Owner:
+                            </span>
+                            <span class="second">
+                                <a ui-sref="contactDetails({id: deal.contactId})">{{deal.contact.name}}</a>
+                            </span>
+                        </div>
+                        <div class="deal-cat">
+                            <span class="first">
+                                Close Date:
+                            </span>
+                            <span class="second">
+                                {{deal.closeDate | date: 'MM/dd/yy'}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="overlay">
+                    <p class="title">title: </p><input type="text" ng-model="vm.class.title">
+                    <p class="class">class: </p><input type="text" ng-model="vm.class.class">
+                    <p class="teacher">teacher: </p><input type="text" ng-model="vm.class.teacher">
+                    <p class="subject">subject: </p><input type="text" ng-model="vm.class.subject">
+                    <button class="btnSave" ng-click="vm.hideOverlay()">save</button>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+
 </div>
 <script>
     $("#menu-toggle").click(function (e) {

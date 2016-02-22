@@ -2,20 +2,26 @@
 
     export class DealService {
 
-        private dealResource;
+        private dealResourceOwned;
+        private dealResourceShared;
         private dealResourceFromCompany;
         private dealResourceFromDealOwner;
         private dealResourcePag;
 
         constructor(private $resource: ng.resource.IResourceService) {
-            this.dealResource = $resource("api/deals/:id");
+            this.dealResourceOwned = $resource("api/deals/owned/:id");
+            this.dealResourceShared = $resource("api/deals/shared/:id");
             this.dealResourcePag = $resource("api/deals/pag/:take/:skip/:order/:orderDirection");
             this.dealResourceFromCompany = $resource("api/deals/company/:id");
             this.dealResourceFromDealOwner = $resource("api/deals/deal-owner/:id");
         }
 
-        public listAllDeals() {
-            return this.dealResource.query();
+        public listAllDealsOwned() {
+            return this.dealResourceOwned.query();
+        }
+
+        public listAllDealsShared() {
+            return this.dealResourceShared.query();
         }
 
         public listDealsByPag(takeCount, skipCount, order, direction) {
@@ -27,8 +33,12 @@
             });
         }
 
-        public getDealByDealId(id) {
-            return this.dealResource.get({ id: id });
+        public getDealsOwnedByDealId(id) {
+            return this.dealResourceOwned.get({ id: id });
+        }
+
+        public getDealsSharedByDealId(id) {
+            return this.dealResourceShared.get({ id: id });
         }
 
 
@@ -41,11 +51,11 @@
         }
 
         public saveDeal(dealToSave) {
-            return this.dealResource.save(dealToSave).$promise;
+            return this.dealResourceOwned.save(dealToSave).$promise;
         }
 
         public deleteDeal(id) {
-            return this.dealResource.delete({ id: id }).$promise;
+            return this.dealResourceOwned.delete({ id: id }).$promise;
         }
 
 

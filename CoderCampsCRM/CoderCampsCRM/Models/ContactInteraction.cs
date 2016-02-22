@@ -16,5 +16,8 @@ namespace CoderCampsCRM.Models
         public int ContactId { get; set; }
         [ForeignKey("ContactId")]
         public Contact Contact { get; set; }
+
+        /*Added by Austin Wilson for Dashboard Updates*/
+        public DateTime? CreatedOn { get; set; }
     }
 }

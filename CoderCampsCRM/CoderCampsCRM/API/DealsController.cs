@@ -22,12 +22,33 @@ namespace CoderCampsCRM.API
             _dealRepo = dealRepo;
         }
 
-        public IHttpActionResult GetDeals()
+        [Route("api/deals/owned")]
+        public IHttpActionResult GetDealsOwned()
         {
             var userId = this.User.Identity.GetUserId();
             var dealData = _dealRepo.getAllDealViewModels(userId);
+            if (userId == null)
+            {
+                //return Unauthorized();
+            }
             return Ok(dealData.DealList);
+        }
 
+        [Route("api/deals/shared")]
+        public IHttpActionResult GetDealsShared()
+        {
+            var userId = this.User.Identity.GetUserId();
+            var userInfo = _genRepo.Query<ApplicationUser>().Where(a => a.Id == userId).FirstOrDefault();
+            var contactInfo = _genRepo.Query<Contact>().Where(c => c.Email == userInfo.Email).FirstOrDefault();
+
+            var dealContactData = _dealRepo.getAllDealsSharedByContactId(contactInfo.Id);
+
+            if (userId == null || userInfo.Email != contactInfo.Email || contactInfo.Email == null)
+            {
+                //return Unauthorized();
+            }
+
+            return Ok(dealContactData.DealContactsList);
         }
 
         [Route("api/deals/pag/{takeCount}/{skipCount}/{order}/{orderDirection}")]
@@ -38,10 +59,21 @@ namespace CoderCampsCRM.API
 
         }
 
-        public IHttpActionResult GetADealViewModel(int id)
+        [Route("api/deals/owned/{id}")]
+        public IHttpActionResult GetADealOwned(int id)
         {
+            var userId = this.User.Identity.GetUserId();
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
             var data = _dealRepo.getDealViewModel(id);
-            if(data == null)
+            if (data.Deal.UserId != userId)
+            {
+                return Unauthorized();
+            }
+
+            if (data.Deal == null)
             {
                 return NotFound();
             }
@@ -49,13 +81,49 @@ namespace CoderCampsCRM.API
             return Ok(data.Deal);
         }
 
+        [Route("api/deals/shared/{id}")]
+        public IHttpActionResult GetADealShared(int id)
+        {
+            var userId = this.User.Identity.GetUserId();
+            var userInfo = _genRepo.Query<ApplicationUser>().Where(a => a.Id == userId).FirstOrDefault();
+            var contactInfo = _genRepo.Query<Contact>().Where(c => c.Email == userInfo.Email).FirstOrDefault();
+            var dealContact = _genRepo.Query<DealContact>().Where(dc => dc.ContactId == contactInfo.Id && dc.DealId == id && dc.isDealSharer == true).FirstOrDefault();
+
+            if (userId == null || dealContact == null)
+            {
+                return Unauthorized();
+            }
+
+            var data = _dealRepo.getDealViewModel(id);
+
+            if (data.Deal == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(data.Deal);
+        }
+
+        [Route("api/deals/owned")]
         public IHttpActionResult PostDeal(Deal dealToAdd)
         {
+            var userId = this.User.Identity.GetUserId();
+            dealToAdd.UserId = userId;
+            var user = _genRepo.Query<ApplicationUser>().Where(a => a.Id == userId).FirstOrDefault();
+
+            var contact = _genRepo.Query<Contact>().Where(c => c.Email == user.Email).FirstOrDefault();
+
+            if(userId == null)
+            {
+                return Unauthorized();
+            }
             if (ModelState.IsValid)
             {
 
                 if (dealToAdd.Id == 0)
                 {
+                    dealToAdd.CreatedOn = DateTime.Now;
+                    dealToAdd.ContactId = contact.Id;
                     _genRepo.Add<Deal>(dealToAdd);
                     _genRepo.SaveChanges();
                     return Ok(dealToAdd);
@@ -77,8 +145,15 @@ namespace CoderCampsCRM.API
             return BadRequest(ModelState);
         }
 
+        [Route("api/deals/owned")]
         public IHttpActionResult DeleteDeal(int id)
         {
+            Deal dealBeingDeleted = _genRepo.Find<Deal>(id);
+            var userId = this.User.Identity.GetUserId();
+            if (userId == null || dealBeingDeleted.UserId != userId)
+            {
+                return Unauthorized();
+            }
             _genRepo.Delete<Deal>(id);
             _genRepo.SaveChanges();
             return Ok();
