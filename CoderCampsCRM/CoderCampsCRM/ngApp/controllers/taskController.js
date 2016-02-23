@@ -17,6 +17,7 @@ var MyApp;
                 this.contactService = contactService;
                 this.dealService = dealService;
                 this.getMyContacts();
+                this.getMyDeals();
             }
             TaskAddController.prototype.getMyContacts = function () {
                 var _this = this;
