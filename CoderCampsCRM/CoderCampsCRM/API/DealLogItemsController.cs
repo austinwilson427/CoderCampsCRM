@@ -93,7 +93,6 @@ namespace CoderCampsCRM.API
                     logItemBeingEditted.StartTime = logItemToAdd.StartTime;
                     logItemBeingEditted.EndTime = logItemToAdd.EndTime;
                     logItemBeingEditted.Content = logItemToAdd.Content;
-                    logItemBeingEditted.TaskId = logItemToAdd.TaskId;
                     logItemBeingEditted.ContactId = logItemToAdd.ContactId;
                     logItemBeingEditted.DealId = logItemToAdd.DealId;
 

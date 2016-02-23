@@ -34,6 +34,18 @@ var MyApp;
             AccountController.prototype.getExternalLogins = function () {
                 return this.accountService.getExternalLogins();
             };
+            AccountController.prototype.showRegisterModal = function () {
+                this.$uibModal.open({
+                    templateUrl: "/ngApp/views/register.html",
+                    controller: MyApp.Controllers.RegisterController,
+                    controllerAs: "vm",
+                    resolve: {
+                        userInfo: null
+                    },
+                    size: "lg"
+                });
+            };
+            ;
             return AccountController;
         })();
         Controllers.AccountController = AccountController;

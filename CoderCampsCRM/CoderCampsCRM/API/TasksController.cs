@@ -27,7 +27,7 @@ namespace CoderCampsCRM.API
         {
             var userId = this.User.Identity.GetUserId();
             var data = _repo.Query<UserTask>().Where(u => u.UserId == userId).ToList();
-
+            var contacts = _repo.Query<Contact>().ToList();
             return Ok(data);
         }
 
@@ -36,7 +36,7 @@ namespace CoderCampsCRM.API
         {
             var userId = this.User.Identity.GetUserId();
             var data = _repo.Query<UserTask>().Where(u => u.UserId == userId).FirstOrDefault();
-
+            var contacts = _repo.Query<Contact>().ToList();
             return Ok(data);
         }
 

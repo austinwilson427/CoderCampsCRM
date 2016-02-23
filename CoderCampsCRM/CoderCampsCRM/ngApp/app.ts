@@ -9,7 +9,7 @@
             .state('home', {
                 url: '/',
                 templateUrl: '/ngApp/views/home.html',
-                controller: MyApp.Controllers.MyHomeController,
+                controller: MyApp.Controllers.AccountController,
                 controllerAs: 'vm'
             })
             .state('dashboard', {
@@ -182,12 +182,12 @@
                 controller: MyApp.Controllers.DealInfoEventController,
                 controllerAs: "vm"
             })
-            .state('profile', {
-                url: '/profile',
-                templateUrl: 'ngApp/views/profile.html',
-                controller: MyApp.Controllers.ProfileController,
-                controllerAs: "vm"
-            });
+            //.state('profile', {
+            //    url: '/profile',
+            //    templateUrl: 'ngApp/views/profile.html',
+            //    controller: MyApp.Controllers.ProfileController,
+            //    controllerAs: "vm"
+            //});
 ;
 
         $urlRouterProvider.otherwise('/');
