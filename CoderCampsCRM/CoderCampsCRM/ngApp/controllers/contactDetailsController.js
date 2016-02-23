@@ -3,12 +3,14 @@ var MyApp;
     var Controllers;
     (function (Controllers) {
         var ContactDetailsController = (function () {
-            function ContactDetailsController(contactService, $location, $uibModal, $stateParams, $state, filepickerService) {
+            function ContactDetailsController(contactService, $location, $uibModal, $stateParams, $state, filepickerService, dealService, taskService) {
                 this.contactService = contactService;
                 this.$location = $location;
                 this.$uibModal = $uibModal;
                 this.$state = $state;
                 this.filepickerService = filepickerService;
+                this.dealService = dealService;
+                this.taskService = taskService;
                 this.showMap = false;
                 this.contact = {};
                 this.location = {};
@@ -113,6 +115,14 @@ var MyApp;
             };
             ContactDetailsController.prototype.deleteInteraction = function (id) {
                 return this.contactService.deleteInteraction(id).then(this.$state.reload());
+            };
+            ContactDetailsController.prototype.addDealModal = function () {
+                this.$uibModal.open({
+                    templateUrl: '/ngApp/views/modals/add-deal.html',
+                    controller: MyApp.Controllers.AddDealModal,
+                    controllerAs: 'vm',
+                    size: "deal",
+                });
             };
             return ContactDetailsController;
         })();
