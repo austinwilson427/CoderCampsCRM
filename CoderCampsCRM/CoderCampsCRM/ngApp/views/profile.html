@@ -1,1 +1,13 @@
-﻿<h1>This will be potential future profile page</h1>
+﻿{{vm.profile}}
+
+<label>First Name</label>
+<input type="text" ng-model="vm.profile.firstName" />
+
+<label>Last Name</label>
+<input type="text" ng-model="vm.profile.lastName" />
+
+<label>Email</label>
+<input type="text" ng-model="vm.profile.email" />
+
+<button class="btn btn-success" ng-click="vm.editProfile()">Save</button>
+<a class="btn btn-danger" ng-click="vm.deleteProfile()">Delete</a>
