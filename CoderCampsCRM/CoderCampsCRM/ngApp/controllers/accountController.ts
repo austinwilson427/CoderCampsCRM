@@ -48,7 +48,6 @@
         public externalLogins;
 
         public login() {
-            console.log(this.loginUser);
             this.accountService.login(this.loginUser).then(() => {
                 this.closeModal();
                 this.$location.path('/dashboard');
