@@ -73,8 +73,8 @@ section.jumbotron {
 }
 
     .heading-wrap h1 {
-        margin-bottom: 50px;
-    }
+    margin-bottom: 50px;
+}
 
     .heading-wrap h1, .heading-wrap h2, .heading-wrap h3 {
         font-weight: 300;
@@ -398,6 +398,12 @@ textarea.deal_notes {
 
 table.log_items td {
 }
+
+table.log_items_company td {
+   
+    
+}
+
 
 td.submitted_cell, td.start_time_cell {
     font-weight: 600;

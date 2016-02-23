@@ -1,6 +1,6 @@
 ﻿namespace MyApp {
 
-    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router', 'angular-filepicker', 'ngDraggable', 'uiGmapgoogle-maps', "highcharts-ng"]).config(($locationProvider: ng.ILocationProvider, $routeProvider: ng.route.IRouteProvider, $stateProvider: ng.ui.IStateProvider, $urlRouterProvider: ng.ui.IUrlRouterProvider, filepickerProvider, uiGmapGoogleMapApiProvider: any) => {
+    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router', 'angular-filepicker', 'ngDraggable', 'uiGmapgoogle-maps', "highcharts-ng", "ngAnimate"]).config(($locationProvider: ng.ILocationProvider, $routeProvider: ng.route.IRouteProvider, $stateProvider: ng.ui.IStateProvider, $urlRouterProvider: ng.ui.IUrlRouterProvider , filepickerProvider, uiGmapGoogleMapApiProvider: any) => {
         filepickerProvider.setKey('ANnIsnaUARuBQjAtPZGBQz');
         uiGmapGoogleMapApiProvider.configure({
             //    key: 'your api key',
@@ -116,18 +116,18 @@
                 controller: MyApp.Controllers.CompanyDetailsController,
                 controllerAs: 'vm'
             })
-            //.state('company-info.activity', {
-            //    url: '/activity',
-            //    templateUrl: 'ngApp/views/routes/company-info-activity.html',
-            //    controller: MyApp.Controllers.CompanyInfoActivityController,
-            //    controllerAs: "vm"
-            //})
-            //.state('company-info.task', {
-            //    url: '/task',
-            //    templateUrl: 'ngApp/views/routes/company-info-task.html',
-            //    controller: MyApp.Controllers.CompanyInfoTaskController,
-            //    controllerAs: "vm"
-            //})          
+            .state('company-info.activity', {
+                url: '/activity',
+                templateUrl: 'ngApp/views/routes/company-info-activity.html',
+                controller: MyApp.Controllers.CompanyInfoActivityController,
+                controllerAs: "vm"
+            })
+            .state('company-info.task', {
+                url: '/task',
+                templateUrl: 'ngApp/views/routes/company-info-task.html',
+                controller: MyApp.Controllers.CompanyInfoTaskController,
+                controllerAs: "vm"
+            })          
             .state('contacts', {
                 url: '/contacts',
                 templateUrl: '/ngApp/views/contactListView.html',

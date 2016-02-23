@@ -21,15 +21,15 @@
         public myCompanies;
 
         constructor(private taskService: MyApp.Services.TaskService, private $location: ng.ILocationService, private $route: ng.route.IRouteService, private contactService: MyApp.Services.ContactService) {
-            //this.getContacts();
+            this.getMyContacts();
             
         }
 
-        //public getMyContacts() {
-        //    this.contactService.getAllContacts().$promise.then((result) => {
-        //        this.myContacts = result;
-        //    });
-        //}
+        public getMyContacts() {
+            this.contactService.getAllContacts().then((result) => {
+                this.myContacts = result;
+            });
+        }
 
         addTask() {
             this.loaded = false;

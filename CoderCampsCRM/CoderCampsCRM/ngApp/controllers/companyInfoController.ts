@@ -13,8 +13,9 @@
         constructor(private companyService: MyApp.Services.CompaniesService, private $stateParams: ng.ui.IStateParamsService, private companyLogItemService: MyApp.Services.CompanyLogItemService, private $route: ng.route.IRouteService, private $location: ng.ILocationService) {
             this.routeId = $stateParams["id"];
             this.getCompany();
-           // this.getDealLogItemsByRouteId();
+           //this.getDealLogItemsByRouteId();
             //this.getContactsByDealId();
+            this.getCompanyLogItemsByRouteId();
         }
 
         public getCompany() {
@@ -70,7 +71,7 @@
             /*Temporary ContactId*/
             //noteToSubmit.contactId = 1;
             /*Temporary SubmittedBy*/
-            noteToSubmit.submittedBy = "Austin Wilson";
+            noteToSubmit.submittedBy = "Guven Agas";
             console.log(noteToSubmit);
             this.companyLogItemService.saveCompanyLogItem(noteToSubmit).then(() => {
                 location.reload(false);
@@ -241,7 +242,7 @@
             /*Temporary ContactId*/
             activityToSubmit.contactId = 1;
             /*Temporary SubmittedBy*/
-            activityToSubmit.submittedBy = "Austin Wilson";
+            activityToSubmit.submittedBy = "Guven Agas";
 
             this.companyLogItemService.saveCompanyLogItem(activityToSubmit).then(() => {
                 location.reload(false);
@@ -272,18 +273,24 @@
         public companyInfo;
         public myContacts;
 
-        constructor(private $stateParams: ng.ui.IStateParamsService, private companyService: MyApp.Services.CompaniesService, private companyLogItemService: MyApp.Services.CompanyLogItemService, private $location: ng.ILocationService, private $route: ng.route.IRouteService, private taskService: MyApp.Services.TaskService, private contactService: MyApp.Services.ContactService) {
-            this.contactService.getAllContacts().$promise.then((result) => {
+        constructor(private $stateParams: ng.ui.IStateParamsService, private companiesService: MyApp.Services.CompaniesService, private companyLogItemService: MyApp.Services.CompanyLogItemService, private $location: ng.ILocationService, private $route: ng.route.IRouteService, private taskService: MyApp.Services.TaskService, private contactService: MyApp.Services.ContactService) {
+            this.contactService.getAllContacts().then((result) => {
                 this.myContacts = result.contacts;
                 this.routeId = $stateParams["id"];
                 this.getCompany();
+                this.syncGoogleCalendar();
             });
         }
 
         public getCompany() {
-            this.companyService.getCompany(this.routeId).$promise.then((result) => {
+            this.companiesService.getCompany(this.routeId).$promise.then((result) => {
                 this.companyInfo = result;
             });
+        }
+        public syncGoogleCalendar() {
+            this.companiesService.sendToGoogleCalendar().$promise.then((result) => { });
+
+                
         }
 
         public submitTask() {
@@ -305,9 +312,9 @@
             /*Temporary ContactId*/
             taskToSubmit.contactId = this.assignedTo;
             /*Temporary SubmittedBy*/
-            taskToSubmit.submittedBy = "Austin Wilson";
-
-            this.companyLogItemService.saveCompanyLogItem(taskToSubmit).then((result) => {
+            taskToSubmit.submittedBy = "Guven Agas";
+          
+           return    this.companyLogItemService.saveCompanyLogItem(taskToSubmit).then((result) => {
                 let formatTask = {
                     type: this.typeSelected,
                     startDate: this.startDateSelected,
@@ -317,8 +324,9 @@
                     dealId: this.companyInfo.id
                 }
 
-                this.taskService.saveTask(formatTask).then(() => {
+           return     this.taskService.saveTask(formatTask).then(() => {
                     location.reload(false);
+                    
                 })
 
             }).catch((error) => {
