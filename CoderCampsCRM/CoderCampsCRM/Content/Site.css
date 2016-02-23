@@ -128,12 +128,13 @@ p.home_description {
     background-color: #fdfdfd;
 }
 
-.productivity-wrap{
+.productivity-wrap {
     background-color: #fdfdfd;
     min-height: 200px;
     margin-top: 20px;
     padding: 0 30px 30px 30px;
 }
+
     .all-icons-wrap h2, .progress-wrap h2, .productivity-wrap h2 {
         text-align: left;
         border-bottom: 1px solid #370000;
@@ -143,24 +144,24 @@ p.home_description {
         font-weight: 400;
     }
 
-    .all-icons-wrap h2 {
-        margin-bottom: 40px;
-    }
+.all-icons-wrap h2 {
+    margin-bottom: 40px;
+}
 
 .progress-wrap h2 {
     margin-bottom: 0;
 }
 
-p.set_quota{
+p.set_quota {
     text-align: center;
 }
 
-p.set_monthly{
+p.set_monthly {
     font-size: 13px;
     margin-bottom: 10px;
 }
 
-.quota_btn{
+.quota_btn {
     color: #370000;
     font-weight: 500;
     text-align: center;
@@ -181,10 +182,10 @@ p.set_monthly{
     padding: 4px 10px;
 }
 
-.quota_btn:hover, .quota_btn:active{
-    background-color: #ae0001;
-    color: #fdfdfd;
-}
+    .quota_btn:hover, .quota_btn:active {
+        background-color: #ae0001;
+        color: #fdfdfd;
+    }
 
 .my_progress .progress-bar {
     background-image: linear-gradient(to top, #326011, #427d16);
@@ -576,9 +577,9 @@ ul.list-bar {
     background-color: lightgray;
 }
 
-    .contactPanel button {
-        margin-bottom: 20px;
-    }
+.contactPanel button {
+    margin-bottom: 20px;
+}
 
 #interactionForm {
     margin-top: 10px;
@@ -640,7 +641,10 @@ ul.list-bar {
 }
 
 #itemsPerPage {
-    width: 100px;
+    position: relative;
+    bottom: 10px;
+    margin-left: 5px;
+    margin-bottom: 10px;
 }
 
 .hide_map_wrap {
@@ -670,11 +674,13 @@ ul.pagination, ul.pagination li a {
     margin-bottom: 30px;
 }
 
-.angular-google-map-container {
-    height: 400px;
-    width: 700px;
-    border: 1px solid black;
-    margin: 20px auto 35px;
+.marginBot {
+    margin-bottom: 20px;
+}
+
+.adminImg {
+    width: 100px;
+    height: 100px;
 }
 
 /*SEARCHBAR CSS*/
@@ -806,7 +812,164 @@ li.Twitter a, li.Facebook a, li.Google a {
 #accordian {
     margin: -10px;
 }
+/*FOOTER SECTION------------------------------------------------------*/
 
-#deletetask {
-    margin-top: 300px;
+/* Footer */
+
+footer {
+	clear: both;
+	min-height: 400px;
+    /*Change footer color here*/
+	background: #998a55;
+    /*change text color here*/
+	color: black;
+    padding: 80px 0;
+}
+
+footer h4 {
+	font-size: 25px;
+	color: #2C5F66;
+	margin: 0 0 10px 0;
+    
+	clear: both;
+}
+
+footer .column {
+	float: left;
+	display: inline-block;
+	width: 300px;
+	margin: 20px 10px;
+}
+
+/* Widgets */
+
+article.widget_twitter li {
+	margin: 20px 0;
+}
+
+article.widget_social li {
+	float: left;
+	display: inline-block;
+}
+
+footer input[type=text], footer textarea {
+	width: 200px;
+	height: 20px;
+	border: none;
+	color: white;
+	-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;
+	padding: 5px 10px;
+	margin: 10px 0;
+	text-shadow: 0 1px 0 #0F2326;
+}
+
+footer input[type=text]:focus, footer textarea:focus {
+	outline: none;
+}
+
+footer textarea {
+	height: 53px;
+}
+
+footer input[type=text], footer textarea {
+	/* Fallback Color */
+	background: #383838;
+	/* Firefox 3.6+ */
+	background-image: -moz-linear-gradient(#2C5F67, #5C858C);
+	/* Safari 4+, Chrome 1+ */
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#2C5F67), to(#5C858C));
+	/* Safari 5.1+, Chrome 10+ */
+	background-image: -webkit-linear-gradient(#2C5F67, #5C858C); 
+	/* IE */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2C5F67', endColorstr='#5C858C');
+}
+
+article.widget_newsletter input[type=text] {
+	width: 130px;
+	-moz-border-radius: 5px 0 0 5px; -webkit-border-radius: 5px 0 0 5px; border-radius: 5px 0 0 5px;
+	float: left;
+}
+
+article.widget_newsletter input[type=submit] {
+	margin: 10px 0 0 0;
+	float: left;
+	display: block;
+	border: 1px solid #4E7A81;
+	width: 70px;
+	height: 30px;
+	-moz-border-radius: 0 5px 5px 0; -webkit-border-radius: 0 5px 5px 0; border-radius: 0 5px 5px 0;
+	text-align: center;
+	line-height: 28px;
+	border: 1px solid #ADC0C4;
+	color: #5E8C92;
+	font-weight: bold;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+article.widget_newsletter input[type=submit] {
+	/* Fallback Color */
+	background: #DFF0F3;
+	/* Firefox 3.6+ */
+	background-image: -moz-linear-gradient(#FFFFFF, #EFEFEF);
+	/* Safari 4+, Chrome 1+ */
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#EFEFEF));
+	/* Safari 5.1+, Chrome 10+ */
+	background-image: -webkit-linear-gradient(#FFFFFF, #EFEFEF); 
+	/* IE */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#EFEFEF');
+}
+
+.widget_newsletter input[type=submit]:hover {
+	background: #FFFFFF;
+}
+
+.widget_newsletter input[type=submit]:active {
+	background: #EFEFEF;
+}
+
+/* Social Links */
+
+article.widget_social ul li a {
+	display: block;
+	width: 32px;
+	height: 32px;
+	text-indent: -5000px;
+	margin: 0 10px 0 0 ;
+}
+.widget_social {
+    text-decoration-color: white;
+}
+
+article.widget_social ul li.facebook a {
+	background: url('http://static1.squarespace.com/static/4f5810d9e4b0ebbf0a1507a6/t/55a6e39be4b0e13bc07f93a1/1437000604121/') no-repeat;
+   
+    background-color: white;
+
+
+}
+.my-facebook {
+
+    color: white;
+    background-color: blue;
+}
+
+article.widget_social ul li.twitter a {
+	background: url('images/social_twitter.png') no-repeat;
+}
+
+article.widget_social ul li.tumblr a {
+	background: url('images/social_tumblr.png') no-repeat;
+}
+
+article.widget_social ul li.behance a {
+	background: url('images/social_behance.png') no-repeat;
+}
+
+/*article.widget_social ul li*/.linkedin {
+	background: white;
+}
+
+footer .button_1 {
+	color: black;
 }
