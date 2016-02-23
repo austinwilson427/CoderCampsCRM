@@ -356,7 +356,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="GitIgnore\.gitignore" />
     <Content Include="Global.asax" />
-    <Content Include="Images\Black-Background-Collapsar-1080x1920.jpg" />
     <Content Include="ngApp\scripts\angular_filepicker.min.js" />
     <Content Include="ngApp\scripts\highcharts-ng.js" />
     <Content Include="ngApp\scripts\ngDraggable.js" />
@@ -385,7 +384,6 @@
     <Content Include="ngApp\views\modals\contactAddModal.html" />
     <Content Include="ngApp\views\modals\editCompanyModal.html" />
     <Content Include="ngApp\views\modals\quotaModal.html" />
-    <Content Include="ngApp\views\myAccount.html" />
     <Content Include="ngApp\views\notFound.html" />
     <Content Include="ngApp\views\profile.html" />
     <Content Include="ngApp\views\register.html" />
