@@ -35,9 +35,9 @@ namespace CoderCampsCRM.Repositories
 
         }
 
-        public DealViewModel getAllDealsSharedByContactId(int id)
+        public DealViewModel getAllDealsSharedByContactEmail(string email)
         {
-            var dealContacts = _repo.Query<DealContact>().Where(c => c.ContactId == id && c.isDealSharer == true).ToList();
+            var dealContacts = _repo.Query<DealContact>().Where(c => c.ContactEmail == email && c.isDealSharer == true).ToList();
 
             var deals = _repo.Query<Deal>().ToList();
 

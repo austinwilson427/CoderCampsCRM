@@ -219,6 +219,7 @@ namespace CoderCampsCRM.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         DealId = c.Int(nullable: false),
                         ContactId = c.Int(nullable: false),
+                        ContactEmail = c.String(),
                         isDealSharer = c.Boolean(nullable: false),
                         UserId = c.String(maxLength: 128),
                         CreatedOn = c.DateTime(),

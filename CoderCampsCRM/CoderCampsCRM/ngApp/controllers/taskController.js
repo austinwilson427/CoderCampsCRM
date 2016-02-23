@@ -10,18 +10,31 @@ var MyApp;
         })();
         Controllers.TaskListController = TaskListController;
         var TaskAddController = (function () {
-            function TaskAddController(taskService, $location, $route, contactService) {
-                //this.getContacts();
+            function TaskAddController(taskService, $location, $route, contactService, dealService) {
                 this.taskService = taskService;
                 this.$location = $location;
                 this.$route = $route;
                 this.contactService = contactService;
+                this.dealService = dealService;
+                //this.getContacts();
+                this.getMyDeals();
             }
             //public getMyContacts() {
             //    this.contactService.getAllContacts().$promise.then((result) => {
             //        this.myContacts = result;
             //    });
             //}
+            TaskAddController.prototype.getMyDeals = function () {
+                var _this = this;
+                this.dealService.listAllDealsOwned().$promise.then(function (result) {
+                    _this.myDeals = result;
+                    _this.dealService.listAllDealsShared().$promise.then(function (result_two) {
+                        for (var i = 0; i < result_two.length; i++) {
+                            _this.myDeals.push(result_two[i].deal);
+                        }
+                    });
+                });
+            };
             TaskAddController.prototype.addTask = function () {
                 var _this = this;
                 this.loaded = false;
@@ -100,4 +113,3 @@ var MyApp;
         })();
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=taskController.js.map

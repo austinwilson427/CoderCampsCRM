@@ -8,7 +8,7 @@ namespace CoderCampsCRM.Repositories
         DealViewModel getAllDealContactsByDealId(int id);
         DealViewModel getAllDealLogItemsViewModels();
         DealViewModel getAllDealSharersByDealId(int id);
-        DealViewModel getAllDealsSharedByContactId(int id);
+        DealViewModel getAllDealsSharedByContactEmail(string email);
         DealViewModel getAllDealViewModels(string id);
         DealViewModel getDealLogItemViewModel(int id);
         DealViewModel getDealLogItemViewModelByDealId(int id);
