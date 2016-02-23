@@ -47,7 +47,7 @@ namespace CoderCampsCRM.API
                 {
                     _repo.Add<UserTask>(taskToAdd);
                     _repo.SaveChanges();
-                    return Ok();
+                    return Ok(taskToAdd);
 
                 }
                 else

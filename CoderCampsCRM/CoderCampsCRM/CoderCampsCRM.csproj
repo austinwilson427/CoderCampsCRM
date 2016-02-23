@@ -208,6 +208,7 @@
     <Compile Include="API\DealLogItemsController.cs" />
     <Compile Include="API\DealContactsController.cs" />
     <Compile Include="API\DealsController.cs" />
+    <Compile Include="API\GoogleCalendarController.cs" />
     <Compile Include="API\InteractionsController.cs" />
     <Compile Include="API\LocationsController.cs" />
     <Compile Include="API\MoviesController.cs" />
@@ -253,9 +254,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602200056069_initial.cs" />
-    <Compile Include="Migrations\201602200056069_initial.Designer.cs">
-      <DependentUpon>201602200056069_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201602210646013_Initial.cs" />
+    <Compile Include="Migrations\201602210646013_Initial.Designer.cs">
+      <DependentUpon>201602210646013_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -357,6 +358,7 @@
     <Content Include="ngApp\views\about.html" />
     <Content Include="ngApp\views\addtask.html" />
     <Content Include="ngApp\views\companies.html" />
+    <Content Include="ngApp\views\company-info.html" />
     <Content Include="ngApp\views\confirmEmail.html" />
     <Content Include="ngApp\views\contactDetailsView.html" />
     <Content Include="ngApp\views\contactListView.html" />
@@ -380,6 +382,8 @@
     <Content Include="ngApp\views\notFound.html" />
     <Content Include="ngApp\views\profile.html" />
     <Content Include="ngApp\views\register.html" />
+    <Content Include="ngApp\views\routes\company-info-activity.html" />
+    <Content Include="ngApp\views\routes\company-info-task.html" />
     <Content Include="ngApp\views\routes\contactInteraction.html" />
     <Content Include="ngApp\views\routes\contactNote.html" />
     <Content Include="ngApp\views\routes\deal-chart-view.html" />
@@ -451,7 +455,6 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-resource.min.js.map" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular-touch.min.js.map" />
@@ -474,6 +477,7 @@
     <Content Include="GitIgnore\Secret.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Scripts\angular.min.js.map" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\fullcalendar.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
@@ -1342,7 +1346,6 @@
     <TypeScriptCompile Include="ngApp\controllers\ProfileController.ts" />
     <TypeScriptCompile Include="ngApp\controllers\taskController.ts" />
     <TypeScriptCompile Include="ngApp\services\accountService.ts" />
-    <TypeScriptCompile Include="ngApp\services\companyInfoController.ts" />
     <TypeScriptCompile Include="ngApp\services\companyLogItemService.ts" />
     <TypeScriptCompile Include="ngApp\services\contactService.ts" />
     <TypeScriptCompile Include="ngApp\services\companyService.ts" />
@@ -1374,8 +1377,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602200056069_initial.resx">
-      <DependentUpon>201602200056069_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602210646013_Initial.resx">
+      <DependentUpon>201602210646013_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

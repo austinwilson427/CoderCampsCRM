@@ -10,3 +10,4 @@ var MyApp;
         Controllers.DashboardController = DashboardController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
+//# sourceMappingURL=dashboardController.js.map
