@@ -210,6 +210,7 @@
     <Compile Include="API\DealLogItemsController.cs" />
     <Compile Include="API\DealContactsController.cs" />
     <Compile Include="API\DealsController.cs" />
+    <Compile Include="API\GoogleCalendarController.cs" />
     <Compile Include="API\InteractionsController.cs" />
     <Compile Include="API\LocationsController.cs" />
     <Compile Include="API\MoviesController.cs" />

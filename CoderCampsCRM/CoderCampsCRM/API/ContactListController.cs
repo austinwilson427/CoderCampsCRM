@@ -116,10 +116,10 @@ namespace CoderCampsCRM.API
                     Method = HttpMethod.Get
                 };
 
-                request.Headers.Add("Origin", "http://localhost:51393");
+                request.Headers.Add("Origin", Request.RequestUri.GetLeftPart(UriPartial.Authority);
                 request.Headers.Accept.Clear();
                 request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("*/*"));
-                request.Headers.Referrer = new Uri("http://localhost:51393/TestContacts.html");
+                request.Headers.Referrer = new Uri(Request.RequestUri.GetLeftPart(UriPartial.Authority));
                 request.Headers.Add("user-agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.109 Safari/537.36");
                 request.Headers.Add("x-client-data", "CKO2yQEIxLbJAQj9lcoB");
                 request.Headers.Add("cache-control", "no-cache");
