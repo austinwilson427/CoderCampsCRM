@@ -1405,7 +1405,6 @@
     <TypeScriptCompile Include="ngApp\controllers\taskController.ts" />
     <TypeScriptCompile Include="ngApp\services\accountService.ts" />
     <TypeScriptCompile Include="ngApp\services\adminService.ts" />
-    <TypeScriptCompile Include="ngApp\services\companyInfoController.ts" />
     <TypeScriptCompile Include="ngApp\services\companyLogItemService.ts" />
     <TypeScriptCompile Include="ngApp\services\contactService.ts" />
     <TypeScriptCompile Include="ngApp\services\companyService.ts" />
