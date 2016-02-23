@@ -1,4 +1,66 @@
 ﻿/*Big Tablets to 1200px (widths smaller than the 1140px row in our website)*/
+@media only screen and (max-width: 1200px){
+    .home_button_wrap{
+           width: 100%;
+           margin-top: 200px;
+       }
+    .heading-wrap h2,.heading-wrap h3{
+        font-weight:100;
+    }
+    .home_button_wrap {
+        margin-top: 70px;
+    }
+}
+
+/*Small Tablet to Big Tablet: 768px to 1023px */
+@media only screen and (max-width: 1023px){
+       input.form-control{
+        max-width: 100%;
+    }
+       button.btn{
+        margin-bottom: 16px;
+    }
+        .home_button_wrap {
+        margin-top: 250px;
+    }
+        .heading-wrap h2{
+      
+        margin-bottom: 80px;
+    }
+}
+
+/* All phones and tablets smaller than ipad: from 481px to 767px */
+@media only screen and (max-width: 767px){
+
+    section.jumbotron{
+        padding: 10px 5px 10px 5px !important;
+    }
+    .heading-wrap h2{
+        font-size: 20px;
+        margin-bottom: 0px;
+    }
+    .heading-wrap h3{
+        font-size: 20px;
+    }
+
+    .home_button_wrap{
+        margin-top:30px;
+    }
+
+}
+
+/* Small phones from 0 to 480px */
+@media only screen and (max-width: 480px){
+    .home_button_wrap {
+        margin-top: 100px;
+
+    }
+    button.join {
+        margin-bottom: 20px;
+    }
+ 
+}
+/*Big Tablets to 1200px (widths smaller than the 1140px row in our website)*/
 @media only screen and (max-width: 1200px) {
 
     body .fullWrapper .week {

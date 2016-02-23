@@ -33,7 +33,7 @@
                             <a href="#"><span class="glyphicon glyphicon-th" aria-hidden="true"></span></a>
                         </div>
                         <div class="col-md-6 form-group no-margin">
-                            <input class="form-control" placeholder="Search all deals in this view..." ng-model="vm.searchPhrase" />
+                            <input class="form-control" ng-model="search"    placeholder="Search all Companies in this view..."/>
                         </div>
                         <div class="col-md-2">
                             <button class="btn btn-primary" ng-click="vm.createcompanyModal()">+ Add Company</button>
@@ -41,24 +41,28 @@
                     </div>
                     <div class="table_wrap">
                         <table class="table table-hover table-bordered deals_table">
-                            <tr>
-                               
-                                <th class="hover_blue">Company Name</th>
-                                <th class="hover_blue">Company Create Date</th>
-                                <th class="hover_blue">Company Last Activity Date</th>
-                                <th class="hover_blue">Company Next Activity Date </th>
-                                <th class="hover_blue">Edit</th>
-                               
-                            </tr>
-                            <tr  ng-repeat="company in vm.companies | filter: vm.search">
-                                <!--<td><input type="checkbox" ng-model="value.key" ng-click="vm.storeDeal(value)" /> <a ng-show="value.isArchived" href="#" ng-click="vm.unarchiveItem(value)"><span class="glyphicon glyphicon-plus"></span></a></td>-->
-                                <td><a ui-sref="company-info({id: company.id})">{{company.companyName}}</a></td>
-                                <td>{{company.companyCreateDate | date: 'MM/dd/yy'}}</td>
-                                <td>{{company.companyLastActivityeDate | date: 'MM/dd/yy'}}</td>
-                                <td>{{company.companyNextActivityDate  | date: 'MM/dd/yy'}}</td>
-                                <td><a href="#" ng-click="vm.editModal(company.id)"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
-                            </tr>
-                        </table>
+                           
+                                <tr>
+
+                                    <th class="hover_blue">Company Name</th>
+                                    <th class="hover_blue">Company Create Date</th>
+                                    <th class="hover_blue">Company Last Activity Date</th>
+                                    <th class="hover_blue">Company Next Activity Date </th>
+                                    <th class="hover_blue">Edit</th>
+
+                                </tr>
+                            <tbody ng-animate="'animate'" ng-repeat="company in vm.companies | filter: search">
+                                <tr>
+                                    <!--<td><input type="checkbox" ng-model="value.key" ng-click="vm.storeDeal(value)" /> <a ng-show="value.isArchived" href="#" ng-click="vm.unarchiveItem(value)"><span class="glyphicon glyphicon-plus"></span></a></td>-->
+                                    <td><a ui-sref="company-info({id: company.id})">{{company.companyName}}</a></td>
+                                    <td>{{company.companyCreateDate | date: 'MM/dd/yy'}}</td>
+                                    <td>{{company.companyLastActivityeDate | date: 'MM/dd/yy'}}</td>
+                                    <td>{{company.companyNextActivityDate  | date: 'MM/dd/yy'}}</td>
+                                    <td><a href="#" ng-click="vm.editModal(company.id)"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+                                </tr>
+                            </tbody>
+</table>
+                      
                     </div>
                 </div>
             </div>

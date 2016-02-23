@@ -1,6 +1,6 @@
 ﻿namespace MyApp {
 
-    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router', 'angular-filepicker', 'ngDraggable', 'uiGmapgoogle-maps', "highcharts-ng"]).config(($locationProvider: ng.ILocationProvider, $routeProvider: ng.route.IRouteProvider, $stateProvider: ng.ui.IStateProvider, $urlRouterProvider: ng.ui.IUrlRouterProvider, filepickerProvider, uiGmapGoogleMapApiProvider: any) => {
+    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router', 'angular-filepicker', 'ngDraggable', 'uiGmapgoogle-maps', "highcharts-ng", "ngAnimate"]).config(($locationProvider: ng.ILocationProvider, $routeProvider: ng.route.IRouteProvider, $stateProvider: ng.ui.IStateProvider, $urlRouterProvider: ng.ui.IUrlRouterProvider , filepickerProvider, uiGmapGoogleMapApiProvider: any) => {
         filepickerProvider.setKey('ANnIsnaUARuBQjAtPZGBQz');
         uiGmapGoogleMapApiProvider.configure({
             //    key: 'your api key',

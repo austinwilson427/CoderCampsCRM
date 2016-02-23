@@ -36,10 +36,6 @@
             });
         }
 
-        public totalItemsGet() {
-            this.totalItems = this.contactsView.contacts.length;
-        }
-
         public setLocations() {
             this.zoom = 4;
             this.center = { latitude: 40.09024, longitude: -97.712891 };

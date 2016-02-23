@@ -85,7 +85,8 @@ namespace CoderCampsCRM
                     "https://www.googleapis.com/auth/userinfo.profile",
                     "https://www.google.com/m8/feeds/",
                     "https://www.googleapis.com/auth/contacts",
-                    "https://docs.google.com/feeds/"
+                    "https://docs.google.com/feeds/",
+                     "https://www.googleapis.com/auth/calendar"
                 },
                 Provider = new GoogleOAuth2AuthenticationProvider
                 {
