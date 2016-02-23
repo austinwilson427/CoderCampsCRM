@@ -3,9 +3,12 @@
     export class DealContactService {
 
         public dealContactResource;
+        public dealContactShareResource;
 
         constructor(private $resource: ng.resource.IResourceService) {
             this.dealContactResource = $resource("api/dealcontacts/:id");
+            this.dealContactShareResource = $resource("api/dealcontacts/share/:id");
+
         }
 
         public getAllDealContacts() {
@@ -14,6 +17,10 @@
 
         public getAllDealContactsByDealId(id) {
             return this.dealContactResource.query({ id: id });
+        }
+
+        public getAllDealSharersByDealId(id) {
+            return this.dealContactShareResource.query({ id: id });
         }
 
         public saveDealContact(contactToSave) {

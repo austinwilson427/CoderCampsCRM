@@ -37,5 +37,8 @@ namespace CoderCampsCRM.Models
         public int? CompanyId { get; set; }
         [ForeignKey("CompanyId")]
         public Company Company { get; set; }
+
+        /*Added by Austin Wilson for Dashboard Updates*/
+        public DateTime? CreatedOn { get; set; }
     }
 }

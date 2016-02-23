@@ -168,8 +168,8 @@ var MyApp;
                 this.routeId = $stateParams["id"];
                 this.getCompany();
                 this.getAllContact();
-                this.getAllDeals();
-                this.getCompanyLogItemsByRouteId();
+                //this.getAllDeals();
+                //this.getCompanyLogItemsByRouteId();
                 // this.submitActivity()
                 //  this.getAllTasks();
                 // this.companies = this.companiesService.getCompanies();
@@ -210,21 +210,20 @@ var MyApp;
                     }
                 });
             };
-            CompanyDetailsController.prototype.getAllDeals = function () {
-                var _this = this;
-                this.dealService.listAllDeals().$promise.then(function (result) {
-                    _this.deals = [];
-                    var deal;
-                    //console.log(result[1].companyId);
-                    for (var i = 0; i < result.length; i++) {
-                        deal = _this.dealService.getDealByDealId(result[i].companyId);
-                        // result[i].deal = deal;
-                        if (_this.routeId == result[i].companyId) {
-                            _this.deals.push(result[i]);
-                        }
-                    }
-                });
-            };
+            //public getAllDeals() {
+            //    this.dealService.listAllDeals().$promise.then((result) => {
+            //        this.deals = [];
+            //        let deal;
+            //        //console.log(result[1].companyId);
+            //        for (var i = 0; i < result.length; i++) {
+            //            deal = this.dealService.getDealByDealId(result[i].companyId);
+            //          // result[i].deal = deal;
+            //            if (this.routeId == result[i].companyId) {
+            //                this.deals.push(result[i]);
+            //            }
+            //        }
+            //       });
+            //}
             //public getAllTasks() {
             //    this.taskService.listTasks().$promise.then((result) => {
             //        this.tasks = [];

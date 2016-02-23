@@ -48,6 +48,7 @@ namespace CoderCampsCRM.API
             {
                 if (logItemToAdd.Id == 0)
                 {
+                    logItemToAdd.CreatedOn = DateTime.Now;
                     _repo.Add<CompanyLogItem>(logItemToAdd);
                     _repo.SaveChanges();
                     return Ok();

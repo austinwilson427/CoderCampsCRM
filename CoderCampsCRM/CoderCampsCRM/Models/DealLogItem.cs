@@ -25,7 +25,12 @@ namespace CoderCampsCRM.Models
         public int? DealId { get; set; }
         [ForeignKey("DealId")]
         public Deal Deal { get; set; }
-        
 
+        public string UserId { get; set; }
+        [ForeignKey("UserId")]
+        public ApplicationUser User { get; set; }
+
+        /*Added by Austin Wilson for Dashboard Updates*/
+        public DateTime? CreatedOn { get; set; }
     }
 }

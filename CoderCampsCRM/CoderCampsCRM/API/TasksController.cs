@@ -45,6 +45,7 @@ namespace CoderCampsCRM.API
                 //Creating a new task
                 if (taskToAdd.Id == 0)
                 {
+                    taskToAdd.CreatedOn = DateTime.Now;
                     _repo.Add<UserTask>(taskToAdd);
                     _repo.SaveChanges();
                     return Ok(taskToAdd);

@@ -1,0 +1,27 @@
+﻿<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <h1 class="page-header text-center">Admin Page</h1>
+        <table class="table table-bordered table-responsive table-hover deals_table table_wrap">
+            <thead>
+                <tr>
+                    <th class="hover_blue" style="cursor: default">Avatar</th>
+                    <th class="hover_blue" ng-click="sortType = 'firstName'; sortReverse = !sortReverse">First Name<span ng-show="sortType == 'firstName' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'firstName' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>
+                    <th class="hover_blue" ng-click="sortType = 'lastName'; sortReverse = !sortReverse">Last Name<span ng-show="sortType == 'lastName' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'lastName' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>
+                    <th class="hover_blue" ng-click="sortType = 'company'; sortReverse = !sortReverse">Company<span ng-show="sortType == 'company' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'company' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>
+                    <th class="hover_blue" ng-click="sortType = 'memberSince'; sortReverse = !sortReverse">Member Since<span ng-show="sortType == 'memberSince' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'memberSince' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in vm.users">
+                    <td><img src="{{user.picUrl}}" ng-show="user.picUrl" class="img-responsive adminImg"/><img src="https://lh3.googleusercontent.com/-hMc92L1bTw4/AAAAAAAAAAI/AAAAAAAAAAA/q7C3_uBZp2w/photo.jpg" ng-show="!user.picUrl" class="adminImg img-responsive"/></td>
+                    <td>{{user.firstName}}</td>
+                    <td>{{user.lastName}}</td>
+                    <td>{{user.company}}</td>
+                    <td>{{user.memberSince | date: 'short'}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

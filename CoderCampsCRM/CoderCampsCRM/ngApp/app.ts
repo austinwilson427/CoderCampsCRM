@@ -18,6 +18,12 @@
                 controller: MyApp.Controllers.DashboardController,
                 controllerAs: 'vm'
             })
+            .state('admin', {
+                url: '/adminPage',
+                templateUrl: '/ngApp/views/adminPage.html',
+                controller: MyApp.Controllers.AdminController,
+                controllerAs: 'vm'
+            })
             .state('externalRegister', {
                 url: '/externalRegister',
                 templateUrl: '/ngApp/views/externalRegister.html',
@@ -110,18 +116,18 @@
                 controller: MyApp.Controllers.CompanyDetailsController,
                 controllerAs: 'vm'
             })
-            .state('company-info.activity', {
-                url: '/activity',
-                templateUrl: 'ngApp/views/routes/company-info-activity.html',
-                controller: MyApp.Controllers.CompanyInfoActivityController,
-                controllerAs: "vm"
-            })
-            .state('company-info.task', {
-                url: '/task',
-                templateUrl: 'ngApp/views/routes/company-info-task.html',
-                controller: MyApp.Controllers.CompanyInfoTaskController,
-                controllerAs: "vm"
-            })          
+            //.state('company-info.activity', {
+            //    url: '/activity',
+            //    templateUrl: 'ngApp/views/routes/company-info-activity.html',
+            //    controller: MyApp.Controllers.CompanyInfoActivityController,
+            //    controllerAs: "vm"
+            //})
+            //.state('company-info.task', {
+            //    url: '/task',
+            //    templateUrl: 'ngApp/views/routes/company-info-task.html',
+            //    controller: MyApp.Controllers.CompanyInfoTaskController,
+            //    controllerAs: "vm"
+            //})          
             .state('contacts', {
                 url: '/contacts',
                 templateUrl: '/ngApp/views/contactListView.html',

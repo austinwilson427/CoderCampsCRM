@@ -72,6 +72,7 @@
             this.taskToDelete = taskService.getTask($stateParams["id"]);
         }
 
+
         deleteTask() {
             this.taskService.deleteTask(this.taskToDelete.id).then(() => this.$location.path("/tasks"));
         }

@@ -8,14 +8,13 @@ var MyApp;
                 this.$location = $location;
                 this.$uibModal = $uibModal;
                 this.$state = $state;
-                this.sortType = name;
                 this.sortReverse = false;
                 this.showMap = true;
                 this.markers = [];
                 this.markersSearch = [];
                 this.currentPage = 1;
-                this.maxSize = 5;
-                this.itemsPerPage = 5;
+                this.maxSize = 10;
+                this.itemsPerPage = 10;
                 this.showAllContacts();
             }
             ContactListController.prototype.updateSearchList = function () {
@@ -28,9 +27,6 @@ var MyApp;
                 this.contactService.getGoogleContacts().then(function () {
                     _this.showAllContacts();
                 });
-            };
-            ContactListController.prototype.totalItemsGet = function () {
-                this.totalItems = this.contactsView.contacts.length;
             };
             ContactListController.prototype.setLocations = function () {
                 this.zoom = 4;
@@ -116,6 +112,9 @@ var MyApp;
                 this.contactsView = this.contactService.getAllContacts().then(function (result) {
                     _this.contactsView = result;
                     _this.totalItems = result.contacts.length;
+                    _this.taskFilter = null;
+                    _this.dealFilter = null;
+                    _this.companyFilter = null;
                     _this.setLocations();
                 });
             };

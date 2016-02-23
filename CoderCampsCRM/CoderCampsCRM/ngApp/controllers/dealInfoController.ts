@@ -9,19 +9,148 @@
         public dealContacts;
         public allContacts;
         public contactIdToAdd;
+        public shareIdToAdd;
+        public dealSharers;
+        public allRemainingSharers;
+        public appointmentScheduled; public qualifiedToBuy; public presentationScheduled;
+        public decisionMaker; public contractSent; public closedWon; public closedLost; public appointmentScheduledGlow; public qualifiedToBuyGlow; public presentationScheduledGlow; public decisionMakerGlow; public contractSentGlow; public closedWonGlow; public closedLostGlow;
 
         constructor(private dealService: MyApp.Services.DealService, private $stateParams: ng.ui.IStateParamsService, private dealLogItemService: MyApp.Services.DealLogItemService, private dealContactService: MyApp.Services.DealContactService, private contactService: MyApp.Services.ContactService, private $route: ng.route.IRouteService, private $location: ng.ILocationService) {
             this.routeId = $stateParams["id"];
-            this.getDeal();
+
+            this.getDealOwned();
+            this.getDealShared();
+
             this.getDealLogItemsByRouteId();
             this.getContactsByDealId();
+            this.getSharersByDealId();
         }
 
-        public getDeal() {
-            this.dealService.getDealByDealId(this.routeId).$promise.then((result) => {
+        public getDealShared() {
+            this.dealService.getDealsSharedByDealId(this.routeId).$promise.then((result) => {
                 this.dealInfo = result;
                 this.company = result.company;
+                let stage = this.dealInfo.stage;
+                this.findAndSetStage(stage);
             });
+        }
+
+        public getDealOwned() {
+            this.dealService.getDealsOwnedByDealId(this.routeId).$promise.then((result) => {
+                this.dealInfo = result;
+                this.company = result.company;
+                let stage = this.dealInfo.stage;
+                this.findAndSetStage(stage);
+            });
+        }
+
+        public findAndSetStage(stage) {
+            if (stage == "Appointment Scheduled") {
+                this.appointmentScheduled = true;
+                this.qualifiedToBuy = false;
+                this.presentationScheduled = false;
+                this.decisionMaker = false;
+                this.contractSent = false;
+                this.closedWon = false;
+                this.closedLost = false;
+                this.appointmentScheduledGlow = true;
+                this.qualifiedToBuyGlow = false;
+                this.presentationScheduledGlow = false;
+                this.decisionMakerGlow = false;
+                this.contractSentGlow = false;
+                this.closedWonGlow = false;
+                this.closedLostGlow = false;
+            } else if (stage == "Qualified to Buy") {
+                this.appointmentScheduled = false;
+                this.qualifiedToBuy = true;
+                this.presentationScheduled = false;
+                this.decisionMaker = false;
+                this.contractSent = false;
+                this.closedWon = false;
+                this.closedLost = false;
+                this.appointmentScheduledGlow = true;
+                this.qualifiedToBuyGlow = true;
+                this.presentationScheduledGlow = false;
+                this.decisionMakerGlow = false;
+                this.contractSentGlow = false;
+                this.closedWonGlow = false;
+                this.closedLostGlow = false;
+            } else if (stage == "Presentation Scheduled") {
+                this.appointmentScheduled = false;
+                this.qualifiedToBuy = false;
+                this.presentationScheduled = true;
+                this.decisionMaker = false;
+                this.contractSent = false;
+                this.closedWon = false;
+                this.closedLost = false;
+                this.appointmentScheduledGlow = true;
+                this.qualifiedToBuyGlow = true;
+                this.presentationScheduledGlow = true;
+                this.decisionMakerGlow = false;
+                this.contractSentGlow = false;
+                this.closedWonGlow = false;
+                this.closedLostGlow = false;
+            } else if (stage == "Decision Maker Bought In") {
+                this.appointmentScheduled = false;
+                this.qualifiedToBuy = false;
+                this.presentationScheduled = false;
+                this.decisionMaker = true;
+                this.contractSent = false;
+                this.closedWon = false;
+                this.closedLost = false;
+                this.appointmentScheduledGlow = true;
+                this.qualifiedToBuyGlow = true;
+                this.presentationScheduledGlow = true;
+                this.decisionMakerGlow = true;
+                this.contractSentGlow = false;
+                this.closedWonGlow = false;
+                this.closedLostGlow = false;
+            } else if (stage == "Contract Sent") {
+                this.appointmentScheduled = false;
+                this.qualifiedToBuy = false;
+                this.presentationScheduled = false;
+                this.decisionMaker = false;
+                this.contractSent = true;
+                this.closedWon = false;
+                this.closedLost = false;
+                this.appointmentScheduledGlow = true;
+                this.qualifiedToBuyGlow = true;
+                this.presentationScheduledGlow = true;
+                this.decisionMakerGlow = true;
+                this.contractSentGlow = true;
+                this.closedWonGlow = false;
+                this.closedLostGlow = false;
+            } else if (stage == "Closed Won") {
+                this.appointmentScheduled = false;
+                this.qualifiedToBuy = false;
+                this.presentationScheduled = false;
+                this.decisionMaker = false;
+                this.contractSent = false;
+                this.closedWon = true;
+                this.closedLost = false;
+                this.appointmentScheduledGlow = true;
+                this.qualifiedToBuyGlow = true;
+                this.presentationScheduledGlow = true;
+                this.decisionMakerGlow = true;
+                this.contractSentGlow = true;
+                this.closedWonGlow = true;
+                this.closedLostGlow = false;
+            } else if (stage == "Closed Lost") {
+                this.appointmentScheduled = false;
+                this.qualifiedToBuy = false;
+                this.presentationScheduled = false;
+                this.decisionMaker = false;
+                this.contractSent = false;
+                this.closedWon = false;
+                this.closedLost = true;
+                this.appointmentScheduledGlow = false;
+                this.qualifiedToBuyGlow = false;
+                this.presentationScheduledGlow = false;
+                this.decisionMakerGlow = false;
+                this.contractSentGlow = false;
+                this.closedWonGlow = false;
+                this.closedLostGlow = true;
+            }
         }
 
         public getDealLogItemsByRouteId() {
@@ -48,10 +177,28 @@
 
         }
 
+        public getSharersByDealId() {
+            this.dealContactService.getAllDealSharersByDealId(this.routeId).$promise.then((result) => {
+                console.log(result);
+                this.dealSharers = result;
+                this.contactService.getAllContacts().then((result) => {
+                    this.allRemainingSharers = result;
+                    for (var i = 0; i < this.dealSharers.length; i++) {
+                        for (var j = 0; j < this.allRemainingSharers.contacts.length; j++) {
+                            if (this.allRemainingSharers.contacts[j].id == this.dealSharers[i].contactId) {
+                                this.allRemainingSharers.contacts.splice(j, 1);
+                            }
+                        }
+                    }
+                });
+            });
+        }
+
         public addDealContact() {
             let dealContactToAdd = {
                 dealId: null,
-                contactId: null
+                contactId: null,
+                isDealSharer: false
             }
             dealContactToAdd.dealId = this.routeId;
             dealContactToAdd.contactId = this.contactIdToAdd;
@@ -62,10 +209,56 @@
 
         }
 
+        public addShareholderContact() {
+            let dealContactToAdd = {
+                dealId: null,
+                contactId: null,
+                isDealSharer: true
+            }
+            dealContactToAdd.dealId = this.routeId;
+            dealContactToAdd.contactId = this.shareIdToAdd;
+
+            this.dealContactService.saveDealContact(dealContactToAdd).then((result) => {
+                this.getSharersByDealId();
+            });
+        }
+
         public deleteDealContact(id) {
-            this.dealContactService.deleteDealContact(id).then((result) => {                
+            this.dealContactService.deleteDealContact(id).then((result) => {
+                this.contactIdToAdd = null;
                 this.getContactsByDealId();
             });
+        }
+
+        public deleteShareContact(id) {
+            this.dealContactService.deleteDealContact(id).then((result) => {
+                this.shareIdToAdd = null;
+                this.getSharersByDealId();
+            });
+        }
+
+        public editStage(stage) {
+
+            let dealInfoToSave = {
+                amount: this.dealInfo.amount,
+                closeDate: this.dealInfo.closeDate,
+                companyId: this.dealInfo.companyId,
+                contactId: this.dealInfo.contactId,
+                createdOn: this.dealInfo.createdOn,
+                dealName: this.dealInfo.dealName,
+                id: this.dealInfo.id,
+                isArchived: this.dealInfo.isArchived,
+                stage: stage
+            }
+
+            if (dealInfoToSave.id != 0) {
+                this.dealService.saveDeal(dealInfoToSave).then(() => {
+                    this.getDealOwned();
+                    this.getDealShared();
+                });
+            }
+
+
         }
     }
 
@@ -79,11 +272,19 @@
 
         constructor(private $stateParams: ng.ui.IStateParamsService, private dealService: MyApp.Services.DealService, private dealLogItemService: MyApp.Services.DealLogItemService, private $location: ng.ILocationService, private $route: ng.route.IRouteService) {
             this.routeId = $stateParams["id"];
+            this.getDealShared();
             this.getDeal();
         }
 
+        public getDealShared() {
+            this.dealService.getDealsSharedByDealId(this.routeId).$promise.then((result) => {
+                this.dealInfo = result;
+                this.company = result.company;
+            });
+        }
+
         public getDeal() {
-            this.dealService.getDealByDealId(this.routeId).$promise.then((result) => {
+            this.dealService.getDealsOwnedByDealId(this.routeId).$promise.then((result) => {
                 this.dealInfo = result;
             });
         }
@@ -101,11 +302,7 @@
             noteToSubmit.type = "Note";
             noteToSubmit.content = this.noteContent;
             noteToSubmit.dealId = this.dealInfo.id;
-            /*Temporary ContactId*/
-            //noteToSubmit.contactId = 1;
-            /*Temporary SubmittedBy*/
-            noteToSubmit.submittedBy = "Austin Wilson";
-            console.log(noteToSubmit);
+
             this.dealLogItemService.saveDealLogItem(noteToSubmit).then(() => {
                 location.reload(false);
             }).catch((error) => {
@@ -116,7 +313,6 @@
                     validationErrors = validationErrors.concat(errorMessage);
                 }
                 this.validationErrors = validationErrors;
-                console.log(this.validationErrors);
             });
 
         }
@@ -135,12 +331,14 @@
         public routeId;
         public dealInfo;
         public validationErrors;
+        public company;
 
         constructor(private $stateParams: ng.ui.IStateParamsService, private dealService: MyApp.Services.DealService, private dealLogItemService: MyApp.Services.DealLogItemService, private $location: ng.ILocationService, private $route: ng.route.IRouteService) {
             this.formatDate = new Date();
             this.timeSelected = 48;
             this.timeToAdd = 720;
             this.routeId = $stateParams["id"];
+            this.getDealShared();
             this.getDeal();
             this.timeObject = [
                 { value: 0, display: '12:00 AM' },
@@ -242,8 +440,15 @@
             ]
         }
 
+        public getDealShared() {
+            this.dealService.getDealsSharedByDealId(this.routeId).$promise.then((result) => {
+                this.dealInfo = result;
+                this.company = result.company;
+            });
+        }
+
         public getDeal() {
-            this.dealService.getDealByDealId(this.routeId).$promise.then((result) => {
+            this.dealService.getDealsOwnedByDealId(this.routeId).$promise.then((result) => {
                 this.dealInfo = result;
             });
         }
@@ -272,10 +477,6 @@
             activityToSubmit.type = "Activity";
             activityToSubmit.content = this.activityContent;
             activityToSubmit.dealId = this.dealInfo.id;
-            /*Temporary ContactId*/
-            activityToSubmit.contactId = 1;
-            /*Temporary SubmittedBy*/
-            activityToSubmit.submittedBy = "Austin Wilson";
 
             this.dealLogItemService.saveDealLogItem(activityToSubmit).then(() => {
                 location.reload(false);
@@ -287,7 +488,6 @@
                     validationErrors = validationErrors.concat(errorMessage);
                 }
                 this.validationErrors = validationErrors;
-                console.log(this.validationErrors);
             });
 
         }
@@ -305,17 +505,26 @@
         public taskContent;
         public dealInfo;
         public myContacts;
+        public company;
 
         constructor(private $stateParams: ng.ui.IStateParamsService, private dealService: MyApp.Services.DealService, private dealLogItemService: MyApp.Services.DealLogItemService, private $location: ng.ILocationService, private $route: ng.route.IRouteService, private taskService: MyApp.Services.TaskService, private contactService: MyApp.Services.ContactService) {
             this.contactService.getAllContacts().then((result) => {
                 this.myContacts = result.contacts;
                 this.routeId = $stateParams["id"];
+                this.getDealShared();
                 this.getDeal();
             });
         }
 
+        public getDealShared() {
+            this.dealService.getDealsSharedByDealId(this.routeId).$promise.then((result) => {
+                this.dealInfo = result;
+                this.company = result.company;
+            });
+        }
+
         public getDeal() {
-            this.dealService.getDealByDealId(this.routeId).$promise.then((result) => {
+            this.dealService.getDealsOwnedByDealId(this.routeId).$promise.then((result) => {
                 this.dealInfo = result;
             });
         }
@@ -338,8 +547,6 @@
             taskToSubmit.dealId = this.dealInfo.id;
             /*Temporary ContactId*/
             taskToSubmit.contactId = this.assignedTo;
-            /*Temporary SubmittedBy*/
-            taskToSubmit.submittedBy = "Austin Wilson";
 
             this.dealLogItemService.saveDealLogItem(taskToSubmit).then((result) => {
                 let formatTask = {
@@ -363,7 +570,6 @@
                     validationErrors = validationErrors.concat(errorMessage);
                 }
                 this.validationErrors = validationErrors;
-                console.log(this.validationErrors);
             });
 
         }

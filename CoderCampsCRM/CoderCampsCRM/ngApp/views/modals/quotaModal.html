@@ -1,0 +1,33 @@
+﻿<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Set Quota For Current Month</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p class="set_monthly">Set a monthly quota to see how close you are to achieving your monthly goal!</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label>QUOTA</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="quota_set form-group">
+                <input class="form-control full" type="number" ng-model="vm.quotaSet" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 form-group">
+            <button ng-click="vm.saveQuota()" class="btn btn-success form-control full">Save</button>
+        </div>
+        <div class="col-md-6 form-group">
+            <button ng-click="vm.closeModal()" class="btn btn-danger form-control full">Cancel</button>
+        </div>
+    </div>
+</div>
+

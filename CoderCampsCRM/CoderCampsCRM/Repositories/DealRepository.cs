@@ -18,9 +18,9 @@ namespace CoderCampsCRM.Repositories
         ///////////////Deal-Contacts//////////////
         //////////////////////////////////////////
 
-        public DealViewModel getAllDealContacts()
+        public DealViewModel getAllDealContacts(int id)
         {
-            var dealContacts = _repo.Query<DealContact>().ToList();
+            var dealContacts = _repo.Query<DealContact>().Where(c => c.ContactId == id && c.isDealSharer == false).ToList();
 
             var deals = _repo.Query<Deal>().ToList();
 
@@ -35,9 +35,42 @@ namespace CoderCampsCRM.Repositories
 
         }
 
+        public DealViewModel getAllDealsSharedByContactId(int id)
+        {
+            var dealContacts = _repo.Query<DealContact>().Where(c => c.ContactId == id && c.isDealSharer == true).ToList();
+
+            var deals = _repo.Query<Deal>().ToList();
+
+            var contacts = _repo.Query<Contact>().ToList();
+
+            var dealViewModel = new DealViewModel
+            {
+                DealContactsList = dealContacts
+            };
+
+            return dealViewModel;
+
+        }
+
+        public DealViewModel getAllDealSharersByDealId(int id)
+        {
+            var dealContacts = _repo.Query<DealContact>().Where(c => c.DealId == id && c.isDealSharer == true).ToList();
+
+            var deals = _repo.Query<Deal>().ToList();
+
+            var contacts = _repo.Query<Contact>().ToList();
+
+            var dealViewModel = new DealViewModel
+            {
+                DealContactsList = dealContacts
+            };
+
+            return dealViewModel;
+        }
+
         public DealViewModel getAllDealContactsByDealId(int id)
         {
-            var dealContacts = _repo.Query<DealContact>().Where(dc => dc.DealId == id).ToList();
+            var dealContacts = _repo.Query<DealContact>().Where(dc => dc.DealId == id && dc.isDealSharer == false).ToList();
 
             var deals = _repo.Query<Deal>().ToList();
 
@@ -116,9 +149,9 @@ namespace CoderCampsCRM.Repositories
         {
             var deals = _repo.Query<Deal>().Where(c => c.UserId == id).ToList();
 
-            var companies = _repo.Query<Company>().Where(c => c.UserId == id).ToList();
+            var companies = _repo.Query<Company>().ToList();
 
-            var contacts = _repo.Query<Contact>().Where(c => c.UserId == id).ToList();
+            var contacts = _repo.Query<Contact>().ToList();
 
             var dealViewModel = new DealViewModel
             {

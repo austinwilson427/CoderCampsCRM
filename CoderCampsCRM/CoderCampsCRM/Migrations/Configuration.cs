@@ -33,6 +33,7 @@ namespace CoderCampsCRM.Migrations
                     LastName = "Camps",
                     TimeZone = "Pacific Time (US & Canada)",
                     Company = "CoderCampsCrm",
+                    MemberSince = new DateTime(2016, 05, 02),
                 };
 
                 userManager.Create(user, "Secret123!");
@@ -181,6 +182,16 @@ namespace CoderCampsCRM.Migrations
                                       JobTitle = "Merchant Officer",
                                       Latitude = "25.761680",
                                       Longitude = "-80.191790",
+                                      User = user,
+                                    },
+                        new Contact {
+                                      Id = 10,
+                                      Name = "Coder Camps CRM" ,
+                                      Email = "codercampscrm@gmail.com",
+                                      PhoneNumber = "123-456-7890",
+                                      JobTitle = "Boss",
+                                      Latitude = "35.761680",
+                                      Longitude = "-82.191790",
                                       User = user,
                                     }
             };

@@ -1,6 +1,6 @@
 ﻿<div id="wrapper" class="details_wrap toggled">
     <div id="sidebar-wrapper">
-        <label>Filter by Company</label>
+        <label class="text-center">Filter by Company</label>
         <select class="form-control filterSideBarContent" ng-change="vm.filterContacts()" ng-model="vm.companyFilter">
             <option ng-repeat="company in vm.contactsView.companies" value="{{company.id}}">{{company.companyName}}</option>
         </select>
@@ -12,7 +12,7 @@
         <select class="form-control filterSideBarContent" ng-change="vm.filterContacts()" ng-model="vm.taskFilter">
             <option ng-repeat="task in vm.contactsView.tasks" value="{{task.id}}">{{task.description}}</option>
         </select>
-        <button class="btn btn-primary" id="filterBtn" ng-click="vm.showAllContacts()">Show all contacts</button>
+        <button class="btn btn-primary form-control" id="filterBtn" ng-click="vm.showAllContacts()">Show all contacts</button>
     </div>
     <div class="row" id="page-content-wrapper">
         <div class="col-md-12">
@@ -40,6 +40,21 @@
                                         options="marker.options">
                         </ui-gmap-marker>
                     </ui-gmap-google-map>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <uib-pagination total-items="vm.totalItems" ng-model="vm.currentPage" max-size="vm.maxSize" class="pagination-sm" items-per-page="vm.itemsPerPage"></uib-pagination>    
+                    <select id="itemsPerPage" ng-model="vm.itemsPerPage">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>      
+                </div>
+                <div class="col-md-1">
+                    
                 </div>
             </div>
             <div class="table_wrap">
@@ -70,14 +85,6 @@
                         </tr>
                     </tbody>
                 </table>
-                <uib-pagination total-items="vm.totalItems" ng-model="vm.currentPage" max-size="vm.maxSize" class="pagination-sm" items-per-page="{{vm.itemsPerPage}}"></uib-pagination>
-                <select id="itemsPerPage" ng-model="vm.itemsPerPage">
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="20">20</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
-                </select>
             </div>
         </div>
     </div>

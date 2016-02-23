@@ -23,5 +23,7 @@ namespace CoderCampsCRM.Models
         [ForeignKey("UserId")]
         public ApplicationUser User { get; set; }
 
+        /*Added by Austin Wilson for Dashboard Updates*/
+        public DateTime? CreatedOn { get; set; }
     }
 }
