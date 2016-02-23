@@ -22,6 +22,9 @@ namespace CoderCampsCRM
             // Web API routes
             config.MapHttpAttributeRoutes();
 
+            GlobalConfiguration.Configuration.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
+          
+
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",

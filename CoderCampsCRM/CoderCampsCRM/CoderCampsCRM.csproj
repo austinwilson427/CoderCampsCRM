@@ -256,13 +256,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602231428297_initial.cs" />
-    <Compile Include="Migrations\201602231428297_initial.Designer.cs">
-      <DependentUpon>201602231428297_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602231454172_initial1.cs" />
-    <Compile Include="Migrations\201602231454172_initial1.Designer.cs">
-      <DependentUpon>201602231454172_initial1.cs</DependentUpon>
+    <Compile Include="Migrations\201602221841552_initial.cs" />
+    <Compile Include="Migrations\201602221841552_initial.Designer.cs">
+      <DependentUpon>201602221841552_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -368,6 +364,7 @@
     <Content Include="ngApp\views\addtask.html" />
     <Content Include="ngApp\views\adminPage.html" />
     <Content Include="ngApp\views\companies.html" />
+    <Content Include="ngApp\views\company-info.html" />
     <Content Include="ngApp\views\confirmEmail.html" />
     <Content Include="ngApp\views\contactDetailsView.html" />
     <Content Include="ngApp\views\contactListView.html" />
@@ -383,6 +380,7 @@
     <Content Include="ngApp\views\modals\archive-deal.html" />
     <Content Include="ngApp\views\modals\companyDetails.html" />
     <Content Include="ngApp\views\modals\contactDeleteModal.html" />
+    <Content Include="ngApp\views\modals\createcompanyModal.html" />
     <Content Include="ngApp\views\modals\delete-deal.html" />
     <Content Include="ngApp\views\modals\edit-deal.html" />
     <Content Include="ngApp\views\modals\contactAddModal.html" />
@@ -391,6 +389,8 @@
     <Content Include="ngApp\views\notFound.html" />
     <Content Include="ngApp\views\profile.html" />
     <Content Include="ngApp\views\register.html" />
+    <Content Include="ngApp\views\routes\company-info-activity.html" />
+    <Content Include="ngApp\views\routes\company-info-task.html" />
     <Content Include="ngApp\views\routes\contactInteraction.html" />
     <Content Include="ngApp\views\routes\contactNote.html" />
     <Content Include="ngApp\views\routes\deal-chart-view.html" />
@@ -1443,14 +1443,8 @@
     <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602231428297_initial.resx">
-      <DependentUpon>201602231428297_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602231454172_initial1.resx">
-      <DependentUpon>201602231454172_initial1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602221841552_initial.resx">
+      <DependentUpon>201602221841552_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -168,10 +168,10 @@ var MyApp;
                 this.routeId = $stateParams["id"];
                 this.getCompany();
                 this.getAllContact();
-                //this.getAllDeals();
-                //this.getCompanyLogItemsByRouteId();
+                this.getAllDeals();
+                this.getCompanyLogItemsByRouteId();
                 // this.submitActivity()
-                //  this.getAllTasks();
+                this.getAllTasks();
                 // this.companies = this.companiesService.getCompanies();
                 // this.company = companiesService.getCompany(companyId);
                 // this.company = companiesService.getCompany($routeParams['id'])
@@ -210,34 +210,37 @@ var MyApp;
                     }
                 });
             };
-            //public getAllDeals() {
-            //    this.dealService.listAllDeals().$promise.then((result) => {
-            //        this.deals = [];
-            //        let deal;
-            //        //console.log(result[1].companyId);
-            //        for (var i = 0; i < result.length; i++) {
-            //            deal = this.dealService.getDealByDealId(result[i].companyId);
-            //          // result[i].deal = deal;
-            //            if (this.routeId == result[i].companyId) {
-            //                this.deals.push(result[i]);
-            //            }
-            //        }
-            //       });
-            //}
-            //public getAllTasks() {
-            //    this.taskService.listTasks().$promise.then((result) => {
-            //        this.tasks = [];
-            //        let task;
-            //        console.log(result);
-            //        for (var i = 0; i < result.length; i++) {
-            //            task = this.taskService.getTask(result[i].company_Id);
-            //            // result[i].deal = deal;
-            //            if (this.routeId == result[i].company_Id) {
-            //                this.tasks.push(result[i]);
-            //            }
-            //        }
-            //    });
-            //}
+            CompanyDetailsController.prototype.getAllDeals = function () {
+                var _this = this;
+                this.dealService.listAllDealsOwned().$promise.then(function (result) {
+                    _this.deals = [];
+                    var deal;
+                    console.log(result);
+                    //console.log(result[1].companyId);
+                    for (var i = 0; i < result.length; i++) {
+                        deal = _this.dealService.getDealsSharedByDealId(result[i].companyId);
+                        // result[i].deal = deal;
+                        if (_this.routeId == result[i].companyId) {
+                            _this.deals.push(result[i]);
+                        }
+                    }
+                });
+            };
+            CompanyDetailsController.prototype.getAllTasks = function () {
+                var _this = this;
+                this.taskService.listTasks().$promise.then(function (result) {
+                    _this.tasks = [];
+                    var task;
+                    //console.log(result);
+                    for (var i = 0; i < result.length; i++) {
+                        task = _this.taskService.getTask(result[i].company_Id);
+                        // result[i].deal = deal;
+                        if (_this.routeId == result[i].company_Id) {
+                            _this.tasks.push(result[i]);
+                        }
+                    }
+                });
+            };
             CompanyDetailsController.prototype.editCompany = function () {
                 $(".tdEdit").attr("contenteditable", "true").attr("style", "background-color: rgb(255, 255, 194)");
             };

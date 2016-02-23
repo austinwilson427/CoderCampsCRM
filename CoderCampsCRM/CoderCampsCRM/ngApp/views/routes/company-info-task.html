@@ -1,0 +1,40 @@
+﻿<div class="task_wrap">
+    <table class="activity">
+        <tr>
+            <td>
+                Start Date: <input type="text" ng-model="vm.startDateSelected" ng-change="vm.selectDate()" class="customDates form-control">
+            </td>
+            <td>
+                End Date: <input type="text" ng-model="vm.endDateSelected" ng-change="vm.selectDate()" class="customDates form-control">
+            </td>
+            <td>
+                Status: <select class="form-control" ng-model="vm.statusSelected">
+                    <option>Not Started</option>
+                    <option>In Progress</option>
+                    <option>Completed</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Type: <select class="form-control" ng-model="vm.typeSelected">
+                    <option>Call</option>
+                    <option>In Person Meeting</option>
+                </select>
+            </td>
+            <td>
+                Assign To: <select class="form-control" ng-model="vm.assignedTo">
+                    <option ng-repeat="contact in vm.myContacts" value="{{contact.id}}">{{contact.name}}</option>
+                </select>
+            </td>
+        </tr>
+        <tr><td colspan="3"><textarea ng-model="vm.taskContent" class="deal_notes" rows="10" placeholder="Describe the task..."></textarea></td></tr>
+    </table>
+    <button ng-show="vm.taskContent" ng-click="vm.submitTask()" class="btn btn-success">Save Task</button>
+    <button class="btn btn-primary" ng-click="vm.syncGoogleCalendar()">Send Google Calendar</button>
+</div>
+<script>
+  $(function() {
+    $( ".customDates" ).datepicker();
+  });
+</script>

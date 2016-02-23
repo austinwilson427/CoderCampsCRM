@@ -9,9 +9,8 @@
         }
 
         public getUserResource() {
-            return this.adminResource.query();
+            return this.adminResource.query().$promise;
         }
     }
-
     angular.module("MyApp").service("adminService", AdminService);
 }

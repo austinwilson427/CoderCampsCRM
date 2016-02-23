@@ -21,16 +21,16 @@
         public myCompanies;
         public myDeals;
 
-        constructor(private taskService: MyApp.Services.TaskService, private $location: ng.ILocationService, private $route: ng.route.IRouteService, private contactService: MyApp.Services.ContactService, private dealService: MyApp.Services.DealService) {
-            //this.getContacts();
-            this.getMyDeals();
+        constructor(private taskService: MyApp.Services.TaskService, private $location: ng.ILocationService, private $route: ng.route.IRouteService, private contactService: MyApp.Services.ContactService) {
+            this.getMyContacts();
+            
         }
 
-        //public getMyContacts() {
-        //    this.contactService.getAllContacts().$promise.then((result) => {
-        //        this.myContacts = result;
-        //    });
-        //}
+        public getMyContacts() {
+            this.contactService.getAllContacts().then((result) => {
+                this.myContacts = result;
+            });
+        }
 
         public getMyDeals() {
             this.dealService.listAllDealsOwned().$promise.then((result) => {
