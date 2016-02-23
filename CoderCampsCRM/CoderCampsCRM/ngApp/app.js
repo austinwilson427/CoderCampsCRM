@@ -1,6 +1,6 @@
 var MyApp;
 (function (MyApp) {
-    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router', 'angular-filepicker', 'ngDraggable', 'uiGmapgoogle-maps', "highcharts-ng"]).config(function ($locationProvider, $routeProvider, $stateProvider, $urlRouterProvider, filepickerProvider, uiGmapGoogleMapApiProvider) {
+    angular.module('MyApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ui.router', 'angular-filepicker', 'ngDraggable', 'uiGmapgoogle-maps', "highcharts-ng", "ngAnimate"]).config(function ($locationProvider, $routeProvider, $stateProvider, $urlRouterProvider, filepickerProvider, uiGmapGoogleMapApiProvider) {
         filepickerProvider.setKey('ANnIsnaUARuBQjAtPZGBQz');
         uiGmapGoogleMapApiProvider.configure({});
         $stateProvider

@@ -258,14 +258,15 @@ namespace CoderCampsCRM.Controllers
 
             var otheruser = Request.GetOwinContext().Authentication.User;
             string googleAccessToken = null;
-            using (var appdbcontext = new ApplicationDbContext())
-            {
-                var userEmail = otheruser.Claims.First(cl => cl.Type.ToLower().Contains("emailaddress")).Value;
-                var googleExternalLoginData = appdbcontext.ExternalLoginDatas.FirstOrDefault(eld => eld.Type == "GoogleAccessToken" && eld.Key == userEmail);
+            if (otheruser.Claims.Any(cl => cl.Type.ToLower().Contains("emailaddress"))){
+                using (var appdbcontext = new ApplicationDbContext())
+                {
+                    var userEmail = otheruser.Claims.First(cl => cl.Type.ToLower().Contains("emailaddress")).Value;
+                    var googleExternalLoginData = appdbcontext.ExternalLoginDatas.FirstOrDefault(eld => eld.Type == "GoogleAccessToken" && eld.Key == userEmail);
 
-                googleAccessToken = googleExternalLoginData.Value;
+                    googleAccessToken = googleExternalLoginData.Value;
+                }
             }
-
             if (hasRegistered)
             {
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);

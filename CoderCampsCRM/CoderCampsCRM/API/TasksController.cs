@@ -48,7 +48,7 @@ namespace CoderCampsCRM.API
                     taskToAdd.CreatedOn = DateTime.Now;
                     _repo.Add<UserTask>(taskToAdd);
                     _repo.SaveChanges();
-                    return Ok();
+                    return Ok(taskToAdd);
 
                 }
                 else
