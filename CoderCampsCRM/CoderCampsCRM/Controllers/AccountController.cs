@@ -429,7 +429,7 @@ namespace CoderCampsCRM.Controllers
                 Company = model.Company,
                 PhoneNumber = model.PhoneNumber,
                 TimeZone = model.TimeZone,
-               // PicUrl = model.PicUrl,
+                PicUrl = model.PicUrl,
                 MemberSince = DateTime.Now,
             };
 
@@ -491,7 +491,7 @@ namespace CoderCampsCRM.Controllers
                 LastName = model.LastName,
                 Company = model.Company,
                 TimeZone = model.TimeZone,
-               // PicUrl = model.PicUrl,
+                PicUrl = model.PicUrl,
                 PhoneNumber = model.PhoneNumber
             };
 

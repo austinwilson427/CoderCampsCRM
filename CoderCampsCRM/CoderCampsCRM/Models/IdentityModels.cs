@@ -24,7 +24,7 @@ namespace CoderCampsCRM.Models
         public string LastName { get; set; }
         public string Company { get; set; }
         public string TimeZone { get; set; }
-      //  public string PicUrl { get; set; }
+        public string PicUrl { get; set; }
         public DateTime MemberSince { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
