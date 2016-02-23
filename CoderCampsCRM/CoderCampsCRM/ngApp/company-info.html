@@ -1,0 +1,292 @@
+﻿
+<div class="row">
+    <div class="col-md-10 col-md-offset-1 text-center page-header">
+        <h2>{{vm.companyInfo.companyName}} Details Page</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3 col-md-offset-1 ">
+        <h3 class="text-center">{{vm.companyInfo.companyName}}</h3>
+        <table class="table deals_table table-hover table-bordered table-responsive">
+            <tr>
+                <td>Name</td>
+                <td class="tableDetailRow tdEdit" id="companyName" ng-blur="vm.confirmEdit()">{{vm.companyInfo.companyName}}</td>
+            </tr>
+            <tr>
+                <td>Web Site</td>
+                <td class="tableDetailRow tdEdit" id="companyDomainName" ng-blur="vm.confirmEdit()">{{vm.companyInfo.companyDomainName}}</td>
+            </tr>
+            <tr>
+                <td>Phone Number</td>
+                <td class="tableDetailRow tdEdit" id="companyPhoneNumber" ng-blur="vm.confirmEdit()">{{vm.companyInfo.companyPhoneNumber}}</td>
+            </tr>
+            <tr>
+                <td>Country</td>
+                <td class="tableDetailRow tdEdit" id="companyCountry" ng-blur="vm.confirmEdit()">{{vm.companyInfo.companyCountry}}</td>
+            </tr>
+            <tr>
+                <td>City</td>
+                <td class="tableDetailRow tdEdit" id="companyCity" ng-blur="vm.confirmEdit()">{{vm.companyInfo.companyCity}}</td>
+            </tr>
+            <tr>
+                <td>State</td>
+                <td class="tableDetailRow tdEdit" id="companyState" ng-blur="vm.confirmEdit()">{{vm.companyInfo.companyState}}</td>
+            </tr>
+            <tr>
+                <td>Zip</td>
+                <td class="tableDetailRow tdEdit" id="companyZip" ng-blur="vm.confirmEdit()">{{vm.companyInfo.companyZip}}</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td class="tableDetailRow tdEdit" id="comapanyAddress" ng-blur="vm.confirmEdit()">{{vm.companyInfo.comapanyAddress}}</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td class="tableDetailRow tdEdit" id="companyDescription" ng-blur="vm.confirmEdit()">{{vm.companyInfo.companyDescription}}</td>
+            </tr>
+            <tr>
+                <td>Industry</td>
+                <td class="tableDetailRow tdEdit" id="companyIndustry" ng-blur="vm.confirmEdit()">{{vm.companyInfo.companyIndustry}}</td>
+            </tr>
+            <tr>
+                <td>Is Public</td>
+                <td class="tableDetailRow tdEdit" id="companyIsPublic" ng-blur="vm.confirmEdit()">{{vm.companyInfo.companyIsPublic}}</td>
+            </tr>
+            <tr>
+                <td>Facebook</td>
+                <td class="tableDetailRow tdEdit" id="companyFacebook" ng-blur="vm.confirmEdit()">{{vm.companyInfo.companyFacebook}}</td>
+            </tr>
+            <tr>
+                <td>Linkedin</td>
+                <td class="tableDetailRow tdEdit" id="companyLinkedin" ng-blur="vm.confirmEdit()">{{vm.companyInfo.companyLinkedin}}</td>
+            </tr>
+            <tr>
+                <td>Twitter</td>
+                <td class="tableDetailRow tdEdit" id="companyTwitter" ng-blur="vm.confirmEdit()">{{vm.companyInfo.companyTwitter}}</td>
+            </tr>
+            <tr>
+                <td>Latitude</td>
+                <td class="tableDetailRow tdEdit" id="lat" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.latitude}}</td>
+            </tr>
+            <tr>
+                <td>Longitude</td>
+                <td class="tableDetailRow tdEdit" id="long" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.longitude}}</td>
+            </tr>
+        </table>
+        <button class="btn btn-primary" ng-click="vm.editCompany()">Edit</button>
+
+        
+
+        <div class="row">
+            <br /><br />
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#home" data-toggle="tab" aria-expanded="true">{{vm.companyInfo.companyName}}  Contacts</a></li>
+                <li class=""><a href="#profile" data-toggle="tab" aria-expanded="false">Deals</a></li>
+                <li class=""><a href="#task" data-toggle="tab" aria-expanded="false">Task</a></li>
+
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade active in" id="home">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="contact in vm.contactView">
+                                <td><a href="/contactDetails/{{contact.id}}"> {{contact.name}}</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="profile">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Stage</th>
+                                <th>Amount</th>
+                                <th>Close Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="deal in vm.deals">
+                                <td><a ui-sref="deal-info({id: deal.id})">{{deal.dealName}}</a></td>
+                                <td>{{deal.stage}}</td>
+                                <td>{{deal.amount}}</td>
+                                <td>{{deal.closeDate | date: 'short'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="task">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Description</th>
+                                <th>Start Date</th>
+
+                                <th>Due Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="task in vm.companyLogItems">
+                                <td>{{task.type}}</td>
+                                <td>{{task.content}}</td>
+                                <td>
+                                    {{task.startTime | date: 'short'}}
+                                </td>
+
+                                <td>
+                                    {{task.endTime | date: 'short'}}
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+            
+        </div>
+    </div>
+    <div class="col-md-7">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="activity_button_wrap btn-group" role="group" aria-label="...">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a ui-sref="company-info.activity" data-toggle="tab" aria-expanded="true">Log Activity</a></li>
+                        <li class=""><a ui-sref="company-info.task" data-toggle="tab" aria-expanded="false">Task</a></li>
+                        
+
+                    </ul>
+                    <!--<a ui-sref="company-info.activity" class="btn btn-default">Log Activity</a>
+                    <a ui-sref="company-info.task" class="btn btn-default">Create Task</a>-->
+                   
+                </div>
+                <div class="text_wrap">
+                    <div ui-view></div>
+                </div>
+            </div>
+        </div>
+        <br /><br />
+        <div class="row">
+            <div class="col-md-12 log_item_wrap_wrap">
+                <div class="log_item_wrap">
+                    <table class="table log_items_company" colspan="2" ng-repeat="item in vm.companyLogItems">
+
+                        <tr class="tr log_items_company" ng-if="item.type=='Activity'">
+                            <td class="submitted_cell">{{item.submittedBy}} logged an activity</td>
+                            <td class="start_time_cell">{{item.startTime | date: 'short'}}</td>
+                        </tr>
+                        <tr ng-if="item.type=='Task'">
+                            <td class="submitted_cell">{{item.submittedBy}} created a task for {{item.companyInfo.name}}</td>
+                            <td class="start_time_cell">{{item.startTime | date: 'short'}}</td>
+                        </tr>
+                        <tr>
+                            <td class="content_cell" colspan="2">{{item.content}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>      
+   
+
+
+
+            <!--<div class="container center-block col-md-pull-12">
+            <h1>Company Details</h1>
+            <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Company Name</label>
+                            <input type="text" class="form-control" ng-model="vm.companyInfo.companyName" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Company Domain Name</label>
+                            <input type="text" class="form-control" ng-model="vm.companyInfo.companyDomainName" />
+                        </div>
+                        <div class="form-group">
+                            <label>Company Phone Number</label>
+                            <input type="text" class="form-control" ng-model="vm.companyInfo.companyPhoneNumber" />
+                        </div>
+                        <div class="form-group">
+                            <label>Company Country</label>
+                            <input type="text" class="form-control" ng-model="vm.companyInfo.companyCountry" />
+                        </div>
+                        <div class="form-group">
+                            <label>Company City</label>
+                            <input type="text" class="form-control" ng-model="vm.companyInfo.companyCity" />
+                        </div>
+
+                        <div class="form-group">
+                            <label> Company State</label>
+                            <input type="text" class="form-control" ng-model="vm.companyInfo.companyState" />
+                        </div>
+                        <div class="form-group">
+                            <label>Company Zip</label>
+                            <input type="text" class="form-control" ng-model="vm.companyInfo.companyZip" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Comapany Address</label>
+                            <input type="text" class="form-control" ng-model="vm.companyInfo.comapanyAddress" />
+                        </div>
+                        <div class="form-group">
+                            <label>Company Description</label>
+                            <textarea type="text" class="form-control" ng-model="vm.companyInfo.companyDescription"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Company Industry</label>
+                            <input type="text" class="form-control" ng-model="vm.companyInfo.companyIndustry" />
+                        </div>
+                        <div class="form-group">
+                            <label>Company Is Public</label>
+                            <input type="text" class="form-control" ng-model="vm.companyInfo.companyIsPublic" />
+                        </div>
+                        <div class="form-group">
+                            <label>Company Facebook</label>
+                            <input type="text" class="form-control" ng-model="vm.companyInfo.companyFacebook" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Company Linkedin</label>
+                            <input type="text" class="form-control" ng-model="vm.companyInfo.companyLinkedin" />
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Company Twitter</label>
+                            <input type="text" class="form-control" ng-model="vm.companyInfo.companyTwitter" />
+                        </div>
+                        <div class="form-group">
+                            <label>Company Attachments</label>
+                            <input type="text" class="form-control" ng-model="vm.companyInfo.companyAttachments" />
+                        </div>
+                    </div>
+                <div class="col-md-6">
+
+                    <div class="form-group">
+                        <label>Company Contacts</label>
+                        <ul>
+                            <li ng-repeat="contact in vm.contactsView.contacts" ng-hide="contact.name" >{{contact.name}}</li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <label>Company Deals</label>
+                        <ul>
+                            <li ng-repeat="contact in vm.contactsView.contacts" ng-hide="contact.name">{{contact.name}}</li>
+                        </ul>
+                    </div>
+
+                </div>
+                </div>
+        </div>-->

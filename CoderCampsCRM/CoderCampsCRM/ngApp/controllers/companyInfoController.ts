@@ -13,8 +13,9 @@
         constructor(private companyService: MyApp.Services.CompaniesService, private $stateParams: ng.ui.IStateParamsService, private companyLogItemService: MyApp.Services.CompanyLogItemService, private $route: ng.route.IRouteService, private $location: ng.ILocationService) {
             this.routeId = $stateParams["id"];
             this.getCompany();
-           // this.getDealLogItemsByRouteId();
+           //this.getDealLogItemsByRouteId();
             //this.getContactsByDealId();
+            this.getCompanyLogItemsByRouteId();
         }
 
         public getCompany() {

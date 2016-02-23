@@ -29,4 +29,3 @@ var MyApp;
         angular.module("MyApp").service("dealLogItemService", DealLogItemService);
     })(Services = MyApp.Services || (MyApp.Services = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=dealLogItemService.js.map

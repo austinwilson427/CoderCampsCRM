@@ -112,6 +112,18 @@ var MyApp;
             controller: MyApp.Controllers.CompanyDetailsController,
             controllerAs: 'vm'
         })
+            .state('company-info.activity', {
+            url: '/activity',
+            templateUrl: 'ngApp/views/routes/company-info-activity.html',
+            controller: MyApp.Controllers.CompanyInfoActivityController,
+            controllerAs: "vm"
+        })
+            .state('company-info.task', {
+            url: '/task',
+            templateUrl: 'ngApp/views/routes/company-info-task.html',
+            controller: MyApp.Controllers.CompanyInfoTaskController,
+            controllerAs: "vm"
+        })
             .state('contacts', {
             url: '/contacts',
             templateUrl: '/ngApp/views/contactListView.html',
@@ -191,4 +203,3 @@ var MyApp;
         $httpProvider.interceptors.push('authInterceptor');
     });
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=app.js.map
