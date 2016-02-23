@@ -379,7 +379,6 @@
     <Content Include="ngApp\views\modals\archive-deal.html" />
     <Content Include="ngApp\views\modals\companyDetails.html" />
     <Content Include="ngApp\views\modals\contactDeleteModal.html" />
-    <Content Include="ngApp\views\modals\createcompanyModal.html" />
     <Content Include="ngApp\views\modals\delete-deal.html" />
     <Content Include="ngApp\views\modals\edit-deal.html" />
     <Content Include="ngApp\views\modals\contactAddModal.html" />
@@ -1380,10 +1379,10 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -1417,7 +1416,6 @@
     <TypeScriptCompile Include="ngApp\services\profileServices.ts" />
     <TypeScriptCompile Include="ngApp\services\services.ts" />
     <TypeScriptCompile Include="ngApp\services\taskService.ts" />
-    <TypeScriptCompile Include="ngApp\services\userService.ts" />
     <TypeScriptCompile Include="Scripts\typings\angular-ui-bootstrap\angular-ui-bootstrap.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angular-ui\angular-ui-router.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angular-ui\angular-ui-sortable.d.ts" />
