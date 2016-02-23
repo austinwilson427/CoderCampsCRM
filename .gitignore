@@ -211,3 +211,4 @@ GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
 /CoderCampsCRM/CoderCampsCRM/ngApp
+/CoderCampsCRM/CoderCampsCRM/API/UserProfileController.cs
