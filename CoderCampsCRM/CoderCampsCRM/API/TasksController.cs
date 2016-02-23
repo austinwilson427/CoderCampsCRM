@@ -1,5 +1,6 @@
 ﻿using CoderCampsCRM.Models;
 using CoderCampsCRM.Repositories;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,8 @@ namespace CoderCampsCRM.API
 
         public IHttpActionResult GetAllTasks()
         {
-            var data = _repo.Query<UserTask>();
+            var userId = this.User.Identity.GetUserId();
+            var data = _repo.Query<UserTask>().Where(u => u.UserId == userId).ToList();
 
             return Ok(data);
         }
@@ -32,19 +34,26 @@ namespace CoderCampsCRM.API
         [Route("api/tasks/{id}")]
         public IHttpActionResult GetIndTask(int id)
         {
-            var data = _repo.Find<UserTask>(id);
+            var userId = this.User.Identity.GetUserId();
+            var data = _repo.Query<UserTask>().Where(u => u.UserId == userId).FirstOrDefault();
 
             return Ok(data);
         }
 
         public IHttpActionResult PostTask(UserTask taskToAdd)
         {
+            var userId = this.User.Identity.GetUserId();
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
             if (ModelState.IsValid)
             {
 
                 //Creating a new task
                 if (taskToAdd.Id == 0)
                 {
+                    taskToAdd.UserId = userId;
                     taskToAdd.CreatedOn = DateTime.Now;
                     _repo.Add<UserTask>(taskToAdd);
                     _repo.SaveChanges();
@@ -77,6 +86,11 @@ namespace CoderCampsCRM.API
         public IHttpActionResult DeleteTask(int id)
 
         {
+            var userId = this.User.Identity.GetUserId();
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
             _repo.Delete<UserTask>(id);
             _repo.SaveChanges();
             return Ok();
