@@ -116,7 +116,7 @@ namespace CoderCampsCRM.API
                     Method = HttpMethod.Get
                 };
 
-                request.Headers.Add("Origin", Request.RequestUri.GetLeftPart(UriPartial.Authority);
+                request.Headers.Add("Origin", Request.RequestUri.GetLeftPart(UriPartial.Authority));
                 request.Headers.Accept.Clear();
                 request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("*/*"));
                 request.Headers.Referrer = new Uri(Request.RequestUri.GetLeftPart(UriPartial.Authority));
