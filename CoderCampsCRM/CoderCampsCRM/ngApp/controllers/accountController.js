@@ -79,6 +79,37 @@ var MyApp;
             return LoginController;
         })();
         Controllers.LoginController = LoginController;
+        var MyHomeController = (function () {
+            function MyHomeController(accountService, $location, $uibModal, $uibModalInstance) {
+                this.accountService = accountService;
+                this.$location = $location;
+                this.$uibModal = $uibModal;
+                this.$uibModalInstance = $uibModalInstance;
+            }
+            MyHomeController.prototype.showLoginModal = function () {
+                this.$uibModal.open({
+                    templateUrl: "/ngApp/views/login.html",
+                    controller: MyApp.Controllers.LoginController,
+                    controllerAs: "controller",
+                    resolve: {},
+                    size: "md"
+                });
+            };
+            MyHomeController.prototype.showRegisterModal = function () {
+                this.$uibModal.open({
+                    templateUrl: "/ngApp/views/register.html",
+                    controller: MyApp.Controllers.RegisterController,
+                    controllerAs: "vm",
+                    resolve: {
+                        userInfo: this.registerUser
+                    },
+                    size: "lg"
+                });
+            };
+            ;
+            return MyHomeController;
+        })();
+        Controllers.MyHomeController = MyHomeController;
         var RegisterController = (function () {
             function RegisterController(accountService, filepickerService, $scope, $location, $uibModalInstance, $uibModal, userInfo) {
                 this.accountService = accountService;
@@ -214,4 +245,3 @@ var MyApp;
         Controllers.ConfirmEmailController = ConfirmEmailController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=accountController.js.map
