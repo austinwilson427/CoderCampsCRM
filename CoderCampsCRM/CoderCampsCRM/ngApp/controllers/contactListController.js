@@ -28,9 +28,6 @@ var MyApp;
                     _this.showAllContacts();
                 });
             };
-            ContactListController.prototype.totalItemsGet = function () {
-                this.totalItems = this.contactsView.contacts.length;
-            };
             ContactListController.prototype.setLocations = function () {
                 this.zoom = 4;
                 this.center = { latitude: 40.09024, longitude: -97.712891 };
@@ -129,3 +126,4 @@ var MyApp;
         Controllers.ContactListController = ContactListController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
+//# sourceMappingURL=contactListController.js.map

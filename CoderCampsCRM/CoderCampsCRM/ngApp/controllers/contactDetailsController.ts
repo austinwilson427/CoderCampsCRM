@@ -18,7 +18,12 @@
         constructor(private contactService: MyApp.Services.ContactService, private $location: ng.ILocationService, private $uibModal: ng.ui.bootstrap.IModalService, $stateParams: ng.ui.IStateParamsService, private $state: ng.ui.IStateService, private filepickerService) {
             this.contact = {};
             this.location = {};
-            this.contactView = this.contactService.getOneContact($stateParams['id']);             
+            this.contactView = this.contactService.getOneContact($stateParams['id']);    
+            let timeNow = new Date(); 
+            timeNow = new Date(timeNow.getFullYear(), timeNow.getMonth(), timeNow.getDate(), timeNow.getHours(), timeNow.getMinutes());
+            this.interaction = {
+                date: timeNow
+            };        
         }
 
         public deleteModal() {

@@ -13,6 +13,11 @@ var MyApp;
                 this.contact = {};
                 this.location = {};
                 this.contactView = this.contactService.getOneContact($stateParams['id']);
+                var timeNow = new Date();
+                timeNow = new Date(timeNow.getFullYear(), timeNow.getMonth(), timeNow.getDate(), timeNow.getHours(), timeNow.getMinutes());
+                this.interaction = {
+                    date: timeNow
+                };
             }
             ContactDetailsController.prototype.deleteModal = function () {
                 var _this = this;
@@ -114,3 +119,4 @@ var MyApp;
         Controllers.ContactDetailsController = ContactDetailsController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
+//# sourceMappingURL=contactDetailsController.js.map
