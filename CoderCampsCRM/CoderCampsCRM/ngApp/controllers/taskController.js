@@ -10,11 +10,12 @@ var MyApp;
         })();
         Controllers.TaskListController = TaskListController;
         var TaskAddController = (function () {
-            function TaskAddController(taskService, $location, $route, contactService) {
+            function TaskAddController(taskService, $location, $route, contactService, dealService) {
                 this.taskService = taskService;
                 this.$location = $location;
                 this.$route = $route;
                 this.contactService = contactService;
+                this.dealService = dealService;
                 this.getMyContacts();
             }
             TaskAddController.prototype.getMyContacts = function () {
@@ -23,11 +24,6 @@ var MyApp;
                     _this.myContacts = result;
                 });
             };
-            //public getMyContacts() {
-            //    this.contactService.getAllContacts().$promise.then((result) => {
-            //        this.myContacts = result;
-            //    });
-            //}
             TaskAddController.prototype.getMyDeals = function () {
                 var _this = this;
                 this.dealService.listAllDealsOwned().$promise.then(function (result) {

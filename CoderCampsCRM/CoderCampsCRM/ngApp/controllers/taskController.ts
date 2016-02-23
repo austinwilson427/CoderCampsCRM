@@ -21,7 +21,7 @@
         public myCompanies;
         public myDeals;
 
-        constructor(private taskService: MyApp.Services.TaskService, private $location: ng.ILocationService, private $route: ng.route.IRouteService, private contactService: MyApp.Services.ContactService) {
+        constructor(private taskService: MyApp.Services.TaskService, private $location: ng.ILocationService, private $route: ng.route.IRouteService, private contactService: MyApp.Services.ContactService, private dealService: MyApp.Services.DealService) {
             this.getMyContacts();
             
         }
