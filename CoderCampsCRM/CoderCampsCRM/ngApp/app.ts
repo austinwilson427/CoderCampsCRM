@@ -181,12 +181,6 @@
                 templateUrl: 'ngApp/views/routes/deal-info-event.html',
                 controller: MyApp.Controllers.DealInfoEventController,
                 controllerAs: "vm"
-            })
-            .state('user-profile', {
-                url: '/user-profile',
-                templateUrl: 'ngApp/views/UserProfile.html',
-                controller: MyApp.Controllers.UserController,
-                controllerAs: "vm"
             });
 
         $urlRouterProvider.otherwise('/');
