@@ -1,6 +1,15 @@
 ﻿<div class="row">
     <div class="col-md-10 col-md-offset-1">
         <h1 class="page-header text-center">Admin Page</h1>
+        <uib-pagination total-items="vm.totalItems" ng-model="vm.currentPage" max-size="vm.maxSize" class="pagination-sm" items-per-page="vm.itemsPerPage"></uib-pagination>
+        <select id="itemsPerPage" ng-model="vm.itemsPerPage">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+        </select>
+            <input type="text" class="form-control pull-right" ng-model="vm.searchText" ng-model-options="{debounce: 1000}" placeholder="Search users by first name" />     
         <table class="table table-bordered table-responsive table-hover deals_table table_wrap">
             <thead>
                 <tr>
@@ -12,7 +21,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="user in vm.users">
+                <tr ng-repeat="user in vm.users.slice(((vm.currentPage-1)*vm.itemsPerPage), ((vm.currentPage)*vm.itemsPerPage)) | filter: {name: vm.searchText} | orderBy:sortType:sortReverse">
                     <td><img src="{{user.picUrl}}" ng-show="user.picUrl" class="img-responsive adminImg"/><img src="https://lh3.googleusercontent.com/-hMc92L1bTw4/AAAAAAAAAAI/AAAAAAAAAAA/q7C3_uBZp2w/photo.jpg" ng-show="!user.picUrl" class="adminImg img-responsive"/></td>
                     <td>{{user.firstName}}</td>
                     <td>{{user.lastName}}</td>

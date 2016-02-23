@@ -715,7 +715,7 @@
         }
     }
 
-    class AddDealModal {
+    export class AddDealModal {
 
         public validationErrors;
         public myContacts;
@@ -758,7 +758,7 @@
         }
     }
 
-    class EditDealModal {
+    export class EditDealModal {
 
         public validationErrors;
         public myContacts;
@@ -802,7 +802,7 @@
         }
     }
 
-    class DeleteDealModal {
+    export class DeleteDealModal {
         public validationErrors;
         public dealsToDeleteLength;
         
