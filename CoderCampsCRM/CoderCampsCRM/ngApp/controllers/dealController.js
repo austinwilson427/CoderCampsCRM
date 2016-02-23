@@ -750,6 +750,7 @@ var MyApp;
             };
             return AddDealModal;
         })();
+        Controllers.AddDealModal = AddDealModal;
         var EditDealModal = (function () {
             function EditDealModal(dealService, $location, $uibModalInstance, dealDetails, $route, companiesService, contactService) {
                 this.dealService = dealService;
@@ -794,6 +795,7 @@ var MyApp;
             };
             return EditDealModal;
         })();
+        Controllers.EditDealModal = EditDealModal;
         var DeleteDealModal = (function () {
             function DeleteDealModal(dealService, $location, $uibModalInstance, dealsToDelete, $route, dealLogItemService) {
                 this.dealService = dealService;
@@ -836,6 +838,7 @@ var MyApp;
             };
             return DeleteDealModal;
         })();
+        Controllers.DeleteDealModal = DeleteDealModal;
         var ArchiveDealModal = (function () {
             function ArchiveDealModal(dealService, $location, $uibModalInstance, dealsToArchive, $route) {
                 this.dealService = dealService;

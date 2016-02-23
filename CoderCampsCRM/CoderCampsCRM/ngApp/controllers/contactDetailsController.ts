@@ -15,7 +15,7 @@
         public file;
         public imageReady: boolean;
 
-        constructor(private contactService: MyApp.Services.ContactService, private $location: ng.ILocationService, private $uibModal: ng.ui.bootstrap.IModalService, $stateParams: ng.ui.IStateParamsService, private $state: ng.ui.IStateService, private filepickerService) {
+        constructor(private contactService: MyApp.Services.ContactService, private $location: ng.ILocationService, private $uibModal: ng.ui.bootstrap.IModalService, $stateParams: ng.ui.IStateParamsService, private $state: ng.ui.IStateService, private filepickerService, private dealService: MyApp.Services.DealService, private taskService: MyApp.Services.TaskService) {
             this.contact = {};
             this.location = {};
             this.contactView = this.contactService.getOneContact($stateParams['id']);    
@@ -136,6 +136,15 @@
         public deleteInteraction(id) {
             return this.contactService.deleteInteraction(id).then(
                 this.$state.reload());
+        }
+
+        public addDealModal() {
+            this.$uibModal.open({
+                templateUrl: '/ngApp/views/modals/add-deal.html',
+                controller: MyApp.Controllers.AddDealModal,
+                controllerAs: 'vm',
+                size: "deal",
+            });
         }
     }
 }
