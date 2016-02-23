@@ -214,6 +214,7 @@
     <Compile Include="API\InteractionsController.cs" />
     <Compile Include="API\LocationsController.cs" />
     <Compile Include="API\MoviesController.cs" />
+    <Compile Include="API\ProfileController.cs" />
     <Compile Include="API\TasksController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
