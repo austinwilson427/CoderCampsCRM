@@ -110,3 +110,5 @@
 /// <reference path="moment.js" />
 /// <reference path="moment-with-locales.js" />
 /// <reference path="respond.js" />
+/// <reference path="sweetalert.min.js" />
+/// <reference path="sweetalert-dev.js" />
