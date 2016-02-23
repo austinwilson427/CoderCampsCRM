@@ -26,6 +26,7 @@ namespace CoderCampsCRM.Models
         public string TimeZone { get; set; }
         public string PicUrl { get; set; }
         public DateTime MemberSince { get; set; }
+        public bool IsActive { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {

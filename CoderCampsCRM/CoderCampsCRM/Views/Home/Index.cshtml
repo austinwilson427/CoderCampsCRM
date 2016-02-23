@@ -16,7 +16,7 @@
     <link href="~/Content/simple-sidebar.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.js" rel="stylesheet" />    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.js" rel="stylesheet" />
     <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/dark-hive/jquery-ui.css">
     <link href="~/Content/queries.css" rel="stylesheet" />
@@ -24,14 +24,14 @@
 
 </head>
 <body ng-controller="AccountController as account">
-        @* OLD CODE FROM CODER CAMPS TEMPLATE - NAVBAR ADDED - WILL NEED TO USE NG-SHOW AND NG-CLICK INFORMATION *@
-        @*<h1>My App</h1>
-        <div>
-            <a href="/">Home</a> /
-            <a href="/about">About</a> /
-            <a href="/login" ng-show="!account.isLoggedIn()">login</a>
-            <a href="#" ng-click="account.logout()" ng-show="account.isLoggedIn()">logout</a>
-        </div>*@
+    @* OLD CODE FROM CODER CAMPS TEMPLATE - NAVBAR ADDED - WILL NEED TO USE NG-SHOW AND NG-CLICK INFORMATION *@
+    @*<h1>My App</h1>
+    <div>
+        <a href="/">Home</a> /
+        <a href="/about">About</a> /
+        <a href="/login" ng-show="!account.isLoggedIn()">login</a>
+        <a href="#" ng-click="account.logout()" ng-show="account.isLoggedIn()">logout</a>
+    </div>*@
     <div class="nav_wrap">
         <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
             <div class="container-fluid">
@@ -67,7 +67,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="http://i.imgur.com/m27sgB3.png" height="20" width="20" alt="Alternate Text" /><span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a ui-sref="user-profile">My Account</a></li>
+                                <li><a ui-sref="profile">My Account</a></li>
                                 <li><a href="#">Users</a></li>
                                 <li><a href="#">Help</a></li>
                                 <li><a href="#">Report a Problem</a></li>
@@ -88,7 +88,7 @@
 
 
 
-        <div ui-view></div>
+    <div ui-view></div>
 
 
 
@@ -128,10 +128,11 @@
     <script src="~/ngApp/services/contactService.js"></script>
     <script src="~/ngApp/services/companyService.js"></script>
     <script src="~/ngApp/services/companyLogItemService.js"></script>
-    <script src="~/ngApp/services/profileServices.js"></script>
+   
     <script src="~/ngApp/services/taskService.js"></script>
     <script src="~/ngApp/services/dealContactService.js"></script>
     <script src="~/ngApp/services/dashboardService.js"></script>
+    <script src="~/ngApp/services/profileService.js"></script>
 
     <!--Controllers-->
     <script src="~/ngApp/controllers/controllers.js"></script>
@@ -145,8 +146,8 @@
     <script src="~/ngApp/controllers/companyContoller.js"></script>
     <script src="~/ngApp/controllers/companyInfoController.js"></script>
     <script src="~/ngApp/controllers/taskController.js"></script>
-    <script src="~/ngApp/controllers/ProfileController.js"></script>
+    
     <script src="~/ngApp/controllers/dashboardController.js"></script>
-
+    <script src="~/ngApp/controllers/ProfileController.js"></script>
 </body>
 </html>

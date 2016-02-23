@@ -492,7 +492,8 @@ namespace CoderCampsCRM.Controllers
                 Company = model.Company,
                 TimeZone = model.TimeZone,
                 PicUrl = model.PicUrl,
-                PhoneNumber = model.PhoneNumber
+                PhoneNumber = model.PhoneNumber,
+              MemberSince = DateTime.Now
             };
 
             IdentityResult result = await UserManager.CreateAsync(user);
