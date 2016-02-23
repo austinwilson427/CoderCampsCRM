@@ -215,7 +215,6 @@
     <Compile Include="API\LocationsController.cs" />
     <Compile Include="API\MoviesController.cs" />
     <Compile Include="API\TasksController.cs" />
-    <Compile Include="API\UserProfileController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -399,7 +398,6 @@
     <Content Include="ngApp\views\routes\deal-info-task.html" />
     <Content Include="ngApp\views\task-details.html" />
     <Content Include="ngApp\views\tasks.html" />
-    <Content Include="ngApp\views\userProfile.html" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />
@@ -1381,10 +1379,10 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
