@@ -45,6 +45,7 @@ namespace CoderCampsCRM.Models
         [Required]
         public string UserName { get; set; }
         public string PicUrl { get; set; }
+        public bool IsActive { get; set; }
 
         [Required]
         [Display(Name = "Email")]

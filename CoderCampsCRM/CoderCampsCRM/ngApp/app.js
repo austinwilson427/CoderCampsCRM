@@ -7,8 +7,8 @@ var MyApp;
             .state('home', {
             url: '/',
             templateUrl: '/ngApp/views/home.html',
-            controller: MyApp.Controllers.HomeController,
-            controllerAs: 'controller'
+            controller: MyApp.Controllers.MyHomeController,
+            controllerAs: 'vm'
         })
             .state('dashboard', {
             url: '/dashboard',
@@ -165,7 +165,14 @@ var MyApp;
             templateUrl: 'ngApp/views/routes/deal-info-event.html',
             controller: MyApp.Controllers.DealInfoEventController,
             controllerAs: "vm"
+        })
+            .state('profile', {
+            url: '/profile',
+            templateUrl: 'ngApp/views/profile.html',
+            controller: MyApp.Controllers.ProfileController,
+            controllerAs: "vm"
         });
+        ;
         $urlRouterProvider.otherwise('/');
         $locationProvider.html5Mode(true);
     });
@@ -191,4 +198,3 @@ var MyApp;
         $httpProvider.interceptors.push('authInterceptor');
     });
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=app.js.map
