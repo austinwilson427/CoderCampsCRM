@@ -1,0 +1,21 @@
+﻿<div>
+    <table class="activity">
+        <tr>
+            <td>
+                Date: <input type="text" ng-model="vm.dateSelected" ng-change="vm.selectDate()" class="customDates form-control">
+            </td>
+            <td>
+                Time: <select class="form-control" ng-change="vm.selectTime()" ng-model="vm.timeSelected">
+                    <option ng-repeat="time in vm.timeObject" value="{{time.value}}">{{time.display}}</option>
+                </select>
+            </td>
+        </tr>
+        <tr><td colspan="2"><textarea ng-model="vm.activityContent" class="deal_notes" rows="10" placeholder="Describe the activity..."></textarea></td></tr>
+    </table>
+    <button ng-show="vm.activityContent" ng-click="vm.submitActivity()" class="btn btn-success">Log Activity</button>
+</div>
+<script>
+  $(function() {
+    $( ".customDates" ).datepicker();
+  });
+</script>
