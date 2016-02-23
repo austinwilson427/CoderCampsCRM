@@ -21,7 +21,7 @@
         public myCompanies;
         public myDeals;
 
-        constructor(private taskService: MyApp.Services.TaskService, private $location: ng.ILocationService, private $route: ng.route.IRouteService, private contactService: MyApp.Services.ContactService, private dealService: MyApp.Services.DealService) {
+        constructor(private taskService: MyApp.Services.TaskService, private $location: ng.ILocationService, private $route: ng.route.IRouteService, private contactService: MyApp.Services.ContactService, private dealService: MyApp.Services.DealService, private dealLogItemService: MyApp.Services.DealLogItemService) {
             this.getMyContacts();
             this.getMyDeals();
         }
@@ -45,9 +45,22 @@
 
         addTask() {
             this.loaded = false;
+
+            let dealLogItem = {
+                type: "Task",
+                startTime: this.taskToAdd.startDate,
+                endTime: this.taskToAdd.dueDate,
+                Content: this.taskToAdd.description,
+                ContactId: this.taskToAdd.contactId,
+                DealId: this.taskToAdd.dealId
+            };
+
             this.taskService.saveTask(this.taskToAdd).then(() => {
-                this.loaded = true;
-                this.$location.path("/tasks")
+                this.dealLogItemService.saveDealLogItem(dealLogItem).then(() => {
+                    this.loaded = true;
+                    this.$location.path("/tasks")
+                })
+
             });
 
         }

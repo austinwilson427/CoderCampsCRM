@@ -431,6 +431,7 @@ namespace CoderCampsCRM.Controllers
                 TimeZone = model.TimeZone,
                 PicUrl = model.PicUrl,
                 MemberSince = DateTime.Now,
+                IsActive = true
             };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);

@@ -10,12 +10,13 @@ var MyApp;
         })();
         Controllers.TaskListController = TaskListController;
         var TaskAddController = (function () {
-            function TaskAddController(taskService, $location, $route, contactService, dealService) {
+            function TaskAddController(taskService, $location, $route, contactService, dealService, dealLogItemService) {
                 this.taskService = taskService;
                 this.$location = $location;
                 this.$route = $route;
                 this.contactService = contactService;
                 this.dealService = dealService;
+                this.dealLogItemService = dealLogItemService;
                 this.getMyContacts();
                 this.getMyDeals();
             }
@@ -39,9 +40,19 @@ var MyApp;
             TaskAddController.prototype.addTask = function () {
                 var _this = this;
                 this.loaded = false;
+                var dealLogItem = {
+                    type: "Task",
+                    startTime: this.taskToAdd.startDate,
+                    endTime: this.taskToAdd.dueDate,
+                    Content: this.taskToAdd.description,
+                    ContactId: this.taskToAdd.contactId,
+                    DealId: this.taskToAdd.dealId
+                };
                 this.taskService.saveTask(this.taskToAdd).then(function () {
-                    _this.loaded = true;
-                    _this.$location.path("/tasks");
+                    _this.dealLogItemService.saveDealLogItem(dealLogItem).then(function () {
+                        _this.loaded = true;
+                        _this.$location.path("/tasks");
+                    });
                 });
             };
             TaskAddController.prototype.cancelAdd = function () {

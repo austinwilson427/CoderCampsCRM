@@ -1,4 +1,4 @@
-﻿/*Big Tablets to 1200px (widths smaller than the 1140px row in our website)*/
+/*Big Tablets to 1200px (widths smaller than the 1140px row in our website)*/
 @media only screen and (max-width: 1200px){
     .home_button_wrap{
            width: 100%;
@@ -6,9 +6,6 @@
        }
     .heading-wrap h2,.heading-wrap h3{
         font-weight:100;
-    }
-    .home_button_wrap {
-        margin-top: 70px;
     }
 }
 
@@ -27,6 +24,10 @@
       
         margin-bottom: 80px;
     }
+    section.jumbotron{
+        background-attachment: fixed;
+    }
+    
 }
 
 /* All phones and tablets smaller than ipad: from 481px to 767px */
@@ -37,7 +38,7 @@
     }
     .heading-wrap h2{
         font-size: 20px;
-        margin-bottom: 0px;
+        margin-bottom: 0;
     }
     .heading-wrap h3{
         font-size: 20px;

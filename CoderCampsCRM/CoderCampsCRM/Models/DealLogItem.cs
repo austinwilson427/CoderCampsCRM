@@ -14,9 +14,9 @@ namespace CoderCampsCRM.Models
         public DateTime? EndTime { get; set; }
         public string Content { get; set; }
         public string SubmittedBy { get; set; }
-        public int? TaskId { get; set; }
-        //[ForeignKey("TaskId")]
-        //public Task Task { get; set; }
+        //public int? TaskId { get; set; }
+        ////[ForeignKey("TaskId")]
+        ////public Task Task { get; set; }
 
         public int? ContactId { get; set; }
         [ForeignKey("ContactId")]

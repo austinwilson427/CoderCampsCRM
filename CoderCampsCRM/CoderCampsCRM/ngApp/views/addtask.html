@@ -34,12 +34,10 @@
                     <option ng-repeat="contact in vm.myContacts.contacts" value="{{contact.id}}">{{contact.name}}</option>
                 </select>
                 <br />
-                <label>Primary Contact</label>
-                            {{vm.myDeals}}
-                <select ng-model="vm.taskToAdd.dealId" class="form-control full">
+                <label>Include in Deal</label>
+                <select ng-model="vm.taskToAdd.dealId" class="form-control">
                     <option ng-repeat="deal in vm.myDeals" value="{{deal.id}}">{{deal.dealName}}</option>
                 </select>
-
                 <br />
                 <label>Due Date:</label>
                 <div id="datepicker2" class="input-group date" data-date-format="mm/dd/yyyy" style="width:300px">

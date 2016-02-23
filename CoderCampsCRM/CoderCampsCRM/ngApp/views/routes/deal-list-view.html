@@ -1,4 +1,5 @@
-﻿<div id="wrapper" class="details_wrap toggled">
+﻿<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/dark-hive/jquery-ui.css">
+<div id="wrapper" class="details_wrap toggled">
     <div id="sidebar-wrapper">
         <label>Show Archived Deals</label>
         <input type="checkbox" ng-model="vm.showArchived" ng-change="vm.filterBySelection()" /><br />
@@ -90,7 +91,7 @@
                         <div class="table_wrap">
                             <table class="table table-hover table-bordered deals_table">
                                 <tr>
-                                    <td class="trash_cell" ng-show="vm.showTrash">
+                                    <td id="icon_here" class="trash_cell" ng-show="vm.showTrash">
                                         <a href="#" ng-click="vm.deleteDealModal()"><span class="glyphicon glyphicon-trash trash_icon" aria-hidden="true" title="Delete Selected Deals"></span></a>
                                         <a href="#" ng-click="vm.archiveDealModal()"><span class="glyphicon glyphicon-folder-close folder_icon" aria-hidden="true" title="Archive Selected Deals"></span></a>
                                     </td>
@@ -128,6 +129,6 @@
     });
 
     $(function () {
-        $("#wrapper").tooltip();
+        $("#icon_here").tooltip();
     });
 </script>

@@ -7,7 +7,7 @@ var MyApp;
             .state('home', {
             url: '/',
             templateUrl: '/ngApp/views/home.html',
-            controller: MyApp.Controllers.MyHomeController,
+            controller: MyApp.Controllers.AccountController,
             controllerAs: 'vm'
         })
             .state('dashboard', {

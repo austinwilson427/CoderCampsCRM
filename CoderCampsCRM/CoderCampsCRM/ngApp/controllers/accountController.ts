@@ -32,6 +32,20 @@
             return this.accountService.getExternalLogins();
         }
 
+        public showRegisterModal() {
+            this.$uibModal.open({
+                templateUrl: "/ngApp/views/register.html",
+                controller: MyApp.Controllers.RegisterController,
+                controllerAs: "vm",
+                resolve: {
+                    userInfo: null
+                },
+                size: "lg"
+
+            });
+
+        };
+
         constructor(private accountService: MyApp.Services.AccountService, private $location: ng.ILocationService, private $uibModal: angular.ui.bootstrap.IModalService) {
             this.getExternalLogins().then((results) => {
                 this.externalLogins = results;
