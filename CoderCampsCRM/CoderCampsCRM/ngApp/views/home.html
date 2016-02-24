@@ -7,17 +7,17 @@
     </div>
     <div class="home_button_wrap">
         <button ng-click="vm.showRegisterModal()" class="join">Join Now</button>
-        <button ng-click="vm.showLoginModal()"class="join">Sign In</button>
+        <button ng-click="vm.showLoginModal()" class="join">Sign In</button>
     </div>
 </section>
 <section id="home_details">
     <div class="container-fluid key_facts_wrap">
-        <div class="row">
+        <div class="row sessions_wrap">
             <div class="col-md-4 description_wrap">
                 <h2>
                     Track your contacts  <i class="fa fa-user"></i>
                 </h2>
-                <p class="home_description">
+                <p class="home_description1">
                     Company executives often say that their most important corporate asset is their database of prospects and clients. Track each of your business contacts with a simplistic tool that keeps all contacts at your fingerips. Management of your contacts has ever been this easy and makes follow up a snap.
                 </p>
                 <br />
@@ -29,7 +29,7 @@
                 <h2>
                     Track your Sales <i class="fa fa-folder-open"></i>
                 </h2>
-                <p class="home_description">
+                <p class="home_description2">
                     This is a full sales cycle management solution. This means that you start with prospects, push them through your sales funnel, until they become paying clients and then repeat customers.  Helps you increase your conversion rates and customer life-time value, as well as help your sales agents meet their quotas.
                 </p>
                 <p class="home_details">
@@ -40,7 +40,7 @@
                 <h2>
                     Track your products <i class="fa fa-product-hunt"></i>
                 </h2>
-                <p class="home_description">
+                <p class="home_description3">
                     If you’re on the road making a sales call or a customer calls you to place an order, log in to your account to get the current inventory levels for the products you’re selling.  By tracking your inventory with CodercampsCRM  business software, you will have the real-time information you need to make the best buying decisions for your business.
                 </p>
                 <p class="home_details">
@@ -60,11 +60,12 @@
 
             <!--Twitter Widget-->
 
-            <div class="row">
+            <div class="row fix_row ">
+
                 <div class="col-md-4">
                     <div class="widget_twitter">
-                        <h4>Twitter Updates</h4>
-                        <ul>
+                        <h4 class="Twith4">Twitter Updates</h4>
+                        <ul style="list-style-type:none">
                             <li><strong>@CoderCampsCRM</strong> Hey Check  it out, we bult a website...pretty amazing one too.</li>
                             <li><strong>@CoderCampsCRM</strong> This website is vry dynamic...very very dynamic...and responsive too.</li>
                             <li><strong>@CoderCampsCRM</strong> Whoa...is that a create a deals page and a contacts page??  thats Crazy!!  wow so great.</li>
@@ -75,6 +76,7 @@
                             <button class="readmore">Read More</button>
                         </div>
                     </div>
+
                 </div>
 
                 <!--Newsletter Widget-->
@@ -82,12 +84,16 @@
 
                 <div class="col-md-4 description_wrap">
                     <div class="widget_newsletter">
-                        <h4>Newsletter</h4>
+                        <h4 class="Newsh4">Newsletter</h4>
+                       
                         <p>Stay up to date with the latest and greatest from CoderCampsCRM.  Better ways to organize, business tactics, the very latest technology all at your fingertips..just signup today and stay plugged in</p>
                         <form>
-                            <input type="text" value="Email Address">
-                            <input type="submit" value="Sign Up">
+                            <input type="text" class="emailnews" value="Email Address">
+                            <!--<input type="submit" class="signupnews" value="Sign Up">-->
                         </form>
+                        <form><input type="submit" class="signUpNews" value="Sign Up"></form>
+
+
                     </div>
 
                     <br /><br />
@@ -108,11 +114,18 @@
                 <div class="col-md-4">
                     <article class="widget_feedback">
                         <h4>Feedback</h4>
+                        <p class="Feedbacktext">We love our clients-tell us what you think</p>
                         <form>
                             <input type="text" value="Full Name" name="name">
                             <input type="text" value="Email Address" name="email">
-                            <textarea name="message">Your message</textarea>
+                        </form>
+                        <form>
+                            <textarea name="message" class="messageboxfeed">Your message</textarea>
+                        </form>
+                        <!--<textarea name="message">Your message</textarea>-->
+                        <form>
                             <input type="submit" value="Send Message" class="button_1">
+
                         </form>
                     </article>
                     <!--Copyright Notice-->

@@ -806,11 +806,36 @@ li.Twitter a, li.Facebook a, li.Google a {
 #accordian {
     margin: -10px;
 }
+/*SubFooter*/
+.home_description1 {
+
+    margin-bottom: 20px;
+}
+.home_description2 {
+
+    margin-bottom: 20px;
+}
+.home_description3 {
+
+    margin-bottom: 20px;
+}
+.sessions_wrap {
+
+    padding-bottom: 20px;
+
+}
+
+
+
+
+
+
 /*FOOTER SECTION------------------------------------------------------*/
 
 /* Footer */
 
 footer {
+ border-top: 1px solid black;
 	clear: both;
 	min-height: 400px;
     /*Change footer color here*/
@@ -819,6 +844,9 @@ footer {
 	color: black;
     padding: 80px 0;
 }
+
+
+
 
 footer h4 {
 	font-size: 25px;
@@ -839,6 +867,33 @@ footer .column {
 
 article.widget_twitter li {
 	margin: 20px 0;
+}
+
+.Twith4 {
+    	text-align: left;
+        margin-left: 30px;
+        margin-bottom: 20px;
+   /*iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii*/
+}
+.Newsh4 {
+    text-align: left;
+     margin-bottom: 20px;
+    
+}
+
+.signupnews {
+
+   font-weight: bold;
+}
+}
+
+/*buton in Twitter Update*/
+.readmore_button_wrap {
+    margin: 30px;
+    	text-align:center;
+        margin-left: 50px;
+        font-weight: bold;
+        font-weight: bold;
 }
 
 article.widget_social li {
@@ -900,6 +955,40 @@ article.widget_newsletter input[type=submit] {
 	font-size: 12px;
 	cursor: pointer;
 }
+/*button under twitter updates  read more*/
+ .readmore_button_wrap {
+     margin-left: 120px;
+   
+}
+
+button_1 {
+
+    margin-left:20px;
+}
+
+.messageboxfeed {
+   
+    margin-top:10px;
+}
+/*button under newsletter*/
+.signUpNews {
+    margin-top: 10px;
+}
+
+.emailnews{
+margin-top: 35px;
+
+}
+
+.copyright_notice {
+
+    margin-top: 40px;
+}
+
+.Feedbacktext {
+    margin-top: 5px;
+}
+
 
 article.widget_newsletter input[type=submit] {
 	/* Fallback Color */
