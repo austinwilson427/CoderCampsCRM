@@ -14,7 +14,7 @@
         public selState;
         public selIndustry;
         public companyLogItems;
-     
+        public filterIsDisplayed;
 
         constructor(private $uibModal: angular.ui.bootstrap.IModalService,
             private companiesService: MyApp.Services.CompaniesService,
@@ -27,9 +27,18 @@
            // this.companies = this.companiesService.getCompanies();
             this.contactView = contactService.getAllContacts();
             this.getAllItems();
-           
+            this.filterIsDisplayed = false;
           
         }
+
+        public hideFilterResponsive() {
+            this.filterIsDisplayed = false;
+        }
+
+        public showFilterResponsive() {
+            this.filterIsDisplayed = true;
+        }
+
         public getAllItems() {
 
             this.companiesService.getCompanies().$promise.then((result) => {
