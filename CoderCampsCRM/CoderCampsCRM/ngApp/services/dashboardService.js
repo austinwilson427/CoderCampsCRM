@@ -35,3 +35,4 @@ var MyApp;
         angular.module("MyApp").service("dashboardService", DashboardService);
     })(Services = MyApp.Services || (MyApp.Services = {}));
 })(MyApp || (MyApp = {}));
+//# sourceMappingURL=dashboardService.js.map
