@@ -503,7 +503,7 @@ ul.list-bar {
     border: 1px solid #e6e6e6;
     height: 24px;
     width: 96%;
-    -webkit-justify-content: space-around;
+    /*-webkit-justify-content: space-around;*/
     -ms-flex-pack: distribute;
     justify-content: space-around;
     padding-left: 0;
@@ -951,7 +951,7 @@ article.widget_social ul li a {
 	margin: 0 10px 0 0 ;
 }
 .widget_social {
-    -webkit-text-decoration-color: white;
+    /*-webkit-text-decoration-color: white;*/
     text-decoration-color: white;
 }
 

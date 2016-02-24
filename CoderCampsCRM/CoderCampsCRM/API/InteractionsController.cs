@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace CoderCampsCRM.API
 {
+    [Authorize]
     public class InteractionsController : ApiController
     {
         IGenericRepository _repo;

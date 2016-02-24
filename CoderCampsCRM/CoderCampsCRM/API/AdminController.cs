@@ -19,6 +19,7 @@ namespace CoderCampsCRM.API
             _repo = repo;
         }
 
+        [Authorize]
         public IHttpActionResult GetApplicationUsers()
         {
             var applicationUsers = _repo.Query<ApplicationUser>().ToList();

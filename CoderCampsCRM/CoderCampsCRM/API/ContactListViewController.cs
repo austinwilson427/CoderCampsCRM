@@ -19,6 +19,7 @@ namespace CoderCampsCRM.API
             _repo = repo;
         }
 
+        [Authorize]
         public IHttpActionResult GetContactListViewModel()
         {
             var userId = this.User.Identity.GetUserId();

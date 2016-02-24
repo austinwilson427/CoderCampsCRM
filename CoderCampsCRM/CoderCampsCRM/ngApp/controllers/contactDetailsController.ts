@@ -89,7 +89,10 @@
 
         public getViewDetails() {
             this.contact.id = this.contactView.contact.id;
-            this.contact.companyId = this.contactView.contact.companyId;
+            if (this.contact.companyId != null) {
+                this.contact.companyId = this.companyChoice;
+            }
+            this.contact.companyId = this.companyChoice;
             this.contact.lastInteraction = $("#lastInteraction").text();
             this.contact.name = $("#name").text();
             this.contact.email = $("#email").text();
@@ -114,6 +117,7 @@
         }
 
         public chooseCompany() {
+            debugger;
             this.getViewDetails();
             return this.contactService.editContact(this.contact).then(this.$state.reload());            
         }

@@ -17,6 +17,7 @@ using System.Web.Http;
 
 namespace CoderCampsCRM.API
 {
+    [Authorize]
     public class ContactListController : ApiController
     {
 
