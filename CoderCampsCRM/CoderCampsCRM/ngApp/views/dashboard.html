@@ -41,15 +41,15 @@
             <div class="row progress-wrap">
                 <h2>Deal Forecast</h2>
                 <div class="row quota_detail_wrap">
-                    <div class="col-md-4 col-md-offset-2">
+                    <div class="col-md-4 col-md-offset-2 weighted-wrap">
                         <h4>Weighted Total:</h4>
                         <span class="quota_count">{{vm.weightedTotal | currency}}</span>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 quota-wrap">
                         <h4>Monthly Quota:</h4>
                         <span class="quota_count">{{vm.monthlyQuota | currency}}</span>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2 set-quota-wrap">
                         <button ng-click="vm.showQuotaModal()" class="quota_btn">Set Quota</button>
                     </div>
                 </div>
@@ -71,10 +71,11 @@
                 <!--Content Here-->
             </div>
         </div>
+
         <div class="col-md-3 dashboard-activity-wrap">
             <h4>Recent Activity</h4>
             <table class="table table-condensed">
-                <tr ng-repeat="activity in vm.allActivity | orderBy: '-createdOn' track by $index">
+                <tr ng-repeat="activity in vm.allActivity | filter: {createdOn: ''} | orderBy: '-createdOn' track by $index">
                     <td ng-if="activity.category == 'contact' && $index < 10">
                         You added <a ui-sref="contactDetails({id: activity.id})">{{activity.name}}</a>  to your contacts<br />
                         <span class="date_time">{{activity.createdOn | date: 'short'}}</span>

@@ -31,8 +31,10 @@
         public pagesArray;
         public currentOrder;
         public showDeals;
+        public filterIsDisplayed;
 
         constructor(private dealService: MyApp.Services.DealService, private $uibModal: ng.ui.bootstrap.IModalService, private $location: ng.ILocationService, private $route: ng.route.IRouteService, private companiesService: MyApp.Services.CompaniesService) {
+            this.filterIsDisplayed = false;
             this.searchPhrase = "";
             this.currentOrder = "name";
             this.currentPage = 1;
@@ -44,6 +46,14 @@
             this.sortName = 'dealName';
 
             this.filterBySelection();
+        }
+
+        public hideFilterResponsive() {
+            this.filterIsDisplayed = false;
+        }
+
+        public showFilterResponsive() {
+            this.filterIsDisplayed = true;
         }
 
         public filterBySelection() {
