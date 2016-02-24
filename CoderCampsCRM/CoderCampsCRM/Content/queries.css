@@ -123,7 +123,7 @@
 
     .task-progress-wrap {
         padding: 20px 0 80px 0;
-}
+    }
 
     .dashboard-wrap {
         padding: 10px;
@@ -398,8 +398,8 @@
     }
 
     #menu-toggle {
-       margin-bottom: 16px;
-   }
+        margin-bottom: 16px;
+    }
 
     #searchBar {
         width: 80%;
@@ -427,7 +427,7 @@
         float: none !important;
         width: 32px;
         margin: auto !important;
-}
+    }
 
     .dashboard-wrap {
         padding: 20px;
@@ -471,15 +471,9 @@
     }
 }
 
-    #searchBar {
-        width: 80%;
-        margin: auto;
-    }
-}
-
 /* All phones and tablets smaller than ipad: from 481px to 767px */
 @media only screen and (max-width: 767px) {
-    
+
     .contact_left_wrap {
         display: block;
         width: 100%;
@@ -566,13 +560,13 @@
         display: inline-block;
         width: 100px;
     }
-    
+
     .total-display {
         display: inline-block;
         margin-left: 20px;
         position: relative;
         bottom: 20px;
-}
+    }
 
     .icon-wrap {
         font-size: 17px;
