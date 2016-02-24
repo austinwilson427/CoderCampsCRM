@@ -4,12 +4,12 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-3 col-md-offset-1">
+    <div class="col-md-3 col-md-offset-1 contact_left_wrap">
         <img src="{{vm.contactView.contact.imageUrl}}" ng-show="vm.contactView.contact.imageUrl" class="contactImage img-responsive" />
         <img class="contactImage img-responsive" ng-show="!vm.contactView.contact.imageUrl" src="https://lh3.googleusercontent.com/-hMc92L1bTw4/AAAAAAAAAAI/AAAAAAAAAAA/q7C3_uBZp2w/photo.jpg">
         <div class="row">
             <div class="col-md-12">
-                <table class="table deals_table table-hover table-bordered table-responsive">
+                <table class="table deals_table contacts_table table-hover table-bordered table-responsive">
                     <tr>
                         <td>Name</td>
                         <td class="tableDetailRow tdEdit" id="name" ng-blur="vm.confirmEdit()">{{vm.contactView.contact.name}}</td>
@@ -86,7 +86,7 @@
                         <option ng-repeat="company in vm.contactView.companies" value="{{company.id}}">{{company.companyName}}</option>
                     </select>
                 </div>
-                <table class="table deals_table table-hover table-bordered table-responsive" ng-hide="!vm.contactView.company">
+                <table class="table deals_table contacts_table table-hover table-bordered table-responsive" ng-hide="vm.contactView.company">
                     <tr>
                         <td>Name</td>
                         <td class="tableDetailRow">{{vm.contactView.company.companyName}}</td>
@@ -145,7 +145,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h3 class="text-center">Deals</h3>
-                <table class="table table-hover deals_table table-responsive table-bordered table_wrap">
+                <table class="table table-hover deals_table contacts_table table-responsive table-bordered table_wrap">
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -169,7 +169,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h3 class="text-center">Tasks</h3>
-                <table class="table table-hover deals_table table-responsive table-bordered table_wrap">
+                <table class="table table-hover deals_table contacts_table table-responsive table-bordered table_wrap">
                     <thead>
                         <tr>
                             <th>Type</th>
@@ -191,7 +191,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-7">
+    <div class="col-md-7 contact_right_wrap">
         <div class="col-md-5 col-md-offset-3 btn-group" id="contactBtnGroup" role="group" aria-label="...">
             <a ui-sref="contactDetails.interaction" class="btn btn-default">New interaction</a>
             <a ui-sref="contactDetails.note" class="btn btn-default">Contact Notes</a>
@@ -203,7 +203,7 @@
         </div>
         <div class="row">
             <div class="col-md-11 col-md-offset-1">
-                <table class="table table-hover table-bordered table-responsive deals_table" id="interactionTable">
+                <table class="table table-hover table-bordered table-responsive deals_table contacts_table" id="interactionTable">
                     <thead>
                         <tr>
                             <th>Subject</th>
