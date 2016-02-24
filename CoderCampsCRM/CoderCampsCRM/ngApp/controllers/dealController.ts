@@ -829,8 +829,8 @@
             this.dealLogItemService.deleteDealLogItem(finalDeal.id).then((result) => {
                 this.dealService.deleteDeal(finalDeal.id).then(() => {
                     this.closeModal();
-                    this.$location.path('/deals');
-                    this.$route.reload();
+                    this.$location.path('/deals/list-view');
+                    location.reload(false);
                 }).catch((error) => {
                     let validationErrors = [];
                     for (let i in error.data.modelState) {
@@ -846,6 +846,7 @@
 
         public closeModal() {
             this.$uibModalInstance.close();
+            
         }
     }
 
