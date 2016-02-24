@@ -64,11 +64,20 @@ var MyApp;
                     size: 'lg'
                 });
             };
+            //public createcompanyModal2() {
+            //    this.$uibModal.open({
+            //        templateUrl: "/ngApp/views/modals/createcompanyModal_2.html",
+            //        controller: EditCompanyController,
+            //        controllerAs: 'vm',
+            //        size: 'lg'
+            //    });
+            //}
             CompaniesController.prototype.save = function () {
                 var _this = this;
                 this.companiesService.createCompany(this.company).then(function () {
                     _this.company = _this.companiesService.getCompanies();
                     _this.$location.path("/companies");
+                    location.reload(false);
                 });
             };
             CompaniesController.prototype.deleteCompany = function (id) {

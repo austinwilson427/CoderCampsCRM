@@ -39,8 +39,8 @@
                             <button class="btn btn-primary" ng-click="vm.createcompanyModal()">+ Add Company</button>
                         </div>
                     </div>
-                    <div class="table_wrap">
-                        <table class="table table-hover table-bordered deals_table">
+                    <div class="example-animate-container">
+                        <table class="table table-hover table-bordered ">
                            
                                 <tr>
 
@@ -51,7 +51,7 @@
                                     <th class="hover_blue">Edit</th>
 
                                 </tr>
-                            <tbody ng-animate="'animate'" ng-repeat="company in vm.companies | filter: search">
+                            <tbody class="animate-repeat" ng-animate="'animate'" ng-repeat="company in vm.companies | filter: search">
                                 <tr>
                                     <!--<td><input type="checkbox" ng-model="value.key" ng-click="vm.storeDeal(value)" /> <a ng-show="value.isArchived" href="#" ng-click="vm.unarchiveItem(value)"><span class="glyphicon glyphicon-plus"></span></a></td>-->
                                     <td><a ui-sref="company-info({id: company.id})">{{company.companyName}}</a></td>
