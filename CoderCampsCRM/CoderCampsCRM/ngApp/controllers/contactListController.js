@@ -15,8 +15,15 @@ var MyApp;
                 this.currentPage = 1;
                 this.maxSize = 10;
                 this.itemsPerPage = 10;
+                this.filterIsDisplayed = false;
                 this.showAllContacts();
             }
+            ContactListController.prototype.hideFilterResponsive = function () {
+                this.filterIsDisplayed = false;
+            };
+            ContactListController.prototype.showFilterResponsive = function () {
+                this.filterIsDisplayed = true;
+            };
             ContactListController.prototype.updateSearchList = function () {
                 this.currentPage = 1;
                 this.itemsPerPage += this.currentPage + 5;

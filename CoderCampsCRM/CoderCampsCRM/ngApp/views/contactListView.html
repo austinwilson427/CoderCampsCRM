@@ -1,5 +1,5 @@
 ﻿<div id="wrapper" class="details_wrap toggled">
-    <div id="sidebar-wrapper">
+    <div id="sidebar-wrapper" ng-class="{displayedFilterHide: vm.filterIsDisplayed}">
         <label class="text-center">Filter by Company</label>
         <select class="form-control filterSideBarContent" ng-change="vm.filterContacts()" ng-model="vm.companyFilter">
             <option ng-repeat="company in vm.contactsView.companies" value="{{company.id}}">{{company.companyName}}</option>
@@ -16,6 +16,10 @@
     </div>
     <div class="row" id="page-content-wrapper">
         <div class="col-md-12">
+            <div class="row toggle-responsive-filter">
+                <a ng-show="vm.filterIsDisplayed" href="#" class="btn btn-danger" ng-click="vm.hideFilterResponsive()">Show Filter</a>
+                <a ng-show="!vm.filterIsDisplayed" href="#" class="btn btn-danger" ng-click="vm.showFilterResponsive()">Hide Filter</a>
+            </div>
             <div class="row details_wrap">
                 <div class="col-md-2 col-md-offset-1">
                     <btn id="menu-toggle" class="btn btn-primary">Filter</btn>

@@ -10,7 +10,7 @@
         width: 100%;
         margin-top: 200px;
     }
-      
+
     .heading-wrap h2, .heading-wrap h3 {
         font-weight: 100;
     }
@@ -66,45 +66,125 @@
         width: 50%;
     }
 
-    #contactBtnGroup{
+    #contactBtnGroup {
         width: 400px;
-}
+    }
 
-    .contact_left_wrap{
+    .contact_left_wrap {
         margin-left: 10px;
         width: 40%;
         display: inline-block;
+    }
+
+    .companies-search-wrap {
+        margin-bottom: 20px;
+    }
+
+    #bannertaskstop {
+        margin: 0;
+        background-size: cover;
+        width: 100%;
+    }
+
+    .wrap_table_wrap {
+        padding: 0 0 20px 0 !important;
+        overflow-y: hidden;
+    }
+
+    table.mine {
+        width: 1040px;
+    }
+
+    .not-started-wrap, .in-progress-wrap, .completed-wrap {
+        width: 80%;
+        margin: auto;
+        float: none;
+    }
+
+    .task-progress-wrap h3 {
+        text-align: center;
+    }
+
+    table.tasktable {
+        margin: auto;
+    }
+
+    #sidebar-wrapper {
+        min-height: 300px;
+    }
+
+    .task-content-wrap {
+        padding: 0 !important;
+    }
+
+    .container-fluid {
+        padding: 0 !important;
+    }
+
+    .task-progress-wrap {
+        padding: 20px 0 80px 0;
+}
+
+    .dashboard-wrap {
+        padding: 10px;
+    }
+
+    .icon-wrap {
+        font-size: 17px;
+    }
+
+    .dashboard-activity-wrap {
+        padding-left: 10px;
+    }
+
+        .dashboard-activity-wrap table td {
+            font-size: 14px;
+        }
+
+    .weighted-wrap {
+        margin-left: 5%;
+        width: 30%;
+    }
+
+    .quota-wrap {
+        width: 30%;
+    }
+
+    .set-quota-wrap {
+        width: 35%;
+    }
+
+    .dashboard-wrap a:hover, .dashboard-wrap a:active {
+        color: #a10001;
+        text-decoration: none;
     }
 }
 
 /* Small Tablet to Big Tablet: 768px to 1023px */
 @media only screen and (max-width: 1023px) {
 
-    .contact_right_wrap{
+    .contact_right_wrap {
         width: 55%;
         display: inline-block;
         float: right;
     }
 
-    .contacts_table{
+    .contacts_table {
         width: 100% !important;
     }
 
-    #contactBtnGroup, #contactUiRouteWrap{
+    #contactBtnGroup, #contactUiRouteWrap {
         margin-left: 0;
         margin-right: 0;
         width: 100%;
     }
+
     input.form-control {
         max-width: 100%;
     }
 
     button.btn {
         margin-bottom: 16px;
-    }
-
-    .home_button_wrap {
-        margin-top: 250px;
     }
 
     .heading-wrap h2 {
@@ -154,19 +234,6 @@
         display: none;
     }
 
-    input.form-control {
-        max-width: 100%;
-    }
-
-    button.btn {
-        margin-bottom: 16px;
-    }
-
-    .home_button_wrap {
-        width: 100%;
-        margin-top: 200px;
-    }
-
     .fullWrapper-wrap {
         overflow-y: hidden;
     }
@@ -189,18 +256,31 @@
         text-align: center;
     }
 
+    #wrapper {
+        padding-left: 0 !important;
+    }
+
+    .toggle-responsive-filter {
+        display: inline-block;
+    }
+
+    .displayedFilterHide {
+        display: none;
+    }
+
     .min_amount, .max_amount {
         padding: 0;
     }
 
-    #sidebar-wrapper select.date-filter, #sidebar-wrapper select.stage-filter, #sidebar-wrapper input.amount_input {
+    #sidebar-wrapper select.date-filter, #sidebar-wrapper select.stage-filter, #sidebar-wrapper input.amount_input, #sidebar-wrapper select.country-filter, #sidebar-wrapper select.city-filter, #sidebar-wrapper select.state-filter, #sidebar-wrapper select.industry-filter {
         max-width: 100%;
         width: 60%;
         margin: auto;
     }
 
     .row {
-        margin: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
     }
 
     #page-content-wrapper {
@@ -304,10 +384,6 @@
         overflow-y: hidden;
     }
 
-    .contacts_table {
-        width: 1040px;
-    }
-
     .angular-google-map-container {
         width: 500px;
         height: 300px;
@@ -317,17 +393,81 @@
         width: 300px;
     }
 
-    .navbar-nav{
+    .navbar-nav {
         font-size: 12px;
     }
 
-   #menu-toggle{
+    #menu-toggle {
        margin-bottom: 16px;
    }
 
     #searchBar {
         width: 80%;
         margin: auto;
+    }
+
+    .wrap_table_wrap {
+        overflow-y: hidden;
+    }
+
+    .sidebar-nav {
+        margin: auto;
+        position: relative;
+    }
+
+        .sidebar-nav li {
+            text-indent: 0;
+        }
+
+    #bannertaskstop {
+        padding-bottom: 20px;
+    }
+
+    .search-form .form-group {
+        float: none !important;
+        width: 32px;
+        margin: auto !important;
+}
+
+    .dashboard-wrap {
+        padding: 20px;
+    }
+
+    .icon-wrap {
+        font-size: 17px;
+        width: 24%;
+        display: inline-block;
+    }
+
+    .all-icons-wrap {
+        padding-bottom: 40px;
+    }
+
+    .dashboard-activity-wrap {
+        width: 96%;
+        margin: auto;
+    }
+
+        .dashboard-activity-wrap table td {
+            font-size: 18px;
+        }
+
+    .weight-wrap h4, .quote-wrap h4 {
+        font-size: 16px;
+    }
+
+    span.quota_count {
+        font-size: 16px;
+    }
+
+    .weighted-wrap, .quota-wrap {
+        margin-left: 0;
+        width: 40%;
+        display: inline-block;
+    }
+
+    .set-quota-wrap {
+        display: inline-block;
     }
 }
 
@@ -339,19 +479,19 @@
 
 /* All phones and tablets smaller than ipad: from 481px to 767px */
 @media only screen and (max-width: 767px) {
-
-    .contact_left_wrap{
+    
+    .contact_left_wrap {
         display: block;
         width: 100%;
     }
 
-    .contact_right_wrap{
+    .contact_right_wrap {
         display: block;
         float: none;
         width: 100%;
     }
 
-    .angular-google-map-container{
+    .angular-google-map-container {
         width: 400px !important;
         height: 300px !important;
     }
@@ -365,7 +505,7 @@
     }
 
     .heading-wrap h3 {
-        font-size: 20px;
+        font-size: 19px;
     }
 
     .home_button_wrap {
@@ -422,20 +562,73 @@
         margin-bottom: 50px;
     }
 
+    .dashboard-icon {
+        display: inline-block;
+        width: 100px;
+    }
     
+    .total-display {
+        display: inline-block;
+        margin-left: 20px;
+        position: relative;
+        bottom: 20px;
+}
+
+    .icon-wrap {
+        font-size: 17px;
+        width: 100%;
+        display: block;
+        border-right: none;
+        text-align: left;
+        margin-left: 20px;
+    }
+
+    .weighted-wrap, .quota-wrap {
+        margin-left: 0;
+        margin-top: 30px;
+        width: 100%;
+        display: block;
+    }
+
+    .set-quota-wrap {
+        display: block;
+        width: 100%;
+    }
+
+    .dashboard-activity-wrap table td {
+        font-size: 15px;
+    }
 }
 
 /* Small phones from 0 to 480px */
 @media only screen and (max-width: 480px) {
 
-    #filterBtn{
+    #filterBtn {
         width: 200px;
     }
 
-    .angular-google-map{
+    section#jumbotron {
+        padding: 5px !important;
+    }
+
+    .heading-wrap h1 {
+        font-size: 30px;
+    }
+
+    .heading-wrap h2 {
+        font-size: 19px;
+        margin-bottom: 30px;
+    }
+
+    .heading-wrap h3 {
+        margin-top: 0;
+    }
+
+    .angular-google-map {
         overflow-y: hidden;
     }
-     .angular-google-map-container{
+
+    .angular-google-map-container {
         width: 500px !important;
         height: 300px !important;
     }
@@ -569,5 +762,63 @@
     .task_content, .activity_content_wrap, .note_content_wrap {
         padding-left: 5px;
         padding-right: 5px;
+    }
+
+    .not-started-wrap, .in-progress-wrap, .completed-wrap {
+        width: 100%;
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+
+    .task-progress-wrap h3 {
+        font-size: 20px;
+    }
+
+    .panel-title {
+        font-size: 12px;
+    }
+
+    .tasktable {
+        width: 100%;
+    }
+
+    .dashboard-wrap{
+        padding: 5px;
+    }
+
+    .icon-wrap{
+        margin-left: 5px;
+    }
+
+    .dashboard-icon {
+        display: inline-block;
+        font-size: 40px;
+        width: 40px;
+    }
+
+    .total-display{
+        margin-left: 10px;
+        bottom: 14px;
+    }
+    .all-icons-wrap, .progress-wrap, .productivity-wrap{
+        padding: 10px;
+    }
+
+    .dashboard-activity-wrap{
+        margin-top: 40px;
+        padding: 5px;
+    }
+    .all-icons-wrap h2, .progress-wrap h2, .productivity-wrap h2 {
+        text-align: center;
+        margin-left: 0;
+        padding-left: 0;
+    }
+
+    .dashboard-activity-wrap table td {
+        font-size: 12px;
+    }
+
+    span.date_time {
+        font-size: 10px;
     }
 }
