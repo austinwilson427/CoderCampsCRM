@@ -23,6 +23,7 @@
             private contactService: MyApp.Services.ContactService,
             private $location: angular.ILocationService,
             private $state: ng.ui.IStateService,
+            
             $stateParams: ng.ui.IStateParamsService) {
            // this.companies = this.companiesService.getCompanies();
             this.contactView = contactService.getAllContacts();
@@ -83,14 +84,26 @@
                 size: 'lg'
             });
         }
+        //public createcompanyModal2() {
+        //    this.$uibModal.open({
+        //        templateUrl: "/ngApp/views/modals/createcompanyModal_2.html",
+        //        controller: EditCompanyController,
+        //        controllerAs: 'vm',
+        //        size: 'lg'
+        //    });
+        //}
 
+
+       
         public save() {
             this.companiesService.createCompany(this.company).then(() => {
                 this.company = this.companiesService.getCompanies();
-                this.$location.path("/companies");
+               
+                this.$location.path("/companies");              
+                location.reload(false);
             });
         }
-
+        
         public deleteCompany(id) {
             this.companiesService.deleteCompany(id).then(() => {
                 this.companies = this.companiesService.getCompanies();

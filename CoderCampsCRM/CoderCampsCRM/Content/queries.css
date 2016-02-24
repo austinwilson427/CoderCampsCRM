@@ -1,11 +1,16 @@
 /*Big Tablets to 1200px (widths smaller than the 1140px row in our website)*/
 @media only screen and (max-width: 1200px) {
 
+    section.jumbotron {
+        background-attachment: scroll;
+        min-height: 100vh;
+    }
+
     .home_button_wrap {
         width: 100%;
         margin-top: 200px;
     }
-
+      
     .heading-wrap h2, .heading-wrap h3 {
         font-weight: 100;
     }
@@ -63,7 +68,7 @@
 
     #contactBtnGroup{
         width: 400px;
-    }
+}
 
     .contact_left_wrap{
         margin-left: 10px;
@@ -104,11 +109,6 @@
 
     .heading-wrap h2 {
         margin-bottom: 80px;
-    }
-
-    section.jumbotron {
-        background-attachment: scroll;
-        min-height: 100vh;
     }
 
     /*---------------Deals-----------------*/
@@ -331,9 +331,15 @@
     }
 }
 
+    #searchBar {
+        width: 80%;
+        margin: auto;
+    }
+}
+
 /* All phones and tablets smaller than ipad: from 481px to 767px */
 @media only screen and (max-width: 767px) {
-    
+
     .contact_left_wrap{
         display: block;
         width: 100%;
