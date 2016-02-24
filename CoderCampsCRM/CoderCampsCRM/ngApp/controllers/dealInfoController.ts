@@ -2,6 +2,7 @@
 
     export class DealInfoController {
 
+        public myCompanies;
         public routeId;
         public dealInfo;
         public company;
@@ -14,8 +15,11 @@
         public allRemainingSharers;
         public appointmentScheduled; public qualifiedToBuy; public presentationScheduled;
         public decisionMaker; public contractSent; public closedWon; public closedLost; public appointmentScheduledGlow; public qualifiedToBuyGlow; public presentationScheduledGlow; public decisionMakerGlow; public contractSentGlow; public closedWonGlow; public closedLostGlow;
+        public myContactsAll;
+        public isEditReady;
 
-        constructor(private dealService: MyApp.Services.DealService, private $stateParams: ng.ui.IStateParamsService, private dealLogItemService: MyApp.Services.DealLogItemService, private dealContactService: MyApp.Services.DealContactService, private contactService: MyApp.Services.ContactService, private $route: ng.route.IRouteService, private $location: ng.ILocationService) {
+        constructor(private dealService: MyApp.Services.DealService, private $stateParams: ng.ui.IStateParamsService, private dealLogItemService: MyApp.Services.DealLogItemService, private dealContactService: MyApp.Services.DealContactService, private contactService: MyApp.Services.ContactService, private $route: ng.route.IRouteService, private $location: ng.ILocationService, private companiesService: MyApp.Services.CompaniesService) {
+            this.isEditReady = false;
             this.routeId = $stateParams["id"];
 
             this.getDealOwned();
@@ -24,11 +28,27 @@
             this.getDealLogItemsByRouteId();
             this.getContactsByDealId();
             this.getSharersByDealId();
+            this.getMyContacts();
+            this.getMyCompanies();
+        }
+
+        public editState() {
+            this.isEditReady = true;
+        }
+
+        public saveDeal() {
+            console.log(this.dealInfo);
+            this.dealService.saveDeal(this.dealInfo).then(() => {
+                this.isEditReady = false;
+                this.getDealOwned();
+                this.getDealShared();
+            });
         }
 
         public getDealShared() {
             this.dealService.getDealsSharedByDealId(this.routeId).$promise.then((result) => {
                 this.dealInfo = result;
+                this.dealInfo.closeDate = new Date(this.dealInfo.closeDate);
                 this.company = result.company;
                 let stage = this.dealInfo.stage;
                 this.findAndSetStage(stage);
@@ -38,6 +58,7 @@
         public getDealOwned() {
             this.dealService.getDealsOwnedByDealId(this.routeId).$promise.then((result) => {
                 this.dealInfo = result;
+                this.dealInfo.closeDate = new Date(this.dealInfo.closeDate);
                 this.company = result.company;
                 let stage = this.dealInfo.stage;
                 this.findAndSetStage(stage);
@@ -191,6 +212,18 @@
                         }
                     }
                 });
+            });
+        }
+
+        public getMyContacts() {
+                this.contactService.getAllContacts().then((result) => {
+                    this.myContactsAll = result;
+                });
+        }
+
+        public getMyCompanies() {
+            this.companiesService.getCompanies().$promise.then((result) => {
+                this.myCompanies = result;
             });
         }
 
@@ -558,7 +591,8 @@
                     dueDate: this.endDateSelected,
                     description: this.taskContent,
                     status: this.statusSelected,
-                    dealId: this.dealInfo.id
+                    dealId: this.dealInfo.id,
+                    contactId: this.assignedTo
                 }
 
                 this.taskService.saveTask(formatTask).then(() => {

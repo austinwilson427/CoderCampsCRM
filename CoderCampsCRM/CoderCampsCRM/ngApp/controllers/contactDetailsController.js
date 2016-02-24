@@ -20,6 +20,7 @@ var MyApp;
                 this.interaction = {
                     date: timeNow
                 };
+                debugger;
             }
             ContactDetailsController.prototype.deleteModal = function () {
                 var _this = this;

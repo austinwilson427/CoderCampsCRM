@@ -14,7 +14,7 @@
         public selState;
         public selIndustry;
         public companyLogItems;
-     
+        public filterIsDisplayed;
 
         constructor(private $uibModal: angular.ui.bootstrap.IModalService,
             private companiesService: MyApp.Services.CompaniesService,
@@ -23,13 +23,23 @@
             private contactService: MyApp.Services.ContactService,
             private $location: angular.ILocationService,
             private $state: ng.ui.IStateService,
+            
             $stateParams: ng.ui.IStateParamsService) {
            // this.companies = this.companiesService.getCompanies();
             this.contactView = contactService.getAllContacts();
             this.getAllItems();
-           
+            this.filterIsDisplayed = false;
           
         }
+
+        public hideFilterResponsive() {
+            this.filterIsDisplayed = false;
+        }
+
+        public showFilterResponsive() {
+            this.filterIsDisplayed = true;
+        }
+
         public getAllItems() {
 
             this.companiesService.getCompanies().$promise.then((result) => {
@@ -83,14 +93,26 @@
                 size: 'lg'
             });
         }
+        //public createcompanyModal2() {
+        //    this.$uibModal.open({
+        //        templateUrl: "/ngApp/views/modals/createcompanyModal_2.html",
+        //        controller: EditCompanyController,
+        //        controllerAs: 'vm',
+        //        size: 'lg'
+        //    });
+        //}
 
+
+       
         public save() {
             this.companiesService.createCompany(this.company).then(() => {
                 this.company = this.companiesService.getCompanies();
-                this.$location.path("/companies");
+               
+                this.$location.path("/companies");              
+                location.reload(false);
             });
         }
-
+        
         public deleteCompany(id) {
             this.companiesService.deleteCompany(id).then(() => {
                 this.companies = this.companiesService.getCompanies();
@@ -238,7 +260,7 @@
             this.getAllDeals();
             this.getCompanyLogItemsByRouteId();
            // this.submitActivity()
-            this.getAllTasks();
+           // this.getAllTasks();
             
             // this.companies = this.companiesService.getCompanies();
             // this.company = companiesService.getCompany(companyId);
@@ -285,7 +307,7 @@
             this.dealService.listAllDealsOwned().$promise.then((result) => {
                 this.deals = [];
                 let deal;
-                console.log(result);
+                //console.log(result);
                 //console.log(result[1].companyId);
                 for (var i = 0; i < result.length; i++) {
                     deal = this.dealService.getDealsSharedByDealId(result[i].companyId);
@@ -296,21 +318,21 @@
                 }
                });
         }
-        public getAllTasks() {
+        //public getAllTasks() {
 
-            this.taskService.listTasks().$promise.then((result) => {
-                this.tasks = [];
-                let task;
-                //console.log(result);
-                for (var i = 0; i < result.length; i++) {
-                    task = this.taskService.getTask(result[i].company_Id);
-                    // result[i].deal = deal;
-                    if (this.routeId == result[i].company_Id) {
-                        this.tasks.push(result[i]);
-                    }
-                }
-            });
-        }
+        //    this.taskService.listTasks().$promise.then((result) => {
+        //        this.tasks = [];
+        //        let task;
+        //        //console.log(result);
+        //        for (var i = 0; i < result.length; i++) {
+        //            task = this.taskService.getTask(result[i].company_Id);
+        //            // result[i].deal = deal;
+        //            if (this.routeId == result[i].company_Id) {
+        //                this.tasks.push(result[i]);
+        //            }
+        //        }
+        //    });
+        //}
 
 
         public editCompany() {

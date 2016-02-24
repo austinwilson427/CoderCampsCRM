@@ -1,6 +1,6 @@
 ﻿<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/dark-hive/jquery-ui.css">
 <div id="wrapper" class="details_wrap toggled">
-    <div id="sidebar-wrapper">
+    <div id="sidebar-wrapper" ng-class="{displayedFilterHide: vm.filterIsDisplayed}">
         <label>Show Archived Deals</label>
         <input type="checkbox" ng-model="vm.showArchived" ng-change="vm.filterBySelection()" /><br />
         <label>Filter By Date</label>
@@ -35,6 +35,10 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
+                    <div class="row toggle-responsive-filter">
+                        <a ng-show="vm.filterIsDisplayed" href="#" class="btn btn-danger" ng-click="vm.hideFilterResponsive()">Show Filter</a>
+                        <a ng-show="!vm.filterIsDisplayed" href="#" class="btn btn-danger" ng-click="vm.showFilterResponsive()">Hide Filter</a>
+                    </div>
                     <div class="row view_search">
                         <div class="col-md-4 list-view-button-wrap">
                             <btn id="menu-toggle" class="btn btn-primary filter_button">Filter</btn>

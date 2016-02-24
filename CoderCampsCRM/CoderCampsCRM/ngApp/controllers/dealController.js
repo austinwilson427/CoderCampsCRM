@@ -821,8 +821,8 @@ var MyApp;
                 this.dealLogItemService.deleteDealLogItem(finalDeal.id).then(function (result) {
                     _this.dealService.deleteDeal(finalDeal.id).then(function () {
                         _this.closeModal();
-                        _this.$location.path('/deals');
-                        _this.$route.reload();
+                        _this.$location.path('/deals/list-view');
+                        location.reload(false);
                     }).catch(function (error) {
                         var validationErrors = [];
                         for (var i in error.data.modelState) {

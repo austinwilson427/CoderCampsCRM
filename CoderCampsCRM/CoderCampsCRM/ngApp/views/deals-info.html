@@ -65,24 +65,48 @@
                         </tr>
                         <tr>
                             <td>Amount</td>
-                            <td>{{vm.dealInfo.amount | currency}}</td>
+                            <td ng-show="!vm.isEditReady">{{vm.dealInfo.amount | currency}}</td>
+                            <td ng-show="vm.isEditReady"><input class="form-control full" type="number" ng-model="vm.dealInfo.amount" /></td>
                         </tr>
                         <tr>
                             <td>Deal Stage</td>
-                            <td>{{vm.dealInfo.stage}}</td>
+                            <td ng-show="!vm.isEditReady">{{vm.dealInfo.stage}}</td>
+                            <td ng-show="vm.isEditReady">
+                                <select class="form-control full" ng-model="vm.dealInfo.stage">
+                                    <option>Appointment Scheduled</option>
+                                    <option>Qualified to Buy</option>
+                                    <option>Presentation Scheduled</option>
+                                    <option>Decision Maker Bought In</option>
+                                    <option>Contract Sent</option>
+                                    <option>Closed Won</option>
+                                    <option>Closed Lost</option>
+                                </select>
+                            </td>
                         </tr>
                         <tr>
                             <td>Close Date</td>
-                            <td>{{vm.dealInfo.closeDate | date: 'MM/dd/yy'}}</td>
+                            <td ng-show="!vm.isEditReady">{{vm.dealInfo.closeDate | date: 'MM/dd/yy'}}</td>
+                            <td ng-show="vm.isEditReady"><input class="form-control full" type="date" ng-model="vm.dealInfo.closeDate" /></td>
                         </tr>
                         <tr>
                             <td>CRM Owner</td>
-                            <td><a href="contactDetails/{{vm.dealInfo.contact.id}}">{{vm.dealInfo.contact.name}}</a></td>
+                            <td ng-show="!vm.isEditReady"><a href="contactDetails/{{vm.dealInfo.contact.id}}">{{vm.dealInfo.contact.name}}</a></td>
+                            <td ng-show="vm.isEditReady">
+                                <select ng-model="vm.dealInfo.contactId" ng-options="contact.id as contact.name for contact in vm.myContactsAll.contacts" class="form-control full"></select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center" ng-show="!vm.isEditReady" colspan="2"><a href="#" ng-click="vm.editState()"class="btn btn-default ready_btn">Edit Deal</a></td>
+                            <td class="text-center" ng-show="vm.isEditReady" colspan="2"><a href="#" ng-click="vm.saveDeal()" class="btn btn-default ready_btn">Save Deal</a></td>
                         </tr>
                     </table>
                 </div>
             </div>
-            <div class="row">
+            <div ng-show="!vm.company"  class="company_to_add">
+                <label>Company</label>
+                <select ng-change="vm.saveDeal()" ng-model="vm.dealInfo.companyId" ng-options="company.id as company.companyName for company in vm.myCompanies" class="form-control full"></select>
+            </div>
+            <div ng-show="vm.company" class="row">
                 <div class="col-md-12 about_company_table_wrap">
                     <table class="table">
                         <tr>
@@ -135,7 +159,12 @@
                     </table>
                 </div>
             </div>
-            <div class="row">
+            <div ng-show="vm.company" class="company_to_add">
+                <label>Change Company</label>
+                <select ng-change="vm.saveDeal()" ng-model="vm.dealInfo.companyId" ng-options="company.id as company.companyName for company in vm.myCompanies" class="form-control full">
+                </select>
+            </div>
+            <div class="row contacts_list_row">
                 <div class="col-md-12 contact_table_wrap">
                     <div class="table_scroll_wrap">
                         <table class="table">
@@ -155,7 +184,7 @@
                     </div>
                     <div class="contact_to_add form-group">
                         <label class="text-center">Select Contact To Add</label>
-                        <select ng-model="vm.contactToAdd" ng-change="vm.addDealContact()" ng-options="remaining.name for remaining in vm.allContacts.contacts" class="form-control full">
+                        <select ng-model="vm.contactToAdd" ng-options="remaining.name for remaining in vm.myContactsAll.contacts" ng-change="vm.addDealContact()"  class="form-control full">
                         </select>
                     </div>
                 </div>
@@ -193,7 +222,7 @@
                         <a ui-sref="deal-info.note" class="btn btn-default">New Note</a>
                         <a ui-sref="deal-info.activity" class="btn btn-default">Log Activity</a>
                         <a ui-sref="deal-info.task" class="btn btn-default">Create Task</a>
-                        <a ui-sref="deal-info.event" class="btn btn-default">Schedule Event</a>
+                        <!--<a ui-sref="deal-info.event" class="btn btn-default">Schedule Event</a>-->
                     </div>
                 </div>
             </div>

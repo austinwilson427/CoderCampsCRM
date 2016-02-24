@@ -3,13 +3,16 @@ var MyApp;
     var Controllers;
     (function (Controllers) {
         var AccountController = (function () {
-            function AccountController(accountService, $location, $uibModal) {
+            function AccountController(accountService, $location, $uibModal, $window, $state) {
                 var _this = this;
                 this.accountService = accountService;
                 this.$location = $location;
                 this.$uibModal = $uibModal;
+                this.$window = $window;
+                this.$state = $state;
                 this.getExternalLogins().then(function (results) {
                     _this.externalLogins = results;
+                    _this.currentUserName = _this.$window.sessionStorage.getItem("firstName");
                 });
             }
             AccountController.prototype.showModal = function () {
