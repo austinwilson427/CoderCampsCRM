@@ -11,9 +11,17 @@
         public monthlyQuota;
         public quotaDetails;
         public percentComplete;
+        public countCalls;
+        public countEmails;
+        public countMeetings;
+        public countCompleted;
 
         constructor(private dashboardService: MyApp.Services.DashboardService, private $uibModal: ng.ui.bootstrap.IModalService) {
             this.monthlyQuota = 0;
+            this.countCompleted = 0;
+            this.countCalls = 0;
+            this.countEmails = 0;
+            this.countMeetings = 0;
             this.allActivity = [];
             this.getAllDetails();
         }
@@ -112,6 +120,19 @@
             this.dashboardService.listAllTasksForUser().$promise.then((result) => {
                 this.totalTasks = result.length;
                 for (var i = 0; i < result.length; i++) {
+
+                    if (result[i].type == "Phonecall") {
+                        this.countCalls++;
+                    } else if (result[i].type == "Email") {
+                        this.countEmails++;
+                    } else if (result[i].type == "Meeting") {
+                        this.countMeetings++;
+                    }
+
+                    if (result[i].status == "Completed") {
+                        this.countCompleted++;
+                    }
+
                     let contactDetails = {
                         id: null,
                         category: null,

@@ -7,6 +7,10 @@ var MyApp;
                 this.dashboardService = dashboardService;
                 this.$uibModal = $uibModal;
                 this.monthlyQuota = 0;
+                this.countCompleted = 0;
+                this.countCalls = 0;
+                this.countEmails = 0;
+                this.countMeetings = 0;
                 this.allActivity = [];
                 this.getAllDetails();
             }
@@ -103,6 +107,18 @@ var MyApp;
                 this.dashboardService.listAllTasksForUser().$promise.then(function (result) {
                     _this.totalTasks = result.length;
                     for (var i = 0; i < result.length; i++) {
+                        if (result[i].type == "Phonecall") {
+                            _this.countCalls++;
+                        }
+                        else if (result[i].type == "Email") {
+                            _this.countEmails++;
+                        }
+                        else if (result[i].type == "Meeting") {
+                            _this.countMeetings++;
+                        }
+                        if (result[i].status == "Completed") {
+                            _this.countCompleted++;
+                        }
                         var contactDetails = {
                             id: null,
                             category: null,

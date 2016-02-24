@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="row progress-wrap">
-                <h2>Deal Forecast</h2>
+                <h2 class="black">Deal Forecast</h2>
                 <div class="row quota_detail_wrap">
                     <div class="col-md-4 col-md-offset-2 weighted-wrap">
                         <h4>Weighted Total:</h4>
@@ -64,11 +64,34 @@
                     </div>
                 </div>
             </div>
-
-            <!--Matt's Task Details-->
-            <div class="row productivity-wrap">
-                <h2>Productivity</h2>
-                <!--Content Here-->
+            <div class="row">
+                <div class="col-md-12 all-icons-wrap">
+                    <h2 class="black">Productivity</h2>
+                    <div class="col-md-3 icon-wrap-two">
+                        <i class="ion-ios-telephone-outline dashboard-icon-two"></i>
+                        <div class="total-display-two">
+                            {{vm.countCalls}} calls made
+                        </div>
+                    </div>
+                    <div class="col-md-3 icon-wrap-two">
+                        <i class="ion-ios-email-outline dashboard-icon-two"></i>
+                        <div class="total-display-two">
+                            {{vm.countEmails}} emails sent
+                        </div>
+                    </div>
+                    <div class="col-md-3 icon-wrap-two">
+                        <i class="ion-ios-calendar-outline dashboard-icon-two"></i>
+                        <div class="total-display-two">
+                            {{vm.countMeetings}} meetings scheduled
+                        </div>
+                    </div>
+                    <div class="col-md-3 icon-wrap-two">
+                        <i class="ion-android-time dashboard-icon-two"></i>
+                        <div class="total-display-two">
+                            {{vm.countCompleted}} tasks completed
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
