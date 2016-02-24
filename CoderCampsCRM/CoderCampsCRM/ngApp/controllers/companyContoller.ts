@@ -260,7 +260,7 @@
             this.getAllDeals();
             this.getCompanyLogItemsByRouteId();
            // this.submitActivity()
-            this.getAllTasks();
+           // this.getAllTasks();
             
             // this.companies = this.companiesService.getCompanies();
             // this.company = companiesService.getCompany(companyId);
@@ -304,10 +304,10 @@
 
         public getAllDeals() {
 
-            this.dealService.listAllDealsShared().$promise.then((result) => {
+            this.dealService.listAllDealsOwned().$promise.then((result) => {
                 this.deals = [];
                 let deal;
-                console.log(result);
+                //console.log(result);
                 //console.log(result[1].companyId);
                 for (var i = 0; i < result.length; i++) {
                     deal = this.dealService.getDealsSharedByDealId(result[i].companyId);
@@ -318,21 +318,21 @@
                 }
                });
         }
-        public getAllTasks() {
+        //public getAllTasks() {
 
-            this.taskService.listTasks().$promise.then((result) => {
-                this.tasks = [];
-                let task;
-                //console.log(result);
-                for (var i = 0; i < result.length; i++) {
-                    task = this.taskService.getTask(result[i].company_Id);
-                    // result[i].deal = deal;
-                    if (this.routeId == result[i].company_Id) {
-                        this.tasks.push(result[i]);
-                    }
-                }
-            });
-        }
+        //    this.taskService.listTasks().$promise.then((result) => {
+        //        this.tasks = [];
+        //        let task;
+        //        //console.log(result);
+        //        for (var i = 0; i < result.length; i++) {
+        //            task = this.taskService.getTask(result[i].company_Id);
+        //            // result[i].deal = deal;
+        //            if (this.routeId == result[i].company_Id) {
+        //                this.tasks.push(result[i]);
+        //            }
+        //        }
+        //    });
+        //}
 
 
         public editCompany() {
