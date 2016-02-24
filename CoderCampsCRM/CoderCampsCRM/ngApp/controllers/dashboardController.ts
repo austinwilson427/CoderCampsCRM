@@ -158,7 +158,8 @@
                 controller: QuotaModal,
                 controllerAs: 'vm',
                 resolve: {
-                    quotaDetails: () => this.quotaDetails
+                    quotaDetails: () => this.quotaDetails,
+                    monthlyQuota: () => this.monthlyQuota
                 },
                 size: "deal"
             });
@@ -169,8 +170,8 @@
 
         public quotaSet;
 
-        constructor(public quotaDetails, private $uibModalInstance: ng.ui.bootstrap.IModalServiceInstance, private dashboardService: MyApp.Services.DashboardService) {
-
+        constructor(public quotaDetails, public monthlyQuota, private $uibModalInstance: ng.ui.bootstrap.IModalServiceInstance, private dashboardService: MyApp.Services.DashboardService) {
+            this.quotaSet = monthlyQuota;
         }
 
         public closeModal() {

@@ -3,7 +3,7 @@ var MyApp;
     var Controllers;
     (function (Controllers) {
         var DealInfoController = (function () {
-            function DealInfoController(dealService, $stateParams, dealLogItemService, dealContactService, contactService, $route, $location) {
+            function DealInfoController(dealService, $stateParams, dealLogItemService, dealContactService, contactService, $route, $location, companiesService) {
                 this.dealService = dealService;
                 this.$stateParams = $stateParams;
                 this.dealLogItemService = dealLogItemService;
@@ -11,17 +11,34 @@ var MyApp;
                 this.contactService = contactService;
                 this.$route = $route;
                 this.$location = $location;
+                this.companiesService = companiesService;
+                this.isEditReady = false;
                 this.routeId = $stateParams["id"];
                 this.getDealOwned();
                 this.getDealShared();
                 this.getDealLogItemsByRouteId();
                 this.getContactsByDealId();
                 this.getSharersByDealId();
+                this.getMyContacts();
+                this.getMyCompanies();
             }
+            DealInfoController.prototype.editState = function () {
+                this.isEditReady = true;
+            };
+            DealInfoController.prototype.saveDeal = function () {
+                var _this = this;
+                console.log(this.dealInfo);
+                this.dealService.saveDeal(this.dealInfo).then(function () {
+                    _this.isEditReady = false;
+                    _this.getDealOwned();
+                    _this.getDealShared();
+                });
+            };
             DealInfoController.prototype.getDealShared = function () {
                 var _this = this;
                 this.dealService.getDealsSharedByDealId(this.routeId).$promise.then(function (result) {
                     _this.dealInfo = result;
+                    _this.dealInfo.closeDate = new Date(_this.dealInfo.closeDate);
                     _this.company = result.company;
                     var stage = _this.dealInfo.stage;
                     _this.findAndSetStage(stage);
@@ -31,6 +48,7 @@ var MyApp;
                 var _this = this;
                 this.dealService.getDealsOwnedByDealId(this.routeId).$promise.then(function (result) {
                     _this.dealInfo = result;
+                    _this.dealInfo.closeDate = new Date(_this.dealInfo.closeDate);
                     _this.company = result.company;
                     var stage = _this.dealInfo.stage;
                     _this.findAndSetStage(stage);
@@ -187,6 +205,18 @@ var MyApp;
                             }
                         }
                     });
+                });
+            };
+            DealInfoController.prototype.getMyContacts = function () {
+                var _this = this;
+                this.contactService.getAllContacts().then(function (result) {
+                    _this.myContactsAll = result;
+                });
+            };
+            DealInfoController.prototype.getMyCompanies = function () {
+                var _this = this;
+                this.companiesService.getCompanies().$promise.then(function (result) {
+                    _this.myCompanies = result;
                 });
             };
             DealInfoController.prototype.addDealContact = function (remaining) {
@@ -525,7 +555,8 @@ var MyApp;
                         dueDate: _this.endDateSelected,
                         description: _this.taskContent,
                         status: _this.statusSelected,
-                        dealId: _this.dealInfo.id
+                        dealId: _this.dealInfo.id,
+                        contactId: _this.assignedTo
                     };
                     _this.taskService.saveTask(formatTask).then(function () {
                         location.reload(false);

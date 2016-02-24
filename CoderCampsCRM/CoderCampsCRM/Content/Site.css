@@ -443,7 +443,7 @@ table.activity {
     margin: 40px auto;
 }
 
-.contact_to_add {
+.contact_to_add, .company_to_add {
     width: 60%;
     margin: 10px auto 80px;
     text-align: center;
@@ -574,6 +574,14 @@ ul.list-bar {
 
 .deals-info-wrap {
     width: 100%;
+}
+
+.ready_btn{
+    width: 150px;
+}
+
+.contacts_list_row{
+    margin-top: 40px;
 }
 /*-------------------Contacts Section--------------------------*/
 
