@@ -1417,6 +1417,7 @@
     <TypeScriptCompile Include="ngApp\services\dealContactService.ts" />
     <TypeScriptCompile Include="ngApp\services\dealLogItemService.ts" />
     <TypeScriptCompile Include="ngApp\services\dealService.ts" />
+    <TypeScriptCompile Include="ngApp\services\profileService.ts" />
     <TypeScriptCompile Include="ngApp\services\services.ts" />
     <TypeScriptCompile Include="ngApp\services\taskService.ts" />
     <TypeScriptCompile Include="Scripts\typings\angular-ui-bootstrap\angular-ui-bootstrap.d.ts" />

@@ -37,6 +37,7 @@ namespace CoderCampsCRM.API
                 user.LastName = userToSave.LastName;
                 user.Email = userToSave.Email;
                 user.IsActive = userToSave.IsActive;
+                user.PicUrl = userToSave.PicUrl;
                 _repo.SaveChanges();
                 return Ok();
 

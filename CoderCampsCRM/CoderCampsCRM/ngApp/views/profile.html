@@ -1,13 +1,66 @@
-﻿{{vm.profile}}
+﻿<div class="row">
+    <div class="col-md-12">
+        <h1 class="page-header text-center">My Profile</h1>
+    </div>
+</div>
+<div class="row">
+    <div id="profileWrap" class="col-md-3 col-md-offset-5">
+        <div class="row">
+            <div class="col-md-8 form-group">
+                <img src="{{vm.profile.picUrl}}" ng-show="vm.profile.picUrl" class="contactImage center-block" />
+                <img src="https://lh3.googleusercontent.com/-hMc92L1bTw4/AAAAAAAAAAI/AAAAAAAAAAA/q7C3_uBZp2w/photo.jpg" class="contactImage form-control" ng-show="!vm.profile.picUrl" />
+                <button class="btn btn-primary center-block" ng-click="vm.pickFile()">Change Avatar</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <label>First Name</label>
+                <input type="text" class="form-control" ng-model="vm.profile.firstName" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <label>Last Name</label>
+                <input type="text" class="form-control" ng-model="vm.profile.lastName" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <label>Email</label>
+                <input type="text" class="form-control" ng-model="vm.profile.email" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <label>Company</label>
+                <input type="text" class="form-control" ng-model="vm.profile.company" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <label>Time Zone</label>
+                <div class="ui-select">
+                    <select ng-model="vm.profile.timeZone" id="user_time_zone" class="form-control">
+                        <option value="Hawaii">(GMT-10:00) Hawaii</option>
+                        <option value="Alaska">(GMT-09:00) Alaska</option>
+                        <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
+                        <option value="Arizona">(GMT-07:00) Arizona</option>
+                        <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
+                        <option value="Central Time (US &amp; Canada)" selected="selected">(GMT-06:00) Central Time (US &amp; Canada)</option>
+                        <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
+                        <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <button class="btn btn-success" ng-click="vm.editProfile()">Save</button>
+                <a class="btn btn-danger" ng-click="vm.deleteProfile()">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
 
-<label>First Name</label>
-<input type="text" ng-model="vm.profile.firstName" />
 
-<label>Last Name</label>
-<input type="text" ng-model="vm.profile.lastName" />
 
-<label>Email</label>
-<input type="text" ng-model="vm.profile.email" />
-
-<button class="btn btn-success" ng-click="vm.editProfile()">Save</button>
-<a class="btn btn-danger" ng-click="vm.deleteProfile()">Delete</a>

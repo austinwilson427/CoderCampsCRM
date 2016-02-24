@@ -101,7 +101,6 @@ var MyApp;
                 return this.contactService.editContact(this.contact);
             };
             ContactDetailsController.prototype.chooseCompany = function () {
-                debugger;
                 this.getViewDetails();
                 return this.contactService.editContact(this.contact).then(this.$state.reload());
             };

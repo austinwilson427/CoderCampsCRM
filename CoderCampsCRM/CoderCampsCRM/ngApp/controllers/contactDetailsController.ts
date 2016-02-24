@@ -117,7 +117,6 @@
         }
 
         public chooseCompany() {
-            debugger;
             this.getViewDetails();
             return this.contactService.editContact(this.contact).then(this.$state.reload());            
         }

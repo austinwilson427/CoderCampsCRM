@@ -700,6 +700,10 @@ ul.pagination, ul.pagination li a {
     height: 100px;
 }
 
+#profileWrap {
+    margin-top: 20px;
+}
+
 /*SEARCHBAR CSS*/
 .search-form .form-group {
     float: right !important;
