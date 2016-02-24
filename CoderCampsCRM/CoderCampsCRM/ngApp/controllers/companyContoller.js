@@ -221,7 +221,7 @@ var MyApp;
             };
             CompanyDetailsController.prototype.getAllDeals = function () {
                 var _this = this;
-                this.dealService.listAllDealsOwned().$promise.then(function (result) {
+                this.dealService.listAllDealsShared().$promise.then(function (result) {
                     _this.deals = [];
                     var deal;
                     console.log(result);
@@ -322,3 +322,4 @@ var MyApp;
         Controllers.EditCompanyController = EditCompanyController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
+//# sourceMappingURL=companyContoller.js.map

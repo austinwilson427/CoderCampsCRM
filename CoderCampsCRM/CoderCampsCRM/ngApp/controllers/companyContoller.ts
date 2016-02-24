@@ -295,7 +295,7 @@
 
         public getAllDeals() {
 
-            this.dealService.listAllDealsOwned().$promise.then((result) => {
+            this.dealService.listAllDealsShared().$promise.then((result) => {
                 this.deals = [];
                 let deal;
                 console.log(result);
