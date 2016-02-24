@@ -2,6 +2,7 @@
 
     export class AccountController {
         public externalLogins;
+        public currentUserName;
 
         public showModal() {
             this.$uibModal.open({
@@ -26,6 +27,7 @@
         public logout() {
             this.accountService.logout();
             this.$location.path('/');
+            
         }
 
         public getExternalLogins() {
@@ -43,12 +45,12 @@
                 size: "lg"
 
             });
-
         };
 
-        constructor(private accountService: MyApp.Services.AccountService, private $location: ng.ILocationService, private $uibModal: angular.ui.bootstrap.IModalService) {
+        constructor(private accountService: MyApp.Services.AccountService, private $location: ng.ILocationService, private $uibModal: angular.ui.bootstrap.IModalService, private $window: ng.IWindowService, private $state: ng.ui.IStateService) {
             this.getExternalLogins().then((results) => {
                 this.externalLogins = results;
+                this.currentUserName = this.$window.sessionStorage.getItem("firstName");
             });
         }
     }
@@ -60,6 +62,7 @@
         public loginUser;
         public validationMessages;
         public externalLogins;
+
 
         public login() {
             this.accountService.login(this.loginUser).then(() => {

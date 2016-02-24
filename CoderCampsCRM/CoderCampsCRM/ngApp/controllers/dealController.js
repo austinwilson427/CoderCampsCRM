@@ -15,7 +15,6 @@ var MyApp;
                 this.$location = $location;
                 this.$route = $route;
                 this.companiesService = companiesService;
-                this.filterIsDisplayed = false;
                 this.searchPhrase = "";
                 this.currentOrder = "name";
                 this.currentPage = 1;
@@ -27,12 +26,6 @@ var MyApp;
                 this.sortName = 'dealName';
                 this.filterBySelection();
             }
-            DealsListViewController.prototype.hideFilterResponsive = function () {
-                this.filterIsDisplayed = false;
-            };
-            DealsListViewController.prototype.showFilterResponsive = function () {
-                this.filterIsDisplayed = true;
-            };
             DealsListViewController.prototype.filterBySelection = function () {
                 var _this = this;
                 this.dealService.listAllDealsOwned().$promise.then(function (result) {
