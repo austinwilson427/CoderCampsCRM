@@ -191,6 +191,8 @@
         margin-bottom: 80px;
     }
 
+
+
     /*---------------Deals-----------------*/
     .list-view-button-wrap {
         text-align: center;
@@ -371,6 +373,15 @@
         width: 30%;
     }
 
+    ul.list-bar li {
+        width: 13%;
+    }
+
+    .status {
+        width: 400px;
+        font-size: 12px;
+    }
+
     .items_per_page_wrap {
         float: none;
         text-align: center;
@@ -434,6 +445,12 @@
     }
 
     .icon-wrap {
+        font-size: 17px;
+        width: 24%;
+        display: inline-block;
+    }
+
+    .icon-wrap-two {
         font-size: 17px;
         width: 24%;
         display: inline-block;
@@ -535,6 +552,16 @@
             width: 40px;
         }
 
+     .status-last{
+         right: 50px;
+         width: 100px !important;
+     }
+    .status {
+        right: 20px;
+        width: 150px;
+        font-size: 10px;
+    }
+
     #menu-toggle {
         display: none;
     }
@@ -568,11 +595,26 @@
         bottom: 20px;
     }
 
+    .total-display-two {
+        display: inline-block;
+        margin-left: 20px;
+        position: relative;
+        bottom: 7px;
+        font-size: 20px;
+    }
+
     .icon-wrap {
         font-size: 17px;
         width: 100%;
         display: block;
         border-right: none;
+        text-align: left;
+        margin-left: 20px;
+    }
+
+    .icon-wrap-two {
+        width: 100%;
+        display: block;
         text-align: left;
         margin-left: 20px;
     }
@@ -629,6 +671,19 @@
 
     .home_button_wrap {
         margin-top: 100px;
+    }
+
+    .probability-bar, .probability-bar-empty, .probability-bar-lost{
+        height: 10px;
+    }
+    .list-bar li{
+        margin-top: 21px;
+    }
+    .status {
+        position: absolute;
+        font-size: 12px;
+        width: 100% !important;
+        text-align: center;
     }
 
     button.join {
@@ -776,11 +831,11 @@
         width: 100%;
     }
 
-    .dashboard-wrap{
+    .dashboard-wrap {
         padding: 5px;
     }
 
-    .icon-wrap{
+    .icon-wrap {
         margin-left: 5px;
     }
 
@@ -790,18 +845,24 @@
         width: 40px;
     }
 
-    .total-display{
+    .total-display {
         margin-left: 10px;
         bottom: 14px;
     }
-    .all-icons-wrap, .progress-wrap, .productivity-wrap{
+
+    .total-display-two {
+        font-size: 15px;
+    }
+
+    .all-icons-wrap, .progress-wrap, .productivity-wrap {
         padding: 10px;
     }
 
-    .dashboard-activity-wrap{
+    .dashboard-activity-wrap {
         margin-top: 40px;
         padding: 5px;
     }
+
     .all-icons-wrap h2, .progress-wrap h2, .productivity-wrap h2 {
         text-align: center;
         margin-left: 0;

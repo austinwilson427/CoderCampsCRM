@@ -18,6 +18,11 @@ body {
     padding: 8px;
 }
 
+h2.black{
+    color: black !important;
+    border-color: black !important;
+}
+
 
 /*Navbar hover effect color change*/
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
@@ -173,7 +178,7 @@ p.set_monthly {
 }
 
 .quota_btn {
-    color: #370000;
+    color: black;
     font-weight: 500;
     text-align: center;
     cursor: pointer;
@@ -196,6 +201,7 @@ p.set_monthly {
     .quota_btn:hover, .quota_btn:active {
     background-color: #ae0001;
     color: #fdfdfd;
+    border-color: #ae0001;
 }
 
 .my_progress .progress-bar {
@@ -216,6 +222,12 @@ p.set_monthly {
     color: #ae0001;
 }
 
+.icon-wrap-two{
+     text-align: center;
+     padding-left: 0;
+     padding-right: 0;
+}
+
 .icon-wrap {
     text-align: center;
     color: #370000;
@@ -234,6 +246,14 @@ p.set_monthly {
 
 .dashboard-icon {
     font-size: 55px;
+}
+
+.dashboard-icon-two{
+    font-size: 40px;
+}
+
+.total-display-two{
+    font-size: 14px;
 }
 
 .dashboard-wrap {

@@ -21,8 +21,10 @@
         <div class="col-md-4 task_type">
             <label>Type:</label>
             <select class="form-control full" ng-model="vm.typeSelected">
-                <option>Call</option>
-                <option>In Person Meeting</option>
+                <option value="Phonecall">Phone Call</option>
+                <option value="Meeting">Meeting</option>
+                <option value="Email">Email</option>
+                <option value="Project">Project</option>
             </select>
         </div>
         <div class="col-md-4 task_assign">
