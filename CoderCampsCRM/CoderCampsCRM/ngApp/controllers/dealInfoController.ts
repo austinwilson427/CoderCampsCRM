@@ -8,8 +8,8 @@
         public dealLogItems;
         public dealContacts;
         public allContacts;
-        public contactIdToAdd;
-        public shareIdToAdd;
+        public contactToAdd;
+        public sharerToAdd;
         public dealSharers;
         public allRemainingSharers;
         public appointmentScheduled; public qualifiedToBuy; public presentationScheduled;
@@ -194,15 +194,16 @@
             });
         }
 
-        public addDealContact() {
+        public addDealContact(remaining) {
             let dealContactToAdd = {
                 dealId: null,
                 contactId: null,
-                isDealSharer: false
+                isDealSharer: false,
+                contactEmail: null
             }
             dealContactToAdd.dealId = this.routeId;
-            dealContactToAdd.contactId = this.contactIdToAdd;
-
+            dealContactToAdd.contactId = this.contactToAdd.id;
+            dealContactToAdd.contactEmail = this.contactToAdd.email;
             this.dealContactService.saveDealContact(dealContactToAdd).then((result) => {
                 this.getContactsByDealId();
             });
@@ -213,11 +214,13 @@
             let dealContactToAdd = {
                 dealId: null,
                 contactId: null,
-                isDealSharer: true
+                isDealSharer: true,
+                contactEmail: null
             }
             dealContactToAdd.dealId = this.routeId;
-            dealContactToAdd.contactId = this.shareIdToAdd;
-
+            dealContactToAdd.contactId = this.sharerToAdd.id;
+            dealContactToAdd.contactEmail = this.sharerToAdd.email;
+            console.log(dealContactToAdd);
             this.dealContactService.saveDealContact(dealContactToAdd).then((result) => {
                 this.getSharersByDealId();
             });
@@ -225,14 +228,14 @@
 
         public deleteDealContact(id) {
             this.dealContactService.deleteDealContact(id).then((result) => {
-                this.contactIdToAdd = null;
+                this.contactToAdd = null;
                 this.getContactsByDealId();
             });
         }
 
         public deleteShareContact(id) {
             this.dealContactService.deleteDealContact(id).then((result) => {
-                this.shareIdToAdd = null;
+                this.sharerToAdd = null;
                 this.getSharersByDealId();
             });
         }

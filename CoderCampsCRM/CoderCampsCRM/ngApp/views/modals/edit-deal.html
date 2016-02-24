@@ -24,7 +24,7 @@
             <select ng-model="vm.dealDetails.contactId" ng-options="contact.id as contact.name for contact in vm.myContacts.contacts" class="form-control full">
             </select>
             <label>Company</label>
-            <select ng-model="vm.dealDetails.companyId" ng-options="company.id as company.companyName for company in vm.mycompanies"class="form-control full">
+            <select ng-model="vm.dealDetails.companyId" ng-options="company.id as company.companyName for company in vm.myCompanies"class="form-control full">
             </select>
             <button class="form-control full btn btn-primary">Edit Deal</button>
             <a href="#" ng-click="vm.closeModal()" class="form-control full btn btn-danger">Cancel</a>

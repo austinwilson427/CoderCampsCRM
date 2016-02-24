@@ -1,4 +1,5 @@
-﻿<div class="deals-info-wrap">
+﻿<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/dark-hive/jquery-ui.css">
+<div class="deals-info-wrap">
     <div class="row details_head fix_row">
         <div class="col-md-8 head_deal_name">
             <h1>{{vm.dealInfo.dealName}}</h1>
@@ -154,8 +155,7 @@
                     </div>
                     <div class="contact_to_add form-group">
                         <label class="text-center">Select Contact To Add</label>
-                        <select ng-model="vm.contactIdToAdd" ng-change="vm.addDealContact()" class="form-control full">
-                            <option value="{{remaining.id}}" ng-repeat="remaining in vm.allContacts.contacts">{{remaining.name}}</option>
+                        <select ng-model="vm.contactToAdd" ng-change="vm.addDealContact()" ng-options="remaining.name for remaining in vm.allContacts.contacts" class="form-control full">
                         </select>
                     </div>
                 </div>
@@ -182,8 +182,7 @@
                     </div>
                     <div class="contact_to_add form-group">
                         <label class="text-center">Select Contact To Add As a Deal Sharer</label>
-                        <select ng-model="vm.shareIdToAdd" ng-change="vm.addShareholderContact()" class="form-control full">
-                            <option value="{{remaining.id}}" ng-repeat="remaining in vm.allRemainingSharers.contacts">{{remaining.name}}</option>
+                        <select ng-model="vm.sharerToAdd" ng-change="vm.addShareholderContact()" ng-options="remaining.name for remaining in vm.allRemainingSharers.contacts" class="form-control full">
                         </select>
                     </div>
                 </div>

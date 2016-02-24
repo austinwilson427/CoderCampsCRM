@@ -19,10 +19,11 @@
         public validationErrors;
         public myContacts;
         public myCompanies;
+        public myDeals;
 
-        constructor(private taskService: MyApp.Services.TaskService, private $location: ng.ILocationService, private $route: ng.route.IRouteService, private contactService: MyApp.Services.ContactService) {
+        constructor(private taskService: MyApp.Services.TaskService, private $location: ng.ILocationService, private $route: ng.route.IRouteService, private contactService: MyApp.Services.ContactService, private dealService: MyApp.Services.DealService, private dealLogItemService: MyApp.Services.DealLogItemService) {
             this.getMyContacts();
-            
+            this.getMyDeals();
         }
 
         public getMyContacts() {
@@ -31,11 +32,35 @@
             });
         }
 
+        public getMyDeals() {
+            this.dealService.listAllDealsOwned().$promise.then((result) => {
+                this.myDeals = result;
+                this.dealService.listAllDealsShared().$promise.then((result_two) => {
+                    for (var i = 0; i < result_two.length; i++) {
+                        this.myDeals.push(result_two[i].deal);
+                    }
+                });
+            });
+        }
+
         addTask() {
             this.loaded = false;
+
+            let dealLogItem = {
+                type: "Task",
+                startTime: this.taskToAdd.startDate,
+                endTime: this.taskToAdd.dueDate,
+                Content: this.taskToAdd.description,
+                ContactId: this.taskToAdd.contactId,
+                DealId: this.taskToAdd.dealId
+            };
+
             this.taskService.saveTask(this.taskToAdd).then(() => {
-                this.loaded = true;
-                this.$location.path("/tasks")
+                this.dealLogItemService.saveDealLogItem(dealLogItem).then(() => {
+                    this.loaded = true;
+                    this.$location.path("/tasks")
+                })
+
             });
 
         }

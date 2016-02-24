@@ -46,7 +46,7 @@ namespace CoderCampsCRM.API
                 return Ok();
             }
 
-            var dealContactData = _dealRepo.getAllDealsSharedByContactId(contactInfo.Id);
+            var dealContactData = _dealRepo.getAllDealsSharedByContactEmail(userInfo.Email);
 
             if (userId == null || userInfo.Email != contactInfo.Email || contactInfo.Email == null)
             {
@@ -98,9 +98,9 @@ namespace CoderCampsCRM.API
                 return Ok();
             }
 
-            var dealContact = _genRepo.Query<DealContact>().Where(dc => dc.ContactId == contactInfo.Id && dc.DealId == id && dc.isDealSharer == true).FirstOrDefault();
+            var dealContact = _genRepo.Query<DealContact>().Where(dc => dc.ContactEmail == userInfo.Email && dc.DealId == id && dc.isDealSharer == true).FirstOrDefault();
 
-            if (userId == null || dealContact == null)
+            if (userId == null)
             {
                 return Unauthorized();
             }

@@ -189,15 +189,17 @@ var MyApp;
                     });
                 });
             };
-            DealInfoController.prototype.addDealContact = function () {
+            DealInfoController.prototype.addDealContact = function (remaining) {
                 var _this = this;
                 var dealContactToAdd = {
                     dealId: null,
                     contactId: null,
-                    isDealSharer: false
+                    isDealSharer: false,
+                    contactEmail: null
                 };
                 dealContactToAdd.dealId = this.routeId;
-                dealContactToAdd.contactId = this.contactIdToAdd;
+                dealContactToAdd.contactId = this.contactToAdd.id;
+                dealContactToAdd.contactEmail = this.contactToAdd.email;
                 this.dealContactService.saveDealContact(dealContactToAdd).then(function (result) {
                     _this.getContactsByDealId();
                 });
@@ -207,10 +209,13 @@ var MyApp;
                 var dealContactToAdd = {
                     dealId: null,
                     contactId: null,
-                    isDealSharer: true
+                    isDealSharer: true,
+                    contactEmail: null
                 };
                 dealContactToAdd.dealId = this.routeId;
-                dealContactToAdd.contactId = this.shareIdToAdd;
+                dealContactToAdd.contactId = this.sharerToAdd.id;
+                dealContactToAdd.contactEmail = this.sharerToAdd.email;
+                console.log(dealContactToAdd);
                 this.dealContactService.saveDealContact(dealContactToAdd).then(function (result) {
                     _this.getSharersByDealId();
                 });
@@ -218,14 +223,14 @@ var MyApp;
             DealInfoController.prototype.deleteDealContact = function (id) {
                 var _this = this;
                 this.dealContactService.deleteDealContact(id).then(function (result) {
-                    _this.contactIdToAdd = null;
+                    _this.contactToAdd = null;
                     _this.getContactsByDealId();
                 });
             };
             DealInfoController.prototype.deleteShareContact = function (id) {
                 var _this = this;
                 this.dealContactService.deleteDealContact(id).then(function (result) {
-                    _this.shareIdToAdd = null;
+                    _this.sharerToAdd = null;
                     _this.getSharersByDealId();
                 });
             };
@@ -545,4 +550,3 @@ var MyApp;
         Controllers.DealInfoEventController = DealInfoEventController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=dealInfoController.js.map

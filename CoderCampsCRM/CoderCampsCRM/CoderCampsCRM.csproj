@@ -214,6 +214,7 @@
     <Compile Include="API\InteractionsController.cs" />
     <Compile Include="API\LocationsController.cs" />
     <Compile Include="API\MoviesController.cs" />
+    <Compile Include="API\ProfileController.cs" />
     <Compile Include="API\TasksController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -256,9 +257,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201602231922216_Initial.cs" />
-    <Compile Include="Migrations\201602231922216_Initial.Designer.cs">
-      <DependentUpon>201602231922216_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201602240027148_initial.cs" />
+    <Compile Include="Migrations\201602240027148_initial.Designer.cs">
+      <DependentUpon>201602240027148_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -1417,7 +1418,7 @@
     <TypeScriptCompile Include="ngApp\services\dealContactService.ts" />
     <TypeScriptCompile Include="ngApp\services\dealLogItemService.ts" />
     <TypeScriptCompile Include="ngApp\services\dealService.ts" />
-    <TypeScriptCompile Include="ngApp\services\profileServices.ts" />
+    <TypeScriptCompile Include="ngApp\services\profileService.ts" />
     <TypeScriptCompile Include="ngApp\services\services.ts" />
     <TypeScriptCompile Include="ngApp\services\taskService.ts" />
     <TypeScriptCompile Include="Scripts\typings\angular-ui-bootstrap\angular-ui-bootstrap.d.ts" />
@@ -1444,8 +1445,8 @@
     <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602231922216_Initial.resx">
-      <DependentUpon>201602231922216_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602240027148_initial.resx">
+      <DependentUpon>201602240027148_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

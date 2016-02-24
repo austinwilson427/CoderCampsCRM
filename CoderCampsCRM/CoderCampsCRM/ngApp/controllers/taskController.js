@@ -10,12 +10,15 @@ var MyApp;
         })();
         Controllers.TaskListController = TaskListController;
         var TaskAddController = (function () {
-            function TaskAddController(taskService, $location, $route, contactService) {
+            function TaskAddController(taskService, $location, $route, contactService, dealService, dealLogItemService) {
                 this.taskService = taskService;
                 this.$location = $location;
                 this.$route = $route;
                 this.contactService = contactService;
+                this.dealService = dealService;
+                this.dealLogItemService = dealLogItemService;
                 this.getMyContacts();
+                this.getMyDeals();
             }
             TaskAddController.prototype.getMyContacts = function () {
                 var _this = this;
@@ -23,12 +26,33 @@ var MyApp;
                     _this.myContacts = result;
                 });
             };
+            TaskAddController.prototype.getMyDeals = function () {
+                var _this = this;
+                this.dealService.listAllDealsOwned().$promise.then(function (result) {
+                    _this.myDeals = result;
+                    _this.dealService.listAllDealsShared().$promise.then(function (result_two) {
+                        for (var i = 0; i < result_two.length; i++) {
+                            _this.myDeals.push(result_two[i].deal);
+                        }
+                    });
+                });
+            };
             TaskAddController.prototype.addTask = function () {
                 var _this = this;
                 this.loaded = false;
+                var dealLogItem = {
+                    type: "Task",
+                    startTime: this.taskToAdd.startDate,
+                    endTime: this.taskToAdd.dueDate,
+                    Content: this.taskToAdd.description,
+                    ContactId: this.taskToAdd.contactId,
+                    DealId: this.taskToAdd.dealId
+                };
                 this.taskService.saveTask(this.taskToAdd).then(function () {
-                    _this.loaded = true;
-                    _this.$location.path("/tasks");
+                    _this.dealLogItemService.saveDealLogItem(dealLogItem).then(function () {
+                        _this.loaded = true;
+                        _this.$location.path("/tasks");
+                    });
                 });
             };
             TaskAddController.prototype.cancelAdd = function () {
@@ -101,4 +125,3 @@ var MyApp;
         })();
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=taskController.js.map

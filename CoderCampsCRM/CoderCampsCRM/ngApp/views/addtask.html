@@ -34,9 +34,14 @@
                     <option ng-repeat="contact in vm.myContacts.contacts" value="{{contact.id}}">{{contact.name}}</option>
                 </select>
                 <br />
+                <label>Include in Deal</label>
+                <select ng-model="vm.taskToAdd.dealId" class="form-control">
+                    <option ng-repeat="deal in vm.myDeals" value="{{deal.id}}">{{deal.dealName}}</option>
+                </select>
+                <br />
                 <label>Due Date:</label>
                 <div id="datepicker2" class="input-group date" data-date-format="mm/dd/yyyy" style="width:300px">
-                    <input class="form-control" type="text" ng-model="vm.taskToAdd.dueDate" placeholder="Enter Due Date"/>
+                    <input class="form-control" type="text" ng-model="vm.taskToAdd.dueDate" placeholder="Enter Due Date" />
                     <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                 </div>
                 <!--<input type="text" class="form-control full" ng-model="vm.taskToAdd.dueDate" placeholder="YYYY-MM-DD" />-->
@@ -57,16 +62,16 @@
     </div>
 </div>
 <script>
-$(function () {
-    $("#datepicker").datepicker({
-        autoclose: true,
-        todayHighlight: true,
-        orientation: 'bottom'
-    }).datepicker('update', new Date()),
- $("#datepicker2").datepicker({
-     autoclose: true,
-     todayHighlight: true,
-     orientation: 'bottom'
- }).datepicker('update', new Date());
-});
+    $(function () {
+        $("#datepicker").datepicker({
+            autoclose: true,
+            todayHighlight: true,
+            orientation: 'bottom'
+        }).datepicker('update', new Date()),
+     $("#datepicker2").datepicker({
+         autoclose: true,
+         todayHighlight: true,
+         orientation: 'bottom'
+     }).datepicker('update', new Date());
+    });
 </script>

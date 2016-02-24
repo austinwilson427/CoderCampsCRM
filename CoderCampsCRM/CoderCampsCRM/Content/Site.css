@@ -1,4 +1,4 @@
-﻿body {
+body {
     padding-top: 50px;
 }
 
@@ -59,6 +59,7 @@ textarea {
 /*----------------------------Landing page--------------------------------------------*/
 
 section.jumbotron {
+    background: -webkit-linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,.75)), url("http://pre01.deviantart.net/6693/th/pre/f/2014/322/6/6/seattle_skyline_with_mount_rainier_2014_by_larrygorlin-d86vi3u.jpg") no-repeat center;
     background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,.75)), url("http://pre01.deviantart.net/6693/th/pre/f/2014/322/6/6/seattle_skyline_with_mount_rainier_2014_by_larrygorlin-d86vi3u.jpg") no-repeat center;
     background-size: cover;
     min-height: 100vh;
@@ -88,6 +89,7 @@ section.jumbotron {
 
 
 button.join {
+    background: -webkit-linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
     background-size: cover;
     background-attachment: fixed;
@@ -99,6 +101,7 @@ button.join {
 }
 
     button.join:hover {
+        background: -webkit-linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.0));
         background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.0));
         background-size: cover;
         background-color: #e10001;
@@ -188,6 +191,7 @@ p.set_monthly {
     }
 
 .my_progress .progress-bar {
+    background-image: -webkit-linear-gradient(bottom, #326011, #427d16);
     background-image: linear-gradient(to top, #326011, #427d16);
 }
 
@@ -278,6 +282,7 @@ p.set_monthly {
 
 .table_wrap th.hover_blue:hover {
     cursor: pointer;
+    background-image: -webkit-linear-gradient(top,#337ab7 0,#265a88 100%);
     background-image: linear-gradient(to bottom,#337ab7 0,#265a88 100%);
     color: white;
 }
@@ -498,6 +503,8 @@ ul.list-bar {
     border: 1px solid #e6e6e6;
     height: 24px;
     width: 96%;
+    /*-webkit-justify-content: space-around;*/
+    -ms-flex-pack: distribute;
     justify-content: space-around;
     padding-left: 0;
     list-style: none;
@@ -518,7 +525,9 @@ ul.list-bar {
     margin: -6px 2px;
     height: 7px;
     width: 98%;
+    -webkit-transform: translateZ(0) skewX(-20deg);
     transform: translateZ(0) skewX(-20deg);
+    background-image: -webkit-linear-gradient(bottom, #68c522, #74d247);
     background-image: linear-gradient(to top, #68c522, #74d247);
 }
 
@@ -529,6 +538,7 @@ ul.list-bar {
     margin: -6px 2px;
     height: 7px;
     width: 98%;
+    -webkit-transform: translateZ(0) skewX(-20deg);
     transform: translateZ(0) skewX(-20deg);
     background-color: #bbc0c3;
 }
@@ -540,6 +550,7 @@ ul.list-bar {
     margin: -6px 2px;
     height: 7px;
     width: 98%;
+    -webkit-transform: translateZ(0) skewX(-20deg);
     transform: translateZ(0) skewX(-20deg);
     background-color: red;
 }
@@ -689,9 +700,14 @@ ul.pagination, ul.pagination li a {
     height: 100px;
 }
 
+#profileWrap {
+    margin-top: 20px;
+}
+
 /*SEARCHBAR CSS*/
 .search-form .form-group {
     float: right !important;
+    -webkit-transition: all 0.35s, border-radius 0s;
     transition: all 0.35s, border-radius 0s;
     width: 32px;
     height: 32px;
@@ -862,8 +878,7 @@ footer input[type=text], footer textarea {
 	width: 200px;
 	height: 20px;
 	border: none;
-	color: white;
-	-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;
+	color: white; border-radius: 5px;
 	padding: 5px 10px;
 	margin: 10px 0;
 	text-shadow: 0 1px 0 #0F2326;
@@ -881,7 +896,6 @@ footer input[type=text], footer textarea {
 	/* Fallback Color */
 	background: #383838;
 	/* Firefox 3.6+ */
-	background-image: -moz-linear-gradient(#2C5F67, #5C858C);
 	/* Safari 4+, Chrome 1+ */
 	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#2C5F67), to(#5C858C));
 	/* Safari 5.1+, Chrome 10+ */
@@ -891,8 +905,7 @@ footer input[type=text], footer textarea {
 }
 
 article.widget_newsletter input[type=text] {
-	width: 130px;
-	-moz-border-radius: 5px 0 0 5px; -webkit-border-radius: 5px 0 0 5px; border-radius: 5px 0 0 5px;
+	width: 130px; border-radius: 5px 0 0 5px;
 	float: left;
 }
 
@@ -902,8 +915,7 @@ article.widget_newsletter input[type=submit] {
 	display: block;
 	border: 1px solid #4E7A81;
 	width: 70px;
-	height: 30px;
-	-moz-border-radius: 0 5px 5px 0; -webkit-border-radius: 0 5px 5px 0; border-radius: 0 5px 5px 0;
+	height: 30px; border-radius: 0 5px 5px 0;
 	text-align: center;
 	line-height: 28px;
 	border: 1px solid #ADC0C4;
@@ -917,7 +929,6 @@ article.widget_newsletter input[type=submit] {
 	/* Fallback Color */
 	background: #DFF0F3;
 	/* Firefox 3.6+ */
-	background-image: -moz-linear-gradient(#FFFFFF, #EFEFEF);
 	/* Safari 4+, Chrome 1+ */
 	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#EFEFEF));
 	/* Safari 5.1+, Chrome 10+ */
@@ -944,6 +955,7 @@ article.widget_social ul li a {
 	margin: 0 10px 0 0 ;
 }
 .widget_social {
+    /*-webkit-text-decoration-color: white;*/
     text-decoration-color: white;
 }
 

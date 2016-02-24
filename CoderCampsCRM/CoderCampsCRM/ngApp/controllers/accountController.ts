@@ -32,6 +32,20 @@
             return this.accountService.getExternalLogins();
         }
 
+        public showRegisterModal() {
+            this.$uibModal.open({
+                templateUrl: "/ngApp/views/register.html",
+                controller: MyApp.Controllers.RegisterController,
+                controllerAs: "vm",
+                resolve: {
+                    userInfo: null
+                },
+                size: "lg"
+
+            });
+
+        };
+
         constructor(private accountService: MyApp.Services.AccountService, private $location: ng.ILocationService, private $uibModal: angular.ui.bootstrap.IModalService) {
             this.getExternalLogins().then((results) => {
                 this.externalLogins = results;
@@ -86,6 +100,38 @@
         }
     }
 
+    export class MyHomeController {
+        public registerUser;
+        constructor(private accountService: MyApp.Services.AccountService, private $location: ng.ILocationService, private $uibModal: angular.ui.bootstrap.IModalService, private $uibModalInstance: angular.ui.bootstrap.IModalServiceInstance) {
+
+        }
+
+        public showLoginModal() {
+            this.$uibModal.open({
+                templateUrl: "/ngApp/views/login.html",
+                controller: MyApp.Controllers.LoginController,
+                controllerAs: "controller",
+                resolve: {
+
+                },
+                size: "md"
+
+            });
+        }
+        public showRegisterModal() {
+            this.$uibModal.open({
+                templateUrl: "/ngApp/views/register.html",
+                controller: MyApp.Controllers.RegisterController,
+                controllerAs: "vm",
+                resolve: {
+                    userInfo: this.registerUser
+                },
+                size: "lg"
+
+            });
+
+        };
+    }
 
     export class RegisterController {
         public registerUser;
@@ -135,9 +181,10 @@
             });
         }
 
+      
         public register() {
 
-
+        
             this.accountService.register(this.registerUser).then(() => {
                 this.closeModal();
                 this.showLoginModal();

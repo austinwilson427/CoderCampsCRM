@@ -108,7 +108,10 @@ namespace CoderCampsCRM.Providers
             {
                 user.PhoneNumber = "";
             }
-
+            if (user.IsActive == false)
+            {
+                user.IsActive = true;
+            }
             IDictionary<string, string> data = new Dictionary<string, string>
             {
                 
@@ -120,6 +123,7 @@ namespace CoderCampsCRM.Providers
                 { "picUrl", user.PicUrl },
                 { "email", user.Email },
                 { "phoneNumber", user.PhoneNumber }
+                
             };
 
             

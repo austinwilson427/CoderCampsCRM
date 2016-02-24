@@ -18,6 +18,7 @@ namespace CoderCampsCRM.API
             this._repo = repo;
         }
 
+        [Authorize]
         public ContactDetailViewModel getContactDetailViewModel(int id)
         {
             return _repo.getContactDetailViewModel(id);

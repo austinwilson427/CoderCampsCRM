@@ -19,6 +19,7 @@ namespace CoderCampsCRM.API
             _repo = repo;
         }
 
+        [Authorize]
         [HttpPost]
         public IHttpActionResult PostFilteredContacts(ContactFilterViewModel vm)
         {
