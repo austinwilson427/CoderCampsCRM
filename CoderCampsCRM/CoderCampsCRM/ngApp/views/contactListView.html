@@ -12,7 +12,7 @@
         <select class="form-control filterSideBarContent" ng-change="vm.filterContacts()" ng-model="vm.taskFilter">
             <option ng-repeat="task in vm.contactsView.tasks" value="{{task.id}}">{{task.description}}</option>
         </select>
-        <button class="btn btn-primary form-control" id="filterBtn" ng-click="vm.showAllContacts()">Show all contacts</button>
+        <button class="btn btn-primary form-control center-block" id="filterBtn" ng-click="vm.showAllContacts()">Show all contacts</button>
     </div>
     <div class="row" id="page-content-wrapper">
         <div class="col-md-12">
