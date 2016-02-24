@@ -14,7 +14,14 @@ var MyApp;
                 // this.companies = this.companiesService.getCompanies();
                 this.contactView = contactService.getAllContacts();
                 this.getAllItems();
+                this.filterIsDisplayed = false;
             }
+            CompaniesController.prototype.hideFilterResponsive = function () {
+                this.filterIsDisplayed = false;
+            };
+            CompaniesController.prototype.showFilterResponsive = function () {
+                this.filterIsDisplayed = true;
+            };
             CompaniesController.prototype.getAllItems = function () {
                 var _this = this;
                 this.companiesService.getCompanies().$promise.then(function (result) {
@@ -321,4 +328,3 @@ var MyApp;
         Controllers.EditCompanyController = EditCompanyController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=companyContoller.js.map

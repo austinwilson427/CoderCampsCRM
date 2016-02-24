@@ -19,4 +19,3 @@ var MyApp;
         angular.module("MyApp").service("profileService", AccountProfileService);
     })(Services = MyApp.Services || (MyApp.Services = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=profileService.js.map

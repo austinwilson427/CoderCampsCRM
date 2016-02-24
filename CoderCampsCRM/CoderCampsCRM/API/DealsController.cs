@@ -155,7 +155,7 @@ namespace CoderCampsCRM.API
             return BadRequest(ModelState);
         }
 
-        [Route("api/deals/owned")]
+        [Route("api/deals/owned/{id}")]
         public IHttpActionResult DeleteDeal(int id)
         {
             Deal dealBeingDeleted = _genRepo.Find<Deal>(id);

@@ -19,9 +19,19 @@
         public currentPage = 1;
         public maxSize = 10;
         public itemsPerPage = 10;
+        public filterIsDisplayed;
 
         constructor(private contactService: MyApp.Services.ContactService, private $location: ng.ILocationService, private $uibModal: angular.ui.bootstrap.IModalService, private $state: ng.ui.IStateService) {
+            this.filterIsDisplayed = false;
             this.showAllContacts();
+        }
+
+        public hideFilterResponsive() {
+            this.filterIsDisplayed = false;
+        }
+
+        public showFilterResponsive() {
+            this.filterIsDisplayed = true;
         }
 
         public updateSearchList() {

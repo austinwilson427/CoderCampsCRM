@@ -1,38 +1,42 @@
 ﻿
 <div id="wrapper" class="details_wrap toggled">
-    <div id="sidebar-wrapper">
+    <div id="sidebar-wrapper" ng-class="{displayedFilterHide: vm.filterIsDisplayed}">
        
         <label>Filter by Country</label>
-        <select class="form-control" ng-change="vm.filterByCountry()" ng-model="vm.selCountry">
+        <select class="form-control country-filter" ng-change="vm.filterByCountry()" ng-model="vm.selCountry">
             <option ng-repeat="company in vm.companies" value="{{company.companyCountry}}">{{company.companyCountry}}</option>
         </select>
         <label>Filter by City</label>
-        <select class="form-control" ng-change="vm.filterByCity()" ng-model="vm.selCity">
+        <select class="form-control city-filter" ng-change="vm.filterByCity()" ng-model="vm.selCity">
             <option ng-repeat="company in vm.companies" value="{{company.companyCity}}">{{company.companyCity}}</option>
         </select>
         <label>Filter by State</label>
-        <select class="form-control" ng-change="vm.filterByState()" ng-model="vm.selState">
+        <select class="form-control state-filter" ng-change="vm.filterByState()" ng-model="vm.selState">
             <option ng-repeat="company in vm.companies" value="{{company.companyState}}">{{company.companyState}}</option>
         </select>
         <label>Filter by Industry</label>
-        <select class="form-control" ng-change="vm.filterByIntustry()" ng-model="vm.selIndustry">
+        <select class="form-control industry-filter" ng-change="vm.filterByIntustry()" ng-model="vm.selIndustry">
             <option ng-repeat="company in vm.companies" value="{{company.companyIndustry}}">{{company.companyIndustry}}</option>
         </select>
       
     </div>
     <div id="page-content-wrapper">
         <div class="container-fluid">
-            <div class="row">
+            <div class="row fix_row">
                 <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-4">
+                    <div class="row toggle-responsive-filter">
+                        <a ng-show="vm.filterIsDisplayed" href="#" class="btn btn-danger" ng-click="vm.hideFilterResponsive()">Show Filter</a>
+                        <a ng-show="!vm.filterIsDisplayed" href="#" class="btn btn-danger" ng-click="vm.showFilterResponsive()">Hide Filter</a>
+                    </div>
+                    <div class="row fix_row">
+                        <div class="col-md-4 companies-search-wrap">
                             <a href="#" ng-show="vm.showTrash" ng-click="vm.deleteDealModal()"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                             <a href="#" ng-show="vm.showTrash" ng-click="vm.archiveDealModal()"><span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span></a>
                             <btn id="menu-toggle" class="btn btn-primary filter_button">Filter</btn>
-                            <a href="#"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a>
-                            <a href="#"><span class="glyphicon glyphicon-th" aria-hidden="true"></span></a>
+                            <!--<a href="#"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a>
+                            <a href="#"><span class="glyphicon glyphicon-th" aria-hidden="true"></span></a>-->
                         </div>
-                        <div class="col-md-6 form-group no-margin">
+                        <div class="col-md-6 form-group no-margin search-bar">
                             <input class="form-control" ng-model="search"    placeholder="Search all Companies in this view..."/>
                         </div>
                         <div class="col-md-2">

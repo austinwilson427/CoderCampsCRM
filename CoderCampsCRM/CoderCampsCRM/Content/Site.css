@@ -18,6 +18,11 @@ body {
     padding: 8px;
 }
 
+h2.black{
+    color: black !important;
+    border-color: black !important;
+}
+
 
 /*Navbar hover effect color change*/
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
@@ -74,8 +79,8 @@ section.jumbotron {
 }
 
     .heading-wrap h1 {
-    margin-bottom: 50px;
-}
+        margin-bottom: 50px;
+    }
 
     .heading-wrap h1, .heading-wrap h2, .heading-wrap h3 {
         font-weight: 300;
@@ -121,6 +126,14 @@ p.home_description {
 
 /*-------------------------------Dashboard-----------------------------------*/
 
+.dashboard-wrap a:link, .dashboard-wrap a:visited{
+    color:#4f93ce;
+}
+
+.dashboard-wrap a:hover, .dashboard-wrap a:active{
+    color:#a10001;
+}
+
 .first-part {
     padding-right: 20px;
 }
@@ -147,9 +160,9 @@ p.home_description {
         font-weight: 400;
     }
 
-.all-icons-wrap h2 {
-    margin-bottom: 40px;
-}
+    .all-icons-wrap h2 {
+        margin-bottom: 40px;
+    }
 
 .progress-wrap h2 {
     margin-bottom: 0;
@@ -165,7 +178,7 @@ p.set_monthly {
 }
 
 .quota_btn {
-    color: #370000;
+    color: black;
     font-weight: 500;
     text-align: center;
     cursor: pointer;
@@ -186,9 +199,10 @@ p.set_monthly {
 }
 
     .quota_btn:hover, .quota_btn:active {
-        background-color: #ae0001;
-        color: #fdfdfd;
-    }
+    background-color: #ae0001;
+    color: #fdfdfd;
+    border-color: #ae0001;
+}
 
 .my_progress .progress-bar {
     background-image: -webkit-linear-gradient(bottom, #326011, #427d16);
@@ -206,6 +220,12 @@ p.set_monthly {
 
 .icon-wrap a:hover, .icon-wrap a:active {
     color: #ae0001;
+}
+
+.icon-wrap-two{
+     text-align: center;
+     padding-left: 0;
+     padding-right: 0;
 }
 
 .icon-wrap {
@@ -226,6 +246,14 @@ p.set_monthly {
 
 .dashboard-icon {
     font-size: 55px;
+}
+
+.dashboard-icon-two{
+    font-size: 40px;
+}
+
+.total-display-two{
+    font-size: 14px;
 }
 
 .dashboard-wrap {
@@ -405,8 +433,6 @@ table.log_items td {
 }
 
 table.log_items_company td {
-   
-    
 }
 
 
@@ -576,11 +602,11 @@ ul.list-bar {
     width: 100%;
 }
 
-.ready_btn{
+.ready_btn {
     width: 150px;
 }
 
-.contacts_list_row{
+.contacts_list_row {
     margin-top: 40px;
 }
 /*-------------------Contacts Section--------------------------*/
@@ -602,9 +628,9 @@ ul.list-bar {
     background-color: lightgray;
 }
 
-.contactPanel button {
-    margin-bottom: 20px;
-}
+    .contactPanel button {
+        margin-bottom: 20px;
+    }
 
 #interactionForm {
     margin-top: 10px;
@@ -836,26 +862,61 @@ li.Twitter a, li.Facebook a, li.Google a {
 
 /*TABLE CSS*/
 
-#tasktable {
+.tasktable {
     border-spacing: 10px;
     empty-cells: show;
     width: 90%;
     text-align: left;
 }
 
-    #tasktable tr td {
+    .tasktable tr td {
         white-space: nowrap;
         text-align: left;
     }
 
+    .task-progress-wrap{
+        padding: 20px;
+    }
+
+    
 #accordian {
     margin: -10px;
 }
+/*SubFooter*/
+.home_description1 {
+
+    margin-bottom: 20px;
+}
+.home_description2 {
+
+    margin-bottom: 20px;
+}
+.home_description3 {
+
+    margin-bottom: 20px;
+}
+.sessions_wrap {
+
+    padding-bottom: 20px;
+
+}
+
+
+
+
+
+
+
+.task-content-wrap {
+    padding: 20px 0 !important;
+}
+
 /*FOOTER SECTION------------------------------------------------------*/
 
 /* Footer */
 
 footer {
+ border-top: 1px solid black;
 	clear: both;
 	min-height: 400px;
     /*Change footer color here*/
@@ -865,11 +926,13 @@ footer {
     padding: 80px 0;
 }
 
+
+
+
 footer h4 {
 	font-size: 25px;
 	color: #2C5F66;
 	margin: 0 0 10px 0;
-    
 	clear: both;
 }
 
@@ -886,6 +949,33 @@ article.widget_twitter li {
 	margin: 20px 0;
 }
 
+.Twith4 {
+    	text-align: left;
+        margin-left: 30px;
+        margin-bottom: 20px;
+   /*iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii*/
+}
+.Newsh4 {
+    text-align: left;
+     margin-bottom: 20px;
+    
+}
+
+.signupnews {
+
+   font-weight: bold;
+}
+}
+
+/*buton in Twitter Update*/
+.readmore_button_wrap {
+    margin: 30px;
+    	text-align:center;
+        margin-left: 50px;
+        font-weight: bold;
+        font-weight: bold;
+}
+
 article.widget_social li {
 	float: left;
 	display: inline-block;
@@ -895,7 +985,8 @@ footer input[type=text], footer textarea {
 	width: 200px;
 	height: 20px;
 	border: none;
-	color: white; border-radius: 5px;
+	color: white;
+    border-radius: 5px;
 	padding: 5px 10px;
 	margin: 10px 0;
 	text-shadow: 0 1px 0 #0F2326;
@@ -922,7 +1013,8 @@ footer input[type=text], footer textarea {
 }
 
 article.widget_newsletter input[type=text] {
-	width: 130px; border-radius: 5px 0 0 5px;
+	width: 130px;
+    border-radius: 5px 0 0 5px;
 	float: left;
 }
 
@@ -932,7 +1024,8 @@ article.widget_newsletter input[type=submit] {
 	display: block;
 	border: 1px solid #4E7A81;
 	width: 70px;
-	height: 30px; border-radius: 0 5px 5px 0;
+	height: 30px;
+    border-radius: 0 5px 5px 0;
 	text-align: center;
 	line-height: 28px;
 	border: 1px solid #ADC0C4;
@@ -941,6 +1034,40 @@ article.widget_newsletter input[type=submit] {
 	font-size: 12px;
 	cursor: pointer;
 }
+/*button under twitter updates  read more*/
+ .readmore_button_wrap {
+     margin-left: 120px;
+   
+}
+
+button_1 {
+
+    margin-left:20px;
+}
+
+.messageboxfeed {
+   
+    margin-top:10px;
+}
+/*button under newsletter*/
+.signUpNews {
+    margin-top: 10px;
+}
+
+.emailnews{
+margin-top: 35px;
+
+}
+
+.copyright_notice {
+
+    margin-top: 40px;
+}
+
+.Feedbacktext {
+    margin-top: 5px;
+}
+
 
 article.widget_newsletter input[type=submit] {
 	/* Fallback Color */
@@ -969,8 +1096,9 @@ article.widget_social ul li a {
 	width: 32px;
 	height: 32px;
 	text-indent: -5000px;
-	margin: 0 10px 0 0 ;
+    margin: 0 10px 0 0;
 }
+
 .widget_social {
     /*-webkit-text-decoration-color: white;*/
     text-decoration-color: white;
@@ -978,13 +1106,10 @@ article.widget_social ul li a {
 
 article.widget_social ul li.facebook a {
 	background: url('http://static1.squarespace.com/static/4f5810d9e4b0ebbf0a1507a6/t/55a6e39be4b0e13bc07f93a1/1437000604121/') no-repeat;
-   
     background-color: white;
-
-
 }
-.my-facebook {
 
+.my-facebook {
     color: white;
     background-color: blue;
 }
@@ -1001,12 +1126,17 @@ article.widget_social ul li.behance a {
 	background: url('images/social_behance.png') no-repeat;
 }
 
-/*article.widget_social ul li*/.linkedin {
+/*article.widget_social ul li*/ .linkedin {
 	background: white;
 }
 
 footer .button_1 {
 	color: black;
+}
+
+.toggle-responsive-filter {
+    display: none;
+    margin-bottom: 15px !important;
 }
 
 
