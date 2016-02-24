@@ -148,7 +148,8 @@ var MyApp;
                     controller: QuotaModal,
                     controllerAs: 'vm',
                     resolve: {
-                        quotaDetails: function () { return _this.quotaDetails; }
+                        quotaDetails: function () { return _this.quotaDetails; },
+                        monthlyQuota: function () { return _this.monthlyQuota; }
                     },
                     size: "deal"
                 });
@@ -157,10 +158,12 @@ var MyApp;
         })();
         Controllers.DashboardController = DashboardController;
         var QuotaModal = (function () {
-            function QuotaModal(quotaDetails, $uibModalInstance, dashboardService) {
+            function QuotaModal(quotaDetails, monthlyQuota, $uibModalInstance, dashboardService) {
                 this.quotaDetails = quotaDetails;
+                this.monthlyQuota = monthlyQuota;
                 this.$uibModalInstance = $uibModalInstance;
                 this.dashboardService = dashboardService;
+                this.quotaSet = monthlyQuota;
             }
             QuotaModal.prototype.closeModal = function () {
                 this.$uibModalInstance.close();
@@ -189,3 +192,4 @@ var MyApp;
         })();
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
+//# sourceMappingURL=dashboardController.js.map

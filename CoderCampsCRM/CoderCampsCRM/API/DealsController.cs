@@ -11,6 +11,7 @@ using System.Web.Http;
 
 namespace CoderCampsCRM.API
 {
+    
     public class DealsController : ApiController
     {
         private IGenericRepository _genRepo;
@@ -122,8 +123,6 @@ namespace CoderCampsCRM.API
             dealToAdd.UserId = userId;
             var user = _genRepo.Query<ApplicationUser>().Where(a => a.Id == userId).FirstOrDefault();
 
-            var contact = _genRepo.Query<Contact>().Where(c => c.Email == user.Email).FirstOrDefault();
-
             if(userId == null)
             {
                 return Unauthorized();
@@ -135,11 +134,6 @@ namespace CoderCampsCRM.API
                 if (dealToAdd.Id == 0)
                 {
                     dealToAdd.CreatedOn = DateTime.Now;
-                    if(contact == null)
-                    {
-                        return Ok();
-                    }
-                    dealToAdd.ContactId = contact.Id;
                     _genRepo.Add<Deal>(dealToAdd);
                     _genRepo.SaveChanges();
                     return Ok(dealToAdd);

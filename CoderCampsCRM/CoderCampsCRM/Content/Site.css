@@ -443,7 +443,7 @@ table.activity {
     margin: 40px auto;
 }
 
-.contact_to_add {
+.contact_to_add, .company_to_add {
     width: 60%;
     margin: 10px auto 80px;
     text-align: center;
@@ -575,6 +575,14 @@ ul.list-bar {
 .deals-info-wrap {
     width: 100%;
 }
+
+.ready_btn{
+    width: 150px;
+}
+
+.contacts_list_row{
+    margin-top: 40px;
+}
 /*-------------------Contacts Section--------------------------*/
 
 .error {
@@ -610,6 +618,9 @@ ul.list-bar {
 
 #filterBtn {
     margin-top: 20px;
+    max-width: 60%;
+    margin-left:auto;
+    margin-right:auto;
 }
 
 #interactionBtn {
@@ -702,6 +713,12 @@ ul.pagination, ul.pagination li a {
 
 #profileWrap {
     margin-top: 20px;
+}
+
+.filterSideBarContent {
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /*SEARCHBAR CSS*/
