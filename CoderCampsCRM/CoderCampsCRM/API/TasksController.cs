@@ -35,7 +35,7 @@ namespace CoderCampsCRM.API
         public IHttpActionResult GetIndTask(int id)
         {
             var userId = this.User.Identity.GetUserId();
-            var data = _repo.Query<UserTask>().Where(u => u.UserId == userId).FirstOrDefault();
+            var data = _repo.Query<UserTask>().Where(u => u.UserId == userId && u.Id == id).FirstOrDefault();
             var contacts = _repo.Query<Contact>().ToList();
             return Ok(data);
         }

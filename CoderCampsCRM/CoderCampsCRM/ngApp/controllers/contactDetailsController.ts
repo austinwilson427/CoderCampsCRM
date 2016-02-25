@@ -23,7 +23,8 @@
             timeNow = new Date(timeNow.getFullYear(), timeNow.getMonth(), timeNow.getDate(), timeNow.getHours(), timeNow.getMinutes());
             this.interaction = {
                 date: timeNow
-            };        
+            }; 
+            debugger;       
         }
 
         public deleteModal() {
