@@ -532,7 +532,6 @@
     }
 
     .deals_table {
-        max-width: 300%;
         width: 1040px;
     }
 
@@ -574,10 +573,19 @@
         display: none;
     }
 
+    .example-animate-container{
+        overflow-y: hidden;
+    }
     .pagination_wrap {
         width: 80%;
     }
 
+    .contacts_table {
+        width: 1040px !important;
+    }
+    .companies-table {
+        width: 900px !important;
+    }
     .items_per_page_wrap_wrap {
         width: 80%;
         margin-bottom: 50px;

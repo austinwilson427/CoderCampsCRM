@@ -75,7 +75,6 @@
                             <th class="hover_blue" ng-click="sortType = 'lastInteraction'; sortReverse = !sortReverse">Last Interaction<span ng-show="sortType == 'lastInteraction' && !sortReverse" class="glyphicon glyphicon-chevron-down"></span><span ng-show="sortType == 'lastInteraction' && sortReverse" class="glyphicon glyphicon-chevron-up"></span></th>
                         </tr>
                     </thead>
-                    {{vm.contactsView}}
                     <tbody>
                         <tr ng-repeat="contact in vm.contactsView.contacts.slice(((vm.currentPage-1)*vm.itemsPerPage), ((vm.currentPage)*vm.itemsPerPage)) | filter: {name: vm.searchText} | orderBy:sortType:sortReverse">
                             <td>{{contact.name}}</td>
