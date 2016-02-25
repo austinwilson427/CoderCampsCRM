@@ -27,7 +27,7 @@
         public logout() {
             this.accountService.logout();
             this.$location.path('/');
-            
+            location.reload();
         }
 
         public getExternalLogins() {
@@ -68,6 +68,7 @@
             this.accountService.login(this.loginUser).then(() => {
                 this.closeModal();
                 this.$location.path('/dashboard');
+                location.reload();
             }).catch((results) => {
                 this.validationMessages = results;
             });

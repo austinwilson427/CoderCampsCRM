@@ -33,6 +33,7 @@ var MyApp;
             AccountController.prototype.logout = function () {
                 this.accountService.logout();
                 this.$location.path('/');
+                location.reload();
             };
             AccountController.prototype.getExternalLogins = function () {
                 return this.accountService.getExternalLogins();
@@ -69,6 +70,7 @@ var MyApp;
                 this.accountService.login(this.loginUser).then(function () {
                     _this.closeModal();
                     _this.$location.path('/dashboard');
+                    location.reload();
                 }).catch(function (results) {
                     _this.validationMessages = results;
                 });
@@ -260,4 +262,3 @@ var MyApp;
         Controllers.ConfirmEmailController = ConfirmEmailController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=accountController.js.map
