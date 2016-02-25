@@ -62,14 +62,19 @@ namespace CoderCampsCRM.Tests
             ///////////////////Act///////////////////
 
             //Should Pass Test
-            IHttpActionResult actionResult = controller.GetDeals();
+            IHttpActionResult actionResult = controller.GetDealsOwned();
 
             var contentResult = actionResult as OkNegotiatedContentResult<List<Deal>>;
 
-            Assert.IsNotNull(contentResult);
-            Assert.IsNotNull(contentResult.Content);
-            Assert.AreEqual(3, contentResult.Content.Count);
-            Assert.AreEqual("Test Deal Change 1", contentResult.Content.Find(d => d.Id == 8).DealName);
+            Assert.IsInstanceOfType(actionResult, typeof(UnauthorizedResult));
+
+            //Assert.IsNotNull(contentResult);
+            //Assert.IsNotNull(contentResult.Content);
+            //Assert.AreEqual(3, contentResult.Content.Count);
+            //Assert.AreEqual("Test Deal Change 1", contentResult.Content.Find(d => d.Id == 8).DealName);
+
+
+
             
         }
 
@@ -98,7 +103,7 @@ namespace CoderCampsCRM.Tests
             ///////////////////Act///////////////////
 
             //Should Pass Test
-            IHttpActionResult actionResult = controller.GetADealViewModel(7);
+            IHttpActionResult actionResult = controller.GetADealOwned(7);
 
             //Should Fail Test
             //IHttpActionResult actionResult = controller.GetADealViewModel(10);
@@ -107,9 +112,11 @@ namespace CoderCampsCRM.Tests
 
             ///////////////////Assert///////////////////
 
-            Assert.IsNotNull(contentResult);
-            Assert.IsNotNull(contentResult.Content);
-            Assert.AreEqual(7, contentResult.Content.Id);
+            Assert.IsInstanceOfType(actionResult, typeof(UnauthorizedResult));
+
+            //Assert.IsNotNull(contentResult);
+            //Assert.IsNotNull(contentResult.Content);
+            //Assert.AreEqual(7, contentResult.Content.Id);
         }
 
         [TestMethod]
@@ -132,7 +139,7 @@ namespace CoderCampsCRM.Tests
             ///////////////////Act///////////////////
 
             //Should Pass Test
-            IHttpActionResult actionResult = controller.GetADealViewModel(10);
+            IHttpActionResult actionResult = controller.GetADealOwned(10);
 
             //Should Fail Test
             //IHttpActionResult actionResult = controller.GetADealViewModel(7);
@@ -141,7 +148,7 @@ namespace CoderCampsCRM.Tests
 
             ///////////////////Assert///////////////////
 
-            Assert.IsInstanceOfType(actionResult, typeof(NotFoundResult));
+            Assert.IsInstanceOfType(actionResult, typeof(UnauthorizedResult));
 
 
         }
@@ -170,7 +177,8 @@ namespace CoderCampsCRM.Tests
             //No should fail test. Delete deal will return Ok() even if
 
             // Assert
-            Assert.IsInstanceOfType(actionResult, typeof(OkResult));
+            Assert.IsInstanceOfType(actionResult, typeof(UnauthorizedResult));
+            //Not logged in
         }
 
         [TestMethod]
@@ -200,14 +208,15 @@ namespace CoderCampsCRM.Tests
             var contentResult = actionResult as OkNegotiatedContentResult<Deal>;
 
             // Assert
-            Assert.IsNotNull(contentResult);
-            Assert.IsNotNull(contentResult.Content);
-            Assert.AreEqual(0, contentResult.Content.Id);
-            Assert.AreEqual("Test Deal", contentResult.Content.DealName);
-            Assert.AreEqual(500000m, contentResult.Content.Amount);
-            Assert.AreEqual("Qualified to Buy", contentResult.Content.Stage);
-            Assert.AreEqual(new DateTime(2015, 4, 27), contentResult.Content.CloseDate);
-            Assert.AreEqual(false, contentResult.Content.isArchived);
+            Assert.IsInstanceOfType(actionResult, typeof(UnauthorizedResult));
+            //Assert.IsNotNull(contentResult);
+            //Assert.IsNotNull(contentResult.Content);
+            //Assert.AreEqual(0, contentResult.Content.Id);
+            //Assert.AreEqual("Test Deal", contentResult.Content.DealName);
+            //Assert.AreEqual(500000m, contentResult.Content.Amount);
+            //Assert.AreEqual("Qualified to Buy", contentResult.Content.Stage);
+            //Assert.AreEqual(new DateTime(2015, 4, 27), contentResult.Content.CloseDate);
+            //Assert.AreEqual(false, contentResult.Content.isArchived);
         }
 
         [TestMethod]
@@ -247,14 +256,15 @@ namespace CoderCampsCRM.Tests
             var contentResult = actionResult as OkNegotiatedContentResult<Deal>;
 
             // Assert
-            Assert.IsNotNull(contentResult);
-            Assert.IsNotNull(contentResult.Content);
-            Assert.AreEqual(7, contentResult.Content.Id);
-            Assert.AreEqual("Test Deal Change", contentResult.Content.DealName);
-            Assert.AreEqual(600000m, contentResult.Content.Amount);
-            Assert.AreEqual("Presentation Scheduled", contentResult.Content.Stage);
-            Assert.AreEqual(new DateTime(2015, 3, 24), contentResult.Content.CloseDate);
-            Assert.AreEqual(true, contentResult.Content.isArchived);
+            Assert.IsInstanceOfType(actionResult, typeof(UnauthorizedResult));
+            //Assert.IsNotNull(contentResult);
+            //Assert.IsNotNull(contentResult.Content);
+            //Assert.AreEqual(7, contentResult.Content.Id);
+            //Assert.AreEqual("Test Deal Change", contentResult.Content.DealName);
+            //Assert.AreEqual(600000m, contentResult.Content.Amount);
+            //Assert.AreEqual("Presentation Scheduled", contentResult.Content.Stage);
+            //Assert.AreEqual(new DateTime(2015, 3, 24), contentResult.Content.CloseDate);
+            //Assert.AreEqual(true, contentResult.Content.isArchived);
 
             //Failed test with unchanged results
             //Assert.AreEqual("Test Deal", contentResult.Content.DealName);
