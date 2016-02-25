@@ -23,8 +23,7 @@
             timeNow = new Date(timeNow.getFullYear(), timeNow.getMonth(), timeNow.getDate(), timeNow.getHours(), timeNow.getMinutes());
             this.interaction = {
                 date: timeNow
-            }; 
-            debugger;       
+            };      
         }
 
         public deleteModal() {
@@ -119,7 +118,9 @@
 
         public chooseCompany() {
             this.getViewDetails();
-            return this.contactService.editContact(this.contact).then(this.$state.reload());            
+            return this.contactService.editContact(this.contact).then(() => {
+                this.$state.reload();
+            });            
         }
 
         public checkCoordsId() {

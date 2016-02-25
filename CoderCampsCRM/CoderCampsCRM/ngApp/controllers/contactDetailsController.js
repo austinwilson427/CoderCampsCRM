@@ -20,7 +20,6 @@ var MyApp;
                 this.interaction = {
                     date: timeNow
                 };
-                debugger;
             }
             ContactDetailsController.prototype.deleteModal = function () {
                 var _this = this;
@@ -102,8 +101,11 @@ var MyApp;
                 return this.contactService.editContact(this.contact);
             };
             ContactDetailsController.prototype.chooseCompany = function () {
+                var _this = this;
                 this.getViewDetails();
-                return this.contactService.editContact(this.contact).then(this.$state.reload());
+                return this.contactService.editContact(this.contact).then(function () {
+                    _this.$state.reload();
+                });
             };
             ContactDetailsController.prototype.checkCoordsId = function () {
                 if (this.contactView.location) {
@@ -133,4 +135,3 @@ var MyApp;
         Controllers.ContactDetailsController = ContactDetailsController;
     })(Controllers = MyApp.Controllers || (MyApp.Controllers = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=contactDetailsController.js.map

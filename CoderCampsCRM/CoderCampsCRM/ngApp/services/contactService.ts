@@ -35,7 +35,6 @@
         }
         //////////////Google Contacts /////////
         public getGoogleContacts() {
-            debugger;
             let data = this.googleContactResource.query().$promise;
             return data; 
         };
