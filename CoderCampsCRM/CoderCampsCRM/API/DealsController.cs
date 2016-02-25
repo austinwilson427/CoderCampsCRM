@@ -74,6 +74,10 @@ namespace CoderCampsCRM.API
                 return Unauthorized();
             }
             var data = _dealRepo.getDealViewModel(id);
+            if(data.Deal == null)
+            {
+                return Unauthorized();
+            }
             if (data.Deal.UserId != userId)
             {
                 return Unauthorized();
@@ -140,7 +144,15 @@ namespace CoderCampsCRM.API
                 }
                 else
                 {
+                    var dealContact = _genRepo.Query<DealContact>().Where(dc => dc.ContactEmail == user.Email && dc.DealId == dealToAdd.Id && dc.isDealSharer == true).FirstOrDefault();
+
                     Deal dealBeingEditted = _genRepo.Find<Deal>(dealToAdd.Id);
+
+                    if (dealContact == null && dealBeingEditted.UserId != userId)
+                    {
+                        return Unauthorized();
+                    }
+
                     dealBeingEditted.DealName = dealToAdd.DealName;
                     dealBeingEditted.Stage = dealToAdd.Stage;
                     dealBeingEditted.Amount = dealToAdd.Amount;
