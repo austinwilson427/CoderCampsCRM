@@ -29,7 +29,6 @@ var MyApp;
             };
             //////////////Google Contacts /////////
             ContactService.prototype.getGoogleContacts = function () {
-                debugger;
                 var data = this.googleContactResource.query().$promise;
                 return data;
             };
@@ -81,4 +80,3 @@ var MyApp;
         angular.module("MyApp").service("contactService", ContactService);
     })(Services = MyApp.Services || (MyApp.Services = {}));
 })(MyApp || (MyApp = {}));
-//# sourceMappingURL=contactService.js.map
