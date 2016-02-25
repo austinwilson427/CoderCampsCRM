@@ -105,7 +105,7 @@ namespace CoderCampsCRM.API
 
             var dealContact = _genRepo.Query<DealContact>().Where(dc => dc.ContactEmail == userInfo.Email && dc.DealId == id && dc.isDealSharer == true).FirstOrDefault();
 
-            if (userId == null)
+            if (dealContact == null || userId == null)
             {
                 return Unauthorized();
             }
