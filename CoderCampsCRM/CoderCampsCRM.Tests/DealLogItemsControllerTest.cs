@@ -46,7 +46,6 @@ namespace CoderCampsCRM.Tests
                         Content = "A task has been left",
                         SubmittedBy = "Bob Smith",
                         ContactId = 2,
-                        TaskId = 1,
                         DealId = 2
                     },
                     new DealLogItem
@@ -100,7 +99,6 @@ namespace CoderCampsCRM.Tests
                     Content = "A task has been left",
                     SubmittedBy = "Bob Smith",
                     ContactId = 2,
-                    TaskId = 1,
                     DealId = 2
                 }
             });
@@ -120,10 +118,11 @@ namespace CoderCampsCRM.Tests
 
             ///////////////////Assert///////////////////
 
-            Assert.IsNotNull(contentResult);
-            Assert.IsNotNull(contentResult.Content);
-            Assert.AreEqual(9, contentResult.Content.Id);
-            Assert.AreEqual("A task has been left", contentResult.Content.Content);
+            Assert.IsInstanceOfType(actionResult, typeof(UnauthorizedResult));
+            //Assert.IsNotNull(contentResult);
+            //Assert.IsNotNull(contentResult.Content);
+            //Assert.AreEqual(9, contentResult.Content.Id);
+            //Assert.AreEqual("A task has been left", contentResult.Content.Content);
         }
 
         [TestMethod]
@@ -146,7 +145,6 @@ namespace CoderCampsCRM.Tests
                         Content = "A task has been left",
                         SubmittedBy = "Bob Smith",
                         ContactId = 2,
-                        TaskId = 1,
                         DealId = 2
                     },
                     new DealLogItem
@@ -173,9 +171,10 @@ namespace CoderCampsCRM.Tests
 
             var contentResult = actionResult as OkNegotiatedContentResult<List<DealLogItem>>;
 
-            Assert.IsNotNull(contentResult);
-            Assert.IsNotNull(contentResult.Content);
-            Assert.AreEqual(2, contentResult.Content.Count);
+            Assert.IsInstanceOfType(actionResult, typeof(UnauthorizedResult));
+            //Assert.IsNotNull(contentResult);
+            //Assert.IsNotNull(contentResult.Content);
+            //Assert.AreEqual(2, contentResult.Content.Count);
             //Assert.AreEqual("A task has been left", contentResult.Content.Find(d => d.Id == 8).Content);
         }
 
@@ -197,7 +196,7 @@ namespace CoderCampsCRM.Tests
                     Content = "A task has been left",
                     SubmittedBy = "Bob Smith",
                     ContactId = 2,
-                    TaskId = 1,
+
                     DealId = 2
                 }
             });
@@ -216,8 +215,8 @@ namespace CoderCampsCRM.Tests
             var contentResult = actionResult as OkNegotiatedContentResult<DealLogItem>;
 
             ///////////////////Assert///////////////////
+            Assert.IsInstanceOfType(actionResult, typeof(UnauthorizedResult));
 
-            Assert.IsInstanceOfType(actionResult, typeof(NotFoundResult));
         }
 
         [TestMethod]
@@ -270,7 +269,6 @@ namespace CoderCampsCRM.Tests
                 Content = "A task has been left",
                 SubmittedBy = "Bob Smith",
                 ContactId = 2,
-                TaskId = 1,
                 DealId = 2
 
             });
@@ -278,17 +276,17 @@ namespace CoderCampsCRM.Tests
             var contentResult = actionResult as OkNegotiatedContentResult<DealLogItem>;
 
             // Assert
-            Assert.IsNotNull(contentResult);
-            Assert.IsNotNull(contentResult.Content);
-            Assert.AreEqual(0, contentResult.Content.Id);
-            Assert.AreEqual("A task has been left", contentResult.Content.Content);
-            Assert.AreEqual("Task", contentResult.Content.Type);
-            Assert.AreEqual(new DateTime(2015, 3, 24), contentResult.Content.StartTime);
-            Assert.AreEqual(new DateTime(2015, 3, 27), contentResult.Content.EndTime);
-            Assert.AreEqual("Bob Smith", contentResult.Content.SubmittedBy);
-            Assert.AreEqual(2, contentResult.Content.ContactId);
-            Assert.AreEqual(1, contentResult.Content.TaskId);
-            Assert.AreEqual(2, contentResult.Content.DealId);
+            Assert.IsInstanceOfType(actionResult, typeof(UnauthorizedResult));
+            //Assert.IsNotNull(contentResult);
+            //Assert.IsNotNull(contentResult.Content);
+            //Assert.AreEqual(0, contentResult.Content.Id);
+            //Assert.AreEqual("A task has been left", contentResult.Content.Content);
+            //Assert.AreEqual("Task", contentResult.Content.Type);
+            //Assert.AreEqual(new DateTime(2015, 3, 24), contentResult.Content.StartTime);
+            //Assert.AreEqual(new DateTime(2015, 3, 27), contentResult.Content.EndTime);
+            //Assert.AreEqual("Bob Smith", contentResult.Content.SubmittedBy);
+            //Assert.AreEqual(2, contentResult.Content.ContactId);
+            //Assert.AreEqual(2, contentResult.Content.DealId);
         }
 
         [TestMethod]
@@ -307,7 +305,6 @@ namespace CoderCampsCRM.Tests
                 Content = "A task has been left",
                 SubmittedBy = "Bob Smith",
                 ContactId = 2,
-                TaskId = 1,
                 DealId = 2
             });
 
@@ -327,24 +324,23 @@ namespace CoderCampsCRM.Tests
                 Content = "A note has been left",
                 SubmittedBy = "Austin Wilson",
                 ContactId = 1,
-                TaskId = null,
                 DealId = 1
             });
 
             var contentResult = actionResult as OkNegotiatedContentResult<DealLogItem>;
 
             // Assert
-            Assert.IsNotNull(contentResult);
-            Assert.IsNotNull(contentResult.Content);
-            Assert.AreEqual(7, contentResult.Content.Id);
-            Assert.AreEqual("Note", contentResult.Content.Type);
-            Assert.AreEqual(new DateTime(2015, 4, 24), contentResult.Content.StartTime);
-            Assert.AreEqual(new DateTime(2015, 4, 27), contentResult.Content.EndTime);
-            Assert.AreEqual("A note has been left", contentResult.Content.Content);
-            Assert.AreEqual("Austin Wilson", contentResult.Content.SubmittedBy);
-            Assert.AreEqual(1, contentResult.Content.ContactId);
-            Assert.AreEqual(null, contentResult.Content.TaskId);
-            Assert.AreEqual(1, contentResult.Content.DealId);
+            Assert.IsInstanceOfType(actionResult, typeof(UnauthorizedResult));
+            //Assert.IsNotNull(contentResult);
+            //Assert.IsNotNull(contentResult.Content);
+            //Assert.AreEqual(7, contentResult.Content.Id);
+            //Assert.AreEqual("Note", contentResult.Content.Type);
+            //Assert.AreEqual(new DateTime(2015, 4, 24), contentResult.Content.StartTime);
+            //Assert.AreEqual(new DateTime(2015, 4, 27), contentResult.Content.EndTime);
+            //Assert.AreEqual("A note has been left", contentResult.Content.Content);
+            //Assert.AreEqual("Austin Wilson", contentResult.Content.SubmittedBy);
+            //Assert.AreEqual(1, contentResult.Content.ContactId);
+            //Assert.AreEqual(1, contentResult.Content.DealId);
 
             //Failed test with unchanged results
             //Assert.AreEqual("Task", contentResult.Content.Type);

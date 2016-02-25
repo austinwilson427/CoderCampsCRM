@@ -19,7 +19,7 @@ var MyApp;
                 this.searchPhrase = "";
                 this.currentOrder = "name";
                 this.currentPage = 1;
-                this.itemsPerPage = 5;
+                this.itemsPerPage = 10;
                 this.sortOrder = "ascending";
                 this.stageFilter = 0;
                 this.dealsSelected = [];

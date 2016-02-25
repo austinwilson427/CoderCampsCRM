@@ -2,6 +2,10 @@ body {
     padding-top: 50px;
 }
 
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -18,7 +22,7 @@ body {
     padding: 8px;
 }
 
-h2.black{
+h2.black {
     color: black !important;
     border-color: black !important;
 }
@@ -126,12 +130,12 @@ p.home_description {
 
 /*-------------------------------Dashboard-----------------------------------*/
 
-.dashboard-wrap a:link, .dashboard-wrap a:visited{
-    color:#4f93ce;
+.dashboard-wrap a:link, .dashboard-wrap a:visited {
+    color: #4f93ce;
 }
 
-.dashboard-wrap a:hover, .dashboard-wrap a:active{
-    color:#a10001;
+.dashboard-wrap a:hover, .dashboard-wrap a:active {
+    color: #a10001;
 }
 
 .first-part {
@@ -160,9 +164,9 @@ p.home_description {
         font-weight: 400;
     }
 
-    .all-icons-wrap h2 {
-        margin-bottom: 40px;
-    }
+.all-icons-wrap h2 {
+    margin-bottom: 40px;
+}
 
 .progress-wrap h2 {
     margin-bottom: 0;
@@ -186,12 +190,17 @@ p.set_monthly {
     font-size: 13px;
     line-height: 1.28;
     -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     -webkit-font-smoothing: antialiased;
     text-shadow: 0 0 1px transparent;
     text-transform: none;
     background: #fdfdfd;
     max-width: 100%;
     overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
     border-color: #dee3e4;
     margin-top: 20px;
@@ -199,10 +208,10 @@ p.set_monthly {
 }
 
     .quota_btn:hover, .quota_btn:active {
-    background-color: #ae0001;
-    color: #fdfdfd;
-    border-color: #ae0001;
-}
+        background-color: #ae0001;
+        color: #fdfdfd;
+        border-color: #ae0001;
+    }
 
 .my_progress .progress-bar {
     background-image: -webkit-linear-gradient(bottom, #326011, #427d16);
@@ -222,10 +231,10 @@ p.set_monthly {
     color: #ae0001;
 }
 
-.icon-wrap-two{
-     text-align: center;
-     padding-left: 0;
-     padding-right: 0;
+.icon-wrap-two {
+    text-align: center;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .icon-wrap {
@@ -248,11 +257,11 @@ p.set_monthly {
     font-size: 55px;
 }
 
-.dashboard-icon-two{
+.dashboard-icon-two {
     font-size: 40px;
 }
 
-.total-display-two{
+.total-display-two {
     font-size: 14px;
 }
 
@@ -552,6 +561,9 @@ ul.list-bar {
     height: 7px;
     width: 98%;
     -webkit-transform: translateZ(0) skewX(-20deg);
+    -moz-transform: translateZ(0) skewX(-20deg);
+    -ms-transform: translateZ(0) skewX(-20deg);
+    -o-transform: translateZ(0) skewX(-20deg);
     transform: translateZ(0) skewX(-20deg);
     background-image: -webkit-linear-gradient(bottom, #68c522, #74d247);
     background-image: linear-gradient(to top, #68c522, #74d247);
@@ -565,6 +577,9 @@ ul.list-bar {
     height: 7px;
     width: 98%;
     -webkit-transform: translateZ(0) skewX(-20deg);
+    -moz-transform: translateZ(0) skewX(-20deg);
+    -ms-transform: translateZ(0) skewX(-20deg);
+    -o-transform: translateZ(0) skewX(-20deg);
     transform: translateZ(0) skewX(-20deg);
     background-color: #bbc0c3;
 }
@@ -577,6 +592,9 @@ ul.list-bar {
     height: 7px;
     width: 98%;
     -webkit-transform: translateZ(0) skewX(-20deg);
+    -moz-transform: translateZ(0) skewX(-20deg);
+    -ms-transform: translateZ(0) skewX(-20deg);
+    -o-transform: translateZ(0) skewX(-20deg);
     transform: translateZ(0) skewX(-20deg);
     background-color: red;
 }
@@ -645,8 +663,8 @@ ul.list-bar {
 #filterBtn {
     margin-top: 20px;
     max-width: 60%;
-    margin-left:auto;
-    margin-right:auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #interactionBtn {
@@ -751,6 +769,8 @@ ul.pagination, ul.pagination li a {
 .search-form .form-group {
     float: right !important;
     -webkit-transition: all 0.35s, border-radius 0s;
+    -moz-transition: all 0.35s, border-radius 0s;
+    -o-transition: all 0.35s, border-radius 0s;
     transition: all 0.35s, border-radius 0s;
     width: 32px;
     height: 32px;
@@ -874,31 +894,29 @@ li.Twitter a, li.Facebook a, li.Google a {
         text-align: left;
     }
 
-    .task-progress-wrap{
-        padding: 20px;
-    }
+.task-progress-wrap {
+    padding: 20px;
+}
 
-    
+
 #accordian {
     margin: -10px;
 }
 /*SubFooter*/
 .home_description1 {
-
     margin-bottom: 20px;
 }
+
 .home_description2 {
-
     margin-bottom: 20px;
 }
+
 .home_description3 {
-
     margin-bottom: 20px;
 }
+
 .sessions_wrap {
-
     padding-bottom: 20px;
-
 }
 
 
@@ -916,151 +934,145 @@ li.Twitter a, li.Facebook a, li.Google a {
 /* Footer */
 
 footer {
- border-top: 1px solid black;
-	clear: both;
-	min-height: 400px;
+    border-top: 1px solid black;
+    clear: both;
+    min-height: 400px;
     /*Change footer color here*/
-	background: #998a55;
+    background: #998a55;
     /*change text color here*/
-	color: black;
+    color: black;
     padding: 80px 0;
 }
 
 
 
 
-footer h4 {
-	font-size: 25px;
-	color: #2C5F66;
-	margin: 0 0 10px 0;
-	clear: both;
-}
+    footer h4 {
+        font-size: 25px;
+        color: #2C5F66;
+        margin: 0 0 10px 0;
+        clear: both;
+    }
 
-footer .column {
-	float: left;
-	display: inline-block;
-	width: 300px;
-	margin: 20px 10px;
-}
+    footer .column {
+        float: left;
+        display: inline-block;
+        width: 300px;
+        margin: 20px 10px;
+    }
 
 /* Widgets */
 
 article.widget_twitter li {
-	margin: 20px 0;
+    margin: 20px 0;
 }
 
 .Twith4 {
-    	text-align: left;
-        margin-left: 30px;
-        margin-bottom: 20px;
-   /*iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii*/
+    text-align: left;
+    margin-left: 30px;
+    margin-bottom: 20px;
+    /*iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii*/
 }
+
 .Newsh4 {
     text-align: left;
-     margin-bottom: 20px;
-    
+    margin-bottom: 20px;
 }
 
 .signupnews {
-
-   font-weight: bold;
-}
+    font-weight: bold;
 }
 
 /*buton in Twitter Update*/
 .readmore_button_wrap {
     margin: 30px;
-    	text-align:center;
-        margin-left: 50px;
-        font-weight: bold;
-        font-weight: bold;
+    text-align: center;
+    margin-left: 50px;
+    font-weight: bold;
 }
 
 article.widget_social li {
-	float: left;
-	display: inline-block;
+    float: left;
+    display: inline-block;
 }
 
 footer input[type=text], footer textarea {
-	width: 200px;
-	height: 20px;
-	border: none;
-	color: white;
+    width: 200px;
+    height: 20px;
+    border: none;
+    color: white;
     border-radius: 5px;
-	padding: 5px 10px;
-	margin: 10px 0;
-	text-shadow: 0 1px 0 #0F2326;
+    padding: 5px 10px;
+    margin: 10px 0;
+    text-shadow: 0 1px 0 #0F2326;
+    /* Fallback Color */
+    background: #383838;
+    /* Firefox 3.6+ */
+    /* Safari 4+, Chrome 1+ */
+    background-image: -webkit-gradient(linear, 0, 0, 0, 100%, from(#2C5F67), to(#5C858C));
+    /* Safari 5.1+, Chrome 10+ */
+    background-image: -webkit-linear-gradient(#2C5F67, #5C858C);
+    /* IE */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2C5F67', endColorstr='#5C858C');
 }
 
-footer input[type=text]:focus, footer textarea:focus {
-	outline: none;
-}
+    footer input[type=text]:focus, footer textarea:focus {
+        outline: none;
+    }
 
 footer textarea {
-	height: 53px;
+    height: 53px;
 }
 
-footer input[type=text], footer textarea {
-	/* Fallback Color */
-	background: #383838;
-	/* Firefox 3.6+ */
-	/* Safari 4+, Chrome 1+ */
-	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#2C5F67), to(#5C858C));
-	/* Safari 5.1+, Chrome 10+ */
-	background-image: -webkit-linear-gradient(#2C5F67, #5C858C); 
-	/* IE */
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2C5F67', endColorstr='#5C858C');
-}
 
 article.widget_newsletter input[type=text] {
-	width: 130px;
+    width: 130px;
     border-radius: 5px 0 0 5px;
-	float: left;
+    float: left;
 }
 
 article.widget_newsletter input[type=submit] {
-	margin: 10px 0 0 0;
-	float: left;
-	display: block;
-	border: 1px solid #4E7A81;
-	width: 70px;
-	height: 30px;
+    margin: 10px 0 0 0;
+    float: left;
+    display: block;
+    border: 1px solid #4E7A81;
+    width: 70px;
+    height: 30px;
     border-radius: 0 5px 5px 0;
-	text-align: center;
-	line-height: 28px;
-	border: 1px solid #ADC0C4;
-	color: #5E8C92;
-	font-weight: bold;
-	font-size: 12px;
-	cursor: pointer;
-}
-/*button under twitter updates  read more*/
- .readmore_button_wrap {
-     margin-left: 120px;
-   
+    text-align: center;
+    line-height: 28px;
+    color: #5E8C92;
+    font-weight: bold;
+    font-size: 12px;
+    cursor: pointer;
+    /* Fallback Color */
+    background: #DFF0F3;
+    /* Firefox 3.6+ */
+    /* Safari 4+, Chrome 1+ */
+    background-image: -webkit-gradient(linear, 0, 0, 0, 100, from(#FFFFFF), to(#EFEFEF));
+    /* Safari 5.1+, Chrome 10+ */
+    background-image: -webkit-linear-gradient(#FFFFFF, #EFEFEF);
+    /* IE */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#EFEFEF');
 }
 
-button_1 {
-
-    margin-left:20px;
+.button_1 {
+    margin-left: 20px;
 }
 
 .messageboxfeed {
-   
-    margin-top:10px;
+    margin-top: 10px;
 }
 /*button under newsletter*/
 .signUpNews {
     margin-top: 10px;
 }
 
-.emailnews{
-margin-top: 35px;
-
+.emailnews {
+    margin-top: 35px;
 }
 
 .copyright_notice {
-
     margin-top: 40px;
 }
 
@@ -1068,44 +1080,32 @@ margin-top: 35px;
     margin-top: 5px;
 }
 
-
-article.widget_newsletter input[type=submit] {
-	/* Fallback Color */
-	background: #DFF0F3;
-	/* Firefox 3.6+ */
-	/* Safari 4+, Chrome 1+ */
-	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#EFEFEF));
-	/* Safari 5.1+, Chrome 10+ */
-	background-image: -webkit-linear-gradient(#FFFFFF, #EFEFEF); 
-	/* IE */
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#EFEFEF');
-}
-
 .widget_newsletter input[type=submit]:hover {
-	background: #FFFFFF;
+    background: #FFFFFF;
 }
 
 .widget_newsletter input[type=submit]:active {
-	background: #EFEFEF;
+    background: #EFEFEF;
 }
 
 /* Social Links */
 
 article.widget_social ul li a {
-	display: block;
-	width: 32px;
-	height: 32px;
-	text-indent: -5000px;
+    display: block;
+    width: 32px;
+    height: 32px;
+    text-indent: -5000px;
     margin: 0 10px 0 0;
 }
 
 .widget_social {
     /*-webkit-text-decoration-color: white;*/
+    -moz-text-decoration-color: white;
     text-decoration-color: white;
 }
 
 article.widget_social ul li.facebook a {
-	background: url('http://static1.squarespace.com/static/4f5810d9e4b0ebbf0a1507a6/t/55a6e39be4b0e13bc07f93a1/1437000604121/') no-repeat;
+    background: url('http://static1.squarespace.com/static/4f5810d9e4b0ebbf0a1507a6/t/55a6e39be4b0e13bc07f93a1/1437000604121/') no-repeat;
     background-color: white;
 }
 
@@ -1115,23 +1115,23 @@ article.widget_social ul li.facebook a {
 }
 
 article.widget_social ul li.twitter a {
-	background: url('images/social_twitter.png') no-repeat;
+    background: url('images/social_twitter.png') no-repeat;
 }
 
 article.widget_social ul li.tumblr a {
-	background: url('images/social_tumblr.png') no-repeat;
+    background: url('images/social_tumblr.png') no-repeat;
 }
 
 article.widget_social ul li.behance a {
-	background: url('images/social_behance.png') no-repeat;
+    background: url('images/social_behance.png') no-repeat;
 }
 
 /*article.widget_social ul li*/ .linkedin {
-	background: white;
+    background: white;
 }
 
 footer .button_1 {
-	color: black;
+    color: black;
 }
 
 .toggle-responsive-filter {
@@ -1149,61 +1149,73 @@ footer .button_1 {
 }*/
 
 .animate-repeat {
-  line-height: 40px;
-  list-style: none;
-  /*box-sizing:border-box;*/
-  border-bottom: 1px solid white;
-  -webkit-transition: 1s linear all;
-  transition: 1s linear all;
+    line-height: 40px;
+    list-style: none;
+    /*box-sizing:border-box;*/
+    border-bottom: 1px solid white;
+    -webkit-transition: 1s linear all;
+    -moz-transition: 1s linear all;
+    -o-transition: 1s linear all;
+    transition: 1s linear all;
 }
 
-.animate-repeat.ng-move,
-.animate-repeat.ng-enter,
-.animate-repeat.ng-leave {
-  -webkit-transition: all linear 0.5s;
-  transition: all linear 0.5s;
-}
+    .animate-repeat.ng-move,
+    .animate-repeat.ng-enter,
+    .animate-repeat.ng-leave {
+        -webkit-transition: all linear 0.5s;
+        -moz-transition: all linear 0.5s;
+        -o-transition: all linear 0.5s;
+        transition: all linear 0.5s;
+    }
 
-.animate-repeat.ng-leave.ng-leave-active,
-.animate-repeat.ng-move,
-.animate-repeat.ng-enter {
-  opacity: 0;
-  max-height: 0;
-}
+        .animate-repeat.ng-leave.ng-leave-active,
+        .animate-repeat.ng-move,
+        .animate-repeat.ng-enter {
+            opacity: 0;
+            max-height: 0;
+        }
 
-.animate-repeat.ng-leave,
-.animate-repeat.ng-move.ng-move-active,
-.animate-repeat.ng-enter.ng-enter-active {
-  opacity: 1;
-  max-height: 40px;
-}
+            .animate-repeat.ng-leave,
+            .animate-repeat.ng-move.ng-move-active,
+            .animate-repeat.ng-enter.ng-enter-active {
+                opacity: 1;
+                max-height: 40px;
+            }
 
 
-/**
+    /**
  * Stagger Leave (hide) animation
  */
 
-.animate-repeat.ng-leave-stagger {
-  /* this will have a 100ms delay between each successive leave animation */
-  -webkit-transition-delay: 0.2s;
-  transition-delay: 0.2s;
-  /* in case the stagger doesn't work then these two values
-     must be set to 0 to avoid an accidental CSS inheritance */
-  -webkit-transition-duration: 0s;
-  transition-duration: 0s;
-}
+    .animate-repeat.ng-leave-stagger {
+        /* this will have a 100ms delay between each successive leave animation */
+        -webkit-transition-delay: 0.2s;
+        -moz-transition-delay: 0.2s;
+        -o-transition-delay: 0.2s;
+        transition-delay: 0.2s;
+        /* in case the stagger doesn't work then these two values
+	 must be set to 0 to avoid an accidental CSS inheritance */
+        -webkit-transition-duration: 0s;
+        -moz-transition-duration: 0s;
+        -o-transition-duration: 0s;
+        transition-duration: 0s;
+    }
 
 
-/**
+    /**
  * Stagger ENTER ANIMATION
  */
 
-.animate-repeat.ng-enter-stagger {
-  /* this will have a 100ms delay between each successive enter animation */
-  -webkit-transition-delay: 0.2s;
-  transition-delay: 0.2s;
-  /* in case the stagger doesn't work then these two values
-     must be set to 0 to avoid an accidental CSS inheritance */
-  -webkit-transition-duration: 0s;
-  transition-duration: 0s;
-}
+    .animate-repeat.ng-enter-stagger {
+        /* this will have a 100ms delay between each successive enter animation */
+        -webkit-transition-delay: 0.2s;
+        -moz-transition-delay: 0.2s;
+        -o-transition-delay: 0.2s;
+        transition-delay: 0.2s;
+        /* in case the stagger doesn't work then these two values
+	 must be set to 0 to avoid an accidental CSS inheritance */
+        -webkit-transition-duration: 0s;
+        -moz-transition-duration: 0s;
+        -o-transition-duration: 0s;
+        transition-duration: 0s;
+    }
