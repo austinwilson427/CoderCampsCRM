@@ -23,7 +23,7 @@
     @*<link rel="stylesheet" href="bower_components/sweetalert/dist/sweetalert.css">*@
 
 </head>
-<body ng-controller="AccountController as account">
+<body ng-controller="AccountController as account" ng-cloak>
     @* OLD CODE FROM CODER CAMPS TEMPLATE - NAVBAR ADDED - WILL NEED TO USE NG-SHOW AND NG-CLICK INFORMATION *@
     @*<h1>My App</h1>
     <div>
@@ -79,7 +79,7 @@
                             </ul>
                         </li>
                         <li class="divider-vertical"></li>
-                        <li><p class="navbar-text">Signed in as {{account.currentUserName}}</p></li> @*Admin text to be changed with angular code for username "name"*@
+                        <li ng-show="account.isLoggedIn()"><p class="navbar-text">Signed in as {{account.currentUserName}}</p></li> @*Admin text to be changed with angular code for username "name"*@
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->

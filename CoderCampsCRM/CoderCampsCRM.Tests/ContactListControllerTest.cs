@@ -50,7 +50,8 @@ namespace CoderCampsCRM.Tests
             //Assert//
 
             //Assert.IsNotNull(contentResult);
-            Assert.AreEqual("Duran Gradwell", contentResult.Content.Find(c => c.UserId == "7dhfad9sydao").Name);
+            //Assert.AreEqual("Duran Gradwell", contentResult.Content.Find(c => c.UserId == "7dhfad9sydao").Name);
+            Assert.IsInstanceOfType(contentResult, typeof(OkNegotiatedContentResult<List<Contact>>));
         }
     }
 }

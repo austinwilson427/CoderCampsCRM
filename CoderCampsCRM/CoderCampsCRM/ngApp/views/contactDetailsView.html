@@ -86,7 +86,7 @@
                         <option ng-repeat="company in vm.contactView.companies" value="{{company.id}}">{{company.companyName}}</option>
                     </select>
                 </div>
-                <table class="table deals_table contacts_table table-hover table-bordered table-responsive" ng-hide="vm.contactView.company">
+                <table class="table deals_table contacts_table table-hover table-bordered table-responsive" ng-show="vm.contactView.company">
                     <tr>
                         <td>Name</td>
                         <td class="tableDetailRow">{{vm.contactView.company.companyName}}</td>
