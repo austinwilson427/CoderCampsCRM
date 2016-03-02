@@ -114,7 +114,7 @@
                                     <td><a ui-sref="deal-info({id: value.id})">{{value.dealName}}</a>&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="value.key"><a href="#" ng-click="vm.editDealModal(value)" title="Edit This Deal"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></span></td>
                                     <td>{{value.stage}}</td>
                                     <td>{{value.closeDate | date: 'MM/dd/yy'}}</td>
-                                    <td>{{value.amount | currency}}</td>
+                                    <td class="currency">{{value.amount | currency}}</td>
                                     <td><a href="contactDetails/{{value.contact.id}}">{{value.contact.name}}</a></td>
                                     <td><a href="companies/{{value.company.id}}">{{value.company.companyName}}</a></td>
                                 </tr>

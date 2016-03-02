@@ -6,6 +6,16 @@ body {
   display: none !important;
 }
 
+.deals_table td{
+    font-size: 20px;
+}
+
+    .deals_table td.currency {
+        text-align: justify;
+        -ms-text-justify: inter-word;
+        text-justify: inter-word;
+    }
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
 	padding-left: 15px;

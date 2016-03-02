@@ -64,12 +64,13 @@ namespace CoderCampsCRM.API
         {
             var userId = this.User.Identity.GetUserId();
             var user = _genRepo.Query<ApplicationUser>().Where(a => a.Id == userId).FirstOrDefault();
-            var fullName = user.FirstName + " " + user.LastName;
 
             if (userId == null)
             {
-                return null;
+                return Unauthorized();
             }
+
+            var fullName = user.FirstName + " " + user.LastName;
 
             if (ModelState.IsValid)
             {
